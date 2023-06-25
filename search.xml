@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>first-blog</title>
+      <link href="/2023/06/25/first-blog/"/>
+      <url>/2023/06/25/first-blog/</url>
+      
+        <content type="html"><![CDATA[<h1 id="搭建个人博客"><a href="#搭建个人博客" class="headerlink" title="搭建个人博客"></a>搭建个人博客</h1><p>这边主要是按照<a href="https://wushishu.xyz/post/be8880ea.html">wushishu</a>的来进行搭建，还参考了<a href="https://zhuanlan.zhihu.com/p/305812430">这篇知乎文章</a>,还要把Blog下的_config.yml中的https改为http;</p><p>风格主题的话采用的就是我的友链<a href="https://argvchs.netlify.app/2022/05/10/hexo-theme-particlex/">argvchs</a>里的</p><p>整个过程都比较顺利，没有遇到很大挫折，几个小时就做好了。</p><h1 id="上传笔记"><a href="#上传笔记" class="headerlink" title="上传笔记"></a>上传笔记</h1><p>先创建笔记</p><pre><code>hexo new post &quot;新建博客文章名&quot;plaintext</code></pre><p>再上传笔记</p><pre><code>$ hexo clplaintext$ hexo gplaintext$ hexo splaintext$ hexo dplaintext</code></pre><h1 id="笔记记录与分享"><a href="#笔记记录与分享" class="headerlink" title="笔记记录与分享"></a>笔记记录与分享</h1><p>也正是这种开源精神，可以让人少走很多弯路。</p><p>我这边也想谈谈我这几年的一些学习资源和过程</p><p>比如当年springboot的配置问题就是找了好几个网课都不会，最后是动力节点给解决的。</p><p>也正好对学习资料进行一个总结，除把CSDN的笔记搬运过来，也可以把我有道云笔记上的也整合一下。</p><p>不过一些C++的笔记（当年也看了好多书，做了好多笔记）就不打算整理了，毕竟已经决定要走Java开发了。</p><p>大概应该会有</p><ul><li>Java基础（<a href="https://www.bilibili.com/video/BV1Kb411W75N/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">尚硅谷</a>）</li><li>Linux（<a href="https://www.bilibili.com/video/BV1n84y1i7td/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">黑马</a>）</li><li>Mysql（<a href="https://www.bilibili.com/video/BV1iq4y1u7vj/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">尚硅谷</a>）</li><li>JavaWeb2023(<a href="https://www.bilibili.com/video/BV1m84y1w7Tb/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">黑马</a>)</li><li>springboot(<a href="https://www.bilibili.com/video/BV1Km4y1k7bn/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">动力节点</a>)</li><li>mybatisplus(<a href="https://www.bilibili.com/video/BV12R4y157Be/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">尚硅谷</a>)</li><li>一些项目(<a href="https://www.bilibili.com/video/BV1nV4y1s7ZN/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">全栈开发</a>)</li><li>Redis(<a href="https://www.bilibili.com/video/BV1cr4y1671t/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">黑马</a>)</li><li>算法练习（力扣hot100）</li><li>算法训练（<a href="https://www.bilibili.com/video/BV13g41157hK/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">左程云</a>）</li><li>并发编程（<a href="https://www.bilibili.com/video/BV16J411h7Rd/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">黑马</a>）</li><li>设计模式（<a href="https://www.bilibili.com/video/BV1Np4y1z7BU/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">黑马</a>）</li><li>瑞吉外卖(<a href="https://www.bilibili.com/video/BV13a411q753/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">黑马</a>)</li><li>springcloud(<a href="https://www.bilibili.com/video/BV1LQ4y127n4/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">黑马</a>)</li><li>学成在线(<a href="https://www.bilibili.com/video/BV1j8411N7Bm/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">黑马</a>)</li><li>通用权限项目(<a href="https://www.bilibili.com/video/BV1tw411f79E/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">黑马</a>)</li><li>Spring (<a href="https://www.bilibili.com/video/BV1Ft4y1g7Fb/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">动力节点</a>)</li><li>Mybatis（<a href="https://www.bilibili.com/video/BV1JP4y1Z73S/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">动力节点</a>）</li><li>clickHouse(<a href="https://www.bilibili.com/video/BV1Yh411z7os/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">尚硅谷</a>)</li><li>玩转Spring全家桶（极客时间）</li><li>JVM(<a href="https://www.bilibili.com/video/BV1PJ411n7xZ/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">尚硅谷</a>)</li></ul><p>不过这些等找到实习以后再说吧，可能要明年了，当然也可能下半年下班以后写。而且写的时候估计可能还要重学一遍。</p><p>当然上面其实还有很多欠缺。比如ElasticSearch,MQ,kafka,golang等。</p><p>还有平时看过的一些书。《算法（第四版）》，DDIA，CSAPP，On Java</p><p>以及不知道怎么整理的计算机网络。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 无 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2023/06/25/hello-world/"/>
+      <url>/2023/06/25/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
