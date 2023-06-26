@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2023-06-26T02:15:41.176Z</updated>
+  <updated>2023-06-26T15:16:08.333Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JavaWeb2023-Day1 HTML,CSS</title>
+    <link href="http://19shuidiph.github.io/2023/06/26/javaweb2023-day1/"/>
+    <id>http://19shuidiph.github.io/2023/06/26/javaweb2023-day1/</id>
+    <published>2023-06-26T15:11:07.000Z</published>
+    <updated>2023-06-26T15:16:08.333Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;第一天HTMLCSS&quot;&gt;&lt;a href=&quot;#第一天HTMLCSS&quot; class=&quot;headerlink&quot; title=&quot;第一天HTMLCSS&quot;&gt;&lt;/a&gt;第一天HTMLCSS&lt;/h1&gt;&lt;h2 id=&quot;标题排版&quot;&gt;&lt;a href=&quot;#标题排版&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaWeb" scheme="http://19shuidiph.github.io/categories/JavaWeb/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>输入输出流</title>
     <link href="http://19shuidiph.github.io/2023/06/26/shu-ru-shu-chu-liu/"/>
     <id>http://19shuidiph.github.io/2023/06/26/shu-ru-shu-chu-liu/</id>
     <published>2023-06-26T02:15:10.000Z</published>
-    <updated>2023-06-26T02:15:41.176Z</updated>
+    <updated>2023-06-26T10:00:36.527Z</updated>
     
     
     <summary type="html">&lt;p&gt;针对于笔试的一些输入输出数据做一些小结。&lt;/p&gt;</summary>
@@ -40,7 +63,7 @@
     <link href="http://19shuidiph.github.io/2023/06/26/ge-ren-jian-li/"/>
     <id>http://19shuidiph.github.io/2023/06/26/ge-ren-jian-li/</id>
     <published>2023-06-26T02:13:52.000Z</published>
-    <updated>2023-06-26T02:14:40.049Z</updated>
+    <updated>2023-06-26T09:58:33.924Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;0-JavaGuide&quot;&gt;&lt;a href=&quot;#0-JavaGuide&quot; class=&quot;headerlink&quot; title=&quot;0.JavaGuide&quot;&gt;&lt;/a&gt;0.JavaGuide&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://javaguide.cn/&quot;&gt;https://javaguide.cn/&lt;/a&gt;&lt;/p&gt;
@@ -60,7 +83,7 @@
     <link href="http://19shuidiph.github.io/2023/06/26/di-yi-pian-bi-ji/"/>
     <id>http://19shuidiph.github.io/2023/06/26/di-yi-pian-bi-ji/</id>
     <published>2023-06-26T02:10:42.000Z</published>
-    <updated>2023-06-26T02:11:40.298Z</updated>
+    <updated>2023-06-26T08:57:15.698Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;搭建个人博客&quot;&gt;&lt;a href=&quot;#搭建个人博客&quot; class=&quot;headerlink&quot; title=&quot;搭建个人博客&quot;&gt;&lt;/a&gt;搭建个人博客&lt;/h1&gt;&lt;p&gt;这边主要是按照&lt;a href=&quot;https://wushishu.xyz/post/be8880ea.html&quot;&gt;wushishu&lt;/a&gt;(不过这个网站现在已经寄了）的来进行搭建，还参考了&lt;a href=&quot;https://zhuanlan.zhihu.com/p/305812430&quot;&gt;这篇知乎文章&lt;/a&gt;,还要把Blog下的_config.yml中的https改为http;&lt;/p&gt;

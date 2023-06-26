@@ -460,11 +460,10 @@
 <span id="more"></span>
 
 <h1 id="1-针对于一行未确定数量的数字，再加下一行的一个数字"><a href="#1-针对于一行未确定数量的数字，再加下一行的一个数字" class="headerlink" title="1.针对于一行未确定数量的数字，再加下一行的一个数字"></a>1.针对于一行未确定数量的数字，再加下一行的一个数字</h1><p>用Java语言的话：</p>
-<pre><code>Scanner sc = new Scanner(System.in);
-String[] input = sc.nextLine().split(&quot; &quot;);
-for (String s : input) R.add(Integer.parseInt(s));
-cnt = sc.nextInt();
-java
+<pre class=" language-java"><code class="language-java">Scanner sc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+String<span class="token punctuation">[</span><span class="token punctuation">]</span> input <span class="token operator">=</span> sc<span class="token punctuation">.</span><span class="token function">nextLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>String s <span class="token operator">:</span> input<span class="token punctuation">)</span> R<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>Integer<span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+cnt <span class="token operator">=</span> sc<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>先把一行作为字符串提取，再转为Int ，对于下一行的数字直接sc.nextInt即可</p>
 <p><strong>读取一行字符串就用sc.nextLine(); 读取一个数字就用 sc.nextInt();</strong></p>
@@ -501,8 +500,7 @@ java
 <p>注意是返回值变为了大小写，而不是其本身。</p>
 <h2 id="去除字符串中的空格"><a href="#去除字符串中的空格" class="headerlink" title="去除字符串中的空格"></a>去除字符串中的空格</h2><p>str.trim()</p>
 <h2 id="分割字符串"><a href="#分割字符串" class="headerlink" title="分割字符串"></a>分割字符串</h2><p>String 类的 split() 方法可以按指定的分割符对目标字符串进行分割，分割后的内容存放在字符串数组中。该方法主要有如下两种重载形式：</p>
-<pre><code>str.split(String sign)str.split(String sign,int limit)
-plaintext
+<pre class=" language-java"><code class="language-java">str<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span>String sign<span class="token punctuation">)</span>str<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span>String sign<span class="token punctuation">,</span><span class="token keyword">int</span> limit<span class="token punctuation">)</span>
 </code></pre>
 <p>其中它们的含义如下：</p>
 <ul>
@@ -519,16 +517,13 @@ plaintext
 <p>2）如果在一个字符串中有多个分隔符，可以用“|”作为连字符，比如：“acount&#x3D;? and uu &#x3D;? or n&#x3D;?”，把三个都分隔出来，可以用<code>String.split(&quot;and|or&quot;)</code></p>
 <h2 id="字符串的替换"><a href="#字符串的替换" class="headerlink" title="字符串的替换"></a>字符串的替换</h2><p>String 类提供了 3 种字符串替换方法，分别是 replace()、replaceFirst() 和 replaceAll()</p>
 <p>replace() 方法用于将目标字符串中的指定字符（串）替换成新的字符（串），其语法格式如下：</p>
-<pre><code>str.replace(String oldChar, String newChar)
-java
+<pre class=" language-java"><code class="language-java">str<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>String oldChar<span class="token punctuation">,</span> String newChar<span class="token punctuation">)</span>
 </code></pre>
 <p>replaceFirst() 方法用于将目标字符串中匹配某正则表达式的第一个子字符串替换成新的字符串，其语法形式如下：</p>
-<pre><code>str.replaceFirst(String regex, String replacement)
-java
+<pre class=" language-java"><code class="language-java">str<span class="token punctuation">.</span><span class="token function">replaceFirst</span><span class="token punctuation">(</span>String regex<span class="token punctuation">,</span> String replacement<span class="token punctuation">)</span>
 </code></pre>
 <p>replaceAll() 方法用于将目标字符串中匹配某正则表达式的所有子字符串替换成新的字符串，其语法形式如下：</p>
-<pre><code>str.replaceAll(String regex, String replacement)
-java
+<pre class=" language-java"><code class="language-java">str<span class="token punctuation">.</span><span class="token function">replaceAll</span><span class="token punctuation">(</span>String regex<span class="token punctuation">,</span> String replacement<span class="token punctuation">)</span>
 </code></pre>
 <p>&#x2F;&#x2F; 将文本中的所有”时”和”使”都替换为”是”</p>
 <p>String newStrFirst &#x3D; intro.replaceAll(“[时使]”, “是”);</p>
@@ -537,14 +532,12 @@ java
 <p>唯一不同的是 equalsIgnoreCase() 比较时不区分大小写。</p>
 <p>equals() 方法比较字符串对象中的字符。而<code>==</code>运算符比较两个对象引用看它们是否引用相同的实例。</p>
 <p>compareTo() 方法用于按字典顺序比较两个字符串的大小，该比较是基于字符串各个字符的 Unicode 值</p>
-<pre><code>str.compareTo(String otherstr);
-java
+<pre class=" language-java"><code class="language-java">str<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>String otherstr<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>如果按字典顺序 str 位于 otherster 参数之前，比较结果为一个负整数；如果 str 位于 otherstr 之后，比较结果为一个正整数；如果两个字符串相等，则结果为 0。</p>
 <h2 id="查找字符串"><a href="#查找字符串" class="headerlink" title="查找字符串"></a>查找字符串</h2><p>String 类的 indexOf() 方法和 lastlndexOf() 方法用于在字符串中获取匹配字符（串）的索引值。</p>
-<pre><code>str.indexOf(value)
-str.indexOf(value,int fromIndex)
-java
+<pre class=" language-java"><code class="language-java">str<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+str<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span><span class="token keyword">int</span> fromIndex<span class="token punctuation">)</span>
 </code></pre>
 <p>也可以根据索引查找 str.charAt(0);</p>
 <h2 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h2><p>StringBuffer 类提供了 3 个构造方法来创建一个字符串，如下所示：</p>
@@ -554,24 +547,19 @@ java
 <li>StringBuffer(String str) 创建一个字符串缓冲区，并将其内容初始化为指定的字符串内容 str，字符串缓冲区的初始容量为 16 加上字符串 str 的长度。</li>
 </ul>
 <p>StringBuffer 类的 append() 方法用于向原有 StringBuffer 对象中追加字符串。该方法的语法格式如下：</p>
-<pre><code>StringBuffer 对象.append(String str)
-java
+<pre class=" language-java"><code class="language-java">StringBuffer 对象<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>String str<span class="token punctuation">)</span>
 </code></pre>
 <p>StringBuffer 类的 setCharAt() 方法用于在字符串的指定索引位置替换一个字符。该方法的语法格式如下：</p>
-<pre><code>StringBuffer 对象.setCharAt(int index, char ch);
-java
+<pre class=" language-java"><code class="language-java">StringBuffer 对象<span class="token punctuation">.</span><span class="token function">setCharAt</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">,</span> <span class="token keyword">char</span> ch<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>StringBuffer 类中的 reverse() 方法用于将字符串序列用其反转的形式取代。该方法的语法格式如下：</p>
-<pre><code>StringBuffer 对象.reverse();
-java
+<pre class=" language-java"><code class="language-java">StringBuffer 对象<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>deleteCharAt() 方法用于移除序列中指定位置的字符，该方法的语法格式如下：</p>
-<pre><code>StringBuffer 对象.deleteCharAt(int index);
-java
+<pre class=" language-java"><code class="language-java">StringBuffer 对象<span class="token punctuation">.</span><span class="token function">deleteCharAt</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>delete() 方法用于移除序列中子字符串的字符，该方法的语法格式如下：</p>
-<pre><code>StringBuffer 对象.delete(int start,int end);
-java
+<pre class=" language-java"><code class="language-java">StringBuffer 对象<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token keyword">int</span> start<span class="token punctuation">,</span><span class="token keyword">int</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="String、StringBuffer和StringBuilder类的区别"><a href="#String、StringBuffer和StringBuilder类的区别" class="headerlink" title="String、StringBuffer和StringBuilder类的区别"></a>String、StringBuffer和StringBuilder类的区别</h2><p>Java 提供了 String 类来创建和操作字符串。String 类是不可变类.</p>
 <p>两个可变字符串类 StringBuffer 和 StringBuilder. StringBuffer 是线程安全的，而 StringBuilder 则没有实现线程安全功能</p>
@@ -890,50 +878,40 @@ gitment.render('gitment-content');
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/06/26/shu-ru-shu-chu-liu/">
+                <a href="/2023/06/26/javaweb2023-day1/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="输入输出流">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="JavaWeb2023-Day1 HTML,CSS">
                         
-                        <span class="card-title">输入输出流</span>
+                        <span class="card-title">JavaWeb2023-Day1 HTML,CSS</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            针对于笔试的一些输入输出数据做一些小结。
+                            
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-26
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-06-26
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%9D%A2%E8%AF%95/" class="post-category">
-                                    面试
+                            <a href="/categories/JavaWeb/" class="post-category">
+                                    JavaWeb
                                 </a>
                             
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Java/">
-                        <span class="chip bg-color">Java</span>
-                    </a>
-                    
                 </div>
                 
             </div>
