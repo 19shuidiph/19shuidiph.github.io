@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2023-06-26T15:16:08.333Z</updated>
+  <updated>2023-06-27T12:27:53.368Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaWeb2023-Day2</title>
+    <link href="http://19shuidiph.github.io/2023/06/27/javaweb2023-day2/"/>
+    <id>http://19shuidiph.github.io/2023/06/27/javaweb2023-day2/</id>
+    <published>2023-06-27T01:09:39.000Z</published>
+    <updated>2023-06-27T12:27:53.368Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;第二天JS&quot;&gt;&lt;a href=&quot;#第二天JS&quot; class=&quot;headerlink&quot; title=&quot;第二天JS&quot;&gt;&lt;/a&gt;第二天JS&lt;/h1&gt;&lt;h2 id=&quot;基础知识&quot;&gt;&lt;a href=&quot;#基础知识&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaWeb" scheme="http://19shuidiph.github.io/categories/JavaWeb/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>JavaWeb2023-Day1 HTML,CSS</title>
