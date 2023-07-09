@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2023-07-08T07:39:12.007Z</updated>
+  <updated>2023-07-09T10:54:33.832Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaWeb2023-Day6</title>
+    <link href="http://19shuidiph.github.io/2023/07/09/javaweb2023-day6/"/>
+    <id>http://19shuidiph.github.io/2023/07/09/javaweb2023-day6/</id>
+    <published>2023-07-09T02:14:04.000Z</published>
+    <updated>2023-07-09T10:54:33.832Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;SpringBoot基础&quot;&gt;&lt;a href=&quot;#SpringBoot基础&quot; class=&quot;headerlink&quot; title=&quot;SpringBoot基础&quot;&gt;&lt;/a&gt;SpringBoot基础&lt;/h1&gt;&lt;h2 id=&quot;快速入门&quot;&gt;&lt;a href=&quot;#快速入门&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaWeb" scheme="http://19shuidiph.github.io/categories/JavaWeb/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaWeb2023-Day5</title>
+    <link href="http://19shuidiph.github.io/2023/07/08/javaweb2023-day5/"/>
+    <id>http://19shuidiph.github.io/2023/07/08/javaweb2023-day5/</id>
+    <published>2023-07-08T07:41:15.000Z</published>
+    <updated>2023-07-09T02:09:07.428Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;第五天Maven&quot;&gt;&lt;a href=&quot;#第五天Maven&quot; class=&quot;headerlink&quot; title=&quot;第五天Maven&quot;&gt;&lt;/a&gt;第五天Maven&lt;/h1&gt;&lt;h2 id=&quot;Maven的作用&quot;&gt;&lt;a href=&quot;#Maven的作用&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaWeb" scheme="http://19shuidiph.github.io/categories/JavaWeb/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>JavaWeb2023-Day4</title>
