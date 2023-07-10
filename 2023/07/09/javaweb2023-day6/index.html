@@ -452,7 +452,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="SpringBoot基础"><a href="#SpringBoot基础" class="headerlink" title="SpringBoot基础"></a>SpringBoot基础</h1><h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><p>基于Spring官方骨架，创建SpringBoot工程。</p>
+                <h1 id="SpringBoot基础-MyBatis基础"><a href="#SpringBoot基础-MyBatis基础" class="headerlink" title="SpringBoot基础+MyBatis基础"></a>SpringBoot基础+MyBatis基础</h1><h2 id="SpringBoot快速入门"><a href="#SpringBoot快速入门" class="headerlink" title="SpringBoot快速入门"></a>SpringBoot快速入门</h2><p>基于Spring官方骨架，创建SpringBoot工程。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221201184702136.png"></p>
 <p>基本信息描述完毕之后，勾选web开发相关依赖。</p>
 <p>新建一个类，输入以下代码：</p>
@@ -861,6 +861,91 @@ http://localhost:880/user/1/0
 <li>@Autowired 默认是按照类型注入，而@Resource是按照名称注入</li>
 </ul>
 </blockquote>
+<h1 id="Mybatis"><a href="#Mybatis" class="headerlink" title="Mybatis"></a>Mybatis</h1><h2 id="mybatis入门"><a href="#mybatis入门" class="headerlink" title="mybatis入门"></a>mybatis入门</h2><p>application.properties:</p>
+<pre class=" language-properties"><code class="language-properties"><span class="token comment" spellcheck="true">#驱动类名称</span>
+<span class="token attr-name">spring.datasource.driver-class-name</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
+<span class="token comment" spellcheck="true">#数据库连接的url</span>
+<span class="token attr-name">spring.datasource.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/mybatis</span>
+<span class="token comment" spellcheck="true">#连接数据库的用户名</span>
+<span class="token attr-name">spring.datasource.username</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
+<span class="token comment" spellcheck="true">#连接数据库的密码</span>
+<span class="token attr-name">spring.datasource.password</span><span class="token punctuation">=</span><span class="token attr-value">1234</span>
+</code></pre>
+<blockquote>
+<p>上述的配置，可以直接复制过去，不要敲错了。 全部都是 spring.datasource.xxxx 开头。</p>
+</blockquote>
+<p>默认我们在UserMapper接口上加的@Select注解中编写SQL语句是没有提示的。 如果想让idea给我们提示对应的SQL语句，我们需要在IDEA中配置与MySQL数据库的链接。 </p>
+<p>默认我们在UserMapper接口上的@Select注解中编写SQL语句是没有提示的。如果想让idea给出提示，可以做如下配置：</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image/image-20221210143348119.png"></p>
+<p>配置完成之后，发现SQL语句中的关键字有提示了，但还存在不识别表名(列名)的情况：</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image/image-20221210143934318.png"></p>
+<blockquote>
+<p>产生原因：Idea和数据库没有建立连接，不识别表信息</p>
+<p>解决方案：在Idea中配置MySQL数据库连接</p>
+</blockquote>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image/image-20221210144139792.png">) </p>
+<blockquote>
+<p>在配置的时候指定连接那个数据库，如上图所示连接的就是mybatis数据库。</p>
+</blockquote>
+<p>如果我们想把默认的数据库连接池切换为Druid数据库连接池，只需要完成以下两步操作即可：</p>
+<blockquote>
+<p>参考官方地址：<a target="_blank" rel="noopener" href="https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter">https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter</a></p>
+</blockquote>
+<ol>
+<li>在pom.xml文件中引入依赖</li>
+</ol>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token comment" spellcheck="true">&lt;!-- Druid连接池依赖 --></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>druid-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.2.8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<ol start="2">
+<li>在application.properties中引入数据库连接配置</li>
+</ol>
+<pre class=" language-properties"><code class="language-properties"><span class="token attr-name">spring.datasource.druid.driver-class-name</span><span class="token punctuation">=</span><span class="token attr-value">com.mysql.cj.jdbc.Driver</span>
+<span class="token attr-name">spring.datasource.druid.url</span><span class="token punctuation">=</span><span class="token attr-value">jdbc:mysql://localhost:3306/mybatis</span>
+<span class="token attr-name">spring.datasource.druid.username</span><span class="token punctuation">=</span><span class="token attr-value">root</span>
+<span class="token attr-name">spring.datasource.druid.password</span><span class="token punctuation">=</span><span class="token attr-value">1234</span>
+</code></pre>
+<h2 id="lombok的使用"><a href="#lombok的使用" class="headerlink" title="lombok的使用"></a>lombok的使用</h2><p>第1步：在pom.xml文件中引入依赖</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- 在springboot的父工程中，已经集成了lombok并指定了版本号，故当前引入依赖时不需要指定version --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.projectlombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>lombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>第2步：在实体类上添加注解</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> lombok<span class="token punctuation">.</span>Data<span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Data</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Integer id<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Short age<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Short gender<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String phone<span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+<blockquote>
+<p>在实体类上添加了@Data注解，那么这个类在编译时期，就会生成getter&#x2F;setter、equals、hashcode、toString等方法。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image/image-20221210170733921.png"></p>
+</blockquote>
+<p>说明：@Data注解中不包含全参构造方法，通常在实体类上，还会添加上：全参构造、无参构造</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> lombok<span class="token punctuation">.</span>Data<span class="token punctuation">;</span>
+
+<span class="token annotation punctuation">@Data</span> <span class="token comment" spellcheck="true">//getter方法、setter方法、toString方法、hashCode方法、equals方法</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span> <span class="token comment" spellcheck="true">//无参构造</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span><span class="token comment" spellcheck="true">//全参构造</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Integer id<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Short age<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> Short gender<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String phone<span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
 
                 
             </div>
@@ -1092,18 +1177,17 @@ http://localhost:880/user/1/0
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/07/09/javaweb2023-day6/">
+                <a href="/2023/07/10/javaweb2023-day7/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="JavaWeb2023-Day6">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="JavaWeb2023-Day7">
                         
-                        <span class="card-title">JavaWeb2023-Day6</span>
+                        <span class="card-title">JavaWeb2023-Day7</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1113,9 +1197,9 @@ http://localhost:880/user/1/0
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-09
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-07-10
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1128,7 +1212,6 @@ http://localhost:880/user/1/0
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
