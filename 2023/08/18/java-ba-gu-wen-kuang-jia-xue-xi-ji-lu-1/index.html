@@ -1,0 +1,1341 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Java八股文-框架学习记录1, 爱敲代码の鱼儿">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Java八股文-框架学习记录1 | 爱敲代码の鱼儿</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱敲代码の鱼儿" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">爱敲代码の鱼儿</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">爱敲代码の鱼儿</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Java八股文-框架学习记录1</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Spring/" class="post-category">
+                                Spring
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-08-18
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="框架学习记录1"><a href="#框架学习记录1" class="headerlink" title="框架学习记录1"></a>框架学习记录1</h1><h2 id="Spring框架中的单例bean是线程安全的吗？"><a href="#Spring框架中的单例bean是线程安全的吗？" class="headerlink" title="Spring框架中的单例bean是线程安全的吗？"></a>Spring框架中的单例bean是线程安全的吗？</h2><p>首先Spring的bean是单例的，默认就是singleton</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818153815642.png"></p>
+<ul>
+<li>singleton:bean在每个Spring IOC容器中只有一个实例。</li>
+<li>prototype:一个bean的定义可以有多个实例。</li>
+</ul>
+<p>bean不是线程安全的，因为id为传入的参数，临时变量。所以count不是线程安全的。可以通过多例或者加锁解决。</p>
+<p>不过userService无状态，不会被修改。所以userService是线程安全的。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818155902679.png"></p>
+<h2 id="对AOP的理解"><a href="#对AOP的理解" class="headerlink" title="对AOP的理解"></a>对AOP的理解</h2><p>AOP是面向切面编程，在spring中用于将那些与业务无关，但却对多个对象产生影响的公共行为和逻辑，抽取公共模块复用，降低耦合，一般比如可以做为公共日志保存，事务处理等</p>
+<p>我们当时在后台管理系统中，就是使用aop来记录了系统的操作日志</p>
+<p>主要思路是这样的，使用aop中的环绕通知+切点表达式，这个表达式就是要找到要记录日志的方法，然后通过环绕通知的参数获取请求方法的参数，比如类信息、方法信息、注解、请求方式等，获取到这些参数以后，保存到数据库</p>
+<h2 id="Spring中事务失效的场景"><a href="#Spring中事务失效的场景" class="headerlink" title="Spring中事务失效的场景"></a>Spring中事务失效的场景</h2><h3 id="1-你自己捕获了异常"><a href="#1-你自己捕获了异常" class="headerlink" title="1.你自己捕获了异常"></a>1.你自己捕获了异常</h3><p>原因：事务通知只有捉到了目标抛出的异常，才能进行后续的回滚处理，如果目标自己处理掉异常，事务通知无法知悉</p>
+<p>解决：在catch块添加throw new RuntimeException(e)抛出</p>
+<h3 id="2-抛出检查异常"><a href="#2-抛出检查异常" class="headerlink" title="2.抛出检查异常"></a>2.抛出检查异常</h3><p>原因：Spring 默认只会回滚非检查异常,也就是运行时异常。（文件找不到FileNotFoundException 就属于检查异常)</p>
+<p>解决：配置rollbackFor属性  @Transactional(roolbackFor &#x3D; Exception.class)</p>
+<h3 id="3-非public方法导致的事务失效"><a href="#3-非public方法导致的事务失效" class="headerlink" title="3.非public方法导致的事务失效"></a>3.非public方法导致的事务失效</h3><p>原因：Spring 为方法创建代理、添加事务通知、前提条件都是该方法是 public 的</p>
+<p>解决：将Transactional注解的函数改为public函数</p>
+<h3 id="4-一个带事务的方法被不带事务的方法调用"><a href="#4-一个带事务的方法被不带事务的方法调用" class="headerlink" title="4.一个带事务的方法被不带事务的方法调用"></a>4.一个带事务的方法被不带事务的方法调用</h3><p>不带事务的方法调用该类中带事务的方法，不会回滚。因为spring的回滚是用过代理模式生成的，如果是一个不带事务的方法调用该类的带事务的方法，直接通过<code>this.xxx()</code>调用，而不生成代理事务，所以事务不起作用。常见解决方法，拆类。</p>
+<p>问题原因：JDK的动态代理。只有被动态代理直接调用时才会产生事务。在SpringIoC容器中返回的调用的对象是代理对象而不是真实的对象。而这里的this是<code>EmployeeService</code>真实对象而不是代理对象。</p>
+<p>解决方法：<br>1.在方法A上开启事务，方法B不用事务或默认事务，并在方法A的catch中<code>throw new RuntimeException();</code>(在没指定rollbackFor时，默认回滚的异常为<code>RuntimeException</code>)，这样使用的就是方法A的事务。（一定要<code>throw new RuntimeException();</code>否则异常被捕捉处理，同样不会回滚。）如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//开启事务</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>        
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">saveEmployee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//这里this调用会使事务失效，数据会被保存</span>
+    <span class="token punctuation">}</span><span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>2.方法A上可以不开启事务，方法B上开启事务，并在方法A中将this调用改成动态代理调用(<code>AopContext.currentProxy()</code>),如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">save</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>        
+        EmployeeService proxy <span class="token operator">=</span><span class="token punctuation">(</span>EmployeeService<span class="token punctuation">)</span> AopContext<span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        proxy<span class="token punctuation">.</span><span class="token function">saveEmployee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="Spring的bean的生命周期"><a href="#Spring的bean的生命周期" class="headerlink" title="Spring的bean的生命周期"></a>Spring的bean的生命周期</h2><p>我感觉有意思的就是他在初始化前面和初始化后面都有对应的函数，一个前置处理器，一个后置处理器。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818161837248.png"></p>
+<h2 id="Spring的循环引用"><a href="#Spring的循环引用" class="headerlink" title="Spring的循环引用"></a>Spring的循环引用</h2><p>A依赖于B，B依赖于A</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818162339703.png"></p>
+<p>循环依赖在spring中是允许存在，spring框架依据三级缓存已经解决了大部分的循环依赖</p>
+<p>①一级缓存：单例池，缓存已经经历了完整的生命周期，已经初始化完成的bean对象</p>
+<p>②二级缓存：缓存早期的bean对象（生命周期还没走完）</p>
+<p>③三级缓存：缓存的是ObjectFactory，表示对象工厂，用来创建某个对象的</p>
+<p>先实例A对象，实例不完，把A扔到三级缓存里。然后实例B对象，B需要注入A，通过三级缓存的对象工厂获取A，并且把A存入二级缓存。B得到A了，B创建成功，B被存入一级缓存。然后A可以注入B了，A创建成功，A被存入一级缓存。清除二级缓存里的A对象。</p>
+<p>如果是构造方法出现了循环依赖怎么解决？</p>
+<p>由于bean的生命周期中构造函数是第一个执行的，spring框架并不能解决构造函数的的依赖注入，可以使用@Lazy懒加载，什么时候需要对象再进行bean对象的创建</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818162814646.png"></p>
+<h2 id="SpringMVC的执行流程"><a href="#SpringMVC的执行流程" class="headerlink" title="SpringMVC的执行流程"></a>SpringMVC的执行流程</h2><ol>
+<li>用户发送出请求到前端控制器DispatcherServlet</li>
+<li>DispatcherServlet收到请求调用HandlerMapping（处理器映射器）</li>
+<li>HandlerMapping找到具体的处理器，生成处理器对象及处理器拦截器(如果有)，再一起返回给DispatcherServlet。</li>
+<li>DispatcherServlet调用HandlerAdapter（处理器适配器）</li>
+<li>HandlerAdapter经过适配调用具体的处理器（Handler&#x2F;Controller）</li>
+<li>方法上添加了@ResponseBody</li>
+<li>通过HttpMessageConverter来返回结果转换为JSON并响应</li>
+</ol>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818164250324.png"></p>
+<h2 id="SpringBoot自动配置原理"><a href="#SpringBoot自动配置原理" class="headerlink" title="SpringBoot自动配置原理"></a>SpringBoot自动配置原理</h2><p>在Spring Boot项目中的引导类上有一个注解@SpringBootApplication，这个注解是对三个注解进行了封装，分别是：</p>
+<ul>
+<li>@SpringBootConfiguration</li>
+<li>@EnableAutoConfiguration</li>
+<li>@ComponentScan</li>
+</ul>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818164357161.png"></p>
+<p>其中<code>@EnableAutoConfiguration</code>是实现自动化配置的核心注解。 </p>
+<p>该注解通过<code>@Import</code>注解导入对应的配置选择器。关键的是内部就是读取了该项目和该项目引用的Jar包的的classpath路径下<strong>META-INF&#x2F;spring.factories</strong>文件中的所配置的类的全类名。 </p>
+<p>在这些配置类中所定义的Bean会根据条件注解所<strong>指定的条件来决定</strong>是否需要将其导入到Spring容器中。</p>
+<p>一般条件判断会有像<code>@ConditionalOnClass</code>这样的注解，判断是否有对应的class文件，如果有则加载该类，把这个配置类的所有的Bean放入spring容器中使用。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818164507357.png"></p>
+<h2 id="Spring框架的常见注解"><a href="#Spring框架的常见注解" class="headerlink" title="Spring框架的常见注解"></a>Spring框架的常见注解</h2><h3 id="Spring的常见注解"><a href="#Spring的常见注解" class="headerlink" title="Spring的常见注解"></a>Spring的常见注解</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818164718982.png"></p>
+<h3 id="SpringMVC的常见注解"><a href="#SpringMVC的常见注解" class="headerlink" title="SpringMVC的常见注解"></a>SpringMVC的常见注解</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818164740622.png"></p>
+<h3 id="SpringBoot的常见注解"><a href="#SpringBoot的常见注解" class="headerlink" title="SpringBoot的常见注解"></a>SpringBoot的常见注解</h3><p>Spring Boot的核心注解是@SpringBootApplication , 他由几个注解组成 : </p>
+<ul>
+<li>@SpringBootConfiguration： 组合了- @Configuration注解，实现配置文件的功能；</li>
+<li>@EnableAutoConfiguration：打开自动配置的功能，也可以关闭某个自动配置的选项</li>
+<li>@ComponentScan：Spring组件扫描</li>
+</ul>
+<h2 id="Mybatis的执行流程"><a href="#Mybatis的执行流程" class="headerlink" title="Mybatis的执行流程"></a>Mybatis的执行流程</h2><p>①读取MyBatis配置文件：mybatis-config.xml加载运行环境和映射文件</p>
+<p>②构造会话工厂SqlSessionFactory，一个项目只需要一个，单例的，一般由spring进行管理</p>
+<p>③会话工厂创建SqlSession对象，这里面就含了执行SQL语句的所有方法</p>
+<p>④操作数据库的接口，Executor执行器，同时负责查询缓存的维护</p>
+<p>⑤Executor接口的执行方法中有一个MappedStatement类型的参数，封装了映射信息</p>
+<p>⑥输入参数映射</p>
+<p>⑦输出结果映射</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818164952627.png"></p>
+<h2 id="Mybatis的延迟加载"><a href="#Mybatis的延迟加载" class="headerlink" title="Mybatis的延迟加载"></a>Mybatis的延迟加载</h2><p>延迟加载的意思是：就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。</p>
+<p>Mybatis支持一对一关联对象和一对多关联集合对象的延迟加载</p>
+<p>在Mybatis配置文件中，可以配置是否启用延迟加载lazyLoadingEnabled&#x3D;true|false，默认是关闭的</p>
+<h3 id="延迟加载的底层原理"><a href="#延迟加载的底层原理" class="headerlink" title="延迟加载的底层原理"></a>延迟加载的底层原理</h3><p>延迟加载在底层主要使用的CGLIB动态代理完成的</p>
+<p>第一是,使用CGLIB创建目标对象的代理对象，这里的目标对象就是开启了延迟加载的mapper</p>
+<p>第二是, 当调用目标方法时，进入拦截器invoke方法，发现目标方法是null值，再执行sql查询</p>
+<p>第三是,获取数据以后，调用set方法设置属性值，再继续查询目标方法，就有值了</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818165157732.png"></p>
+<h2 id="Mybatis的一级、二级缓存"><a href="#Mybatis的一级、二级缓存" class="headerlink" title="Mybatis的一级、二级缓存"></a>Mybatis的一级、二级缓存</h2><p>一级缓存: 基于 PerpetualCache 的 HashMap 本地缓存，其存储作用域为 <strong>Session</strong>，当Session进行flush或close之后，该Session中的所有Cache就将清空，默认打开一级缓存</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Spring%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818165340478.png"></p>
+<p>二级缓存是基于namespace和mapper的作用域起作用的，不是依赖于SQL session，默认也是采用 PerpetualCache，HashMap 存储</p>
+<p>二级缓存默认是关闭的<br>开启方式，两步：<br>1，全局配置文件  mybatis-config.xml</p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>settings</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>setting</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>cacheEnabled<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>settings</span><span class="token punctuation">></span></span>
+</code></pre>
+<p>2，映射文件  UserMapper.xml<br>使用<cache/>标签让当前mapper生效二级缓存</p>
+<p>注意事项：</p>
+<p>1，对于缓存数据更新机制，当某一个作用域(一级缓存 Session&#x2F;二级缓存Namespaces)的进行了新增、修改、删除操作后，默认该作用域下所有 select 中的缓存将被 clear<br>2，二级缓存需要缓存的数据实现Serializable接口<br>3，只有会话提交或者关闭以后，一级缓存中的数据才会转移到二级缓存中</p>
+<h2 id="Mybatis执行流程"><a href="#Mybatis执行流程" class="headerlink" title="Mybatis执行流程"></a>Mybatis执行流程</h2><p>1.加载我们的配置文件(mybatis-config.xml)和全局映射文件(UserMapper.xml).加载解析的相关信息在Configuration 对象中。</p>
+<ol start="2">
+<li>SqlSessionFactory factory &#x3D; new SqlSessionFactoryBuilder().build(in);</li>
+</ol>
+<p>工厂模式对外提供sqlSessionFactory对象,建造者模式解决复杂对象的创建。</p>
+<p>工厂应该是单例的。</p>
+<ol start="3">
+<li>SqlSession sqlSession &#x3D; factory.openSession();</li>
+</ol>
+<p>后面通过sqlSession的一些API去做业务处理。</p>
+<h2 id="Mybatis中的缓存"><a href="#Mybatis中的缓存" class="headerlink" title="Mybatis中的缓存"></a>Mybatis中的缓存</h2><p>通过装饰器模式扩展缓存的功能。</p>
+<p>基于最普通的Cache接口,有一个普通简单的PerpetualCache实现类。我们还有LruCache,LoggingCache,SoftCache,WeakCache.这些比较复杂的装饰类。</p>
+<p>public calss synchronizedCache implements Cache {</p>
+<p>​    private final Cache delegate;  &#x2F;&#x2F;默认实现就是PerpetualCache</p>
+<p>}</p>
+<p>先走二级缓存再走一级缓存。</p>
+<p>一级缓存是session级别的，二级缓存是sqlSessionFactory级别的，也就是进程级别。</p>
+<h2 id="MyBatis的涉及到的设计模式"><a href="#MyBatis的涉及到的设计模式" class="headerlink" title="MyBatis的涉及到的设计模式"></a>MyBatis的涉及到的设计模式</h2><p>缓存模块：装饰器模式</p>
+<p>日志模块：适配器模式适配不同的适配器实现，interface Log，当然也体现了策略模式。代理模式</p>
+<p>反射模块：工厂模式，装饰器模式Wrapper</p>
+<p>sqlSesssion:建造者模式</p>
+<p>代理模式：将 sqlSession.selectList(“com.boge.mapper.UserMapper.selectUser”)拆分为</p>
+<p>UserMapper mapper &#x3D; sqlSession.getMapper(UserMapper.class);</p>
+<p>mapper.selectUserById(1);</p>
+<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><p>在PageHelper包下，MysqlParser类中</p>
+<p>在getPageSql函数中，sqlBuilder.append(“ limit ?,?”); </p>
+<h2 id="sqlSession的线程安全问题"><a href="#sqlSession的线程安全问题" class="headerlink" title="sqlSession的线程安全问题"></a>sqlSession的线程安全问题</h2><p>是由Spring解决的。DefaultSqlSession是线程非安全的。</p>
+<p>在Spring中提供了一个SqlSessionTemplate,其中每个方法都通过SqlSessionProxy来操作，这是一个动态代理对象。然后在动态代理对象中通过方法级别的DefaultSqlSession来实现相关的数据库的操作。</p>
+<h2 id="MyBatis的架构"><a href="#MyBatis的架构" class="headerlink" title="MyBatis的架构"></a>MyBatis的架构</h2><p>接口层：sqlSession，面向开发者</p>
+<p>核心层：具体的操作，配置解析，参数映射，sql解析，sql执行，结果集映射，插件</p>
+<p>基础模块：支撑核心层完成一些功能，反射模块，日志模块，缓存模块，类型转换模块，数据源模块，事务模块，资源加载模块</p>
+<h2 id="JDBC差在哪"><a href="#JDBC差在哪" class="headerlink" title="JDBC差在哪"></a>JDBC差在哪</h2><p>1.sql直接写在代码里，维护成本太高。</p>
+<p>2.JDBC没有像Mybatis一样搞<strong>数据库连接池</strong></p>
+<p>3.像sql中传递参数也很麻烦，因为sql语句中where条件参数不一定，占位符和参数要一一对应。</p>
+<p>4.对于结果集的映射也很麻烦，主要是sql本身的变化会导致解析的难度。</p>
+<h2 id="当实体的字段和表的字段不一致咋办？"><a href="#当实体的字段和表的字段不一致咋办？" class="headerlink" title="当实体的字段和表的字段不一致咋办？"></a>当实体的字段和表的字段不一致咋办？</h2><p>1.在对应的sql语句中通过别名的方式</p>
+<p>2.通过自定义resultMap标签，可以设置属性和字段的映射关系。</p>
+<pre class=" language-java"><code class="language-java"><span class="token operator">&lt;</span>resultMap id<span class="token operator">=</span><span class="token string">"userMap"</span> type<span class="token operator">=</span><span class="token string">"User"</span><span class="token operator">></span> 
+    <span class="token operator">&lt;</span>id property<span class="token operator">=</span><span class="token string">"id"</span> column<span class="token operator">=</span><span class="token string">"id"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>id<span class="token operator">></span> 
+    <span class="token operator">&lt;</span>result property<span class="token operator">=</span><span class="token string">"userName"</span> column<span class="token operator">=</span><span class="token string">"user_name"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>result<span class="token operator">></span>
+    
+    <span class="token operator">&lt;</span>result property<span class="token operator">=</span><span class="token string">"password"</span> column<span class="token operator">=</span><span class="token string">"password"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>result<span class="token operator">></span> 
+    <span class="token operator">&lt;</span>result property<span class="token operator">=</span><span class="token string">"age"</span> column<span class="token operator">=</span><span class="token string">"age"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>result<span class="token operator">></span>
+    <span class="token operator">&lt;</span>result property<span class="token operator">=</span><span class="token string">"sex"</span> column<span class="token operator">=</span><span class="token string">"sex"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>result<span class="token operator">></span> 
+<span class="token operator">&lt;</span><span class="token operator">/</span>resultMap<span class="token operator">></span> 
+
+<span class="token operator">&lt;</span>select id<span class="token operator">=</span><span class="token string">"testMohu"</span> resultMap<span class="token operator">=</span><span class="token string">"userMap"</span><span class="token operator">></span> 
+    select id<span class="token punctuation">,</span>user_name<span class="token punctuation">,</span>password<span class="token punctuation">,</span>age<span class="token punctuation">,</span>sex from t_user where user_name like <span class="token function">concat</span><span class="token punctuation">(</span><span class="token string">'%'</span><span class="token punctuation">,</span>#<span class="token punctuation">{</span>mohu<span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token string">'%'</span><span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>select<span class="token operator">></span>
+</code></pre>
+<h2 id="MyBatis的多个传参"><a href="#MyBatis的多个传参" class="headerlink" title="MyBatis的多个传参"></a>MyBatis的多个传参</h2><p><strong>@Param 注解传参法（推荐）</strong></p>
+<p>#{}里面的名称对应的是注解 @Param 括号里面修饰的名称。</p>
+<p><strong>Map 传参法（推荐）</strong></p>
+<p>#{}里面的名称对应的是 Map 里面的 key 名称。</p>
+<p>public void selectUser(Map&lt;String,Object&gt; map);</p>
+<p> <strong>Java Bean 传参法（推荐）</strong></p>
+<p>最常见的，public void selecytUser(User user);  #{}的名称就是自定义对象的属性名称。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">爱敲代码の鱼儿</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://19shuidiph.github.io/2023/08/18/java-ba-gu-wen-kuang-jia-xue-xi-ji-lu-1/">http://19shuidiph.github.io/2023/08/18/java-ba-gu-wen-kuang-jia-xue-xi-ji-lu-1/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">爱敲代码の鱼儿</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/08/22/java-ba-gu-wen-wei-fu-wu-xue-xi-ji-lu-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="Java八股文-微服务学习记录1">
+                        
+                        <span class="card-title">Java八股文-微服务学习记录1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-08-22
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%9D%A2%E8%AF%95/" class="post-category">
+                                    面试
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/08/17/shu-ju-tong-bu-fang-an/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="数据同步方案">
+                        
+                        <span class="card-title">数据同步方案</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            爱敲代码の鱼儿
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2023-2024</span>
+            
+            <span id="year">2023</span>
+            <a href="/about" target="_blank">爱敲代码の鱼儿</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/19shuidiph" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1207649878@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1207649878" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1207649878" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

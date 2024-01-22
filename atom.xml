@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>爱敲代码の鱼儿</title>
+  
+  <subtitle>爱敲代码の鱼儿-博客</subtitle>
+  <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://19shuidiph.github.io/"/>
+  <updated>2024-01-04T03:10:45.108Z</updated>
+  <id>http://19shuidiph.github.io/</id>
+  
+  <author>
+    <name>爱敲代码の鱼儿</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java八股文-消息队列学习记录2</title>
+    <link href="http://19shuidiph.github.io/2023/12/27/java-ba-gu-wen-xiao-xi-dui-lie-xue-xi-ji-lu-2/"/>
+    <id>http://19shuidiph.github.io/2023/12/27/java-ba-gu-wen-xiao-xi-dui-lie-xue-xi-ji-lu-2/</id>
+    <published>2023-12-27T07:51:48.000Z</published>
+    <updated>2024-01-04T03:10:45.108Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java八股文-消息队列学习记录2&quot;&gt;&lt;a href=&quot;#Java八股文-消息队列学习记录2&quot; class=&quot;headerlink&quot; title=&quot;Java八股文-消息队列学习记录2&quot;&gt;&lt;/a&gt;Java八股文-消息队列学习记录2&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="面试" scheme="http://19shuidiph.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>EffectiveJava读后感</title>
+    <link href="http://19shuidiph.github.io/2023/12/25/effectivejava-du-hou-gan/"/>
+    <id>http://19shuidiph.github.io/2023/12/25/effectivejava-du-hou-gan/</id>
+    <published>2023-12-25T03:14:38.000Z</published>
+    <updated>2024-01-08T12:52:55.850Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;EffectiveJava读后感&quot;&gt;&lt;a href=&quot;#EffectiveJava读后感&quot; class=&quot;headerlink&quot; title=&quot;EffectiveJava读后感&quot;&gt;&lt;/a&gt;EffectiveJava读后感&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Effective-Java" scheme="http://19shuidiph.github.io/categories/Effective-Java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Redis原理篇-黑马</title>
+    <link href="http://19shuidiph.github.io/2023/12/16/redis-yuan-li-pian-hei-ma/"/>
+    <id>http://19shuidiph.github.io/2023/12/16/redis-yuan-li-pian-hei-ma/</id>
+    <published>2023-12-16T02:13:20.000Z</published>
+    <updated>2024-01-22T06:15:49.418Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Redis原理篇-黑马&quot;&gt;&lt;a href=&quot;#Redis原理篇-黑马&quot; class=&quot;headerlink&quot; title=&quot;Redis原理篇-黑马&quot;&gt;&lt;/a&gt;Redis原理篇-黑马&lt;/h1&gt;&lt;p&gt;参考文章：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Redis" scheme="http://19shuidiph.github.io/categories/Redis/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaGuide自学记录6-数据库基础</title>
+    <link href="http://19shuidiph.github.io/2023/12/15/javaguide-zi-xue-ji-lu-6-shu-ju-ku-ji-chu/"/>
+    <id>http://19shuidiph.github.io/2023/12/15/javaguide-zi-xue-ji-lu-6-shu-ju-ku-ji-chu/</id>
+    <published>2023-12-15T03:12:05.000Z</published>
+    <updated>2023-12-21T11:38:57.690Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;数据库基础&quot;&gt;&lt;a href=&quot;#数据库基础&quot; class=&quot;headerlink&quot; title=&quot;数据库基础&quot;&gt;&lt;/a&gt;数据库基础&lt;/h1&gt;&lt;h2 id=&quot;范式&quot;&gt;&lt;a href=&quot;#范式&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java八股文-分布式学习记录1</title>
+    <link href="http://19shuidiph.github.io/2023/11/29/java-ba-gu-wen-fen-bu-shi-xue-xi-ji-lu-1/"/>
+    <id>http://19shuidiph.github.io/2023/11/29/java-ba-gu-wen-fen-bu-shi-xue-xi-ji-lu-1/</id>
+    <published>2023-11-29T01:18:57.000Z</published>
+    <updated>2023-12-11T14:32:30.364Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java八股文-分布式学习记录1&quot;&gt;&lt;a href=&quot;#Java八股文-分布式学习记录1&quot; class=&quot;headerlink&quot; title=&quot;Java八股文-分布式学习记录1&quot;&gt;&lt;/a&gt;Java八股文-分布式学习记录1&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://19shuidiph.github.io/categories/Java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaGuide自学记录5-JVM</title>
+    <link href="http://19shuidiph.github.io/2023/11/21/javaguide-zi-xue-ji-lu-5-jvm/"/>
+    <id>http://19shuidiph.github.io/2023/11/21/javaguide-zi-xue-ji-lu-5-jvm/</id>
+    <published>2023-11-21T11:34:09.000Z</published>
+    <updated>2023-12-15T03:17:23.823Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;JVM&quot;&gt;&lt;a href=&quot;#JVM&quot; class=&quot;headerlink&quot; title=&quot;JVM&quot;&gt;&lt;/a&gt;JVM&lt;/h1&gt;&lt;h2 id=&quot;内存区域详解&quot;&gt;&lt;a href=&quot;#内存区域详解&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java八股文-并发学习记录2</title>
+    <link href="http://19shuidiph.github.io/2023/11/09/java-ba-gu-wen-bing-fa-xue-xi-ji-lu-2/"/>
+    <id>http://19shuidiph.github.io/2023/11/09/java-ba-gu-wen-bing-fa-xue-xi-ji-lu-2/</id>
+    <published>2023-11-09T04:00:45.000Z</published>
+    <updated>2023-12-13T15:05:14.444Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java多线程&quot;&gt;&lt;a href=&quot;#Java多线程&quot; class=&quot;headerlink&quot; title=&quot;Java多线程&quot;&gt;&lt;/a&gt;Java多线程&lt;/h1&gt;&lt;h2 id=&quot;1-Java中线程的实现方式&quot;&gt;&lt;a href=&quot;#1-Java中线程的实现方式&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://19shuidiph.github.io/categories/Java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java八股文-Redis学习记录2</title>
+    <link href="http://19shuidiph.github.io/2023/10/31/java-ba-gu-wen-redis-xue-xi-ji-lu-2/"/>
+    <id>http://19shuidiph.github.io/2023/10/31/java-ba-gu-wen-redis-xue-xi-ji-lu-2/</id>
+    <published>2023-10-31T07:55:31.000Z</published>
+    <updated>2023-11-13T01:37:34.545Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;马士兵-Redis面试题&quot;&gt;&lt;a href=&quot;#马士兵-Redis面试题&quot; class=&quot;headerlink&quot; title=&quot;马士兵-Redis面试题&quot;&gt;&lt;/a&gt;马士兵-Redis面试题&lt;/h1&gt;&lt;h2 id=&quot;1-Redis为什么这么快&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Redis" scheme="http://19shuidiph.github.io/categories/Redis/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>项目自学记录8</title>
+    <link href="http://19shuidiph.github.io/2023/10/29/xiang-mu-zi-xue-ji-lu-8/"/>
+    <id>http://19shuidiph.github.io/2023/10/29/xiang-mu-zi-xue-ji-lu-8/</id>
+    <published>2023-10-29T13:26:15.000Z</published>
+    <updated>2023-12-11T14:34:04.425Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;项目自学记录8&quot;&gt;&lt;a href=&quot;#项目自学记录8&quot; class=&quot;headerlink&quot; title=&quot;项目自学记录8&quot;&gt;&lt;/a&gt;项目自学记录8&lt;/h1&gt;&lt;h2 id=&quot;断言的使用&quot;&gt;&lt;a href=&quot;#断言的使用&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaGuide自学目录4-IO&amp;新特性</title>
+    <link href="http://19shuidiph.github.io/2023/10/17/javaguide-zi-xue-ji-lu-4-io-xin-te-xing/"/>
+    <id>http://19shuidiph.github.io/2023/10/17/javaguide-zi-xue-ji-lu-4-io-xin-te-xing/</id>
+    <published>2023-10-17T11:53:34.000Z</published>
+    <updated>2023-12-14T11:26:17.686Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;JavaGuide自学目录4-IO-amp-新特性&quot;&gt;&lt;a href=&quot;#JavaGuide自学目录4-IO-amp-新特性&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Redis高级篇-黑马</title>
+    <link href="http://19shuidiph.github.io/2023/10/13/redis-gao-ji-pian-hei-ma/"/>
+    <id>http://19shuidiph.github.io/2023/10/13/redis-gao-ji-pian-hei-ma/</id>
+    <published>2023-10-13T08:27:44.000Z</published>
+    <updated>2023-10-30T01:32:56.289Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Redis高级篇-黑马&quot;&gt;&lt;a href=&quot;#Redis高级篇-黑马&quot; class=&quot;headerlink&quot; title=&quot;Redis高级篇-黑马&quot;&gt;&lt;/a&gt;Redis高级篇-黑马&lt;/h1&gt;&lt;h2 id=&quot;分布式缓存&quot;&gt;&lt;a href=&quot;#分布式缓存&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Redis" scheme="http://19shuidiph.github.io/categories/Redis/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaGuide自学记录3--并发编程</title>
+    <link href="http://19shuidiph.github.io/2023/10/10/javaguide-zi-xue-ji-lu-3-bing-fa-bian-cheng/"/>
+    <id>http://19shuidiph.github.io/2023/10/10/javaguide-zi-xue-ji-lu-3-bing-fa-bian-cheng/</id>
+    <published>2023-10-10T03:03:46.000Z</published>
+    <updated>2023-10-16T03:30:15.919Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;并发编程&quot;&gt;&lt;a href=&quot;#并发编程&quot; class=&quot;headerlink&quot; title=&quot;并发编程&quot;&gt;&lt;/a&gt;并发编程&lt;/h1&gt;&lt;h2 id=&quot;线程-共享区域与独占区域&quot;&gt;&lt;a href=&quot;#线程-共享区域与独占区域&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaGuide自学记录2--Java集合源码+一些特殊类</title>
+    <link href="http://19shuidiph.github.io/2023/10/10/javaguide-zi-xue-ji-lu-2-java-ji-he-yuan-ma-yi-xie-te-shu-lei/"/>
+    <id>http://19shuidiph.github.io/2023/10/10/javaguide-zi-xue-ji-lu-2-java-ji-he-yuan-ma-yi-xie-te-shu-lei/</id>
+    <published>2023-10-10T03:03:09.000Z</published>
+    <updated>2023-10-17T11:08:41.188Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;JavaGuide自学记录2–Java集合源码-一些特殊类&quot;&gt;&lt;a href=&quot;#JavaGuide自学记录2–Java集合源码-一些特殊类&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>12306项目</title>
+    <link href="http://19shuidiph.github.io/2023/10/04/12306-xiang-mu/"/>
+    <id>http://19shuidiph.github.io/2023/10/04/12306-xiang-mu/</id>
+    <published>2023-10-04T10:00:36.000Z</published>
+    <updated>2023-11-28T09:23:54.567Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;12306项目&quot;&gt;&lt;a href=&quot;#12306项目&quot; class=&quot;headerlink&quot; title=&quot;12306项目&quot;&gt;&lt;/a&gt;12306项目&lt;/h1&gt;&lt;h2 id=&quot;1-4章小结&quot;&gt;&lt;a href=&quot;#1-4章小结&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="项目" scheme="http://19shuidiph.github.io/categories/%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaGuide自学记录1-Java基础与集合</title>
+    <link href="http://19shuidiph.github.io/2023/09/28/javaguide-zi-xue-ji-lu-1-java-ji-chu-yu-ji-he/"/>
+    <id>http://19shuidiph.github.io/2023/09/28/javaguide-zi-xue-ji-lu-1-java-ji-chu-yu-ji-he/</id>
+    <published>2023-09-28T08:43:51.000Z</published>
+    <updated>2023-10-09T08:57:53.623Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;JavaGuide自学记录1-Java基础与集合&quot;&gt;&lt;a href=&quot;#JavaGuide自学记录1-Java基础与集合&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>项目自学记录7</title>
+    <link href="http://19shuidiph.github.io/2023/09/28/xiang-mu-zi-xue-ji-lu-7/"/>
+    <id>http://19shuidiph.github.io/2023/09/28/xiang-mu-zi-xue-ji-lu-7/</id>
+    <published>2023-09-28T07:14:36.000Z</published>
+    <updated>2023-10-30T01:08:31.863Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;项目自学记录7&quot;&gt;&lt;a href=&quot;#项目自学记录7&quot; class=&quot;headerlink&quot; title=&quot;项目自学记录7&quot;&gt;&lt;/a&gt;项目自学记录7&lt;/h1&gt;&lt;h2 id=&quot;对于枚举类-Stream-of&quot;&gt;&lt;a href=&quot;#对于枚举类-Stream-of&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java八股文-JVM学习记录1</title>
+    <link href="http://19shuidiph.github.io/2023/09/28/java-ba-gu-wen-jvm-xue-xi-ji-lu-1/"/>
+    <id>http://19shuidiph.github.io/2023/09/28/java-ba-gu-wen-jvm-xue-xi-ji-lu-1/</id>
+    <published>2023-09-28T01:11:36.000Z</published>
+    <updated>2023-12-25T02:57:37.819Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Java八股文-JVM学习记录1&quot;&gt;&lt;a href=&quot;#Java八股文-JVM学习记录1&quot; class=&quot;headerlink&quot; title=&quot;Java八股文-JVM学习记录1&quot;&gt;&lt;/a&gt;Java八股文-JVM学习记录1&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="http://19shuidiph.github.io/categories/JVM/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>一些正常的面试问题</title>
+    <link href="http://19shuidiph.github.io/2023/09/25/yi-xie-zheng-chang-de-mian-shi-wen-ti/"/>
+    <id>http://19shuidiph.github.io/2023/09/25/yi-xie-zheng-chang-de-mian-shi-wen-ti/</id>
+    <published>2023-09-25T09:22:46.000Z</published>
+    <updated>2023-11-21T11:07:27.556Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一些正常的面试问题&quot;&gt;&lt;a href=&quot;#一些正常的面试问题&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="面试" scheme="http://19shuidiph.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>项目自学记录6</title>
+    <link href="http://19shuidiph.github.io/2023/09/22/xiang-mu-zi-xue-ji-lu-6/"/>
+    <id>http://19shuidiph.github.io/2023/09/22/xiang-mu-zi-xue-ji-lu-6/</id>
+    <published>2023-09-22T08:29:51.000Z</published>
+    <updated>2023-10-29T13:25:38.726Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;项目自学目录6&quot;&gt;&lt;a href=&quot;#项目自学目录6&quot; class=&quot;headerlink&quot; title=&quot;项目自学目录6&quot;&gt;&lt;/a&gt;项目自学目录6&lt;/h1&gt;&lt;h2 id=&quot;关于Future的深度解析&quot;&gt;&lt;a href=&quot;#关于Future的深度解析&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>项目自学记录5</title>
+    <link href="http://19shuidiph.github.io/2023/09/20/xiang-mu-zi-xue-ji-lu-5/"/>
+    <id>http://19shuidiph.github.io/2023/09/20/xiang-mu-zi-xue-ji-lu-5/</id>
+    <published>2023-09-20T10:00:23.000Z</published>
+    <updated>2023-09-21T08:11:09.395Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;项目自学目录5&quot;&gt;&lt;a href=&quot;#项目自学目录5&quot; class=&quot;headerlink&quot; title=&quot;项目自学目录5&quot;&gt;&lt;/a&gt;项目自学目录5&lt;/h1&gt;&lt;h2 id=&quot;Resource-和-Autowire&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+</feed>
