@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-01-04T03:10:45.108Z</updated>
+  <updated>2024-01-26T13:56:23.239Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>黑马头条学习记录</title>
+    <link href="http://19shuidiph.github.io/2024/01/26/hei-ma-tou-tiao-xue-xi-ji-lu/"/>
+    <id>http://19shuidiph.github.io/2024/01/26/hei-ma-tou-tiao-xue-xi-ji-lu/</id>
+    <published>2024-01-26T13:43:27.000Z</published>
+    <updated>2024-01-26T13:56:23.239Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;黑马头条学习记录&quot;&gt;&lt;a href=&quot;#黑马头条学习记录&quot; class=&quot;headerlink&quot; title=&quot;黑马头条学习记录&quot;&gt;&lt;/a&gt;黑马头条学习记录&lt;/h1&gt;&lt;h2 id=&quot;第二章&quot;&gt;&lt;a href=&quot;#第二章&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://19shuidiph.github.io/categories/Java/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Java八股文-消息队列学习记录2</title>
@@ -443,29 +466,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;项目自学目录6&quot;&gt;&lt;a href=&quot;#项目自学目录6&quot; class=&quot;headerlink&quot; title=&quot;项目自学目录6&quot;&gt;&lt;/a&gt;项目自学目录6&lt;/h1&gt;&lt;h2 id=&quot;关于Future的深度解析&quot;&gt;&lt;a href=&quot;#关于Future的深度解析&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>项目自学记录5</title>
-    <link href="http://19shuidiph.github.io/2023/09/20/xiang-mu-zi-xue-ji-lu-5/"/>
-    <id>http://19shuidiph.github.io/2023/09/20/xiang-mu-zi-xue-ji-lu-5/</id>
-    <published>2023-09-20T10:00:23.000Z</published>
-    <updated>2023-09-21T08:11:09.395Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;项目自学目录5&quot;&gt;&lt;a href=&quot;#项目自学目录5&quot; class=&quot;headerlink&quot; title=&quot;项目自学目录5&quot;&gt;&lt;/a&gt;项目自学目录5&lt;/h1&gt;&lt;h2 id=&quot;Resource-和-Autowire&quot;&gt;&lt;a</summary>
         
       
     
