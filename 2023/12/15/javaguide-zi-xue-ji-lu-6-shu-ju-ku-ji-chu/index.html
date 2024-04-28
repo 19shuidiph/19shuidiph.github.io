@@ -482,8 +482,8 @@
 <p>事务控制语言 (Transaction Control Language, TCL) 用于<strong>管理数据库中的事务</strong>.核心指令是commit,rollback</p>
 <p>数据控制语言 (Data Control Language, DCL)  以<strong>控制用户的访问权限</strong>为主</p>
 <p>插入：</p>
-<p>INSERTINTOuserVALUES(10,’root’,’root’,‘<a href="mailto:&#x78;&#x78;&#x78;&#x78;&#64;&#x31;&#54;&#x33;&#46;&#99;&#111;&#109;">&#x78;&#x78;&#x78;&#x78;&#64;&#x31;&#54;&#x33;&#46;&#99;&#111;&#109;</a>‘),(12,’user1’,’user1’,‘<a href="mailto:&#120;&#x78;&#120;&#120;&#x40;&#x31;&#x36;&#x33;&#x2e;&#99;&#111;&#109;">&#120;&#x78;&#120;&#120;&#x40;&#x31;&#x36;&#x33;&#x2e;&#99;&#111;&#109;</a>‘),(18,’user2’,’user2’,‘<a href="mailto:&#x78;&#120;&#x78;&#120;&#x40;&#x31;&#54;&#x33;&#46;&#x63;&#x6f;&#109;">&#x78;&#120;&#x78;&#120;&#x40;&#x31;&#54;&#x33;&#46;&#x63;&#x6f;&#109;</a>‘);</p>
-<p>INSERT INTO user(username, password, email)<br>VALUES (‘admin’, ‘admin’, ‘<a href="mailto:&#x78;&#120;&#120;&#x78;&#64;&#49;&#54;&#x33;&#x2e;&#99;&#111;&#x6d;">&#x78;&#120;&#120;&#x78;&#64;&#49;&#54;&#x33;&#x2e;&#99;&#111;&#x6d;</a>‘);</p>
+<p>INSERTINTOuserVALUES(10,’root’,’root’,‘<a href="mailto:&#x78;&#x78;&#120;&#120;&#64;&#49;&#54;&#51;&#x2e;&#x63;&#111;&#109;">&#x78;&#x78;&#120;&#120;&#64;&#49;&#54;&#51;&#x2e;&#x63;&#111;&#109;</a>‘),(12,’user1’,’user1’,‘<a href="mailto:&#120;&#x78;&#x78;&#120;&#64;&#x31;&#x36;&#51;&#x2e;&#x63;&#x6f;&#109;">&#120;&#x78;&#x78;&#120;&#64;&#x31;&#x36;&#51;&#x2e;&#x63;&#x6f;&#109;</a>‘),(18,’user2’,’user2’,‘<a href="mailto:&#120;&#x78;&#x78;&#120;&#x40;&#49;&#54;&#x33;&#46;&#99;&#111;&#x6d;">&#120;&#x78;&#x78;&#120;&#x40;&#49;&#54;&#x33;&#46;&#99;&#111;&#x6d;</a>‘);</p>
+<p>INSERT INTO user(username, password, email)<br>VALUES (‘admin’, ‘admin’, ‘<a href="mailto:&#120;&#x78;&#x78;&#120;&#x40;&#49;&#x36;&#x33;&#x2e;&#99;&#x6f;&#x6d;">&#120;&#x78;&#x78;&#120;&#x40;&#49;&#x36;&#x33;&#x2e;&#99;&#x6f;&#x6d;</a>‘);</p>
 <p>插入查询出来的数据：</p>
 <p>INSERT INTO user(username)<br>SELECT name<br>FROM account;</p>
 <p>更新：</p>
@@ -647,7 +647,50 @@ order by c<span class="token punctuation">.</span>cust_name<span class="token pu
 <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> vend_id
 <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> cheapest_item
 </code></pre>
-<p>子查询。</p>
+<p>子查询,连接表。</p>
+<p>如果两张表的关联字段名相同，也可以使用 <code>USING</code>子句来代替 <code>ON</code></p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> cust_email
+<span class="token keyword">FROM</span> Customers
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> Orders <span class="token keyword">using</span><span class="token punctuation">(</span>cust_id<span class="token punctuation">)</span>
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> OrderItems <span class="token keyword">using</span><span class="token punctuation">(</span>order_num<span class="token punctuation">)</span>
+<span class="token keyword">WHERE</span> OrderItems<span class="token punctuation">.</span>prod_id <span class="token operator">=</span> <span class="token string">'BR01'</span>
+</code></pre>
+<p><strong>group by 的应该是select 里除了聚和函数之外的所有值。 having的是聚和函数的结果</strong></p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> cust_name<span class="token punctuation">,</span> <span class="token function">SUM</span><span class="token punctuation">(</span>item_price <span class="token operator">*</span> quantity<span class="token punctuation">)</span> <span class="token keyword">AS</span> total_price
+<span class="token keyword">FROM</span> Customers
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> Orders <span class="token keyword">USING</span><span class="token punctuation">(</span>cust_id<span class="token punctuation">)</span>
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> OrderItems <span class="token keyword">USING</span><span class="token punctuation">(</span>order_num<span class="token punctuation">)</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> cust_name
+<span class="token keyword">HAVING</span> total_price <span class="token operator">>=</span> <span class="token number">1000</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> total_price
+</code></pre>
+<p>使用 <code>union</code> 组合查询时，只能使用一条 <code>order by</code> 字句，他必须位于最后一条 <code>select</code> 语句之后</p>
+<p>默认地，<code>UNION</code> 操作符选取不同的值。如果允许重复的值，请使用 <code>UNION ALL</code>。</p>
+<ul>
+<li><strong>带更新的插入</strong> ：<code>REPLACE INTO table_name VALUES (value1, value2, ...)</code>（注意这种原理是检测到主键或唯一性索引键重复就删除原记录后重新插入）</li>
+</ul>
+<p>对于日期比较</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">UPDATE</span> exam_record <span class="token keyword">SET</span> submit_time <span class="token operator">=</span> <span class="token string">'2099-01-01 00:00:00'</span><span class="token punctuation">,</span> score <span class="token operator">=</span> <span class="token number">0</span> 
+<span class="token keyword">WHERE</span> <span class="token keyword">DATE</span><span class="token punctuation">(</span>start_time<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token string">"2021-09-01"</span> <span class="token operator">AND</span> submit_time <span class="token operator">IS</span> <span class="token boolean">null</span>
+</code></pre>
+<p>要把日期封装到DATE里，再比较。</p>
+<p>对于替换字段：</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">UPDATE</span> examination_info <span class="token keyword">SET</span> tag <span class="token operator">=</span> <span class="token string">'Python'</span> <span class="token keyword">WHERE</span> tag<span class="token operator">=</span><span class="token string">'PYTHON'</span>
+<span class="token keyword">UPDATE</span> examination_info <span class="token keyword">SET</span> tag <span class="token operator">=</span> REPLACE<span class="token punctuation">(</span>tag<span class="token punctuation">,</span><span class="token string">'PYTHON'</span><span class="token punctuation">,</span><span class="token string">'Python'</span><span class="token punctuation">)</span>
+</code></pre>
+<p>可以直接set ,where .  也可以set的时候用replace字段</p>
+<p>计算时间差，小于5分钟的删掉。</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> exam_record <span class="token keyword">WHERE</span> MINUTE <span class="token punctuation">(</span>TIMEDIFF<span class="token punctuation">(</span>submit_time <span class="token punctuation">,</span> start_time<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">5</span> 
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> exam_record <span class="token keyword">WHERE</span> TIMESTAMPDIFF<span class="token punctuation">(</span>MINUTE<span class="token punctuation">,</span> start_time<span class="token punctuation">,</span> submit_time<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">5</span> 
+</code></pre>
+<p>我只删除最早的三条记录</p>
+<p>delete from exam_order order by start_time limit 3</p>
+<ul>
+<li><code>DROP</code>: 清空表，删除表结构，不可逆</li>
+<li><code>TRUNCATE</code>: 格式化表，不删除表结构，不可逆</li>
+<li><code>DELETE</code>：删除数据，可逆</li>
+</ul>
+<p><code>TRUNCATE</code>会清空表中的所有行，但表结构及其约束、索引等保持不变；<code>TRUNCATE</code>会重置表的自增值；使用<code>TRUNCATE</code>后会使表和索引所占用的空间会恢复到初始大小。</p>
 
                 
             </div>

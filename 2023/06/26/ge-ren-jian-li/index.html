@@ -965,9 +965,11 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
 <p>比如1和2任务在被核心线程被执行，3和4任务在阻塞队列中，5任务来了。生成救急线程，执行5任务，然后再执行3任务和4任务。</p>
 <p>代码实现：</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/QQ%E5%9B%BE%E7%89%8720230427160251.jpg" alt="img"></p>
-<h1 id="6-Redis"><a href="#6-Redis" class="headerlink" title="6.Redis"></a>6.Redis</h1><h2 id="常见数据结构"><a href="#常见数据结构" class="headerlink" title="常见数据结构"></a>常见数据结构</h2><p>详细请参考<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2238792">这篇文章</a></p>
+<h1 id="6-Redis"><a href="#6-Redis" class="headerlink" title="6.Redis"></a>6.Redis</h1><h2 id="常见数据结构"><a href="#常见数据结构" class="headerlink" title="常见数据结构"></a>常见数据结构</h2><p>详细请参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43835717/article/details/92802040">这篇文章</a></p>
 <p>五种基本数据类型：字符串（strings），散列表（hashes）， 列表（lists），集合（set），有序集合（sortedset）</p>
 <p>三种特殊数据类型：地理位置（Geospatial），基数统计(Hyperloglog), 位图(Bitmap)</p>
+<h2 id="常见的应用场景"><a href="#常见的应用场景" class="headerlink" title="常见的应用场景"></a>常见的应用场景</h2><p>主要还是缓存和分布式锁。小场景的消息队列。</p>
+<p>详情可以看<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_51515308/article/details/128010464?spm=1001.2014.3001.5502">黑马的资料</a></p>
 
                 
             </div>
