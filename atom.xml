@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-01-26T13:56:23.239Z</updated>
+  <updated>2024-04-28T13:22:55.478Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -17,24 +17,37 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>黑马头条学习记录</title>
-    <link href="http://19shuidiph.github.io/2024/01/26/hei-ma-tou-tiao-xue-xi-ji-lu/"/>
-    <id>http://19shuidiph.github.io/2024/01/26/hei-ma-tou-tiao-xue-xi-ji-lu/</id>
-    <published>2024-01-26T13:43:27.000Z</published>
-    <updated>2024-01-26T13:56:23.239Z</updated>
+    <title>第一篇笔记-主题和内容介绍</title>
+    <link href="http://19shuidiph.github.io/2123/06/26/di-yi-pian-bi-ji/"/>
+    <id>http://19shuidiph.github.io/2123/06/26/di-yi-pian-bi-ji/</id>
+    <published>2123-06-26T02:10:42.000Z</published>
+    <updated>2024-04-28T13:22:55.478Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;黑马头条学习记录&quot;&gt;&lt;a href=&quot;#黑马头条学习记录&quot; class=&quot;headerlink&quot; title=&quot;黑马头条学习记录&quot;&gt;&lt;/a&gt;黑马头条学习记录&lt;/h1&gt;&lt;h2 id=&quot;第二章&quot;&gt;&lt;a href=&quot;#第二章&quot; class=&quot;headerlink&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;搭建个人博客&quot;&gt;&lt;a href=&quot;#搭建个人博客&quot; class=&quot;headerlink&quot; title=&quot;搭建个人博客&quot;&gt;&lt;/a&gt;搭建个人博客&lt;/h1&gt;&lt;p&gt;这边主要是按照&lt;a href=&quot;https://wushishu.xyz/post/be8880ea.html&quot;&gt;wushishu&lt;/a&gt;(不过这个网站现在已经寄了）的来进行搭建，还参考了&lt;a href=&quot;https://zhuanlan.zhihu.com/p/305812430&quot;&gt;这篇知乎文章&lt;/a&gt;,还要把Blog下的_config.yml中的https改为http;&lt;/p&gt;
+&lt;p&gt;风格主题的话采用的就是我的友链&lt;a href=&quot;https://argvchs.netlify.app/2022/05/10/hexo-theme-particlex/&quot;&gt;argvchs&lt;/a&gt;（现在换了个风格，用的&lt;a href=&quot;http://blinkfox.com/2018/09/28/qian-duan/hexo-bo-ke-zhu-ti-zhi-hexo-theme-matery-de-jie-shao/&quot;&gt;闪烁之狐&lt;/a&gt;里的&lt;/p&gt;
+&lt;p&gt;整个过程都比较顺利，没有遇到很大挫折，几个小时就做好了。&lt;/p&gt;
+&lt;p&gt;后来因为D盘格式化，笔记都丢了，在新电脑上重新搞了一下，一些无太大意义的文章也删除了。&lt;/p&gt;</summary>
     
     
     
-    <category term="Java" scheme="http://19shuidiph.github.io/categories/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>个人简历总结</title>
+    <link href="http://19shuidiph.github.io/2103/06/26/ge-ren-jian-li/"/>
+    <id>http://19shuidiph.github.io/2103/06/26/ge-ren-jian-li/</id>
+    <published>2103-06-26T02:13:52.000Z</published>
+    <updated>2024-04-28T13:03:55.234Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;0-JavaGuide&quot;&gt;&lt;a href=&quot;#0-JavaGuide&quot; class=&quot;headerlink&quot; title=&quot;0.JavaGuide&quot;&gt;&lt;/a&gt;0.JavaGuide&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://javaguide.cn/&quot;&gt;https://javaguide.cn/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里面的东西也是推荐要看一看的。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="面试" scheme="http://19shuidiph.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
   </entry>
@@ -449,29 +462,6 @@
     
     
     <category term="面试" scheme="http://19shuidiph.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>项目自学记录6</title>
-    <link href="http://19shuidiph.github.io/2023/09/22/xiang-mu-zi-xue-ji-lu-6/"/>
-    <id>http://19shuidiph.github.io/2023/09/22/xiang-mu-zi-xue-ji-lu-6/</id>
-    <published>2023-09-22T08:29:51.000Z</published>
-    <updated>2023-10-29T13:25:38.726Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;项目自学目录6&quot;&gt;&lt;a href=&quot;#项目自学目录6&quot; class=&quot;headerlink&quot; title=&quot;项目自学目录6&quot;&gt;&lt;/a&gt;项目自学目录6&lt;/h1&gt;&lt;h2 id=&quot;关于Future的深度解析&quot;&gt;&lt;a href=&quot;#关于Future的深度解析&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
     
     
   </entry>
