@@ -441,7 +441,7 @@
         coverSlider.carousel({
             duration: Number('120'),
             fullWidth: true,
-            indicators: 'true' === 'true',
+            indicators: 'false' === 'true',
             onCycleTo() {
                 if (!initUserPressedOrDraggedActive) {
                     // console.log('initUserPressedOrDraggedActive')
@@ -453,32 +453,11 @@
 
         let carouselIntervalId;
         
-        // Loop to call the next cover article picture.
-        let autoCarousel = function () {
-            carouselIntervalId = setInterval(function () {
-                coverSlider.carousel('next');
-            }, 5000);
-        };
-        autoCarousel();
-        
 
         function restartPlay() {
             
-            clearInterval(carouselIntervalId);
-            autoCarousel();
-            
         };
 
-        
-        // prev and next cover post.
-        $('#prev-cover').click(function () {
-            coverSlider.carousel('prev');
-            restartPlay();
-        });
-        $('#next-cover').click(function () {
-            coverSlider.carousel('next');
-            restartPlay();
-        });
         
     });
 </script>
@@ -518,6 +497,71 @@
 
 
 
+
+
+<div class="title"><i class="far fa-thumbs-up"></i>&nbsp;&nbsp;推荐文章</div>
+
+<div class="row">
+
+    
+    
+    <div class="col s12 m6" >
+        
+            <div class="post-card" style="background-image: url('/medias/featureimages/18.jpg')">
+            
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                    
+                </div>
+                <a href="/2023/06/26/ge-ren-jian-li/">
+                    <h3 class="post-title">个人简历总结</h3>
+                </a>
+                <p class="post-description">
+                    
+                        0.JavaGuidehttps://javaguide.cn/
+这里面的东西也是推荐要看一看的。
+本篇主要是面向个人技能的部分，Java相
+                    
+                </p>
+                <a href="/2023/06/26/ge-ren-jian-li/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FF5E3A 0%, #FF2A68 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="col s12 m6" >
+        
+            <div class="post-card" style="background-image: url('/medias/featureimages/1.jpg')">
+            
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                        
+                    
+                </div>
+                <a href="/2023/06/26/di-yi-pian-bi-ji/">
+                    <h3 class="post-title">第一篇笔记-主题和内容介绍</h3>
+                </a>
+                <p class="post-description">
+                    
+                        第一篇笔记-主题和内容介绍搭建个人博客这边主要是按照wushishu(不过这个网站现在已经寄了）的来进行搭建，还参考了这篇知乎文章,还要把B
+                    
+                </p>
+                <a href="/2023/06/26/di-yi-pian-bi-ji/" class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #EF4DB6 0%, #C643FC 100%)" target="_blank">
+                    <i class="icon far fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
                     </div>
                     
                 </div>
@@ -531,79 +575,6 @@
     <!-- 所有文章卡片 -->
     <article id="articles" class="container articles">
         <div class="row article-row">
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2123/06/26/di-yi-pian-bi-ji/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="第一篇笔记-主题和内容介绍">
-                            
-                            <span class="card-title">第一篇笔记-主题和内容介绍</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                搭建个人博客这边主要是按照wushishu(不过这个网站现在已经寄了）的来进行搭建，还参考了这篇知乎文章,还要把Blog下的_config.yml中的https改为http;
-风格主题的话采用的就是我的友链argvchs（现在换了个风格，用
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2123-06-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                爱敲代码の鱼儿
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2103/06/26/ge-ren-jian-li/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="个人简历总结">
-                            
-                            <span class="card-title">个人简历总结</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                0.JavaGuidehttps://javaguide.cn/
-这里面的东西也是推荐要看一看的。
-本篇主要是面向个人技能的部分，Java相关的八股文。
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2103-06-26
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                爱敲代码の鱼儿
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -1006,6 +977,86 @@ InputStr
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2023-10-17
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/JavaGuide/" class="post-category">
+                                    JavaGuide
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2023/10/13/redis-gao-ji-pian-hei-ma/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Redis高级篇-黑马">
+                            
+                            <span class="card-title">Redis高级篇-黑马</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Redis高级篇-黑马分布式缓存
+当然分片集群也内置了哨兵（各个master节点）来进行故障恢复
+持久化RDB全称Redis Database Backup file（Redis数据备份文件），简单来说就是把内存中的所有数据都记录到磁盘中。
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-13
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Redis/" class="post-category">
+                                    Redis
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2023/10/10/javaguide-zi-xue-ji-lu-3-bing-fa-bian-cheng/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="JavaGuide自学记录3--并发编程">
+                            
+                            <span class="card-title">JavaGuide自学记录3--并发编程</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                并发编程线程-共享区域与独占区域与进程不同的是同类的多个线程共享进程的堆和方法区资源，但每个线程有自己的程序计数器、虚拟机栈和本地方法栈，所以系统在产生一个线程，或是在各个线程之间作切换工作时，负担要比进程小得多，也正因为如此，线程也被称为
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-10
                             </span>
                             <span class="publish-author">
                                 
