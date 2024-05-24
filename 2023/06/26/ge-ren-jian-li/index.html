@@ -659,10 +659,8 @@
 <p>事务的使用： BEGIN; COMMIT; ROLLBACK;</p>
 <p>数据并发问题 : 脏写，脏读，不可重复读，幻读</p>
 <p>1)脏写（Dirty Write): 事务Session A 修改了 另一个 未提交 事务Session B 修改过 的数据</p>
-<ol>
-<li>脏读(Dirty Read): Session A 读取 了已经被 Session B <strong>更新 但还 没有被提交</strong> 的字段。 之后若 Session B 回滚 ，Session A 读取 的内容就是 临时且无效 的.</li>
-<li>不可重复读(Non-Repeatable Read):Session A 读取 了一个字段，然后 Session B 更新 了该字段。 之后 Session A 再次读取 同一个字段， 值就不同 了。</li>
-</ol>
+<p>2)脏读(Dirty Read): Session A 读取 了已经被 Session B <strong>更新 但还 没有被提交</strong> 的字段。 之后若 Session B 回滚 ，Session A 读取 的内容就是 临时且无效 的.</p>
+<p>3)不可重复读(Non-Repeatable Read):Session A 读取 了一个字段，然后 Session B 更新 了该字段。 之后 Session A 再次读取 同一个字段， 值就不同 了。</p>
 <p>4)幻读(Phantom): Session A 从一个表中 读取 了一个字段, 然后 Session B 在该表中 插 入 了一些新的行。 之后, 如果 Session A 再次读取 同一个表, 就会多出几行。</p>
 <p>四种隔离级别：未提交读，提交读，可重复读，序列化</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720230423104501.png" alt="img"></p>

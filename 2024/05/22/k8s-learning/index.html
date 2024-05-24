@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Java八股文-消息队列学习记录2, 爱敲代码の鱼儿">
+    <meta name="keywords" content="k8s-learning, 爱敲代码の鱼儿">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Java八股文-消息队列学习记录2 | 爱敲代码の鱼儿</title>
+    <title>k8s-learning | 爱敲代码の鱼儿</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -289,12 +289,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Java八股文-消息队列学习记录2</h1>
+                    <h1 class="description center-align post-title">k8s-learning</h1>
                 </div>
             </div>
         </div>
@@ -418,8 +418,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%9D%A2%E8%AF%95/" class="post-category">
-                                面试
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
                             </a>
                         
                     </div>
@@ -431,7 +431,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-12-27
+                    2024-05-22
                 </div>
                 
 
@@ -452,75 +452,52 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Java八股文-消息队列学习记录2"><a href="#Java八股文-消息队列学习记录2" class="headerlink" title="Java八股文-消息队列学习记录2"></a>Java八股文-消息队列学习记录2</h1><h2 id="4-Kafka的特性"><a href="#4-Kafka的特性" class="headerlink" title="4.Kafka的特性"></a>4.Kafka的特性</h2><p>1.消息持久化</p>
-<p>2.高吞吐 100万</p>
-<p>3.扩展性强（动态），集群</p>
-<p>4.多客户端支持（Java,Go,C++)</p>
-<p>5.Kafka Stream  （流处理） 双十一</p>
-<p>6.安全机制</p>
-<p>7.数据备份</p>
-<p>8.轻量级</p>
-<p>9.消息压缩</p>
-<h2 id="7-kafka中比较熟悉的参数"><a href="#7-kafka中比较熟悉的参数" class="headerlink" title="7.kafka中比较熟悉的参数"></a>7.kafka中比较熟悉的参数</h2><p>broker.id 每一个broker在集群中的唯一表示。</p>
-<p>log.dirs  消息保存的路径。Kafka把所有消息都保存在磁盘上。</p>
-<p>auto.create.topics.enable 是否允许自动创建主题</p>
-<h2 id="11-kafka适合的场景"><a href="#11-kafka适合的场景" class="headerlink" title="11.kafka适合的场景"></a>11.kafka适合的场景</h2><p>限时订单不可以。没有对每条消息做限时的发送。RocketMQ可以</p>
-<p>日志收集。很适合。并发量比较大。天生持久化，默认写磁盘。</p>
-<p>消息系统。作为一款生产-消费的消息系统。</p>
-<p>流式处理。Stream的流的组件。 Flink+Kakfa 做一个异步。</p>
-<h2 id="13-为什么kafka不支持读写分离"><a href="#13-为什么kafka不支持读写分离" class="headerlink" title="13.为什么kafka不支持读写分离"></a>13.为什么kafka不支持读写分离</h2><p>支持主从，但不支持读写分离。主写从读</p>
-<p>1.数据一致性问题</p>
-<p>2.延时问题。redis是基于内存的，kafka是要写磁盘的</p>
-<p>3.实现了主写从读后，实现不了负载均衡</p>
-<p>4.不实现读写分离，架构简单，出错可能比较小</p>
-<p>5.多副本的机制简单很多</p>
-<h2 id="14-kafka是怎么做到消息顺序性的"><a href="#14-kafka是怎么做到消息顺序性的" class="headerlink" title="14.kafka是怎么做到消息顺序性的"></a>14.kafka是怎么做到消息顺序性的</h2><p>消息顺序 {1,2,3,4,5} 生产端肯定是单线程， 确定一个主题（只有一个分区partition),</p>
-<p>保证一个主题里只有一个分区才可以。并且只有一个消费者。</p>
-<h2 id="15-kafka为什么那么快"><a href="#15-kafka为什么那么快" class="headerlink" title="15.kafka为什么那么快"></a>15.kafka为什么那么快</h2><p>1.存储：文件存储。文件顺序读写。（接近于内存） </p>
-<p>2.写入数据： 传统的4次拷贝，零拷贝技术，减少没有必要的拷贝。 sendfile。数据-&gt;网卡-&gt;DMA拷贝-&gt;网络socket缓冲区（本质就是内核的内存）-&gt;CPU拷贝-&gt;socket缓冲区（一般程序应用的内存）-&gt;CPU拷贝-&gt;磁盘缓冲区-&gt;DMA拷贝-&gt;磁盘。</p>
-<p>4次拷贝：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240101193916944.png"></p>
-<p>sendfile：文件描述符，在socket缓冲区中属于哪一段</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240101194334842.png"></p>
-<p>节约了两次CPU拷贝，将socket缓冲区和磁盘缓冲区放一起。</p>
-<p>3.批量处理，压缩，json的话7倍。</p>
-<h2 id="16-如何解决重复消费"><a href="#16-如何解决重复消费" class="headerlink" title="16.如何解决重复消费"></a>16.如何解决重复消费</h2><p>去保证一个幂等性</p>
-<p>1.MVCC多版本并发控制（生产的时候带上数据的版本号）</p>
-<p>2.去重表的方案：A表里只有一个唯一字段id, try{  insert A –&gt;执行业务 } catch{异常不用抛出 ,吃掉异常}</p>
-<h2 id="17-RocketMQ如何保证高可用"><a href="#17-RocketMQ如何保证高可用" class="headerlink" title="17.RocketMQ如何保证高可用"></a>17.RocketMQ如何保证高可用</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104095317236.png"></p>
-<p>同步复制和异步刷盘。同步可以保证数据一定到从节点的内存。同步刷盘导致生产效率很低。</p>
-<h2 id="18-RocketMQ中的存储机制了解吗"><a href="#18-RocketMQ中的存储机制了解吗" class="headerlink" title="18.RocketMQ中的存储机制了解吗"></a>18.RocketMQ中的存储机制了解吗</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104101000153.png"></p>
-<p>即使是一万个主题，也只有一个commitLog,如果有很多commitLog会造成海量的IO切换。Kafka好像就是多个commitLog,RcoketMQ更适合电商场景。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104101135561.png"></p>
-<h2 id="19-RocketMQ中性能比较高的原因"><a href="#19-RocketMQ中性能比较高的原因" class="headerlink" title="19.RocketMQ中性能比较高的原因"></a>19.RocketMQ中性能比较高的原因</h2><p>1.内部使用Netty这个高效的NIO通信框架</p>
-<p>2.大量使用多线程和异步</p>
-<p>3.采用零拷贝技术优化（MMAP） 性能提升50%</p>
-<p>4.采用文件存储，顺序读写。接近内存的速度</p>
-<p>5.锁优化（CAS机制无锁化）</p>
-<p>6.存储设计：读写分离。</p>
-<h2 id="20-如何设计一个消息队列"><a href="#20-如何设计一个消息队列" class="headerlink" title="20.如何设计一个消息队列"></a>20.如何设计一个消息队列</h2><p>存储：高可用-磁盘存储，顺序读写，零拷贝技术</p>
-<p>可伸缩：分布式，参考Kafka,  broker  \topic\partition</p>
-<p>消息的丢失：多主多从， 多副本，raft协议，一台主服务器宕机，选举机制。</p>
-<p>消息重复设计</p>
-<p>网络框架：Netty 高效的NIO框架。</p>
-<h2 id="21-有几百万消息持续积压几个小时，如何解决"><a href="#21-有几百万消息持续积压几个小时，如何解决" class="headerlink" title="21.有几百万消息持续积压几个小时，如何解决"></a>21.有几百万消息持续积压几个小时，如何解决</h2><p>分析：消息积压–线上故障（消费者）</p>
-<p>1.修复消费者。有可能消耗几个小时</p>
-<p>临时扩容。 多搞几个消费者。把3个队列里的东西快速的放到30个队列里</p>
-<h2 id="22-RocketMQ中Broker的部署方式"><a href="#22-RocketMQ中Broker的部署方式" class="headerlink" title="22.RocketMQ中Broker的部署方式"></a>22.RocketMQ中Broker的部署方式</h2><p>单机broker。</p>
-<p>多Master。</p>
-<p>多Master,多Slave.</p>
-<h2 id="24-什么是路由注册，路由发现，路由剔除"><a href="#24-什么是路由注册，路由发现，路由剔除" class="headerlink" title="24.什么是路由注册，路由发现，路由剔除"></a>24.什么是路由注册，路由发现，路由剔除</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104104548063.png"></p>
-<p>NameSever不会主动,每隔30秒Producer主动去拉。</p>
-<p>路由就是broker.</p>
-<h2 id="27-使用RocketMQ过程中遇到的问题"><a href="#27-使用RocketMQ过程中遇到的问题" class="headerlink" title="27.使用RocketMQ过程中遇到的问题"></a>27.使用RocketMQ过程中遇到的问题</h2><p>为了高可用，要搭建主从</p>
-<p>消费者大于queue的数量，最后的消费者拿不到queue.一个queue不能给多个消费者消费。</p>
-<h2 id="28-RocketMQ的总体架构，以及其中各个组件的功能"><a href="#28-RocketMQ的总体架构，以及其中各个组件的功能" class="headerlink" title="28.RocketMQ的总体架构，以及其中各个组件的功能"></a>28.RocketMQ的总体架构，以及其中各个组件的功能</h2><p>Netty负责网络通讯，store负责零拷贝存储。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104105756405.png"></p>
-<h2 id="29-讲一讲RocketMQ中的分布式事务及其实现"><a href="#29-讲一讲RocketMQ中的分布式事务及其实现" class="headerlink" title="29.讲一讲RocketMQ中的分布式事务及其实现"></a>29.讲一讲RocketMQ中的分布式事务及其实现</h2><p>银行转账，A-&gt;B。</p>
-<p>A账户 -100 SQL事务，B账户 +100 SQL事务</p>
-<p>两阶段提交，半消息。MQ的消费者本身就会不断重试。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104110420703.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104110435196.png"></p>
+                <h1 id="K8S学习-老男孩教育"><a href="#K8S学习-老男孩教育" class="headerlink" title="K8S学习-老男孩教育"></a>K8S学习-老男孩教育</h1><h2 id="容器-x2F-docker的基本知识"><a href="#容器-x2F-docker的基本知识" class="headerlink" title="容器&#x2F;docker的基本知识"></a>容器&#x2F;docker的基本知识</h2><p>镜像Images，仓库Repositories，容器：Container</p>
+<p>从远端仓库拉取镜像到本地，镜像实例化为容器</p>
+<p>容器提交给镜像，在本地将镜像推送给远端仓库</p>
+<p><img src="D:\blog\source_posts\k8s-learning\image\image-20240522201344923.png" alt="image-20240522201344923"></p>
+<p>给镜像打标签</p>
+<p>docker tag c059bfaa849c docker.io&#x2F;wzh-repository&#x2F;alpine:v1107</p>
+<p>推送镜像?推送失败docker push docker.io&#x2F;wzh-repository&#x2F;alpine:v1107</p>
+<p>docker tag c059bfaa849c wzhdocker1107&#x2F;alpine:1107</p>
+<p>失败原因，应该改为<strong>dockerhub用户名&#x2F;镜像名</strong>，则docker push wzhdocker1107&#x2F;alpine:1107</p>
+<p>列出所有容器 docker ps -a    列出活着的 docker ps</p>
+<p>启动容器 docker run</p>
+<p>映射端口  docker run -p 容器外端口: 容器内端口</p>
+<p>docker run –rm –name mynginx -d -p81:80 wzhdocker1107&#x2F;nginx:v1.12.2</p>
+<p>挂载数据卷 docker run -v 容器外目录:容器内目录</p>
+<p>传递环境变量 docker run -e 环境变量key&#x3D;环境变量value</p>
+<p>容器内安装软件(工具)  yum&#x2F;apt-get&#x2F;apt等</p>
+<p>容器通过提交变为镜像;同时dockerfile通过build也可以生成Image,一行行执行dockerfile里的指令。</p>
+<p><img src="D:\blog\source_posts\k8s-learning\image\image-20240523152112598.png" alt="image-20240523152112598"></p>
+<p>dockerfile的规则： 指令用大写，内容用小写</p>
+<p>USER&#x2F;WORKDIR指令    USER指定进程使用哪个用户运行，WORKDIR指定进程的工作目录，进去docker时所在目录</p>
+<p>ADD&#x2F;EXPOSE指令    ADD指令的功能是将主机构建环境（上下文）目录中的文件和目录、以及一个URL标记的文件 拷贝到镜像中。      EXPOSE指令：指的是让容器哪个端口暴露出来</p>
+<p>RUN&#x2F;ENV指令    RUN是构建镜像时，执行的操作      ENV是将环境变量固化到镜像中</p>
+<p>CMD&#x2F;ENTRYPOINT指令   使用CMD构建的镜像，当容器启动时就执行 CMD配置的命令。CMD是启动容器时执行的操作    如果容器启动时没带 CMD指令，默认会执行&#x2F;entrypoint.sh当然也可以手动编辑entrypoint.sh然后add到镜像中</p>
+<p>docker的四种网络模式</p>
+<p><img src="https://img-blog.csdnimg.cn/20210605083548612.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3MxNTIxMjc5MDYwNw==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>使用docker的好处：</p>
+<p>1.docker统一了基础设施的环境。docker环境。硬件的配置，操作系统的版本，运行时环境的异构。</p>
+<p>2.docker统一了程序打包方式。 docker镜像。 java程序，python程序</p>
+<p>3.docker统一了容器部署的方式。docker容器。 java-jar, npm run dev 。 docker run…</p>
+<p>三次跨时代飞跃： 1.CS to BS,不必下载客户端，直接网页访问  2.移动互联网，有手机就行  3.微信小程序，我连APP都不用装了。</p>
+<h2 id="K8S入门"><a href="#K8S入门" class="headerlink" title="K8S入门"></a>K8S入门</h2><p>K8S的优势：自动装箱，水平扩展，自我修复；服务发现和负载均衡；自动发布和回滚；集中化配置和密钥管理；存储编排；任务批处理运行。</p>
+<p>pod 是k8s中能够运行的最小逻辑单元，一个pod里面可以运行多个容器。 Pod是豌豆荚，容器是豌豆。一个pod里运行多个容器，又叫边车模式。</p>
+<p>pod控制器是pod启动的一种模版，用来保证在K8S里启动的Pod应该始终按照人们的预期运行。K8S内提供了众多pod控制器，常用的有Deployment,DaemonSet</p>
+<p>name 每一种“资源”，都应该有自己的“名称”。资源有五个维度的信息，api版本，类别，元数据，定义清单，状态。 名称通常定义在资源的元数据信息里。资源是功能的抽象。</p>
+<p>namespace 隔离K8S内各种资源的方法，名称空间可以理解为K8S内部的虚拟集群组。</p>
+<p>label 标签。标签和资源是多对多的关系，标签的组成key&#x3D;value</p>
+<p>label选择器。 使用标签选择器过滤指定的标签。</p>
+<p>service 在K8S中，每个pod都会被分配一个单独的IP地址，但IP地址会随着pod的销毁而消失。service可以看作是一组提供相同服务的pod的对外访问接口。哪些pod归k8s管？通过标签选择器来定义。</p>
+<p>Ingress是第7层的应用层，对外暴露的接口。Service只能进行L4的流量调度，表现形式是ip+port. Ingress则可以调度不同业务域，不同url访问路径的业务流量。</p>
+<h2 id="K8S的各种插件"><a href="#K8S的各种插件" class="headerlink" title="K8S的各种插件"></a>K8S的各种插件</h2><p>Kubectl命令行工具</p>
+<p>K8S的CNI网络插件-flannel</p>
+<p>K8S的服务发现插件-coredns</p>
+<p>K8S的服务暴露插件-traefik</p>
+<p>K8S的GUI管理工具-dashboard</p>
+<p>K8S的dashboard监控小插件-heapster</p>
+<p>K8S集群的生产维护经验</p>
 
                 
             </div>
@@ -547,7 +524,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://19shuidiph.github.io/2023/12/27/java-ba-gu-wen-xiao-xi-dui-lie-xue-xi-ji-lu-2/">http://19shuidiph.github.io/2023/12/27/java-ba-gu-wen-xiao-xi-dui-lie-xue-xi-ji-lu-2/</a>
+                    <a href="http://19shuidiph.github.io/2024/05/22/k8s-learning/">http://19shuidiph.github.io/2024/05/22/k8s-learning/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -756,13 +733,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/05/22/k8s-learning/">
+                <a href="/2024/05/23/javaguide-zi-xue-ji-lu-7-mysql-chang-jian-mian-shi-ti/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="k8s-learning">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="JavaGuide自学记录7-MySQL常见面试题">
                         
-                        <span class="card-title">k8s-learning</span>
+                        <span class="card-title">JavaGuide自学记录7-MySQL常见面试题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -773,14 +750,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-05-22
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-05-23
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category">
-                                    k8s
+                            <a href="/categories/JavaGuide/" class="post-category">
+                                    JavaGuide
                                 </a>
                             
                             
@@ -797,13 +774,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/12/25/effectivejava-du-hou-gan/">
+                <a href="/2023/12/27/java-ba-gu-wen-xiao-xi-dui-lie-xue-xi-ji-lu-2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="EffectiveJava读后感">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Java八股文-消息队列学习记录2">
                         
-                        <span class="card-title">EffectiveJava读后感</span>
+                        <span class="card-title">Java八股文-消息队列学习记录2</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -814,14 +791,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-27
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Effective-Java/" class="post-category">
-                                    Effective-Java
+                            <a href="/categories/%E9%9D%A2%E8%AF%95/" class="post-category">
+                                    面试
                                 </a>
                             
                             

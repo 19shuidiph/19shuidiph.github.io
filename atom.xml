@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-01-04T03:10:45.108Z</updated>
+  <updated>2024-05-24T09:13:22.035Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,75 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaGuide自学记录8-MySQL重要知识点</title>
+    <link href="http://19shuidiph.github.io/2024/05/24/javaguide-zi-xue-ji-lu-8-mysql-chong-yao-zhi-shi-dian/"/>
+    <id>http://19shuidiph.github.io/2024/05/24/javaguide-zi-xue-ji-lu-8-mysql-chong-yao-zhi-shi-dian/</id>
+    <published>2024-05-24T09:12:51.000Z</published>
+    <updated>2024-05-24T09:13:22.035Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;MySQL重要知识点&quot;&gt;&lt;a href=&quot;#MySQL重要知识点&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaGuide自学记录7-MySQL常见面试题</title>
+    <link href="http://19shuidiph.github.io/2024/05/23/javaguide-zi-xue-ji-lu-7-mysql-chang-jian-mian-shi-ti/"/>
+    <id>http://19shuidiph.github.io/2024/05/23/javaguide-zi-xue-ji-lu-7-mysql-chang-jian-mian-shi-ti/</id>
+    <published>2024-05-23T13:34:33.000Z</published>
+    <updated>2024-05-24T09:09:29.183Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;MySQL常见面试题&quot;&gt;&lt;a href=&quot;#MySQL常见面试题&quot; class=&quot;headerlink&quot; title=&quot;MySQL常见面试题&quot;&gt;&lt;/a&gt;MySQL常见面试题&lt;/h1&gt;&lt;h2 id=&quot;字段类型&quot;&gt;&lt;a href=&quot;#字段类型&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>k8s-learning</title>
+    <link href="http://19shuidiph.github.io/2024/05/22/k8s-learning/"/>
+    <id>http://19shuidiph.github.io/2024/05/22/k8s-learning/</id>
+    <published>2024-05-22T01:15:18.000Z</published>
+    <updated>2024-05-24T09:14:34.700Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;K8S学习-老男孩教育&quot;&gt;&lt;a href=&quot;#K8S学习-老男孩教育&quot; class=&quot;headerlink&quot; title=&quot;K8S学习-老男孩教育&quot;&gt;&lt;/a&gt;K8S学习-老男孩教育&lt;/h1&gt;&lt;h2 id=&quot;容器-x2F-docker的基本知识&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="http://19shuidiph.github.io/categories/k8s/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Java八股文-消息队列学习记录2</title>
@@ -403,75 +472,6 @@
     
     
     <category term="JVM" scheme="http://19shuidiph.github.io/categories/JVM/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>一些正常的面试问题</title>
-    <link href="http://19shuidiph.github.io/2023/09/25/yi-xie-zheng-chang-de-mian-shi-wen-ti/"/>
-    <id>http://19shuidiph.github.io/2023/09/25/yi-xie-zheng-chang-de-mian-shi-wen-ti/</id>
-    <published>2023-09-25T09:22:46.000Z</published>
-    <updated>2023-11-21T11:07:27.556Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;一些正常的面试问题&quot;&gt;&lt;a href=&quot;#一些正常的面试问题&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="面试" scheme="http://19shuidiph.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>项目自学记录6</title>
-    <link href="http://19shuidiph.github.io/2023/09/22/xiang-mu-zi-xue-ji-lu-6/"/>
-    <id>http://19shuidiph.github.io/2023/09/22/xiang-mu-zi-xue-ji-lu-6/</id>
-    <published>2023-09-22T08:29:51.000Z</published>
-    <updated>2023-10-29T13:25:38.726Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;项目自学目录6&quot;&gt;&lt;a href=&quot;#项目自学目录6&quot; class=&quot;headerlink&quot; title=&quot;项目自学目录6&quot;&gt;&lt;/a&gt;项目自学目录6&lt;/h1&gt;&lt;h2 id=&quot;关于Future的深度解析&quot;&gt;&lt;a href=&quot;#关于Future的深度解析&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>项目自学记录5</title>
-    <link href="http://19shuidiph.github.io/2023/09/20/xiang-mu-zi-xue-ji-lu-5/"/>
-    <id>http://19shuidiph.github.io/2023/09/20/xiang-mu-zi-xue-ji-lu-5/</id>
-    <published>2023-09-20T10:00:23.000Z</published>
-    <updated>2023-09-21T08:11:09.395Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;项目自学目录5&quot;&gt;&lt;a href=&quot;#项目自学目录5&quot; class=&quot;headerlink&quot; title=&quot;项目自学目录5&quot;&gt;&lt;/a&gt;项目自学目录5&lt;/h1&gt;&lt;h2 id=&quot;Resource-和-Autowire&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
     
     
   </entry>
