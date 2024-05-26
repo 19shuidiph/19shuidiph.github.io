@@ -286,6 +286,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '86CB35A822329FE1DE40EB82A1791BE1F66F8BD327446686BDD859A89E436853';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -452,7 +465,146 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MySQL重要知识点"><a href="#MySQL重要知识点" class="headerlink" title="MySQL重要知识点"></a>MySQL重要知识点</h1>
+                <h1 id="MySQL重要知识点"><a href="#MySQL重要知识点" class="headerlink" title="MySQL重要知识点"></a>MySQL重要知识点</h1><h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
+<li>聚簇索引（聚集索引）：索引结构和数据一起存放的索引，InnoDB 中的主键索引就属于聚簇索引。</li>
+<li>非聚簇索引（非聚集索引）：索引结构和数据分开存放的索引，二级索引(辅助索引)就属于非聚簇索引。MySQL 的 MyISAM 引擎，不管主键还是非主键，使用的都是非聚簇索引。</li>
+</ul>
+<p>索引下推：没有索引下推就是server层去判断月份，有索引下推就是存储引擎层来顺手判断月份</p>
+<p>month会导致索引失效。所以下推的这个，只是个普通的查询条件？</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token keyword">user</span> <span class="token keyword">WHERE</span> zipcode <span class="token operator">=</span> <span class="token string">'431200'</span> <span class="token operator">AND</span> MONTH<span class="token punctuation">(</span>birthdate<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+</code></pre>
+<p><img src="https://oss.javaguide.cn/github/javaguide/database/mysql/index-condition-pushdown-graphic-illustration.png"></p>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>二进制日志 binlog（归档日志）和事务日志 redo log（重做日志）和 undo log（回滚日志）</p>
+<h3 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h3><p>redo log（重做日志）是 InnoDB 存储引擎独有的，它让 MySQL 拥有了崩溃恢复能力。</p>
+<p>比如 MySQL 实例挂了或宕机了，重启时，InnoDB 存储引擎会使用 redo log 恢复数据，保证数据的持久性与完整性。</p>
+<h3 id="bin-log"><a href="#bin-log" class="headerlink" title="bin log"></a>bin log</h3><p>binlog（归档日志）保证了 MySQL 集群架构的数据一致性。</p>
+<p>主节点写bin log 日志，从节点读bin log 日志。</p>
+<h3 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h3><p>redo log 在事务执行过程中可以不断写入，而 binlog 只有在提交事务时才写入，所以 redo log 与 binlog 的写入时机不一样。会出问题。所以将redo log拆为prepare阶段和commit阶段。</p>
+<p><img src="https://oss.javaguide.cn/github/javaguide/04-20220305234956774.png"></p>
+<h3 id="undo-log"><a href="#undo-log" class="headerlink" title="undo log"></a>undo log</h3><p>每一个事务对数据的修改都会被记录到 undo log ，当执行事务过程中出现错误或者需要执行回滚操作的话，MySQL 可以利用 undo log 将数据恢复到事务开始之前的状态。</p>
+<h2 id="隔离级别与并发事务问题"><a href="#隔离级别与并发事务问题" class="headerlink" title="隔离级别与并发事务问题"></a>隔离级别与并发事务问题</h2><table>
+<thead>
+<tr>
+<th align="center">隔离级别</th>
+<th align="center">脏读</th>
+<th align="center">不可重复读</th>
+<th align="center">幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">READ-UNCOMMITTED</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td align="center">READ-COMMITTED</td>
+<td align="center">×</td>
+<td align="center">√</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td align="center">REPEATABLE-READ</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">√</td>
+</tr>
+<tr>
+<td align="center">SERIALIZABLE</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">×</td>
+</tr>
+</tbody></table>
+<p>解决幻读的方式有很多，但是它们的核心思想就是一个事务在操作某张表数据的时候，另外一个事务不允许新增或者删除这张表中的数据了。解决幻读的方式主要有以下几种：</p>
+<ol>
+<li>将事务隔离级别调整为 <code>SERIALIZABLE</code> 。</li>
+<li>在可重复读的事务级别下，给事务操作的这张表添加表锁。</li>
+<li>在可重复读的事务级别下，给事务操作的这张表添加 Next-key Lock（Record Lock行锁+Gap Lock间隙锁）</li>
+</ol>
+<p>间隙锁，比如我现在有数据1,3,5,8,11.我查了一次8。然后我添加数据，则我不能添加5,6,7,8,9,10，否则会被锁住。</p>
+<h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><ul>
+<li>事务读取的是快照数据，因此其他并发事务对数据行的修改不会影响当前事务的读取操作。</li>
+<li>写操作后，原始版本的数据仍然存在，供其他事务使用快照读取，这保证了其他事务不受当前事务的写操作影响。</li>
+<li>当一个事务提交时，它所做的修改将成为数据库的最新版本，并且对其他事务可见。</li>
+<li>当一个事务回滚时，它所做的修改将被撤销，对其他事务不可见。</li>
+</ul>
+<p>一致性非锁定读，也叫快照读，是最经常用的。锁定读，也叫当前读，读最新的数据。下面三种情况是当前读：</p>
+<ul>
+<li><code>select ... lock in share mode</code></li>
+<li><code>select ... for update</code></li>
+<li><code>insert</code>、<code>update</code>、<code>delete</code> 操作</li>
+</ul>
+<p><strong><code>InnoDB</code> 在实现<code>Repeatable Read</code> 时，如果执行的是当前读，则会对读取的记录使用 <code>Next-key Lock</code> ，来防止其它事务在间隙间插入数据</strong></p>
+<p><code>MVCC</code> 的实现依赖于：<strong>隐藏字段、Read View、undo log</strong>。</p>
+<p>在内部，<code>InnoDB</code> 存储引擎为每行数据添加了三个 隐藏字段：</p>
+<ul>
+<li><strong><code>DB_TRX_ID（6字节）</code>：表示最后一次插入或更新该行的事务 id。</strong>此外，<code>delete</code> 操作在内部被视为更新，只不过会在记录头 <code>Record header</code> 中的 <code>deleted_flag</code> 字段将其标记为已删除</li>
+<li><code>DB_ROLL_PTR（7字节）</code> 回滚指针，指向该行的 <code>undo log</code> 。如果该行未被更新，则为空</li>
+<li><code>DB_ROW_ID（6字节）</code>：如果没有设置主键且该表没有唯一非空索引时，<code>InnoDB</code> 会使用该 id 来生成聚簇索引</li>
+</ul>
+<p>Read View主要是用来做可见性判断，里面保存了 “当前对本事务不可见的其他活跃事务”</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">ReadView</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">/* ... */</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+  trx_id_t m_low_limit_id<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">/* 大于等于这个 ID 的事务均不可见 */</span>
+
+  trx_id_t m_up_limit_id<span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">/* 小于这个 ID 的事务均可见 */</span>
+
+  trx_id_t m_creator_trx_id<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">/* 创建该 Read View 的事务ID */</span>
+
+  trx_id_t m_low_limit_no<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">/* 事务 Number, 小于该 Number 的 Undo Logs 均可以被 Purge */</span>
+
+  ids_t m_ids<span class="token punctuation">;</span>                  <span class="token comment" spellcheck="true">/* 创建 Read View 时的活跃事务列表 */</span>
+
+  m_closed<span class="token punctuation">;</span>                     <span class="token comment" spellcheck="true">/* 标记 Read View 是否 close */</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image-20240525194733637.png"></p>
+<p>undo log 的两个作用：</p>
+<ul>
+<li>当事务回滚时用于将数据恢复到修改前的样子</li>
+<li>另一个作用是 <code>MVCC</code> ，当读取记录时，若该记录被其他事务占用或当前版本对该事务不可见，则可以通过 <code>undo log</code> 读取之前的版本数据，以此实现非锁定读</li>
+</ul>
+<p>在 RR 隔离级别下只在事务开始后 <strong><code>第一次select</code></strong> 数据前生成一个<code>Read View</code>（m_ids 列表）</p>
+<h2 id="SQL语句在MySQL中的执行流程"><a href="#SQL语句在MySQL中的执行流程" class="headerlink" title="SQL语句在MySQL中的执行流程"></a>SQL语句在MySQL中的执行流程</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/13526879-3037b144ed09eb88.png"></p>
+<p>简单来说 MySQL 主要分为 Server 层和存储引擎层：</p>
+<ul>
+<li><strong>Server 层</strong>：主要包括连接器、查询缓存、分析器、优化器、执行器等，所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图，函数等，还有一个通用的日志模块 binlog 日志模块。</li>
+<li><strong>存储引擎</strong>：主要负责数据的存储和读取，采用可以替换的插件式架构，支持 InnoDB、MyISAM、Memory 等多个存储引擎，其中 InnoDB 引擎有自有的日志模块 redolog 模块。<strong>现在最常用的存储引擎是 InnoDB，它从 MySQL 5.5 版本开始就被当做默认存储引擎了。</strong></li>
+</ul>
+<p>更新语句执行流程如下：分析器—-&gt;权限校验—-&gt;执行器—&gt;引擎—redo log(prepare 状态)—&gt;binlog—&gt;redo log(commit 状态)</p>
+<p>最开始 MySQL 并没有 InnoDB 引擎，MySQL 自带的引擎是 MyISAM，但是我们知道 redo log 是 InnoDB 引擎特有的，InnoDB可以提供crash-safe的能力。binlog 日志只能用来归档。</p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>从 MySQL 5.7.20 开始，就已经默认弃用查询缓存了。在 MySQL 8.0 及之后，更是直接删除了查询缓存的功能。</p>
+<ul>
+<li>SQL 必须完全一致才会导致查询缓存命中（大小写、空格、使用的数据库、协议版本、字符集等必须一致）。检查查询缓存时，MySQL Server 不会对 SQL 做任何处理，它精确的使用客户端传来的查询。</li>
+<li>如果查询中包含任何用户自定义函数、存储函数、用户变量、临时表、MySQL 库中的系统表，其查询结果也不会被缓存。</li>
+<li>缓存建立之后，MySQL 的查询缓存系统会跟踪查询中涉及的每张表，如果这些表（数据或结构）发生变化，那么和这张表相关的所有缓存数据都将失效。</li>
+<li>MySQL 缓存在分库分表环境下是不起作用的。</li>
+</ul>
+<p>简单总结一下查询缓存的适用场景：</p>
+<ul>
+<li>表数据修改不频繁、数据较静态。</li>
+<li>查询（Select）重复度高。</li>
+<li>查询结果集小于 1 MB。</li>
+</ul>
+<h2 id="执行计划"><a href="#执行计划" class="headerlink" title="执行计划"></a>执行计划</h2><p>MySQL 为我们提供了 <code>EXPLAIN</code> 命令，来获取执行计划的相关信息。</p>
+<h2 id="MySQL自增主键不连续"><a href="#MySQL自增主键不连续" class="headerlink" title="MySQL自增主键不连续"></a>MySQL自增主键不连续</h2><ol>
+<li>自增初始值和自增步长设置不为 1</li>
+<li>唯一键冲突</li>
+<li>事务回滚</li>
+<li>批量插入（如 <code>insert...select</code> 语句）</li>
+</ol>
+<p>针对第2点，冲突会报错，但是自增操作发生在执行sql报错之前。所以还是自增了。</p>
+<p>针对第3点，MySQL为了提高性能，不会回滚自增值，反而还会和往常一样自增+1</p>
+<p>针对第4点，对于 <code>insert … select</code>、replace …… select 和 load data 这种类型的语句来说，MySQL 并不知道到底需要申请多少 id，所以就采用了这种批量申请的策略，毕竟一个一个申请的话实在太慢了。所以即使只有5个数据，申请的id为(1),(2,3) ,(4,5,6,7)    这也自增id来到8</p>
+<h2 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h2><ol>
+<li>当操作符<strong>左右两边的数据类型不一致</strong>时，会发生<strong>隐式转换</strong>。<strong>以左边的类型为准。</strong></li>
+<li>当 where 查询操作符<strong>左边为数值类型</strong>时发生了隐式转换，那么对效率影响不大，但还是不推荐这么做。</li>
+<li>当 where 查询操作符<strong>左边为字符类型</strong>时发生了隐式转换，那么会导致索引失效，造成全表扫描效率极低。</li>
+<li>字符串转换为数值类型时，非数字开头的字符串会转化为<code>0</code>，以数字开头的字符串’123a’ -&gt; 123.</li>
+</ol>
+
                 
             </div>
             <hr/>

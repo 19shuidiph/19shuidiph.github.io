@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="k8s-learning, 爱敲代码の鱼儿">
+    <meta name="keywords" content="k8s学习-老男孩教育, 爱敲代码の鱼儿">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>k8s-learning | 爱敲代码の鱼儿</title>
+    <title>k8s学习-老男孩教育 | 爱敲代码の鱼儿</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -286,15 +286,28 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">k8s-learning</h1>
+                    <h1 class="description center-align post-title">k8s学习-老男孩教育</h1>
                 </div>
             </div>
         </div>
@@ -452,7 +465,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="K8S学习-老男孩教育"><a href="#K8S学习-老男孩教育" class="headerlink" title="K8S学习-老男孩教育"></a>K8S学习-老男孩教育</h1><h2 id="容器-x2F-docker的基本知识"><a href="#容器-x2F-docker的基本知识" class="headerlink" title="容器&#x2F;docker的基本知识"></a>容器&#x2F;docker的基本知识</h2><p>镜像Images，仓库Repositories，容器：Container</p>
+                <h1 id="K8S学习"><a href="#K8S学习" class="headerlink" title="K8S学习"></a>K8S学习</h1><h2 id="容器-x2F-docker的基本知识"><a href="#容器-x2F-docker的基本知识" class="headerlink" title="容器&#x2F;docker的基本知识"></a>容器&#x2F;docker的基本知识</h2><p>镜像Images，仓库Repositories，容器：Container</p>
 <p>从远端仓库拉取镜像到本地，镜像实例化为容器</p>
 <p>容器提交给镜像，在本地将镜像推送给远端仓库</p>
 <p><img src="D:\blog\source_posts\k8s-learning\image\image-20240522201344923.png" alt="image-20240522201344923"></p>
@@ -482,7 +495,8 @@
 <p>2.docker统一了程序打包方式。 docker镜像。 java程序，python程序</p>
 <p>3.docker统一了容器部署的方式。docker容器。 java-jar, npm run dev 。 docker run…</p>
 <p>三次跨时代飞跃： 1.CS to BS,不必下载客户端，直接网页访问  2.移动互联网，有手机就行  3.微信小程序，我连APP都不用装了。</p>
-<h2 id="K8S入门"><a href="#K8S入门" class="headerlink" title="K8S入门"></a>K8S入门</h2><p>K8S的优势：自动装箱，水平扩展，自我修复；服务发现和负载均衡；自动发布和回滚；集中化配置和密钥管理；存储编排；任务批处理运行。</p>
+<h2 id="K8S入门"><a href="#K8S入门" class="headerlink" title="K8S入门"></a>K8S入门</h2><p>K8S的优势：自动装箱，弹性伸缩，自我修复；服务发现和负载均衡；自动部署和回滚；集中化配置和密钥管理；存储编排；任务批处理运行。</p>
+<p><img src="D:\blog\source_posts\k8s-learning\image\image-20240524220143417.png" alt="image-20240524220143417"></p>
 <p>pod 是k8s中能够运行的最小逻辑单元，一个pod里面可以运行多个容器。 Pod是豌豆荚，容器是豌豆。一个pod里运行多个容器，又叫边车模式。</p>
 <p>pod控制器是pod启动的一种模版，用来保证在K8S里启动的Pod应该始终按照人们的预期运行。K8S内提供了众多pod控制器，常用的有Deployment,DaemonSet</p>
 <p>name 每一种“资源”，都应该有自己的“名称”。资源有五个维度的信息，api版本，类别，元数据，定义清单，状态。 名称通常定义在资源的元数据信息里。资源是功能的抽象。</p>
@@ -498,6 +512,9 @@
 <p>K8S的GUI管理工具-dashboard</p>
 <p>K8S的dashboard监控小插件-heapster</p>
 <p>K8S集群的生产维护经验</p>
+<p>管理K8S核心资源的三种基本方法：<br>1.陈述式管理方法 - 主要依赖命令行CLI工具进行管理</p>
+<p>2.声明式管理方法 - 主要依赖统一资源配置清单(yaml&#x2F;json)进行管理</p>
+<p>3.GUI管理方法-  主要依赖图形化操作界面(web页面)进行管理</p>
 
                 
             </div>
