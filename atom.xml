@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-05-26T02:43:46.143Z</updated>
+  <updated>2024-05-26T04:15:24.135Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://19shuidiph.github.io/2024/05/24/javaguide-zi-xue-ji-lu-8-mysql-chong-yao-zhi-shi-dian/"/>
     <id>http://19shuidiph.github.io/2024/05/24/javaguide-zi-xue-ji-lu-8-mysql-chong-yao-zhi-shi-dian/</id>
     <published>2024-05-24T09:12:51.000Z</published>
-    <updated>2024-05-26T02:43:46.143Z</updated>
+    <updated>2024-05-26T04:15:24.135Z</updated>
     
     
       
@@ -270,6 +270,29 @@
   </entry>
   
   <entry>
+    <title>公司项目-进项发票归集的添加从表信息</title>
+    <link href="http://19shuidiph.github.io/2023/10/31/gong-si-xiang-mu-jin-xiang-fa-piao-gui-ji-de-tian-jia-cong-biao-xin-xi/"/>
+    <id>http://19shuidiph.github.io/2023/10/31/gong-si-xiang-mu-jin-xiang-fa-piao-gui-ji-de-tian-jia-cong-biao-xin-xi/</id>
+    <published>2023-10-31T00:46:46.000Z</published>
+    <updated>2024-05-26T04:12:14.776Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;公司项目-进项发票归集的添加从表信息&quot;&gt;&lt;a href=&quot;#公司项目-进项发票归集的添加从表信息&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="公司项目" scheme="http://19shuidiph.github.io/categories/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>项目自学记录8</title>
     <link href="http://19shuidiph.github.io/2023/10/29/xiang-mu-zi-xue-ji-lu-8/"/>
     <id>http://19shuidiph.github.io/2023/10/29/xiang-mu-zi-xue-ji-lu-8/</id>
@@ -311,6 +334,29 @@
     
     
     <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>公司项目-智慧税务产品2.0-风险模型/场景/报告</title>
+    <link href="http://19shuidiph.github.io/2023/10/15/gong-si-xiang-mu-te-shu-piao-chong-sheng-cheng-de-gong-han-jia-gou/"/>
+    <id>http://19shuidiph.github.io/2023/10/15/gong-si-xiang-mu-te-shu-piao-chong-sheng-cheng-de-gong-han-jia-gou/</id>
+    <published>2023-10-15T03:23:31.000Z</published>
+    <updated>2024-05-26T04:12:22.321Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;特殊票种生成的工厂架构&quot;&gt;&lt;a href=&quot;#特殊票种生成的工厂架构&quot; class=&quot;headerlink&quot; title=&quot;特殊票种生成的工厂架构&quot;&gt;&lt;/a&gt;特殊票种生成的工厂架构&lt;/h1&gt;&lt;h2 id=&quot;架构图&quot;&gt;&lt;a href=&quot;#架构图&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="公司项目" scheme="http://19shuidiph.github.io/categories/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/"/>
     
     
   </entry>
@@ -426,52 +472,6 @@
     
     
     <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>项目自学记录7</title>
-    <link href="http://19shuidiph.github.io/2023/09/28/xiang-mu-zi-xue-ji-lu-7/"/>
-    <id>http://19shuidiph.github.io/2023/09/28/xiang-mu-zi-xue-ji-lu-7/</id>
-    <published>2023-09-28T07:14:36.000Z</published>
-    <updated>2023-10-30T01:08:31.863Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;项目自学记录7&quot;&gt;&lt;a href=&quot;#项目自学记录7&quot; class=&quot;headerlink&quot; title=&quot;项目自学记录7&quot;&gt;&lt;/a&gt;项目自学记录7&lt;/h1&gt;&lt;h2 id=&quot;对于枚举类-Stream-of&quot;&gt;&lt;a href=&quot;#对于枚举类-Stream-of&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java八股文-JVM学习记录1</title>
-    <link href="http://19shuidiph.github.io/2023/09/28/java-ba-gu-wen-jvm-xue-xi-ji-lu-1/"/>
-    <id>http://19shuidiph.github.io/2023/09/28/java-ba-gu-wen-jvm-xue-xi-ji-lu-1/</id>
-    <published>2023-09-28T01:11:36.000Z</published>
-    <updated>2023-12-25T02:57:37.819Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Java八股文-JVM学习记录1&quot;&gt;&lt;a href=&quot;#Java八股文-JVM学习记录1&quot; class=&quot;headerlink&quot; title=&quot;Java八股文-JVM学习记录1&quot;&gt;&lt;/a&gt;Java八股文-JVM学习记录1&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="JVM" scheme="http://19shuidiph.github.io/categories/JVM/"/>
     
     
   </entry>

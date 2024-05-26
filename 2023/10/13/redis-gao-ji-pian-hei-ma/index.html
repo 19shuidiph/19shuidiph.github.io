@@ -291,7 +291,8 @@
     (function() {
         let pwd = '';
         if (pwd && pwd.length > 0) {
-            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+            if (pwd.toString !==
+            CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Utf8)) {
                 alert('密码错误，将返回主页！');
                 location.href = '/';
             }
@@ -1281,13 +1282,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/10/17/javaguide-zi-xue-ji-lu-4-io-xin-te-xing/">
+                <a href="/2023/10/15/gong-si-xiang-mu-te-shu-piao-chong-sheng-cheng-de-gong-han-jia-gou/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="JavaGuide自学目录4-IO&amp;新特性">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="公司项目-智慧税务产品2.0-风险模型/场景/报告">
                         
-                        <span class="card-title">JavaGuide自学目录4-IO&amp;新特性</span>
+                        <span class="card-title">公司项目-智慧税务产品2.0-风险模型/场景/报告</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1298,14 +1299,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-17
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-10-15
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/JavaGuide/" class="post-category">
-                                    JavaGuide
+                            <a href="/categories/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/" class="post-category">
+                                    公司项目
                                 </a>
                             
                             

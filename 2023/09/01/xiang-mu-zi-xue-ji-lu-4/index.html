@@ -291,7 +291,8 @@
     (function() {
         let pwd = '';
         if (pwd && pwd.length > 0) {
-            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+            if (pwd.toString !==
+            CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Utf8)) {
                 alert('密码错误，将返回主页！');
                 location.href = '/';
             }
@@ -867,13 +868,13 @@ Path d2Path <span class="token operator">=</span> Paths<span class="token punctu
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/09/20/xiang-mu-zi-xue-ji-lu-5/">
+                <a href="/2023/09/06/gong-si-xiang-mu-sheng-cheng-fa-piao-ofd/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="项目自学记录5">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="公司项目-生成发票OFD">
                         
-                        <span class="card-title">项目自学记录5</span>
+                        <span class="card-title">公司项目-生成发票OFD</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -884,14 +885,14 @@ Path d2Path <span class="token operator">=</span> Paths<span class="token punctu
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-09-20
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-09-06
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    实习期间学习
+                            <a href="/categories/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/" class="post-category">
+                                    公司项目
                                 </a>
                             
                             
