@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-05-26T04:15:24.135Z</updated>
+  <updated>2024-05-31T07:40:47.930Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>项目自学记录9</title>
+    <link href="http://19shuidiph.github.io/2024/06/15/xiang-mu-zi-xue-ji-lu-9/"/>
+    <id>http://19shuidiph.github.io/2024/06/15/xiang-mu-zi-xue-ji-lu-9/</id>
+    <published>2024-06-15T11:52:59.000Z</published>
+    <updated>2024-05-31T07:40:47.930Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;项目自学记录9&quot;&gt;&lt;a href=&quot;#项目自学记录9&quot; class=&quot;headerlink&quot; title=&quot;项目自学记录9&quot;&gt;&lt;/a&gt;项目自学记录9&lt;/h1&gt;&lt;h2 id=&quot;跨域问题&quot;&gt;&lt;a href=&quot;#跨域问题&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="学成在线" scheme="http://19shuidiph.github.io/categories/%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>k8s学习</title>
+    <link href="http://19shuidiph.github.io/2024/05/31/k8s-learning/"/>
+    <id>http://19shuidiph.github.io/2024/05/31/k8s-learning/</id>
+    <published>2024-05-31T01:15:18.000Z</published>
+    <updated>2024-06-01T07:36:42.347Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;K8S学习&quot;&gt;&lt;a href=&quot;#K8S学习&quot; class=&quot;headerlink&quot; title=&quot;K8S学习&quot;&gt;&lt;/a&gt;K8S学习&lt;/h1&gt;&lt;h2 id=&quot;容器-x2F-docker的基本知识&quot;&gt;&lt;a href=&quot;#容器-x2F-docker的基本知识&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="k8s" scheme="http://19shuidiph.github.io/categories/k8s/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>JavaGuide自学记录8-MySQL重要知识点</title>
@@ -58,29 +104,6 @@
     
     
     <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>k8s学习-老男孩教育</title>
-    <link href="http://19shuidiph.github.io/2024/05/22/k8s-learning/"/>
-    <id>http://19shuidiph.github.io/2024/05/22/k8s-learning/</id>
-    <published>2024-05-22T01:15:18.000Z</published>
-    <updated>2024-05-25T12:26:17.827Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;K8S学习&quot;&gt;&lt;a href=&quot;#K8S学习&quot; class=&quot;headerlink&quot; title=&quot;K8S学习&quot;&gt;&lt;/a&gt;K8S学习&lt;/h1&gt;&lt;h2 id=&quot;容器-x2F-docker的基本知识&quot;&gt;&lt;a href=&quot;#容器-x2F-docker的基本知识&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="http://19shuidiph.github.io/categories/k8s/"/>
     
     
   </entry>
@@ -449,29 +472,6 @@
     
     
     <category term="项目" scheme="http://19shuidiph.github.io/categories/%E9%A1%B9%E7%9B%AE/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JavaGuide自学记录1-Java基础与集合</title>
-    <link href="http://19shuidiph.github.io/2023/09/28/javaguide-zi-xue-ji-lu-1-java-ji-chu-yu-ji-he/"/>
-    <id>http://19shuidiph.github.io/2023/09/28/javaguide-zi-xue-ji-lu-1-java-ji-chu-yu-ji-he/</id>
-    <published>2023-09-28T08:43:51.000Z</published>
-    <updated>2023-10-09T08:57:53.623Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;JavaGuide自学记录1-Java基础与集合&quot;&gt;&lt;a href=&quot;#JavaGuide自学记录1-Java基础与集合&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
     
     
   </entry>

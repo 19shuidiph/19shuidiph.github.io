@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="k8s学习-老男孩教育, 爱敲代码の鱼儿">
+    <meta name="keywords" content="项目自学记录9, 爱敲代码の鱼儿">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>k8s学习-老男孩教育 | 爱敲代码の鱼儿</title>
+    <title>项目自学记录9 | 爱敲代码の鱼儿</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -303,12 +303,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">k8s学习-老男孩教育</h1>
+                    <h1 class="description center-align post-title">项目自学记录9</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/k8s/" class="post-category">
-                                k8s
+                            <a href="/categories/%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF/" class="post-category">
+                                学成在线
                             </a>
                         
                     </div>
@@ -445,7 +445,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-05-22
+                    2024-06-15
                 </div>
                 
 
@@ -466,56 +466,67 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="K8S学习"><a href="#K8S学习" class="headerlink" title="K8S学习"></a>K8S学习</h1><h2 id="容器-x2F-docker的基本知识"><a href="#容器-x2F-docker的基本知识" class="headerlink" title="容器&#x2F;docker的基本知识"></a>容器&#x2F;docker的基本知识</h2><p>镜像Images，仓库Repositories，容器：Container</p>
-<p>从远端仓库拉取镜像到本地，镜像实例化为容器</p>
-<p>容器提交给镜像，在本地将镜像推送给远端仓库</p>
-<p><img src="D:\blog\source_posts\k8s-learning\image\image-20240522201344923.png" alt="image-20240522201344923"></p>
-<p>给镜像打标签</p>
-<p>docker tag c059bfaa849c docker.io&#x2F;wzh-repository&#x2F;alpine:v1107</p>
-<p>推送镜像?推送失败docker push docker.io&#x2F;wzh-repository&#x2F;alpine:v1107</p>
-<p>docker tag c059bfaa849c wzhdocker1107&#x2F;alpine:1107</p>
-<p>失败原因，应该改为<strong>dockerhub用户名&#x2F;镜像名</strong>，则docker push wzhdocker1107&#x2F;alpine:1107</p>
-<p>列出所有容器 docker ps -a    列出活着的 docker ps</p>
-<p>启动容器 docker run</p>
-<p>映射端口  docker run -p 容器外端口: 容器内端口</p>
-<p>docker run –rm –name mynginx -d -p81:80 wzhdocker1107&#x2F;nginx:v1.12.2</p>
-<p>挂载数据卷 docker run -v 容器外目录:容器内目录</p>
-<p>传递环境变量 docker run -e 环境变量key&#x3D;环境变量value</p>
-<p>容器内安装软件(工具)  yum&#x2F;apt-get&#x2F;apt等</p>
-<p>容器通过提交变为镜像;同时dockerfile通过build也可以生成Image,一行行执行dockerfile里的指令。</p>
-<p><img src="D:\blog\source_posts\k8s-learning\image\image-20240523152112598.png" alt="image-20240523152112598"></p>
-<p>dockerfile的规则： 指令用大写，内容用小写</p>
-<p>USER&#x2F;WORKDIR指令    USER指定进程使用哪个用户运行，WORKDIR指定进程的工作目录，进去docker时所在目录</p>
-<p>ADD&#x2F;EXPOSE指令    ADD指令的功能是将主机构建环境（上下文）目录中的文件和目录、以及一个URL标记的文件 拷贝到镜像中。      EXPOSE指令：指的是让容器哪个端口暴露出来</p>
-<p>RUN&#x2F;ENV指令    RUN是构建镜像时，执行的操作      ENV是将环境变量固化到镜像中</p>
-<p>CMD&#x2F;ENTRYPOINT指令   使用CMD构建的镜像，当容器启动时就执行 CMD配置的命令。CMD是启动容器时执行的操作    如果容器启动时没带 CMD指令，默认会执行&#x2F;entrypoint.sh当然也可以手动编辑entrypoint.sh然后add到镜像中</p>
-<p>docker的四种网络模式</p>
-<p><img src="https://img-blog.csdnimg.cn/20210605083548612.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3MxNTIxMjc5MDYwNw==,size_16,color_FFFFFF,t_70" alt="img"></p>
-<p>使用docker的好处：</p>
-<p>1.docker统一了基础设施的环境。docker环境。硬件的配置，操作系统的版本，运行时环境的异构。</p>
-<p>2.docker统一了程序打包方式。 docker镜像。 java程序，python程序</p>
-<p>3.docker统一了容器部署的方式。docker容器。 java-jar, npm run dev 。 docker run…</p>
-<p>三次跨时代飞跃： 1.CS to BS,不必下载客户端，直接网页访问  2.移动互联网，有手机就行  3.微信小程序，我连APP都不用装了。</p>
-<h2 id="K8S入门"><a href="#K8S入门" class="headerlink" title="K8S入门"></a>K8S入门</h2><p>K8S的优势：自动装箱，弹性伸缩，自我修复；服务发现和负载均衡；自动部署和回滚；集中化配置和密钥管理；存储编排；任务批处理运行。</p>
-<p><img src="D:\blog\source_posts\k8s-learning\image\image-20240524220143417.png" alt="image-20240524220143417"></p>
-<p>pod 是k8s中能够运行的最小逻辑单元，一个pod里面可以运行多个容器。 Pod是豌豆荚，容器是豌豆。一个pod里运行多个容器，又叫边车模式。</p>
-<p>pod控制器是pod启动的一种模版，用来保证在K8S里启动的Pod应该始终按照人们的预期运行。K8S内提供了众多pod控制器，常用的有Deployment,DaemonSet</p>
-<p>name 每一种“资源”，都应该有自己的“名称”。资源有五个维度的信息，api版本，类别，元数据，定义清单，状态。 名称通常定义在资源的元数据信息里。资源是功能的抽象。</p>
-<p>namespace 隔离K8S内各种资源的方法，名称空间可以理解为K8S内部的虚拟集群组。</p>
-<p>label 标签。标签和资源是多对多的关系，标签的组成key&#x3D;value</p>
-<p>label选择器。 使用标签选择器过滤指定的标签。</p>
-<p>service 在K8S中，每个pod都会被分配一个单独的IP地址，但IP地址会随着pod的销毁而消失。service可以看作是一组提供相同服务的pod的对外访问接口。哪些pod归k8s管？通过标签选择器来定义。</p>
-<p>Ingress是第7层的应用层，对外暴露的接口。Service只能进行L4的流量调度，表现形式是ip+port. Ingress则可以调度不同业务域，不同url访问路径的业务流量。</p>
-<h2 id="K8S的各种插件"><a href="#K8S的各种插件" class="headerlink" title="K8S的各种插件"></a>K8S的各种插件</h2><p>Kubectl命令行工具</p>
-<p>K8S的CNI网络插件-flannel</p>
-<p>K8S的服务发现插件-coredns</p>
-<p>K8S的服务暴露插件-traefik</p>
-<p>K8S的GUI管理工具-dashboard</p>
-<p>K8S的dashboard监控小插件-heapster</p>
-<p>K8S集群的生产维护经验</p>
-<p>管理K8S核心资源的三种基本方法：<br>1.陈述式管理方法 - 主要依赖命令行CLI工具进行管理</p>
-<p>2.声明式管理方法 - 主要依赖统一资源配置清单(yaml&#x2F;json)进行管理</p>
-<p>3.GUI管理方法-  主要依赖图形化操作界面(web页面)进行管理</p>
+                <h1 id="项目自学记录9"><a href="#项目自学记录9" class="headerlink" title="项目自学记录9"></a>项目自学记录9</h1><h2 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h2><p>协议+域名+端口，只要有一个不同，就是跨域。</p>
+<p><img src="D:\blog\source_posts\项目自学记录9\image\image-20240528200131764.png" alt="image-20240528200131764"></p>
+<p>添加一个过滤器，选择springframework.web下面的CorsFilter。类似如下：</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WebMvcConfig</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> CorsConfigurationSource <span class="token function">corsConfigurationSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        CorsConfiguration corsConfiguration <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CorsConfiguration</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//允许白名单域名进行跨域调用</span>
+        corsConfiguration<span class="token punctuation">.</span><span class="token function">addAllowedOrigin</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//允许post请求方法跨域调用</span>
+        corsConfiguration<span class="token punctuation">.</span><span class="token function">addAllowedMethod</span><span class="token punctuation">(</span>HttpMethod<span class="token punctuation">.</span>POST<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//放行全部原始头信息</span>
+        corsConfiguration<span class="token punctuation">.</span><span class="token function">addAllowedHeader</span><span class="token punctuation">(</span><span class="token string">"*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        corsConfiguration<span class="token punctuation">.</span><span class="token function">setExposedHeaders</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token string">"header1"</span><span class="token punctuation">,</span> <span class="token string">"header2"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        corsConfiguration<span class="token punctuation">.</span><span class="token function">setMaxAge</span><span class="token punctuation">(</span>3600L<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//允许跨越发送cookie</span>
+        corsConfiguration<span class="token punctuation">.</span><span class="token function">setAllowCredentials</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        UrlBasedCorsConfigurationSource corsConfigurationSource <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">UrlBasedCorsConfigurationSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        corsConfigurationSource<span class="token punctuation">.</span><span class="token function">registerCorsConfiguration</span><span class="token punctuation">(</span><span class="token string">"/*"</span><span class="token punctuation">,</span> corsConfiguration<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> corsConfigurationSource<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="sql树形结构"><a href="#sql树形结构" class="headerlink" title="sql树形结构"></a>sql树形结构</h2><p>方法一：表的自连接。方法二：递归</p>
+<p><img src="D:\blog\source_posts\项目自学记录9\image\image-20240531122313074.png"></p>
+<p>表的自连接需要确定树的深度。</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    one<span class="token punctuation">.</span>id one_id<span class="token punctuation">,</span>
+    one<span class="token punctuation">.</span>label one_label<span class="token punctuation">,</span>
+    two<span class="token punctuation">.</span>id two_id<span class="token punctuation">,</span>
+    two<span class="token punctuation">.</span>label two_label
+<span class="token keyword">FROM</span>
+    course_category one
+    <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> course_category two <span class="token keyword">ON</span> two<span class="token punctuation">.</span>parentid<span class="token operator">=</span>one<span class="token punctuation">.</span>id
+    <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> course_category three <span class="token keyword">ON</span> three<span class="token punctuation">.</span>parentid<span class="token operator">=</span>two<span class="token punctuation">.</span>id
+    <span class="token keyword">WHERE</span> one<span class="token punctuation">.</span>id<span class="token operator">=</span><span class="token string">'1'</span> <span class="token operator">AND</span> one<span class="token punctuation">.</span>is_show<span class="token operator">=</span><span class="token string">'1'</span> <span class="token operator">AND</span> two<span class="token punctuation">.</span>is_show<span class="token operator">=</span><span class="token string">'1'</span>
+    <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> one<span class="token punctuation">.</span>orderby<span class="token punctuation">,</span>two<span class="token punctuation">.</span>orderby
+</code></pre>
+<p>递归</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">with</span> recursive <span class="token keyword">temp</span> <span class="token keyword">as</span> <span class="token punctuation">(</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span>  course_category p <span class="token keyword">where</span>  id<span class="token operator">=</span> <span class="token string">'1'</span>
+ <span class="token keyword">union</span> <span class="token keyword">all</span>
+<span class="token keyword">select</span> t<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">from</span> course_category t <span class="token keyword">inner</span> <span class="token keyword">join</span> <span class="token keyword">temp</span> <span class="token keyword">on</span> <span class="token keyword">temp</span><span class="token punctuation">.</span>id <span class="token operator">=</span> t<span class="token punctuation">.</span>parentid
+<span class="token punctuation">)</span>
+<span class="token keyword">select</span> <span class="token operator">*</span>  <span class="token keyword">from</span> <span class="token keyword">temp</span> <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token keyword">temp</span><span class="token punctuation">.</span>id<span class="token punctuation">,</span> <span class="token keyword">temp</span><span class="token punctuation">.</span>orderby
+</code></pre>
+<p><img src="D:\blog\source_posts\项目自学记录9\image\image-20240531123209194.png"></p>
+<h2 id="sql注入，为什么"><a href="#sql注入，为什么" class="headerlink" title="sql注入，为什么"></a>sql注入，为什么</h2><p>从下面可以看到最后的a后面多了一个斜杠。</p>
+<p><img src="D:\blog\source_posts\项目自学记录9\image\image-20240531151553752.png"></p>
+<p>要看Mybatis的源码</p>
+<p>MyBatis在<code>#&#123;&#125;</code>传递参数时，是借助setString()方法来完成，<code>$&#123;&#125;</code>则不是</p>
+<p>如果是单引号，会在SQL语句中添加一个斜杠</p>
+<p><img src="D:\blog\source_posts\项目自学记录9\image\image-20240531151930608.png"></p>
+<p>最终传递的参数为：<code>&#39;aaa\&#39; or 1=1 --</code>，在数据库中肯定是查不到的。</p>
+<p><img src="D:\blog\source_posts\项目自学记录9\image\image-20240531152013592.png"></p>
+<p>什么情况下用<code>$&#123;&#125;</code>？ 需要插入的东西为sql时，或者为表名时。就不能用<code>#&#123;&#125;</code>了</p>
+<h2 id="stream的tomap"><a href="#stream的tomap" class="headerlink" title="stream的tomap"></a>stream的tomap</h2><pre class=" language-java"><code class="language-java">Map<span class="token operator">&lt;</span>Integer<span class="token punctuation">,</span> String<span class="token operator">></span> collect <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>Student<span class="token operator">:</span><span class="token operator">:</span>getId<span class="token punctuation">,</span> Student<span class="token operator">:</span><span class="token operator">:</span>getName<span class="token punctuation">,</span> <span class="token punctuation">(</span>n1<span class="token punctuation">,</span> n2<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> n2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>第一个参数，key是谁，第二个参数，value是谁，第三个参数，如果有俩key一样了，让后面的覆盖前面的。</p>
 
                 
             </div>
@@ -542,7 +553,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://19shuidiph.github.io/2024/05/22/k8s-learning/">http://19shuidiph.github.io/2024/05/22/k8s-learning/</a>
+                    <a href="http://19shuidiph.github.io/2024/06/15/xiang-mu-zi-xue-ji-lu-9/">http://19shuidiph.github.io/2024/06/15/xiang-mu-zi-xue-ji-lu-9/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -747,58 +758,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2024/05/23/javaguide-zi-xue-ji-lu-7-mysql-chang-jian-mian-shi-ti/">
+                <a href="/2024/06/15/xiang-mu-zi-xue-ji-lu-9/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="JavaGuide自学记录7-MySQL常见面试题">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="项目自学记录9">
                         
-                        <span class="card-title">JavaGuide自学记录7-MySQL常见面试题</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-05-23
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/JavaGuide/" class="post-category">
-                                    JavaGuide
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/12/27/java-ba-gu-wen-xiao-xi-dui-lie-xue-xi-ji-lu-2/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Java八股文-消息队列学习记录2">
-                        
-                        <span class="card-title">Java八股文-消息队列学习记录2</span>
+                        <span class="card-title">项目自学记录9</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -809,14 +780,56 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-15
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%9D%A2%E8%AF%95/" class="post-category">
-                                    面试
+                            <a href="/categories/%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF/" class="post-category">
+                                    学成在线
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/05/31/k8s-learning/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="k8s学习">
+                        
+                        <span class="card-title">k8s学习</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-05-31
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
                                 </a>
                             
                             

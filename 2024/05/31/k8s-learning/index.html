@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="JavaGuide自学记录8-MySQL重要知识点, 爱敲代码の鱼儿">
+    <meta name="keywords" content="k8s学习, 爱敲代码の鱼儿">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>JavaGuide自学记录8-MySQL重要知识点 | 爱敲代码の鱼儿</title>
+    <title>k8s学习 | 爱敲代码の鱼儿</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -303,12 +303,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">JavaGuide自学记录8-MySQL重要知识点</h1>
+                    <h1 class="description center-align post-title">k8s学习</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/JavaGuide/" class="post-category">
-                                JavaGuide
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
                             </a>
                         
                     </div>
@@ -445,7 +445,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-05-24
+                    2024-05-31
                 </div>
                 
 
@@ -466,145 +466,164 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MySQL重要知识点"><a href="#MySQL重要知识点" class="headerlink" title="MySQL重要知识点"></a>MySQL重要知识点</h1><h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
-<li>聚簇索引（聚集索引）：索引结构和数据一起存放的索引，InnoDB 中的主键索引就属于聚簇索引。</li>
-<li>非聚簇索引（非聚集索引）：索引结构和数据分开存放的索引，二级索引(辅助索引)就属于非聚簇索引。MySQL 的 MyISAM 引擎，不管主键还是非主键，使用的都是非聚簇索引。</li>
-</ul>
-<p>索引下推：没有索引下推就是server层去判断月份，有索引下推就是存储引擎层来顺手判断月份</p>
-<p>month会导致索引失效。所以下推的这个，只是个普通的查询条件？</p>
-<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token keyword">user</span> <span class="token keyword">WHERE</span> zipcode <span class="token operator">=</span> <span class="token string">'431200'</span> <span class="token operator">AND</span> MONTH<span class="token punctuation">(</span>birthdate<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
-</code></pre>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/index-condition-pushdown-graphic-illustration.png"></p>
-<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><p>二进制日志 binlog（归档日志）和事务日志 redo log（重做日志）和 undo log（回滚日志）</p>
-<h3 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h3><p>redo log（重做日志）是 InnoDB 存储引擎独有的，它让 MySQL 拥有了崩溃恢复能力。</p>
-<p>比如 MySQL 实例挂了或宕机了，重启时，InnoDB 存储引擎会使用 redo log 恢复数据，保证数据的持久性与完整性。</p>
-<h3 id="bin-log"><a href="#bin-log" class="headerlink" title="bin log"></a>bin log</h3><p>binlog（归档日志）保证了 MySQL 集群架构的数据一致性。</p>
-<p>主节点写bin log 日志，从节点读bin log 日志。</p>
-<h3 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h3><p>redo log 在事务执行过程中可以不断写入，而 binlog 只有在提交事务时才写入，所以 redo log 与 binlog 的写入时机不一样。会出问题。所以将redo log拆为prepare阶段和commit阶段。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/04-20220305234956774.png"></p>
-<h3 id="undo-log"><a href="#undo-log" class="headerlink" title="undo log"></a>undo log</h3><p>每一个事务对数据的修改都会被记录到 undo log ，当执行事务过程中出现错误或者需要执行回滚操作的话，MySQL 可以利用 undo log 将数据恢复到事务开始之前的状态。</p>
-<h2 id="隔离级别与并发事务问题"><a href="#隔离级别与并发事务问题" class="headerlink" title="隔离级别与并发事务问题"></a>隔离级别与并发事务问题</h2><table>
-<thead>
-<tr>
-<th align="center">隔离级别</th>
-<th align="center">脏读</th>
-<th align="center">不可重复读</th>
-<th align="center">幻读</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">READ-UNCOMMITTED</td>
-<td align="center">√</td>
-<td align="center">√</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">READ-COMMITTED</td>
-<td align="center">×</td>
-<td align="center">√</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">REPEATABLE-READ</td>
-<td align="center">×</td>
-<td align="center">×</td>
-<td align="center">√</td>
-</tr>
-<tr>
-<td align="center">SERIALIZABLE</td>
-<td align="center">×</td>
-<td align="center">×</td>
-<td align="center">×</td>
-</tr>
-</tbody></table>
-<p>解决幻读的方式有很多，但是它们的核心思想就是一个事务在操作某张表数据的时候，另外一个事务不允许新增或者删除这张表中的数据了。解决幻读的方式主要有以下几种：</p>
+                <h1 id="K8S学习"><a href="#K8S学习" class="headerlink" title="K8S学习"></a>K8S学习</h1><h2 id="容器-x2F-docker的基本知识"><a href="#容器-x2F-docker的基本知识" class="headerlink" title="容器&#x2F;docker的基本知识"></a>容器&#x2F;docker的基本知识</h2><p>镜像Images，仓库Repositories，容器：Container</p>
+<p>从远端仓库拉取镜像到本地，镜像实例化为容器</p>
+<p>容器提交给镜像，在本地将镜像推送给远端仓库</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240522201344923.png"></p>
+<p>给镜像打标签</p>
+<p>docker tag c059bfaa849c docker.io&#x2F;wzh-repository&#x2F;alpine:v1107</p>
+<p>推送镜像?推送失败docker push docker.io&#x2F;wzh-repository&#x2F;alpine:v1107</p>
+<p>docker tag c059bfaa849c wzhdocker1107&#x2F;alpine:1107</p>
+<p>失败原因，应该改为<strong>dockerhub用户名&#x2F;镜像名</strong>，则docker push wzhdocker1107&#x2F;alpine:1107</p>
+<p>列出所有容器 docker ps -a    列出活着的 docker ps</p>
+<p>启动容器 docker run</p>
+<p>映射端口  docker run -p 容器外端口: 容器内端口</p>
+<p>docker run –rm –name mynginx -d -p81:80 wzhdocker1107&#x2F;nginx:v1.12.2</p>
+<p>挂载数据卷 docker run -v 容器外目录:容器内目录</p>
+<p>传递环境变量 docker run -e 环境变量key&#x3D;环境变量value</p>
+<p>容器内安装软件(工具)  yum&#x2F;apt-get&#x2F;apt等</p>
+<p>容器通过提交变为镜像;同时dockerfile通过build也可以生成Image,一行行执行dockerfile里的指令。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240523152112598.png"></p>
+<p>dockerfile的规则： 指令用大写，内容用小写</p>
+<p>USER&#x2F;WORKDIR指令    USER指定进程使用哪个用户运行，WORKDIR指定进程的工作目录，进去docker时所在目录</p>
+<p>ADD&#x2F;EXPOSE指令    ADD指令的功能是将主机构建环境（上下文）目录中的文件和目录、以及一个URL标记的文件 拷贝到镜像中。      EXPOSE指令：指的是让容器哪个端口暴露出来</p>
+<p>RUN&#x2F;ENV指令    RUN是构建镜像时，执行的操作      ENV是将环境变量固化到镜像中</p>
+<p>CMD&#x2F;ENTRYPOINT指令   使用CMD构建的镜像，当容器启动时就执行 CMD配置的命令。CMD是启动容器时执行的操作    如果容器启动时没带 CMD指令，默认会执行&#x2F;entrypoint.sh当然也可以手动编辑entrypoint.sh然后add到镜像中</p>
+<p>docker的四种网络模式</p>
+<p><img src="https://img-blog.csdnimg.cn/20210605083548612.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3MxNTIxMjc5MDYwNw==,size_16,color_FFFFFF,t_70"></p>
+<p>使用docker的好处：</p>
+<p>1.docker统一了基础设施的环境。docker环境。硬件的配置，操作系统的版本，运行时环境的异构。</p>
+<p>2.docker统一了程序打包方式。 docker镜像。 java程序，python程序</p>
+<p>3.docker统一了容器部署的方式。docker容器。 java-jar, npm run dev 。 docker run…</p>
+<p>三次跨时代飞跃： 1.CS to BS,不必下载客户端，直接网页访问  2.移动互联网，有手机就行  3.微信小程序，我连APP都不用装了。</p>
+<h2 id="K8S入门"><a href="#K8S入门" class="headerlink" title="K8S入门"></a>K8S入门</h2><p>K8S的优势：自动装箱，弹性伸缩，自我修复；服务发现和负载均衡；自动部署和回滚；集中化配置和密钥管理；存储编排；任务批处理运行。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240524220143417.png"></p>
 <ol>
-<li>将事务隔离级别调整为 <code>SERIALIZABLE</code> 。</li>
-<li>在可重复读的事务级别下，给事务操作的这张表添加表锁。</li>
-<li>在可重复读的事务级别下，给事务操作的这张表添加 Next-key Lock（Record Lock行锁+Gap Lock间隙锁）</li>
+<li><p>pod 是k8s中能够运行的最小逻辑单元，一个pod里面可以运行多个容器。 Pod是豌豆荚，容器是豌豆。一个pod里运行多个容器，又叫边车模式。</p>
+</li>
+<li><p>pod控制器是pod启动的一种模版，用来保证在K8S里启动的Pod应该始终按照人们的预期运行。K8S内提供了众多pod控制器，常用的有Deployment,DaemonSet</p>
+</li>
+<li><p>name 每一种“资源”，都应该有自己的“名称”。资源有五个维度的信息，api版本，类别，元数据，定义清单，状态。 名称通常定义在资源的元数据信息里。资源是功能的抽象。</p>
+</li>
+<li><p>namespace 隔离K8S内各种资源的方法，名称空间可以理解为K8S内部的虚拟集群组。</p>
+</li>
+<li><p>label 标签。标签和资源是多对多的关系，标签的组成key&#x3D;value</p>
+</li>
+<li><p>label选择器。 使用标签选择器过滤指定的标签。</p>
+</li>
+<li><p>service 在K8S中，每个pod都会被分配一个单独的IP地址，但IP地址会随着pod的销毁而消失。service可以看作是一组提供相同服务的pod的对外访问接口。哪些pod归k8s管？通过标签选择器来定义。</p>
+</li>
+<li><p>Ingress是第7层的应用层，对外暴露的接口。Service只能进行L4的流量调度，表现形式是ip+port. Ingress则可以调度不同业务域，不同url访问路径的业务流量。</p>
+</li>
 </ol>
-<p>间隙锁，比如我现在有数据1,3,5,8,11.我查了一次8。然后我添加数据，则我不能添加5,6,7,8,9,10，否则会被锁住。</p>
-<h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><ul>
-<li>事务读取的是快照数据，因此其他并发事务对数据行的修改不会影响当前事务的读取操作。</li>
-<li>写操作后，原始版本的数据仍然存在，供其他事务使用快照读取，这保证了其他事务不受当前事务的写操作影响。</li>
-<li>当一个事务提交时，它所做的修改将成为数据库的最新版本，并且对其他事务可见。</li>
-<li>当一个事务回滚时，它所做的修改将被撤销，对其他事务不可见。</li>
-</ul>
-<p>一致性非锁定读，也叫快照读，是最经常用的。锁定读，也叫当前读，读最新的数据。下面三种情况是当前读：</p>
-<ul>
-<li><code>select ... lock in share mode</code></li>
-<li><code>select ... for update</code></li>
-<li><code>insert</code>、<code>update</code>、<code>delete</code> 操作</li>
-</ul>
-<p><strong><code>InnoDB</code> 在实现<code>Repeatable Read</code> 时，如果执行的是当前读，则会对读取的记录使用 <code>Next-key Lock</code> ，来防止其它事务在间隙间插入数据</strong></p>
-<p><code>MVCC</code> 的实现依赖于：<strong>隐藏字段、Read View、undo log</strong>。</p>
-<p>在内部，<code>InnoDB</code> 存储引擎为每行数据添加了三个 隐藏字段：</p>
-<ul>
-<li><strong><code>DB_TRX_ID（6字节）</code>：表示最后一次插入或更新该行的事务 id。</strong>此外，<code>delete</code> 操作在内部被视为更新，只不过会在记录头 <code>Record header</code> 中的 <code>deleted_flag</code> 字段将其标记为已删除</li>
-<li><code>DB_ROLL_PTR（7字节）</code> 回滚指针，指向该行的 <code>undo log</code> 。如果该行未被更新，则为空</li>
-<li><code>DB_ROW_ID（6字节）</code>：如果没有设置主键且该表没有唯一非空索引时，<code>InnoDB</code> 会使用该 id 来生成聚簇索引</li>
-</ul>
-<p>Read View主要是用来做可见性判断，里面保存了 “当前对本事务不可见的其他活跃事务”</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">ReadView</span> <span class="token punctuation">{</span>
-  <span class="token comment" spellcheck="true">/* ... */</span>
-<span class="token keyword">private</span><span class="token operator">:</span>
-  trx_id_t m_low_limit_id<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">/* 大于等于这个 ID 的事务均不可见 */</span>
-
-  trx_id_t m_up_limit_id<span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">/* 小于这个 ID 的事务均可见 */</span>
-
-  trx_id_t m_creator_trx_id<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">/* 创建该 Read View 的事务ID */</span>
-
-  trx_id_t m_low_limit_no<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">/* 事务 Number, 小于该 Number 的 Undo Logs 均可以被 Purge */</span>
-
-  ids_t m_ids<span class="token punctuation">;</span>                  <span class="token comment" spellcheck="true">/* 创建 Read View 时的活跃事务列表 */</span>
-
-  m_closed<span class="token punctuation">;</span>                     <span class="token comment" spellcheck="true">/* 标记 Read View 是否 close */</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image-20240525194733637.png"></p>
-<p>undo log 的两个作用：</p>
-<ul>
-<li>当事务回滚时用于将数据恢复到修改前的样子</li>
-<li>另一个作用是 <code>MVCC</code> ，当读取记录时，若该记录被其他事务占用或当前版本对该事务不可见，则可以通过 <code>undo log</code> 读取之前的版本数据，以此实现非锁定读</li>
-</ul>
-<p>在 RR 隔离级别下只在事务开始后 <strong><code>第一次select</code></strong> 数据前生成一个<code>Read View</code>（m_ids 列表）</p>
-<h2 id="SQL语句在MySQL中的执行流程"><a href="#SQL语句在MySQL中的执行流程" class="headerlink" title="SQL语句在MySQL中的执行流程"></a>SQL语句在MySQL中的执行流程</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/13526879-3037b144ed09eb88.png"></p>
-<p>简单来说 MySQL 主要分为 Server 层和存储引擎层：</p>
-<ul>
-<li><strong>Server 层</strong>：主要包括连接器、查询缓存、分析器、优化器、执行器等，所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图，函数等，还有一个通用的日志模块 binlog 日志模块。</li>
-<li><strong>存储引擎</strong>：主要负责数据的存储和读取，采用可以替换的插件式架构，支持 InnoDB、MyISAM、Memory 等多个存储引擎，其中 InnoDB 引擎有自有的日志模块 redolog 模块。<strong>现在最常用的存储引擎是 InnoDB，它从 MySQL 5.5 版本开始就被当做默认存储引擎了。</strong></li>
-</ul>
-<p>更新语句执行流程如下：分析器—-&gt;权限校验—-&gt;执行器—&gt;引擎—redo log(prepare 状态)—&gt;binlog—&gt;redo log(commit 状态)</p>
-<p>最开始 MySQL 并没有 InnoDB 引擎，MySQL 自带的引擎是 MyISAM，但是我们知道 redo log 是 InnoDB 引擎特有的，InnoDB可以提供crash-safe的能力。binlog 日志只能用来归档。</p>
-<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>从 MySQL 5.7.20 开始，就已经默认弃用查询缓存了。在 MySQL 8.0 及之后，更是直接删除了查询缓存的功能。</p>
-<ul>
-<li>SQL 必须完全一致才会导致查询缓存命中（大小写、空格、使用的数据库、协议版本、字符集等必须一致）。检查查询缓存时，MySQL Server 不会对 SQL 做任何处理，它精确的使用客户端传来的查询。</li>
-<li>如果查询中包含任何用户自定义函数、存储函数、用户变量、临时表、MySQL 库中的系统表，其查询结果也不会被缓存。</li>
-<li>缓存建立之后，MySQL 的查询缓存系统会跟踪查询中涉及的每张表，如果这些表（数据或结构）发生变化，那么和这张表相关的所有缓存数据都将失效。</li>
-<li>MySQL 缓存在分库分表环境下是不起作用的。</li>
-</ul>
-<p>简单总结一下查询缓存的适用场景：</p>
-<ul>
-<li>表数据修改不频繁、数据较静态。</li>
-<li>查询（Select）重复度高。</li>
-<li>查询结果集小于 1 MB。</li>
-</ul>
-<h2 id="执行计划"><a href="#执行计划" class="headerlink" title="执行计划"></a>执行计划</h2><p>MySQL 为我们提供了 <code>EXPLAIN</code> 命令，来获取执行计划的相关信息。</p>
-<h2 id="MySQL自增主键不连续"><a href="#MySQL自增主键不连续" class="headerlink" title="MySQL自增主键不连续"></a>MySQL自增主键不连续</h2><ol>
-<li>自增初始值和自增步长设置不为 1</li>
-<li>唯一键冲突</li>
-<li>事务回滚</li>
-<li>批量插入（如 <code>insert...select</code> 语句）</li>
+<p>有状态和无状态：无状态应用不会对本地环境产生任何依赖，例如不会存储数据到本地磁盘。</p>
+<p>资源与对象：在K8S中一切皆资源，配置资源清单。对象是资源的实例。</p>
+<p>资源的分类：元空间级（每一个资源都可以使用），集群级（K8S集群），命名空间级。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240526160118919.png"></p>
+<p>Node是一台机器，属于集群级别的资源。</p>
+<ol>
+<li><p>命名空间级的资源很重要：<br>pod,里面由单个容器或者几个紧耦合在一起的容器组成。希望如果两个容器有强依赖关系时，可以共享网络。让多个容器挂载同一存储卷。pod在创建之初就有一个pause容器，来支持所有的共享。</p>
+</li>
+<li><p>pod的控制器管理pod的创建，分为适用于无状态服务的，适用于有状态服务的，守护进程，任务&#x2F;定时任务</p>
+</li>
+<li><p>适用于无状态服务的：Replication Controller 简称 RC，主要的作用就是用来确保容器应用的副本数始终保持在用户定义的副本数 。 <strong>RS（ReplicaSet ）</strong>替代了RC。RS新增了可以通过selector来选择特定的一些pod.可以给 Pod 设置 label，然后给“控制器”设置对应的 selector，这就实现了对象的关联。但是RS只有扩容和缩容的功能，实际生产也不会用。<strong>Deployment</strong> 会自动创建RS和pod，滚动升级，平滑扩容和缩容，暂停与恢复Deployment。</p>
+</li>
+<li><p>适用于有状态服务的：<strong>StatefulSet</strong>，里面有两个组件，Headless Service （DNS管理），volumeClaimTemplate（用于创建持久化卷的模板）。一个负责网络，一个负责存储。</p>
+</li>
+<li><p>守护进程，DaemonSet。监控应用，日志搜集。可以配置只在type&#x3D;logs上的Node上执行。</p>
+</li>
 </ol>
-<p>针对第2点，冲突会报错，但是自增操作发生在执行sql报错之前。所以还是自增了。</p>
-<p>针对第3点，MySQL为了提高性能，不会回滚自增值，反而还会和往常一样自增+1</p>
-<p>针对第4点，对于 <code>insert … select</code>、replace …… select 和 load data 这种类型的语句来说，MySQL 并不知道到底需要申请多少 id，所以就采用了这种批量申请的策略，毕竟一个一个申请的话实在太慢了。所以即使只有5个数据，申请的id为(1),(2,3) ,(4,5,6,7)    这也自增id来到8</p>
-<h2 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h2><ol>
-<li>当操作符<strong>左右两边的数据类型不一致</strong>时，会发生<strong>隐式转换</strong>。<strong>以左边的类型为准。</strong></li>
-<li>当 where 查询操作符<strong>左边为数值类型</strong>时发生了隐式转换，那么对效率影响不大，但还是不推荐这么做。</li>
-<li>当 where 查询操作符<strong>左边为字符类型</strong>时发生了隐式转换，那么会导致索引失效，造成全表扫描效率极低。</li>
-<li>字符串转换为数值类型时，非数字开头的字符串会转化为<code>0</code>，以数字开头的字符串’123a’ -&gt; 123.</li>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240526165744571.png"></p>
+<p>CronJob在Job上添加了定时的功能。</p>
+<p>内部节点之间，pod之间的网络通信，用Service来实现。东西流量。</p>
+<p>南北流量基于Ingress实现，将K8S内部服务暴露给外部。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240526183346163.png"></p>
+<h2 id="K8S的各种插件"><a href="#K8S的各种插件" class="headerlink" title="K8S的各种插件"></a>K8S的各种插件</h2><p>Kubectl命令行工具</p>
+<p>K8S的CNI网络插件-flannel</p>
+<p>K8S的服务发现插件-coredns</p>
+<p>K8S的服务暴露插件-traefik</p>
+<p>K8S的GUI管理工具-dashboard</p>
+<p>K8S的dashboard监控小插件-heapster</p>
+<p>K8S集群的生产维护经验</p>
+<p>管理K8S核心资源的三种基本方法：<br>1.陈述式管理方法 - 主要依赖命令行CLI工具进行管理</p>
+<p>2.声明式管理方法 - 主要依赖统一资源配置清单(yaml&#x2F;json)进行管理</p>
+<p>3.GUI管理方法-  主要依赖图形化操作界面(web页面)进行管理</p>
+<h2 id="K8S的pod探针"><a href="#K8S的pod探针" class="headerlink" title="K8S的pod探针"></a>K8S的pod探针</h2><p>探针，三种</p>
+<ol>
+<li>LivenessProbe,每隔一定时间探查是否存活，和Redis的心跳机制类似</li>
+<li>ReadinessProbe，每隔一定时间探查是否被外界可读。</li>
+<li>StartupProbe，探查是否pod启动，如果没有启动，就不需要上面两个探针了。</li>
 </ol>
+<h2 id="服务发现"><a href="#服务发现" class="headerlink" title="服务发现"></a>服务发现</h2><p>如何将deployment与RS关联起来。给RS打标签Label。然后在deployment里定义选择器selector。</p>
+<p>服务发现：service，service去找Endpoint,Endpoint根据address和iptables去找node的kube-proxy，然后找到具体的pod。各个pod之间也可以自由通信。Service的Endpoint类似于Nacos</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240531091119148.png"></p>
+<p>外部访问，内部服务-&gt;Service-&gt;Endpoint-&gt;百度等要访问的网站。</p>
+<p>Ingress类似于Nginx。Nginx就是Ingress的实现之一。外部用户访问服务器。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240531100841295.png"></p>
+<h2 id="配置与存储"><a href="#配置与存储" class="headerlink" title="配置与存储"></a>配置与存储</h2><p>为了持久化保存容器的数据，kubernetes引入了Volume的概念。</p>
+<p>Volume是Pod中能够被多个容器访问的共享目录，它被定义在Pod上，然后被一个Pod里的多个容器挂载到具体的文件目录下，kubernetes通过Volume实现同一个Pod中不同容器之间的数据共享以及数据的持久化存储。Volume的生命容器不与Pod中单个容器的生命周期相关，当容器终止或者重启时，Volume中的数据也不会丢失。</p>
+<p>kubernetes的Volume支持多种类型，比较常见的有下面几个：</p>
+<p>简单存储：EmptyDir、HostPath、NFS</p>
+<p>高级存储：PV、PVC</p>
+<p>配置存储：ConfigMap、Secret</p>
+<p>当Pod销毁时， EmptyDir中的数据也会被永久删除。</p>
+<p><strong>EmptyDir</strong>用途如下：</p>
+<ul>
+<li>临时空间，例如用于某些应用程序运行时所需的临时目录，且无须永久保留</li>
+<li>一个容器需要从另一个容器中获取数据的目录（多容器共享目录）</li>
+</ul>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240601084800901.png"></p>
+<p><strong>hostPath</strong></p>
+<p>EmptyDir中数据不会被持久化，它会随着Pod的结束而销毁，如果想简单的将数据持久化到主机中，可以选择HostPath。</p>
+<p>HostPath就是将Node主机中一个实际目录挂在到Pod中，以供容器使用，这样的设计就可以保证Pod销毁了，但是数据依据可以存在于Node主机上。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240601084823601.png"></p>
+<p><strong>NFS挂载</strong>，NFS是一个网络文件存储系统，可以搭建一台NFS服务器，然后将Pod中的存储直接连接到NFS系统上，这样的话，无论Pod在节点上怎么转移，只要Node跟NFS的对接没问题，数据就可以成功访问。NFS的位置类似于上图中的hostPath，在pod外面。</p>
+<p>为了能够屏蔽底层存储实现的细节，方便用户使用， kubernetes引入PV和PVC两种资源对象。</p>
+<ul>
+<li><p><strong>PV（Persistent Volume）</strong>是持久化卷的意思，是对底层的共享存储的一种抽象。一般情况下PV由kubernetes管理员进行创建和配置，它与底层具体的共享存储技术有关，并通过插件完成与共享存储的对接。</p>
+</li>
+<li><p><strong>PVC（Persistent Volume Claim）</strong>是持久卷声明的意思，是用户对于存储需求的一种声明。换句话说，PVC其实就是用户向kubernetes系统发出的一种资源需求申请。</p>
+</li>
+</ul>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240601090222507.png"></p>
+<p>使用了PV和PVC之后，工作可以得到进一步的细分：</p>
+<ul>
+<li>存储：存储工程师维护</li>
+<li>PV： kubernetes管理员维护</li>
+<li>PVC：kubernetes用户维护</li>
+</ul>
+<p>ConfigMap是一种比较特殊的存储卷，它的主要作用是用来存储配置信息的。</p>
+<p>在kubernetes中，还存在一种和ConfigMap非常类似的对象，称为Secret对象。它主要用于存储敏感信息，例如密码、秘钥、证书等等。</p>
+<p>使用 ConfigMap 或 Secret 挂载到目录的时候，会将容器中源目录给覆盖掉，此时我们可能只想覆盖目录中的某一个文件，但是这样的操作会覆盖整个文件，因此需要使用到 SubPath</p>
+<h2 id="高级调度"><a href="#高级调度" class="headerlink" title="高级调度"></a>高级调度</h2><p><strong>污点（Taints）</strong>是一种将限制条件附加到节点的方式，以影响 Pod 是否能够在该节点上调度。如果节点被设置了污点，只有在 Pod 设置了相应容忍规则时，它们才能够被调度到该节点上。</p>
+<p>通过在Node上添加污点属性，来决定是否允许Pod调度过来。<br>Node被设置上污点之后就和Pod之间存在了一种相斥的关系，进而拒绝Pod调度进来，甚至可以将已经存在的Pod驱逐出去。</p>
+<p><strong>如果想将某些节点专门分配给特定的一组用户使用，你可以给这些节点添加一个污点</strong></p>
+<p><strong>配备了特殊硬件的节点</strong>：在部分节点配备了特殊硬件（比如 GPU）的集群中， 我们希望不需要这类硬件的 Pod 不要被调度到这些特殊节点，以便为后继需要这类硬件的 Pod 保留资源。 要达到这个目的，可以先给配备了特殊硬件的节点添加污点，然后给使用了这类特殊硬件的 Pod 添加一个相匹配的容忍度。</p>
+<p>如果 Pod 不能容忍这类污点，会马上被驱逐。</p>
+<p>污点的格式为：key&#x3D;value:effect, key和value是污点的标签，effect描述污点的作用，支持如下三个选项：</p>
+<ul>
+<li>PreferNoSchedule：kubernetes将尽量避免把Pod调度到具有该污点的Node上，除非没有其他节点可调度</li>
+<li>NoSchedule：kubernetes将不会把Pod调度到具有该污点的Node上，但不会影响当前Node上已存在的Pod</li>
+<li>NoExecute：kubernetes将不会把Pod调度到具有该污点的Node上，同时也会将Node上已存在的Pod驱离</li>
+</ul>
+<p><strong>容忍（Tolerations）</strong>是在 Pod 中设置的规则，用于指示该 Pod 是否能够容忍节点上的特定污点。如果 Pod 设置了与节点上的污点匹配的容忍规则，那么该 Pod 就可以被调度到具有该污点的节点上。</p>
+<p><strong>污点就是拒绝，容忍就是忽略，Node通过污点拒绝pod调度上去，Pod通过容忍忽略拒绝</strong></p>
+<p><strong>亲和性调度（Affinity）</strong>是 Kubernetes 中用于定义 Pod 与节点或其他 Pod 之间关系的一种机制。通过使用亲和性，你可以控制 Pod 的调度行为，使其倾向于或避免某些节点或其他 Pod。亲和性分为三种主要类型:</p>
+<ul>
+<li>nodeAffinity(node亲和性）: 以node为目标，解决pod可以调度到哪些node的问题</li>
+<li>podAffinity(pod亲和性) : 以pod为目标，解决pod可以和哪些已存在的pod部署在同一个拓扑域中的问题</li>
+<li>podAntiAffinity(pod反亲和性) : 以pod为目标，解决pod不能和哪些已存在pod部署在同一个拓扑域中的问题</li>
+</ul>
+<p>节点亲和性，一个是硬亲和，一个是软亲和。</p>
+<ul>
+<li>requiredDuringSchedulingIgnoredDuringExecution： 意味着这个规则在调度时必须被满足，但在 Pod 运行时可以被忽略。</li>
+<li>preferredDuringSchedulingIgnoredDuringExecution： 意味着这个规则在调度时是首选，但不是必须的，同样在 Pod 运行时可以被忽略。</li>
+</ul>
+<p>pod亲和性也是分硬亲和，软亲和。有了pod以后才能亲和，尽量和pod待在一起，她在哪我就去哪。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>DevOps:让技术团队、运维、测试等团队实现一体式流程自动化</p>
+<p>CICD： 持续集成（CI），持续交付（CD）</p>
+<p>持续集成：从编码、编译、测试、发布的完整自动化流程</p>
+<p>持续交付： 包含持续集成，并且增加将项目部署到对应环境的自动化流程。</p>
 
                 
             </div>
@@ -631,7 +650,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://19shuidiph.github.io/2024/05/24/javaguide-zi-xue-ji-lu-8-mysql-chong-yao-zhi-shi-dian/">http://19shuidiph.github.io/2024/05/24/javaguide-zi-xue-ji-lu-8-mysql-chong-yao-zhi-shi-dian/</a>
+                    <a href="http://19shuidiph.github.io/2024/05/31/k8s-learning/">http://19shuidiph.github.io/2024/05/31/k8s-learning/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -840,13 +859,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/05/31/k8s-learning/">
+                <a href="/2024/06/15/xiang-mu-zi-xue-ji-lu-9/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="k8s学习">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="项目自学记录9">
                         
-                        <span class="card-title">k8s学习</span>
+                        <span class="card-title">项目自学记录9</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -857,14 +876,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-05-31
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-15
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category">
-                                    k8s
+                            <a href="/categories/%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF/" class="post-category">
+                                    学成在线
                                 </a>
                             
                             
@@ -881,13 +900,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/05/23/javaguide-zi-xue-ji-lu-7-mysql-chang-jian-mian-shi-ti/">
+                <a href="/2024/05/24/javaguide-zi-xue-ji-lu-8-mysql-chong-yao-zhi-shi-dian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="JavaGuide自学记录7-MySQL常见面试题">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="JavaGuide自学记录8-MySQL重要知识点">
                         
-                        <span class="card-title">JavaGuide自学记录7-MySQL常见面试题</span>
+                        <span class="card-title">JavaGuide自学记录8-MySQL重要知识点</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -898,7 +917,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-05-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-05-24
                             </span>
                         <span class="publish-author">
                             
