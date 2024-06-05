@@ -527,6 +527,249 @@
         <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>Student<span class="token operator">:</span><span class="token operator">:</span>getId<span class="token punctuation">,</span> Student<span class="token operator">:</span><span class="token operator">:</span>getName<span class="token punctuation">,</span> <span class="token punctuation">(</span>n1<span class="token punctuation">,</span> n2<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> n2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>第一个参数，key是谁，第二个参数，value是谁，第三个参数，如果有俩key一样了，让后面的覆盖前面的。</p>
+<h2 id="校验框架"><a href="#校验框架" class="headerlink" title="校验框架"></a>校验框架</h2><p>超越用过，<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_54574094/article/details/138088656">spring-boot-starter-validation</a>。提供了JSR303校验支持。</p>
+<p>在Dto类中的一个属性上加注解，@NotEmpty(message&#x3D;”课程名称不能为空”)</p>
+<p>在Controller层的函数入参中，要加@Validated</p>
+<p>还要针对弹出的错误信息在异常类中创建函数</p>
+<pre class=" language-java"><code class="language-java">BindingResult bindingResult <span class="token operator">=</span> e<span class="token punctuation">.</span><span class="token function">getBindingResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+List<span class="token operator">&lt;</span>String<span class="token operator">></span> errors <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+bindingResult<span class="token punctuation">.</span><span class="token function">getFieldErrors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>item<span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">{</span>
+    errors<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span><span class="token function">getDefaultMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+String errMessage <span class="token operator">=</span> StringUtils<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>errors<span class="token punctuation">,</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>分组校验，定义一些常用的组，更新用组1，增加用组1和组2</p>
+<p>@NotEmpty(message&#x3D;”课程名称不能为空”,groups&#x3D;{ValidationGroups.Insert.class})</p>
+<p>组为自己定义的类，里面有三个接口Insert,Update,Delete</p>
+<p>@Validated(ValidationGroups.Insert.class)</p>
+<h2 id="resultMap映射"><a href="#resultMap映射" class="headerlink" title="resultMap映射"></a>resultMap映射</h2><p>类似如下：<br><img src="D:\blog\source_posts\项目自学记录9\image\image-20240602160258345.png"></p>
+<p><img src="D:\blog\source_posts\项目自学记录9\image\image-20240602160312947.png" alt="image-20240602160312947"></p>
+<h2 id="配置文件优先级"><a href="#配置文件优先级" class="headerlink" title="配置文件优先级"></a>配置文件优先级</h2><p>项目应用名配置文件&gt; 扩展配置文件 &gt; 共享配置文件 &gt; 本地配置文件。  Nacos上配的优先级高于本地的。</p>
+<p>如果想让本地配置文件优先，也要在nacos里配</p>
+<pre class=" language-yml"><code class="language-yml">spring:
+  cloud:
+    config:
+      override-none: true
+</code></pre>
+<h2 id="上传后文件校验"><a href="#上传后文件校验" class="headerlink" title="上传后文件校验"></a>上传后文件校验</h2><p>要比较本地的上传之前的，和本地的下载以后的。不要直接访问云端，直接访问云端md5校验不会通过。</p>
+<h2 id="非事务调用事务"><a href="#非事务调用事务" class="headerlink" title="非事务调用事务"></a>非事务调用事务</h2><p>函数1调用函数2，函数2是这个类自身的。即this.函数2，this不是代理对象，即使函数2加了事务注解，也没用。</p>
+<p>解决方案：注入的都是代理对象，要把自己的Service注入，然后把函数2提出为一个接口，用注入的service.func2，这样就是代理对象，就会触发事务。</p>
+<h2 id="其他事务失效场景"><a href="#其他事务失效场景" class="headerlink" title="其他事务失效场景"></a>其他事务失效场景</h2><p>@Transactional标记的方法不是public</p>
+<p>抛出的异常类型不是RuntimeException。在rollbackFor里配置</p>
+<p>事务方法内部调用事务方法，如果函数2设置@Transactional(propagation&#x3D;Propagation.REQUIRES_NEW)，可能无法开启新事务。因为你不是通过代理对象去调用的。函数1调用函数2，函数1是一个事务。</p>
+<p>1.标志REQUIRES_NEW会新开启事务，外层事务不会影响内部事务的提交&#x2F;回滚<br>2.标志REQUIRES_NEW的内部事务的异常，会影响外部事务的回滚</p>
+<h2 id="断点续传"><a href="#断点续传" class="headerlink" title="断点续传"></a>断点续传</h2><p>流程如下：</p>
+<ol>
+<li>前端上传前先把文件分成块</li>
+<li>一块一块的上传，上传中断后重新上传，已上传的分块则不用再上传。先校验这一块，这一块没有才上传。</li>
+<li>各分块上传完成最后在服务端合并文件</li>
+</ol>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">BigFileTest</span> <span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">//分块测试</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testChunk</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//源文件</span>
+        File sourceFile <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"D:\\develop\\upload\\1.项目背景.mp4"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//分块文件存储路径</span>
+        String chunkFilePath <span class="token operator">=</span> <span class="token string">"D:\\develop\\upload\\chunk\\"</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//分块文件大小</span>
+        <span class="token keyword">int</span> chunkSize <span class="token operator">=</span> <span class="token number">1024</span> <span class="token operator">*</span> <span class="token number">1024</span> <span class="token operator">*</span> <span class="token number">5</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//分块文件个数</span>
+        <span class="token keyword">int</span> chunkNum <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span>sourceFile<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">1.0</span> <span class="token operator">/</span> chunkSize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//使用流从源文件读数据，向分块文件中写数据</span>
+        RandomAccessFile raf_r <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RandomAccessFile</span><span class="token punctuation">(</span>sourceFile<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//缓存区</span>
+        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> bytes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">byte</span><span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> chunkNum<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            File chunkFile <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>chunkFilePath <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//分块文件写入流</span>
+            RandomAccessFile raf_rw <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RandomAccessFile</span><span class="token punctuation">(</span>chunkFile<span class="token punctuation">,</span> <span class="token string">"rw"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>len<span class="token operator">=</span>raf_r<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>bytes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">!=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                raf_rw<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>bytes<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span>chunkFile<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">>=</span>chunkSize<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                    <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            raf_rw<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        raf_r<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//将分块进行合并</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testMerge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//块文件目录</span>
+        File chunkFolder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"D:\\develop\\upload\\chunk"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//源文件</span>
+        File sourceFile <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"D:\\develop\\upload\\1.项目背景.mp4"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//合并后的文件</span>
+        File mergeFile <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"D:\\develop\\upload\\1.项目背景_2.mp4"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//取出所有分块文件</span>
+        File<span class="token punctuation">[</span><span class="token punctuation">]</span> files <span class="token operator">=</span> chunkFolder<span class="token punctuation">.</span><span class="token function">listFiles</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//将数组转成list</span>
+        List<span class="token operator">&lt;</span>File<span class="token operator">></span> filesList <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span>files<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//对分块文件排序</span>
+        Collections<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>filesList<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Comparator</span><span class="token operator">&lt;</span>File<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">compare</span><span class="token punctuation">(</span>File o1<span class="token punctuation">,</span> File o2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> Integer<span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>o1<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span>Integer<span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>o2<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//向合并文件写的流</span>
+        RandomAccessFile raf_rw <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RandomAccessFile</span><span class="token punctuation">(</span>mergeFile<span class="token punctuation">,</span> <span class="token string">"rw"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//缓存区</span>
+        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> bytes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">byte</span><span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//遍历分块文件，向合并 的文件写</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>File file <span class="token operator">:</span> filesList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//读分块的流</span>
+            RandomAccessFile raf_r <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RandomAccessFile</span><span class="token punctuation">(</span>file<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> len <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>len<span class="token operator">=</span>raf_r<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>bytes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">!=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                raf_rw<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>bytes<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            raf_r<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+        raf_rw<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//合并文件完成后对合并的文件md5校验</span>
+        FileInputStream fileInputStream_merge <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span>mergeFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        FileInputStream fileInputStream_source <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span>sourceFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String md5_merge <span class="token operator">=</span> DigestUtils<span class="token punctuation">.</span><span class="token function">md5Hex</span><span class="token punctuation">(</span>fileInputStream_merge<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String md5_source <span class="token operator">=</span> DigestUtils<span class="token punctuation">.</span><span class="token function">md5Hex</span><span class="token punctuation">(</span>fileInputStream_source<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>md5_merge<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>md5_source<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"文件合并成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="在MinIO中进行断点续传等操作"><a href="#在MinIO中进行断点续传等操作" class="headerlink" title="在MinIO中进行断点续传等操作"></a>在MinIO中进行断点续传等操作</h2><p>分块上传，在minIO中合并，</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MinioTest</span> <span class="token punctuation">{</span>
+
+    MinioClient minioClient <span class="token operator">=</span>
+            MinioClient<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">endpoint</span><span class="token punctuation">(</span><span class="token string">"http://192.168.101.65:9000"</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">credentials</span><span class="token punctuation">(</span><span class="token string">"minioadmin"</span><span class="token punctuation">,</span> <span class="token string">"minioadmin"</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test_upload</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">//通过扩展名得到媒体资源类型 mimeType</span>
+        <span class="token comment" spellcheck="true">//根据扩展名取出mimeType</span>
+        ContentInfo extensionMatch <span class="token operator">=</span> ContentInfoUtil<span class="token punctuation">.</span><span class="token function">findExtensionMatch</span><span class="token punctuation">(</span><span class="token string">".mp4"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String mimeType <span class="token operator">=</span> MediaType<span class="token punctuation">.</span>APPLICATION_OCTET_STREAM_VALUE<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//通用mimeType，字节流</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>extensionMatch<span class="token operator">!=</span>null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            mimeType <span class="token operator">=</span> extensionMatch<span class="token punctuation">.</span><span class="token function">getMimeType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">//上传文件的参数信息</span>
+        UploadObjectArgs uploadObjectArgs <span class="token operator">=</span> UploadObjectArgs<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">bucket</span><span class="token punctuation">(</span><span class="token string">"testbucket"</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//桶</span>
+                <span class="token punctuation">.</span><span class="token function">filename</span><span class="token punctuation">(</span><span class="token string">"D:\\develop\\upload\\1.mp4"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//指定本地文件路径</span>
+<span class="token comment" spellcheck="true">//                .object("1.mp4")//对象名 在桶下存储该文件</span>
+                <span class="token punctuation">.</span><span class="token function">object</span><span class="token punctuation">(</span><span class="token string">"test/01/1.mp4"</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//对象名 放在子目录下</span>
+                <span class="token punctuation">.</span><span class="token function">contentType</span><span class="token punctuation">(</span>mimeType<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//设置媒体文件类型</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//上传文件</span>
+        minioClient<span class="token punctuation">.</span><span class="token function">uploadObject</span><span class="token punctuation">(</span>uploadObjectArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//删除文件</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test_delete</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">//RemoveObjectArgs</span>
+        RemoveObjectArgs removeObjectArgs <span class="token operator">=</span> RemoveObjectArgs<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bucket</span><span class="token punctuation">(</span><span class="token string">"testbucket"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">object</span><span class="token punctuation">(</span><span class="token string">"1.mp4"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//删除文件</span>
+        minioClient<span class="token punctuation">.</span><span class="token function">removeObject</span><span class="token punctuation">(</span>removeObjectArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//查询文件 从minio中下载</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test_getFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+
+        GetObjectArgs getObjectArgs <span class="token operator">=</span> GetObjectArgs<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bucket</span><span class="token punctuation">(</span><span class="token string">"testbucket"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">object</span><span class="token punctuation">(</span><span class="token string">"test/01/1.mp4"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//查询远程服务获取到一个流对象</span>
+        FilterInputStream inputStream <span class="token operator">=</span> minioClient<span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span>getObjectArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//指定输出流</span>
+        FileOutputStream outputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"D:\\develop\\upload\\1a.mp4"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        IOUtils<span class="token punctuation">.</span><span class="token function">copy</span><span class="token punctuation">(</span>inputStream<span class="token punctuation">,</span>outputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//校验文件的完整性对文件的内容进行md5</span>
+        FileInputStream fileInputStream1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"D:\\develop\\upload\\1.mp4"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String source_md5 <span class="token operator">=</span> DigestUtils<span class="token punctuation">.</span><span class="token function">md5Hex</span><span class="token punctuation">(</span>fileInputStream1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        FileInputStream fileInputStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"D:\\develop\\upload\\1a.mp4"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String local_md5 <span class="token operator">=</span> DigestUtils<span class="token punctuation">.</span><span class="token function">md5Hex</span><span class="token punctuation">(</span>fileInputStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>source_md5<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>local_md5<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"下载成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+
+
+    <span class="token comment" spellcheck="true">//将分块文件上传到minio</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">uploadChunk</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ServerException<span class="token punctuation">,</span> InsufficientDataException<span class="token punctuation">,</span> ErrorResponseException<span class="token punctuation">,</span> NoSuchAlgorithmException<span class="token punctuation">,</span> InvalidKeyException<span class="token punctuation">,</span> InvalidResponseException<span class="token punctuation">,</span> XmlParserException<span class="token punctuation">,</span> InternalException <span class="token punctuation">{</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//上传文件的参数信息</span>
+            UploadObjectArgs uploadObjectArgs <span class="token operator">=</span> UploadObjectArgs<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">.</span><span class="token function">bucket</span><span class="token punctuation">(</span><span class="token string">"testbucket"</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//桶</span>
+                    <span class="token punctuation">.</span><span class="token function">filename</span><span class="token punctuation">(</span><span class="token string">"D:\\develop\\upload\\chunk\\"</span><span class="token operator">+</span>i<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//指定本地文件路径</span>
+                    <span class="token punctuation">.</span><span class="token function">object</span><span class="token punctuation">(</span><span class="token string">"chunk/"</span><span class="token operator">+</span>i<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//对象名 放在子目录下</span>
+                    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment" spellcheck="true">//上传文件</span>
+            minioClient<span class="token punctuation">.</span><span class="token function">uploadObject</span><span class="token punctuation">(</span>uploadObjectArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"上传分块"</span><span class="token operator">+</span>i<span class="token operator">+</span><span class="token string">"成功"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">//调用minio接口合并分块</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testMerge</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+
+<span class="token comment" spellcheck="true">//        List&lt;ComposeSource> sources = new ArrayList&lt;>();</span>
+<span class="token comment" spellcheck="true">//        for (int i = 0; i &lt; 30; i++) {</span>
+<span class="token comment" spellcheck="true">//            //指定分块文件的信息</span>
+<span class="token comment" spellcheck="true">//            ComposeSource composeSource = ComposeSource.builder().bucket("testbucket").object("chunk/" + i).build();</span>
+<span class="token comment" spellcheck="true">//            sources.add(composeSource);</span>
+<span class="token comment" spellcheck="true">//        }</span>
+
+        List<span class="token operator">&lt;</span>ComposeSource<span class="token operator">></span> sources <span class="token operator">=</span> Stream<span class="token punctuation">.</span><span class="token function">iterate</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> i <span class="token operator">-</span><span class="token operator">></span> <span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">limit</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>i <span class="token operator">-</span><span class="token operator">></span> ComposeSource<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">bucket</span><span class="token punctuation">(</span><span class="token string">"testbucket"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">object</span><span class="token punctuation">(</span><span class="token string">"chunk/"</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">//指定合并后的objectName等信息</span>
+        ComposeObjectArgs composeObjectArgs <span class="token operator">=</span> ComposeObjectArgs<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">bucket</span><span class="token punctuation">(</span><span class="token string">"testbucket"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">object</span><span class="token punctuation">(</span><span class="token string">"merge01.mp4"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">sources</span><span class="token punctuation">(</span>sources<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//指定源文件</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//合并文件,</span>
+        <span class="token comment" spellcheck="true">//报错size 1048576 must be greater than 5242880，minio默认的分块文件大小为5M</span>
+        minioClient<span class="token punctuation">.</span><span class="token function">composeObject</span><span class="token punctuation">(</span>composeObjectArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="定时任务xxl-job"><a href="#定时任务xxl-job" class="headerlink" title="定时任务xxl-job"></a>定时任务xxl-job</h2><p><img src="D:\blog\source_posts\项目自学记录9\image\image-20240605094438606.png" alt="XXL-JOB任务执行流程"></p>
+<p>比如调度中心下面有三台机器，只有分片广播的路由策略才能同时将任务分配给三个机器，让三个机器都运行。</p>
+<p>把任务队列分为3部分，分别分块给0,1,2三台机器。</p>
 
                 
             </div>
@@ -809,9 +1052,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="k8s学习">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="K8S学习">
                         
-                        <span class="card-title">k8s学习</span>
+                        <span class="card-title">K8S学习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
