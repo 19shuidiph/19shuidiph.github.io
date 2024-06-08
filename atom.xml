@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-06-08T08:49:55.165Z</updated>
+  <updated>2024-06-08T11:35:01.346Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,121 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java程序员要掌握的前端-React</title>
+    <link href="http://19shuidiph.github.io/2024/06/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/"/>
+    <id>http://19shuidiph.github.io/2024/06/13/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/</id>
+    <published>2024-06-13T11:52:59.000Z</published>
+    <updated>2024-06-08T11:35:01.346Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;五-React&quot;&gt;&lt;a href=&quot;#五-React&quot; class=&quot;headerlink&quot; title=&quot;五. React&quot;&gt;&lt;/a&gt;五. React&lt;/h1&gt;&lt;h2 id=&quot;1-React-基础&quot;&gt;&lt;a href=&quot;#1-React-基础&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="前端" scheme="http://19shuidiph.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java程序员要掌握的前端-Vue3</title>
+    <link href="http://19shuidiph.github.io/2024/06/12/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue3/"/>
+    <id>http://19shuidiph.github.io/2024/06/12/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue3/</id>
+    <published>2024-06-12T11:52:59.000Z</published>
+    <updated>2024-06-08T11:34:53.438Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;四-Vue-3&quot;&gt;&lt;a href=&quot;#四-Vue-3&quot; class=&quot;headerlink&quot; title=&quot;四. Vue 3&quot;&gt;&lt;/a&gt;四. Vue 3&lt;/h1&gt;&lt;h2 id=&quot;1-TypeScript&quot;&gt;&lt;a href=&quot;#1-TypeScript&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="前端" scheme="http://19shuidiph.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java程序员要掌握的前端-Vue2</title>
+    <link href="http://19shuidiph.github.io/2024/06/11/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue2/"/>
+    <id>http://19shuidiph.github.io/2024/06/11/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue2/</id>
+    <published>2024-06-11T11:52:59.000Z</published>
+    <updated>2024-06-08T11:34:47.751Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;三-Vue-2&quot;&gt;&lt;a href=&quot;#三-Vue-2&quot; class=&quot;headerlink&quot; title=&quot;三. Vue 2&quot;&gt;&lt;/a&gt;三. Vue 2&lt;/h1&gt;&lt;h2 id=&quot;1-Vue-基础&quot;&gt;&lt;a href=&quot;#1-Vue-基础&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="前端" scheme="http://19shuidiph.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java程序员要掌握的前端-Javascript</title>
+    <link href="http://19shuidiph.github.io/2024/06/10/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-js/"/>
+    <id>http://19shuidiph.github.io/2024/06/10/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-js/</id>
+    <published>2024-06-10T11:52:59.000Z</published>
+    <updated>2024-06-08T11:34:41.637Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;第二章-Javascript&quot;&gt;&lt;a href=&quot;#第二章-Javascript&quot; class=&quot;headerlink&quot; title=&quot;第二章. Javascript&quot;&gt;&lt;/a&gt;第二章.</summary>
+        
+      
+    
+    
+    
+    <category term="前端" scheme="http://19shuidiph.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java程序员要掌握的前端-HTML&amp;CSS</title>
+    <link href="http://19shuidiph.github.io/2024/06/09/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-html-css/"/>
+    <id>http://19shuidiph.github.io/2024/06/09/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-html-css/</id>
+    <published>2024-06-09T11:52:59.000Z</published>
+    <updated>2024-06-08T11:34:35.170Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;Java</summary>
+        
+      
+    
+    
+    
+    <category term="前端" scheme="http://19shuidiph.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>项目自学记录9</title>
@@ -357,121 +472,6 @@
     
     
     <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>公司项目-智慧税务产品2.0-风险模型/场景/报告</title>
-    <link href="http://19shuidiph.github.io/2023/10/15/gong-si-xiang-mu-te-shu-piao-chong-sheng-cheng-de-gong-han-jia-gou/"/>
-    <id>http://19shuidiph.github.io/2023/10/15/gong-si-xiang-mu-te-shu-piao-chong-sheng-cheng-de-gong-han-jia-gou/</id>
-    <published>2023-10-15T03:23:31.000Z</published>
-    <updated>2024-05-26T04:12:22.321Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;特殊票种生成的工厂架构&quot;&gt;&lt;a href=&quot;#特殊票种生成的工厂架构&quot; class=&quot;headerlink&quot; title=&quot;特殊票种生成的工厂架构&quot;&gt;&lt;/a&gt;特殊票种生成的工厂架构&lt;/h1&gt;&lt;h2 id=&quot;架构图&quot;&gt;&lt;a href=&quot;#架构图&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="公司项目" scheme="http://19shuidiph.github.io/categories/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Redis高级篇-黑马</title>
-    <link href="http://19shuidiph.github.io/2023/10/13/redis-gao-ji-pian-hei-ma/"/>
-    <id>http://19shuidiph.github.io/2023/10/13/redis-gao-ji-pian-hei-ma/</id>
-    <published>2023-10-13T08:27:44.000Z</published>
-    <updated>2023-10-30T01:32:56.289Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Redis高级篇-黑马&quot;&gt;&lt;a href=&quot;#Redis高级篇-黑马&quot; class=&quot;headerlink&quot; title=&quot;Redis高级篇-黑马&quot;&gt;&lt;/a&gt;Redis高级篇-黑马&lt;/h1&gt;&lt;h2 id=&quot;分布式缓存&quot;&gt;&lt;a href=&quot;#分布式缓存&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Redis" scheme="http://19shuidiph.github.io/categories/Redis/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JavaGuide自学记录3--并发编程</title>
-    <link href="http://19shuidiph.github.io/2023/10/10/javaguide-zi-xue-ji-lu-3-bing-fa-bian-cheng/"/>
-    <id>http://19shuidiph.github.io/2023/10/10/javaguide-zi-xue-ji-lu-3-bing-fa-bian-cheng/</id>
-    <published>2023-10-10T03:03:46.000Z</published>
-    <updated>2023-10-16T03:30:15.919Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;并发编程&quot;&gt;&lt;a href=&quot;#并发编程&quot; class=&quot;headerlink&quot; title=&quot;并发编程&quot;&gt;&lt;/a&gt;并发编程&lt;/h1&gt;&lt;h2 id=&quot;线程-共享区域与独占区域&quot;&gt;&lt;a href=&quot;#线程-共享区域与独占区域&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JavaGuide自学记录2--Java集合源码+一些特殊类</title>
-    <link href="http://19shuidiph.github.io/2023/10/10/javaguide-zi-xue-ji-lu-2-java-ji-he-yuan-ma-yi-xie-te-shu-lei/"/>
-    <id>http://19shuidiph.github.io/2023/10/10/javaguide-zi-xue-ji-lu-2-java-ji-he-yuan-ma-yi-xie-te-shu-lei/</id>
-    <published>2023-10-10T03:03:09.000Z</published>
-    <updated>2023-10-17T11:08:41.188Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;JavaGuide自学记录2–Java集合源码-一些特殊类&quot;&gt;&lt;a href=&quot;#JavaGuide自学记录2–Java集合源码-一些特殊类&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>12306项目</title>
-    <link href="http://19shuidiph.github.io/2023/10/04/12306-xiang-mu/"/>
-    <id>http://19shuidiph.github.io/2023/10/04/12306-xiang-mu/</id>
-    <published>2023-10-04T10:00:36.000Z</published>
-    <updated>2023-11-28T09:23:54.567Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;12306项目&quot;&gt;&lt;a href=&quot;#12306项目&quot; class=&quot;headerlink&quot; title=&quot;12306项目&quot;&gt;&lt;/a&gt;12306项目&lt;/h1&gt;&lt;h2 id=&quot;1-4章小结&quot;&gt;&lt;a href=&quot;#1-4章小结&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="项目" scheme="http://19shuidiph.github.io/categories/%E9%A1%B9%E7%9B%AE/"/>
     
     
   </entry>
