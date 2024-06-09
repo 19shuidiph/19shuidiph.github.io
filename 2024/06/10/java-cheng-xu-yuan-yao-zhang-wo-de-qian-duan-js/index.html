@@ -930,7 +930,7 @@ arr<span class="token punctuation">.</span><span class="token function">forEach<
 </code></pre>
 <p>两个称呼</p>
 <ul>
-<li>高阶函数，map，filter，forEach</li>
+<li>高阶函数，map，filter，forEach。接受另一个函数作为参数，或者返回另一个函数。</li>
 <li>回调函数，例如作为参数传入的函数</li>
 </ul>
 <h4 id="3-Object-star-star"><a href="#3-Object-star-star" class="headerlink" title="3) Object :star::star:"></a>3) Object :star::star:</h4><h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -1568,7 +1568,7 @@ app<span class="token punctuation">.</span><span class="token function">listen</
 <pre><code>node main.js
 </code></pre>
 <h3 id="前端案例"><a href="#前端案例" class="headerlink" title="前端案例"></a>前端案例</h3><p>初步效果</p>
-<p><img src="D:\2022.js\imgs\image-20220812103323220.png" alt="image-20220812103323220"></p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220812103323220.png"></p>
 <p>架构</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220812103219916.png"></p>
 <ul>
@@ -1653,7 +1653,7 @@ thead<span class="token punctuation">.</span><span class="token function">queryS
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220812161003958.png"></p>
 <p>innerHTML  会解析内容中的标签，例如</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220812161137912.png"></p>
-<p>textContext 不会解析内容中的标签</p>
+<p>textContext 不会解析内容中的标签，把html标签代码也当成了内容的一部分。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220812161341825.png"></p>
 <p>给 innerHTML 或 textContent 赋值空串，可以实现清空标签内容的效果</p>
 <h4 id="3-利用模板"><a href="#3-利用模板" class="headerlink" title="3) 利用模板"></a>3) 利用模板</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
@@ -1814,6 +1814,7 @@ thead<span class="token punctuation">.</span><span class="token function">queryS
 </ul>
 </li>
 </ul>
+<p>前端是7070来访问后端8080的数据，后端不给数据。</p>
 <p>请求响应头解决</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220814144040703.png"></p>
 <ul>
@@ -1826,11 +1827,12 @@ thead<span class="token punctuation">.</span><span class="token function">queryS
 </ul>
 </li>
 </ul>
+<p>具体就是在一个controller中的函数接口上加注解，但是要注意后端返回的数据格式。@CrossOrigin(“<a target="_blank" rel="noopener" href="http://localhost:7070/">http://localhost:7070/</a>“)</p>
 <p>代理解决</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220814161532141.png"></p>
 <pre class=" language-cmd"><code class="language-cmd">npm install http-proxy-middleware --save-dev
 </code></pre>
-<p>在 express 服务器启动代码中加入</p>
+<p>在 express 服务器启动代码中（前端的main.js中）加入</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span>createProxyMiddleware<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'http-proxy-middleware'</span>
 
 <span class="token comment" spellcheck="true">// ...</span>
