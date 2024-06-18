@@ -651,7 +651,7 @@
 <span class="token keyword">const</span> c2<span class="token punctuation">:</span> Cat <span class="token operator">=</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">'小花'</span> <span class="token punctuation">}</span>					  <span class="token comment" spellcheck="true">// 正确: age 属性可选</span>
 </code></pre>
 <ul>
-<li>可选属性要注意处理 undefined 值</li>
+<li>可选属性要注意处理 undefined 值，即c2.age</li>
 </ul>
 <h5 id="鸭子类型"><a href="#鸭子类型" class="headerlink" title="鸭子类型"></a>鸭子类型</h5><pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">Cat</span> <span class="token punctuation">{</span>
   name<span class="token punctuation">:</span> <span class="token keyword">string</span>
@@ -700,6 +700,7 @@
 <ul>
 <li>x?: string | null 表示可能是 undefined 或者是 string 或者是 null</li>
 </ul>
+<p>如果是test(x:string) ，则不能传null值进去。</p>
 <h4 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h4><p>下面的几个类型声明显然有一定的相似性</p>
 <pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">RefString</span> <span class="token punctuation">{</span>
   value<span class="token punctuation">:</span> <span class="token keyword">string</span>
@@ -1188,54 +1189,11 @@ npm run dev
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
-            <div class="card">
-                <a href="/2024/06/17/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue3/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/32.jpg" class="responsive-img" alt="Java程序员要掌握的前端-Vue3">
-                        
-                        <span class="card-title">Java程序员要掌握的前端-Vue3</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-17
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
-                                    前端
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-            </div>
-        </div>
-        
-        
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2024/06/15/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/">
+                <a href="/2024/06/25/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-react/">
                     <div class="card-image">
                         
                         
@@ -1251,8 +1209,49 @@ npm run dev
                         
                     </div>
                     <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-06-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/06/11/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-vue2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/31.jpg" class="responsive-img" alt="Java程序员要掌握的前端-Vue2">
+                        
+                        <span class="card-title">Java程序员要掌握的前端-Vue2</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-15
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-11
                             </span>
                         <span class="publish-author">
                             
