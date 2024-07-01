@@ -429,6 +429,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E9%9D%A2%E8%AF%95/" class="post-category">
+                                面试
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -459,7 +468,6 @@
             <div id="articleContent">
                 <h1 id="0-JavaGuide"><a href="#0-JavaGuide" class="headerlink" title="0.JavaGuide"></a>0.JavaGuide</h1><p><a target="_blank" rel="noopener" href="https://javaguide.cn/">https://javaguide.cn/</a></p>
 <p>这里面的东西也是推荐要看一看的。</p>
-<p>本篇主要是面向个人技能的部分，Java相关的八股文。</p>
 <span id="more"></span>
 
 <h1 id="1-Java"><a href="#1-Java" class="headerlink" title="1.Java"></a>1.Java</h1><h2 id="ArrayList源码"><a href="#ArrayList源码" class="headerlink" title="ArrayList源码"></a>ArrayList源码</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17F411T7Ao?p=190&vd_source=6ed7f19911310aba47123ac6cc1674a0">参考资料</a></p>
@@ -673,8 +681,10 @@
 <p>事务的使用： BEGIN; COMMIT; ROLLBACK;</p>
 <p>数据并发问题 : 脏写，脏读，不可重复读，幻读</p>
 <p>1)脏写（Dirty Write): 事务Session A 修改了 另一个 未提交 事务Session B 修改过 的数据</p>
-<p>2)脏读(Dirty Read): Session A 读取 了已经被 Session B <strong>更新 但还 没有被提交</strong> 的字段。 之后若 Session B 回滚 ，Session A 读取 的内容就是 临时且无效 的.</p>
-<p>3)不可重复读(Non-Repeatable Read):Session A 读取 了一个字段，然后 Session B 更新 了该字段。 之后 Session A 再次读取 同一个字段， 值就不同 了。</p>
+<ol>
+<li>脏读(Dirty Read): Session A 读取 了已经被 Session B <strong>更新 但还 没有被提交</strong> 的字段。 之后若 Session B 回滚 ，Session A 读取 的内容就是 临时且无效 的.</li>
+<li>不可重复读(Non-Repeatable Read):Session A 读取 了一个字段，然后 Session B 更新 了该字段。 之后 Session A 再次读取 同一个字段， 值就不同 了。</li>
+</ol>
 <p>4)幻读(Phantom): Session A 从一个表中 读取 了一个字段, 然后 Session B 在该表中 插 入 了一些新的行。 之后, 如果 Session A 再次读取 同一个表, 就会多出几行。</p>
 <p>四种隔离级别：未提交读，提交读，可重复读，序列化</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720230423104501.png" alt="img"></p>
@@ -969,11 +979,9 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
 <p>比如1和2任务在被核心线程被执行，3和4任务在阻塞队列中，5任务来了。生成救急线程，执行5任务，然后再执行3任务和4任务。</p>
 <p>代码实现：</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/QQ%E5%9B%BE%E7%89%8720230427160251.jpg" alt="img"></p>
-<h1 id="6-Redis"><a href="#6-Redis" class="headerlink" title="6.Redis"></a>6.Redis</h1><h2 id="常见数据结构"><a href="#常见数据结构" class="headerlink" title="常见数据结构"></a>常见数据结构</h2><p>详细请参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43835717/article/details/92802040">这篇文章</a></p>
+<h1 id="6-Redis"><a href="#6-Redis" class="headerlink" title="6.Redis"></a>6.Redis</h1><h2 id="常见数据结构"><a href="#常见数据结构" class="headerlink" title="常见数据结构"></a>常见数据结构</h2><p>详细请参考<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2238792">这篇文章</a></p>
 <p>五种基本数据类型：字符串（strings），散列表（hashes）， 列表（lists），集合（set），有序集合（sortedset）</p>
 <p>三种特殊数据类型：地理位置（Geospatial），基数统计(Hyperloglog), 位图(Bitmap)</p>
-<h2 id="常见的应用场景"><a href="#常见的应用场景" class="headerlink" title="常见的应用场景"></a>常见的应用场景</h2><p>主要还是缓存和分布式锁。小场景的消息队列。</p>
-<p>详情可以看<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_51515308/article/details/128010464?spm=1001.2014.3001.5502">黑马的资料</a></p>
 
                 
             </div>
