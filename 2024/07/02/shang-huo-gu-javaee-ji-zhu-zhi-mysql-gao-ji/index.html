@@ -466,7 +466,438 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h1 id="尚硅谷JavaEE技术之MySQL高级"><a href="#尚硅谷JavaEE技术之MySQL高级" class="headerlink" title="尚硅谷JavaEE技术之MySQL高级"></a>尚硅谷JavaEE技术之MySQL高级</h1><h2 id="SQL语法顺序"><a href="#SQL语法顺序" class="headerlink" title="SQL语法顺序"></a>SQL语法顺序</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/clip_image024.png"></p>
+<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><h3 id="1-各引擎简介"><a href="#1-各引擎简介" class="headerlink" title="1.    各引擎简介"></a>1.    各引擎简介</h3><ol>
+<li><p>InnoDB存储引擎</p>
+<p>InnoDB是MySQL的默认事务型引擎，它被设计用来<font color='red'>处理大量的短期(short-lived)事务</font>。除非有非常特别的原因需要使用其他的存储引擎，否则<font color='red'>应该优先考虑InnoDB引擎。</font></p>
+</li>
+<li><p>MyISAM存储引擎</p>
+<p>MyISAM提供了大量的特性，包括全文索引、压缩、空间函数(GIS)等，但<font color='red'>MyISAM不支持事务和行级锁</font>，有一个毫无疑问的缺陷就是崩溃后无法安全恢复。</p>
+</li>
+<li><p>Archive引擎</p>
+<p><font color='red'>Archive档案存储引擎只支持INSERT和SELECT操作</font>，在MySQL5.1之前不支持索引。</p>
+<p>Archive表适合日志和数据采集类应用。</p>
+<p>根据英文的测试结论来看，Archive表比MyISAM表要小大约75%，比支持事务处理的InnoDB表小大约83%。</p>
+</li>
+<li><p>Blackhole引擎</p>
+<p><font color='red'>Blackhole引擎没有实现任何存储机制，它会丢弃所有插入的数据，不做任何保存。</font>但服务器会记录Blackhole表的日志，所以可以用于复制数据到备库，或者简单地记录到日志。但这种应用方式会碰到很多问题，因此并不推荐。 </p>
+</li>
+<li><p>CSV引擎 </p>
+<p><font color='red'>CSV引擎可以将普通的CSV文件作为MySQL的表来处理，但不支持索引。</font></p>
+<p>CSV引擎可以作为一种数据交换的机制，非常有用。</p>
+<p>CSV存储的数据直接可以在操作系统里，用文本编辑器，或者excel读取。</p>
+</li>
+<li><p>Memory引擎</p>
+<p>如果需要快速地访问数据，并且这些数据不会被修改，重启以后丢失也没有关系，那么使用Memory表是非常有用。Memory表至少比MyISAM表要快一个数量级。</p>
+</li>
+<li><p>Federated引擎</p>
+<p>Federated引擎<font color='red'>是访问其他MySQL服务器的一个代理</font>，尽管该引擎看起来提供了一种很好的跨服务器的灵活性，但也经常带来问题，因此默认是禁用的。</p>
+</li>
+</ol>
+<h3 id="2-MyISAM和InnoDB的区别-重点"><a href="#2-MyISAM和InnoDB的区别-重点" class="headerlink" title="2.    MyISAM和InnoDB的区别(重点)"></a>2.    MyISAM和InnoDB的区别(重点)</h3><table>
+<thead>
+<tr>
+<th><strong>对比项</strong></th>
+<th><strong>MyISAM</strong></th>
+<th><strong>InnoDB</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>外键</strong></td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td><strong>事务</strong></td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td><strong>行表锁</strong></td>
+<td>表锁，即使操作一条记录也会锁住整个表   <font color='red'>不适合高并发的操作  </font></td>
+<td>行锁,操作时只锁某一行，不对其它行有影响   <font color='red'>适合高并发的操作 </font></td>
+</tr>
+<tr>
+<td><strong>缓存</strong></td>
+<td>只缓存索引，不缓存真实数据</td>
+<td>不仅缓存索引还要缓存真实数据，对内存要求较高，而且内存大小对性能有决定性的影响</td>
+</tr>
+<tr>
+<td><strong>关注点</strong></td>
+<td>节省资源、消耗少、简单业务</td>
+<td>并发写、事务、更大资源</td>
+</tr>
+<tr>
+<td><strong>默认安装</strong></td>
+<td>Y</td>
+<td>Y</td>
+</tr>
+<tr>
+<td><strong>用户表默认使用</strong></td>
+<td>N</td>
+<td>Y</td>
+</tr>
+<tr>
+<td><strong>自带系统表使用</strong></td>
+<td>Y</td>
+<td>N</td>
+</tr>
+</tbody></table>
+<h2 id="MySQL-Full-Join的实现"><a href="#MySQL-Full-Join的实现" class="headerlink" title="MySQL Full Join的实现"></a>MySQL Full Join的实现</h2><p>因为MySQL不支持FULL JOIN,下面是替代方法&#x2F;</p>
+<p>1.UNION 会自动去重</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> t1 <span class="token keyword">left</span> <span class="token keyword">join</span> t2 <span class="token keyword">on</span> t1<span class="token punctuation">.</span>id <span class="token operator">=</span> t2<span class="token punctuation">.</span>id
+<span class="token keyword">union</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> t1 <span class="token keyword">right</span> <span class="token keyword">join</span> t2 <span class="token keyword">on</span> t1<span class="token punctuation">.</span>id <span class="token operator">=</span> t2<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+</code></pre>
+<p>2.UNION ALL 的方式 (<strong>取左表的全部和右表独有</strong>)</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> t1 <span class="token keyword">left</span> <span class="token keyword">join</span> t2 <span class="token keyword">on</span> t1<span class="token punctuation">.</span>id <span class="token operator">=</span> t2<span class="token punctuation">.</span>id
+<span class="token keyword">union</span> <span class="token keyword">all</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> t1 <span class="token keyword">right</span> <span class="token keyword">join</span> t2 <span class="token keyword">on</span> t1<span class="token punctuation">.</span>id <span class="token operator">=</span> t2<span class="token punctuation">.</span>id
+<span class="token keyword">where</span> t1<span class="token punctuation">.</span>id <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="数据页大小"><a href="#数据页大小" class="headerlink" title="数据页大小"></a>数据页大小</h2><p>查看mysql文件页大小（16K）：</p>
+<pre class=" language-mysql"><code class="language-mysql">SHOW GLOBAL STATUS LIKE '%page_size%'
+</code></pre>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/image-20230401080620770.png"><br><strong>为什么mysql页文件默认16K？</strong><br>假设我们一行数据大小为1K，那么一页就能存16条数据，也就是一个叶子节点能存16条数据；再看非叶子节点，假设主键ID为bigint类型，那么长度为8B，指针大小在Innodb源码中为6B，一共就是14B，那么一页里就可以存储16K&#x2F;14B&#x3D;1170个(主键+指针)</p>
+<pre><code>一颗高度为2的B+树能存储的数据为:1170*16=18720条，
+一颗高度为3的B+树能存储的数据为：1170*1170*16=21902400（千万级）
+</code></pre>
+<h2 id="索引的使用场景"><a href="#索引的使用场景" class="headerlink" title="索引的使用场景"></a>索引的使用场景</h2><p>哪些情况需要创建索引：</p>
+<ul>
+<li>主键自动建立唯一索引</li>
+<li>频繁作为查询条件的字段应该创建索引</li>
+<li>查询中与其它表关联的字段，外键关系建立索引</li>
+<li>单键&#x2F;组合索引的选择问题， 组合索引性价比更高</li>
+<li>查询中排序的字段，排序字段若通过索引去访问将大大提高排序速度</li>
+<li>查询中统计或者分组字段</li>
+</ul>
+<p>哪些情况不要创建索引：</p>
+<ul>
+<li><p>表记录太少</p>
+</li>
+<li><p>经常增删改的表或者字段。</p>
+<p>Why：提高了查询速度，同时却会降低更新表的速度，如对表进行INSERT、UPDATE和DELETE。因为更新表时，MySQL不仅要保存数据，还要保存一下索引文件</p>
+</li>
+<li><p>Where条件里用不到的字段不创建索引</p>
+</li>
+<li><p>过滤性不好的不适合建索引</p>
+</li>
+<li><p>有大量重复数据的列上。</p>
+</li>
+</ul>
+<h2 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h2><ol>
+<li>主键索引：设定为主键后数据库会自动建立索引，innodb为聚簇索引</li>
+<li>单值索引：即一个索引只包含单个列，一个表可以有多个单列索引</li>
+<li>唯一索引：索引列的值必须唯一，但允许有空值</li>
+<li>复合索引：即一个索引包含多个列</li>
+</ol>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> customer <span class="token punctuation">(</span>
+    id <span class="token keyword">INT</span> <span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> UNSIGNED <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+    customer_no <span class="token keyword">VARCHAR</span> <span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    customer_name <span class="token keyword">VARCHAR</span> <span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 主键索引</span>
+    <span class="token keyword">KEY</span> idx_name <span class="token punctuation">(</span>customer_name<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 单值索引</span>
+    <span class="token keyword">UNIQUE</span> <span class="token keyword">KEY</span> uk_name <span class="token punctuation">(</span>customer_name<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 唯一索引</span>
+    <span class="token keyword">KEY</span> idx_no_name <span class="token punctuation">(</span>customer_no<span class="token punctuation">,</span> customer_name<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># 复合索引</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="explain能干什么"><a href="#explain能干什么" class="headerlink" title="explain能干什么"></a>explain能干什么</h3><ul>
+<li><font color='red'>表的读取顺序</font></li>
+<li>那些索引可以使用</li>
+<li>数据读取操作的操作类型</li>
+<li><font color='red'>那些索引被实际使用</font></li>
+<li>表之间的引用</li>
+<li><font color='red'>每张表有多少行被物理查询</font></li>
+</ul>
+<p>在explain中的extra有额外的优化信息。	using  join buffer(多表联查)、using filesort(排序)和 using temporary(使用临时表)    需要考虑优化。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/canot/article/details/104920558">实例分析</a>,Using temporary<strong>无论是基于内存，还是基于硬盘。构建临时表的过程是比较耗时的一个操作</strong></p>
+<p>Using filesort就不用说了，没有走索引导致的。重点来看Using temporary。为何会产生临时表。</p>
+<p>mysql它以表中数据最小的一张表作为驱动表(也就是基表)，而另一张表就叫做非驱动表，首先处理驱动表中每一行符合条件的数据，之后的每一行数据和非驱动表进行连接匹配操作，直到循环结束，最后合并结果、返回结果给用户。对于驱动表的字段它是可以直接排序的，然而对于非驱动表的字段排序需要通过循环查询的合并结果（临时表）进行排序，因此，order by o.order_time 时，就先产生了 using temporary（使用临时表）。</p>
+<p>前面我们知道 order_payment 的数据量只有11w，那么理所当然的order_payment是驱动表。所以，为了避免 using temporary，就必须使用order作为驱动表，这个时候<strong>STRAIGHT_JOIN</strong>关键字就来了。强指定驱动表</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">explain</span> <span class="token keyword">select</span> o<span class="token punctuation">.</span>id<span class="token punctuation">,</span> op<span class="token punctuation">.</span>money 
+<span class="token keyword">from</span> <span class="token punctuation">`</span><span class="token keyword">order</span><span class="token punctuation">`</span> o straight_join order_payment op <span class="token keyword">on</span> o<span class="token punctuation">.</span>id <span class="token operator">=</span> op<span class="token punctuation">.</span>order_id 
+<span class="token keyword">where</span> o<span class="token punctuation">.</span>order_status <span class="token operator">=</span> <span class="token string">'4'</span> <span class="token keyword">order</span> <span class="token keyword">by</span> o<span class="token punctuation">.</span>order_time <span class="token keyword">DESC</span><span class="token punctuation">;</span>
+</code></pre>
+<p>分析结果，你会发现Using temporary 已经消失了。</p>
+<p>最好解决掉Using filesort就很简单了，只需要给order_time增加索引就好了。</p>
+<p>但是注意，在这个查询场景下，不能只对order_time一个字段增加索引，这样是避免不了 Using filesort的。因为innerDB索引的特性，B TREE 树的叶子节点存储的是索引列数据和主键ID。当只有一个order_time索引时，因为还有查询条件order_status在，所以无法使用到该索引</p>
+<p>最佳索引方案</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">index</span> i_order_status_time <span class="token keyword">on</span> <span class="token punctuation">`</span><span class="token keyword">order</span><span class="token punctuation">`</span><span class="token punctuation">(</span><span class="token punctuation">`</span>order_status<span class="token punctuation">`</span><span class="token punctuation">,</span><span class="token punctuation">`</span>order_time<span class="token punctuation">`</span><span class="token punctuation">)</span>
+</code></pre>
+<p>这样B+ TREE树的叶子节点存储的会是索引列数据包含（order_status和order_time）和主键ID。该索引既能排序又能走查询。在上述条件查询中做到最佳性能。<br>当不能避免建立临时表时，要把表变得尽量小一点。</p>
+<p>原来的sql: 用t表直接和a表join</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> 
+<span class="token number">a</span><span class="token punctuation">.</span>project<span class="token punctuation">,</span>
+<span class="token number">a</span><span class="token punctuation">.</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span> <span class="token punctuation">,</span>
+<span class="token number">a</span><span class="token punctuation">.</span>phone_number <span class="token punctuation">,</span>
+<span class="token number">a</span><span class="token punctuation">.</span>email <span class="token punctuation">,</span>
+<span class="token function">SUM</span><span class="token punctuation">(</span><span class="token keyword">CASE</span> <span class="token keyword">WHEN</span> document_type <span class="token operator">=</span><span class="token number">9</span> <span class="token keyword">THEN</span> <span class="token number">1</span> <span class="token keyword">ELSE</span> <span class="token number">0</span> <span class="token keyword">END</span><span class="token punctuation">)</span> <span class="token string">'下载量'</span>
+<span class="token keyword">from</span> download t 
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> account <span class="token number">a</span> <span class="token keyword">ON</span> substring_index<span class="token punctuation">(</span>t<span class="token punctuation">.</span>user_id<span class="token punctuation">,</span><span class="token string">'_CC'</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">a</span><span class="token punctuation">.</span>email 
+<span class="token keyword">where</span> <span class="token number">a</span><span class="token punctuation">.</span><span class="token keyword">type</span><span class="token operator">=</span><span class="token number">1</span> <span class="token operator">and</span> t<span class="token punctuation">.</span>document_type <span class="token operator">=</span><span class="token number">9</span> 
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> t<span class="token punctuation">.</span>school_id<span class="token punctuation">,</span>t<span class="token punctuation">.</span>user_id<span class="token punctuation">;</span>
+</code></pre>
+<p>优化后：在内联操作前，借助子查询的方式，缩小连接表t的大小</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> 
+<span class="token number">a</span><span class="token punctuation">.</span>project<span class="token punctuation">,</span>
+<span class="token number">a</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+<span class="token number">a</span><span class="token punctuation">.</span>phone_number<span class="token punctuation">,</span>
+<span class="token number">a</span><span class="token punctuation">.</span>email<span class="token punctuation">,</span>
+tt<span class="token punctuation">.</span>jc <span class="token string">'下载量'</span>
+<span class="token keyword">from</span> 
+<span class="token punctuation">(</span><span class="token keyword">SELECT</span> school_id<span class="token punctuation">,</span>user_id<span class="token punctuation">,</span><span class="token punctuation">`</span>subject<span class="token punctuation">`</span><span class="token punctuation">,</span><span class="token function">SUM</span><span class="token punctuation">(</span><span class="token keyword">CASE</span> <span class="token keyword">WHEN</span> document_type <span class="token operator">=</span><span class="token number">9</span> <span class="token keyword">THEN</span> <span class="token number">1</span> <span class="token keyword">ELSE</span> <span class="token number">0</span> <span class="token keyword">END</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> jc <span class="token keyword">FROM</span> download t <span class="token keyword">WHERE</span> t<span class="token punctuation">.</span>document_type <span class="token operator">=</span><span class="token number">9</span> <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> t<span class="token punctuation">.</span>school_id<span class="token punctuation">,</span>t<span class="token punctuation">.</span>user_id<span class="token punctuation">)</span> tt
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> account <span class="token number">a</span> <span class="token keyword">ON</span> substring_index<span class="token punctuation">(</span>tt<span class="token punctuation">.</span>user_id<span class="token punctuation">,</span><span class="token string">'_CC'</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token number">a</span><span class="token punctuation">.</span>email 
+<span class="token keyword">where</span> <span class="token number">a</span><span class="token punctuation">.</span><span class="token keyword">type</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="单表优化"><a href="#单表优化" class="headerlink" title="单表优化"></a>单表优化</h3><ol>
+<li>不在索引列上做任何操作（<strong>计算、函数、(自动or手动)类型转换</strong>），会导致索引失效而转向全表扫描</li>
+<li><strong>like以通配符开头</strong>(‘%abc…’)mysql索引失效会变成全表扫描的操作</li>
+<li>mysql 在使用**不等于(!&#x3D;或者&lt;&gt;)**的时候无法使用索引会导致全表扫描</li>
+<li><strong>is not null</strong> 也无法使用索引，但是is null是可以使用索引的</li>
+<li><strong>字符串不加单引号</strong>索引失效</li>
+<li>全值匹配我最爱</li>
+<li>符合最左原则：不跳过索引中的列。</li>
+<li>如果where条件中是OR关系，加索引不起作用</li>
+<li>存储引擎不能使用索引中范围条件右边的列</li>
+</ol>
+<h2 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h2><p>驱动表的数据一定要全查。</p>
+<p>对于下面3个SQL</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> class <span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> book <span class="token keyword">ON</span> class<span class="token punctuation">.</span>card <span class="token operator">=</span> book<span class="token punctuation">.</span>card<span class="token punctuation">;</span>
+
+<span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> class <span class="token keyword">RIGHT</span> <span class="token keyword">JOIN</span> book <span class="token keyword">ON</span> class<span class="token punctuation">.</span>card <span class="token operator">=</span> book<span class="token punctuation">.</span>card<span class="token punctuation">;</span>
+
+<span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> class <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> book <span class="token keyword">ON</span> class<span class="token punctuation">.</span>card <span class="token operator">=</span> book<span class="token punctuation">.</span>card<span class="token punctuation">;</span>
+</code></pre>
+<p>如果我对Book创建了索引。</p>
+<p>第一条。class作为驱动表要全查，book有索引，查的很快。 16*1</p>
+<p>第二条。book作为驱动表要全查，没有被优化.  20*16</p>
+<p>第三条。inner join会自动选择记录少的作为驱动表。 class为驱动表， 16*1</p>
+<p><strong>综上，肯定是把20行变为1行好，所以应该是大表创建索引，然后将其作为被驱动表(小表驱动大表)。</strong></p>
+<h2 id="子查询优化"><a href="#子查询优化" class="headerlink" title="子查询优化"></a>子查询优化</h2><p>尽量不要使用not in  或者 not exists</p>
+<p>尽量不要使用子查询</p>
+<h2 id="排序优化"><a href="#排序优化" class="headerlink" title="排序优化"></a>排序优化</h2><p>以下三种情况不走索引：</p>
+<ol>
+<li>无过滤，不索引</li>
+<li>顺序错，不索引</li>
+<li>方向反，不索引</li>
+</ol>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">index</span> idx_age_deptid_name <span class="token keyword">on</span> emp <span class="token punctuation">(</span>age<span class="token punctuation">,</span>deptid<span class="token punctuation">,</span>name<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 下面没有where或limit，属于无过滤，则不会走索引。</span>
+<span class="token keyword">explain</span>  <span class="token keyword">select</span> SQL_NO_CACHE <span class="token operator">*</span> <span class="token keyword">from</span> emp <span class="token keyword">order</span> <span class="token keyword">by</span> age<span class="token punctuation">,</span>deptid<span class="token punctuation">;</span> 
+<span class="token comment" spellcheck="true"># 下面这种会走索引</span>
+<span class="token keyword">explain</span>  <span class="token keyword">select</span> SQL_NO_CACHE <span class="token operator">*</span> <span class="token keyword">from</span> emp <span class="token keyword">order</span> <span class="token keyword">by</span> age<span class="token punctuation">,</span>deptid <span class="token keyword">limit</span> <span class="token number">10</span><span class="token punctuation">;</span> 
+<span class="token keyword">explain</span>  <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> emp <span class="token keyword">where</span> age<span class="token operator">=</span><span class="token number">45</span> <span class="token keyword">order</span> <span class="token keyword">by</span> deptid<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true"># 顺序错，不索引</span>
+<span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> emp <span class="token keyword">where</span> age<span class="token operator">=</span><span class="token number">45</span> <span class="token keyword">order</span> <span class="token keyword">by</span>  deptid <span class="token keyword">desc</span><span class="token punctuation">,</span> name <span class="token keyword">desc</span> <span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true"># 方向反 不索引</span>
+<span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> emp <span class="token keyword">where</span> age<span class="token operator">=</span><span class="token number">45</span> <span class="token keyword">order</span> <span class="token keyword">by</span>  deptid <span class="token keyword">asc</span><span class="token punctuation">,</span> name <span class="token keyword">desc</span> <span class="token punctuation">;</span>
+</code></pre>
+<h3 id="filesort算法"><a href="#filesort算法" class="headerlink" title="filesort算法"></a>filesort算法</h3><p>如果不在索引列上，filesort有两种算法：mysql就要启动双路排序和单路排序</p>
+<p>MySQL在4.1版本之前是双路排序。<strong>从磁盘取排序字段，再buffer进行排序，再从磁盘取其他字段</strong>。</p>
+<p>在MySQL4.1之后，出现了第二种改进的算法，就是单路排序。</p>
+<p><strong>从磁盘读取查询需要的所有列</strong>，按照order by列在buffer对它们进行排序，然后扫描排序后的列表进行输出，它的效率更快一些，避免了第二次读取数据。并且把随机IO变成了顺序IO，但是它会<strong>使用更多的空间</strong>，因为它把每一行都保存在内存中了。</p>
+<p><strong>结论及引申出的问题</strong>：由于单路是后出的，总体而言好过双路。</p>
+<p>但可能取出的数据的总大小超出了sort_buffer的容量，这样就会导致多次IO，就得不偿失了。</p>
+<p>针对于filesort算法的优化策略：</p>
+<ol>
+<li>Order by时select * 是一个大忌，只Query需要的字段， 这点非常重要。在这里的影响是</li>
+</ol>
+<ul>
+<li>当Query的字段大小总和小于max_length_for_sort_data 而且排序字段不是 TEXT|BLOB 类型时，会用改进后的算法——单路排序， 否则用老算法——多路排序。</li>
+<li>两种算法的数据都有可能超出sort_buffer的容量，超出之后，会创建tmp文件进行合并排序，导致多次I&#x2F;O，但是用单路排序算法的风险会更大一些，所以要提高sort_buffer_size。</li>
+</ul>
+<ol start="2">
+<li>尝试提高 sort_buffer_size</li>
+</ol>
+<p>  不管用哪种算法，提高这个参数都会提高效率，当然，要根据系统的能力去提高，因为这个参数是针对每个进程的  1M-8M之间调整</p>
+<ol start="3">
+<li>尝试提高 max_length_for_sort_data</li>
+</ol>
+<p>  提高这个参数， 会增加用改进算法的概率。但是如果设的太高，数据总容量超出sort_buffer_size的概率就增大，明显症状是高的磁盘I&#x2F;O活动和低的处理器使用率。1024-8192之间调整</p>
+<h2 id="分组优化"><a href="#分组优化" class="headerlink" title="分组优化"></a>分组优化</h2><p>group by 使用索引的原则几乎跟order by一致 ，唯一区别是<strong>groupby 即使没有过滤条件用到索引，也可以直接使用索引。</strong></p>
+<ul>
+<li><p>group by 先排序再分组，遵照索引建的最佳左前缀法则</p>
+</li>
+<li><p>当无法使用索引列，增大max_length_for_sort_data和sort_buffer_size参数的设置</p>
+</li>
+<li><p>where高于having, 能写在where限定的条件就不要写在having中了</p>
+</li>
+</ul>
+<p>只要对分组列创建索引即可</p>
+<h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h2><p>简单说就是，select 到 from 之间查询的列 &lt;&#x3D;使用的索引列+主键</p>
+<p>索引包含了查询正在查找的数据</p>
+<h2 id="sql实战"><a href="#sql实战" class="headerlink" title="sql实战"></a>sql实战</h2><p>阿里开发手册：</p>
+<pre><code>【强制】在 varchar 字段上建立索引时，必须指定索引长度，没必要对全字段建立索引，根据实际文本区
+分度决定索引长度。
+说明：索引的长度与区分度是一对矛盾体，一般对字符串类型数据，长度为 20 的索引，区分度会高达 90%以上，可以使用 count(distinct left(列名，索引长度)) / count(*) 的区分度来确定。
+</code></pre>
+<h2 id="时间日期处理"><a href="#时间日期处理" class="headerlink" title="时间日期处理"></a>时间日期处理</h2><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">,</span> <span class="token string">'%Y年%m月%d日 %H时%i分%s秒'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> ucenter_member <span class="token keyword">WHERE</span> <span class="token keyword">DATE</span><span class="token punctuation">(</span>gmt_create<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">'2019-01-02'</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> ucenter_member <span class="token keyword">WHERE</span> DATE_FORMAT<span class="token punctuation">(</span>gmt_create <span class="token punctuation">,</span> <span class="token string">'%Y-%m-%d'</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">'2019-01-02'</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h2><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t_score<span class="token punctuation">;</span>
+</code></pre>
+<p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/image-20211107083854828.png"></strong></p>
+<p>需求：<strong>行转列显示学生直观显示学生各科成绩</strong></p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> stuid <span class="token punctuation">,</span>
+<span class="token function">SUM</span><span class="token punctuation">(</span><span class="token keyword">IF</span><span class="token punctuation">(</span>SUBJECT <span class="token operator">=</span> <span class="token string">'Java基础'</span> <span class="token punctuation">,</span> score <span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token string">'Java基础'</span><span class="token punctuation">,</span>
+<span class="token function">SUM</span><span class="token punctuation">(</span><span class="token keyword">IF</span><span class="token punctuation">(</span>SUBJECT <span class="token operator">=</span> <span class="token string">'mysql'</span> <span class="token punctuation">,</span> score <span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token string">'mysql'</span><span class="token punctuation">,</span>
+<span class="token function">SUM</span><span class="token punctuation">(</span><span class="token keyword">IF</span><span class="token punctuation">(</span>SUBJECT <span class="token operator">=</span> <span class="token string">'Javaweb'</span> <span class="token punctuation">,</span> score <span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token string">'Javaweb'</span><span class="token punctuation">,</span>
+<span class="token function">SUM</span><span class="token punctuation">(</span><span class="token keyword">IF</span><span class="token punctuation">(</span>SUBJECT <span class="token operator">=</span> <span class="token string">'ssm'</span> <span class="token punctuation">,</span> score <span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token string">'ssm'</span>
+<span class="token keyword">FROM</span> t_score
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> stuid<span class="token punctuation">;</span>
+</code></pre>
+<p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/image-20211107084740186.png"></strong></p>
+<h2 id="删除重复行"><a href="#删除重复行" class="headerlink" title="删除重复行"></a>删除重复行</h2><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t_score <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> stuid<span class="token punctuation">,</span>SUBJECT<span class="token punctuation">;</span>
+</code></pre>
+<p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/image-20211107085451638.png"></strong></p>
+<p>需求：每个学生同一学科有多个成绩的，保留分数高的</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> t_score <span class="token keyword">WHERE</span> id <span class="token operator">NOT</span> <span class="token operator">IN</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> tmp<span class="token punctuation">.</span>id <span class="token keyword">FROM</span>
+        <span class="token punctuation">(</span><span class="token keyword">SELECT</span> id <span class="token keyword">FROM</span> t_score t1 <span class="token keyword">JOIN</span> <span class="token punctuation">(</span>
+            <span class="token keyword">SELECT</span> stuid <span class="token punctuation">,</span> SUBJECT <span class="token punctuation">,</span> <span class="token function">MAX</span><span class="token punctuation">(</span>score<span class="token punctuation">)</span> m_score 
+            <span class="token keyword">FROM</span> t_score 
+            <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> stuid <span class="token punctuation">,</span> SUBJECT<span class="token punctuation">)</span> t2
+        <span class="token keyword">ON</span> t1<span class="token punctuation">.</span><span class="token punctuation">`</span>stuid<span class="token punctuation">`</span> <span class="token operator">=</span> t2<span class="token punctuation">.</span>stuid 
+        <span class="token operator">AND</span> t1<span class="token punctuation">.</span><span class="token punctuation">`</span>subject<span class="token punctuation">`</span> <span class="token operator">=</span> t2<span class="token punctuation">.</span>subject 
+        <span class="token operator">AND</span> t1<span class="token punctuation">.</span><span class="token punctuation">`</span>score<span class="token punctuation">`</span> <span class="token operator">=</span> t2<span class="token punctuation">.</span>m_score<span class="token punctuation">)</span>tmp
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="窗口函数"><a href="#窗口函数" class="headerlink" title="窗口函数"></a>窗口函数</h2><p>mysql8的新特性。窗口函数感觉就是mysql自己已经写好的一些函数，可以供你调用。</p>
+<p>按照功能划分，可以把MySQL支持的窗口函数分为如下几类:</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># 序号函数：没有参数</span>
+row_number<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span>rank<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">/</span>dense_rank<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 分布函数：没有参数</span>
+percent_rank<span class="token punctuation">(</span><span class="token punctuation">)</span>：所在行数<span class="token operator">/</span>总行数的百分比
+cume_dist<span class="token punctuation">(</span><span class="token punctuation">)</span>：累积分布值
+<span class="token comment" spellcheck="true"># 前后函数:参数有3个(expr：列名；n：偏移量；default_value：超出记录窗口的默认值)</span>
+lag<span class="token punctuation">(</span><span class="token punctuation">)</span>: 从当前行开始往前获取第N行，缺失则使用默认值
+lead<span class="token punctuation">(</span><span class="token punctuation">)</span>:从当前行开始往后获取第N行，缺失则使用默认值
+<span class="token comment" spellcheck="true"># 头尾函数： 参数1个(expr：列名)</span>
+first_value<span class="token punctuation">(</span><span class="token punctuation">)</span>:返回分组内截止当前行的第一个值
+last_value<span class="token punctuation">(</span><span class="token punctuation">)</span>:返回分组内截止当前行的最后一个值
+<span class="token comment" spellcheck="true"># 其他函数: </span>
+<span class="token comment" spellcheck="true">-- 参数有2个(expr：列名；n：偏移量)</span>
+nth_value<span class="token punctuation">(</span><span class="token punctuation">)</span>:返回分组内截止当前行的第N行
+<span class="token comment" spellcheck="true">-- 参数有1个(expr：列名；)</span>
+ntile<span class="token punctuation">(</span><span class="token punctuation">)</span>:返回当前行在分组内的分桶号
+<span class="token comment" spellcheck="true">/*
+  语法结构：
+    window_function ( expr ) OVER (
+    PARTITION BY ...
+    ORDER BY ...
+    )
+
+其中，window_function 是窗口函数的名称；
+expr 是参数，有些函数不需要参数；OVER子句包含三个选项：
+1、分区（PARTITION BY）
+PARTITION BY选项用于将数据行拆分成多个分区（组），它的作用类似于GROUP BY分组。如果省略了 PARTITION BY，所有的数据作为一个组进行计算
+2、排序（ORDER BY）
+OVER 子句中的ORDER BY选项用于指定分区内的排序方式，与 ORDER BY 子句的作用类似
+
+OVER后面括号中的内容可以抽取：
+     WINDOW w AS ( 
+         PARTITION BY ...
+        ORDER BY ...
+    )
+*/</span>
+</code></pre>
+<p>测试窗口函数的使用：</p>
+<pre class=" language-mysql"><code class="language-mysql">-- 1、查询员工信息和他部门年龄升序排列前一名员工的年龄
+SELECT * , lead(age , 1,-1) over(
+        PARTITION BY deptId
+    ) last_emp_age 
+FROM t_emp;
+
+-- 2、查询每个员工在自己部门由大到小的年龄排名
+select * ,
+    row_number() over(PARTITION BY deptid ORDER BY age DESC) as row_num,
+from t_emp;
+# 或者
+SELECT * ,
+    row_number() over w AS row_num # w代表使用的
+FROM t_emp
+WINDOW w AS(PARTITION BY deptid ORDER BY age DESC);
+</code></pre>
+<p>接下来，我们来实现这么一个需求：查询员工表中每个部门的的年龄前两名</p>
+<pre class=" language-mysql"><code class="language-mysql">-- 查询每个员工所在部门的其他员工 如果年龄大于等于自己的小于等于两个，则保留自己的数据
+SELECT * FROM t_emp t1
+WHERE (SELECT COUNT(1) FROM t_emp t2 WHERE t2.`deptId`=t1.`deptId` AND t2.age>=t1.`age`)<=2
+ORDER BY t1.`deptId` DESC, t1.age DESC;
+</code></pre>
+<p>上面的SQL是不是不好理解，接下来我们采用窗口函数看看如何<strong>优雅的实现</strong>同样的功能</p>
+<pre class=" language-mysql"><code class="language-mysql">select * from(
+  select row_number() over(partition by deptid order by age desc) as row_num,
+  id,name,sal,deptid
+  from t_emp
+) t where row_num <= 2
+</code></pre>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>视图是将一段查询sql封装为一个虚拟的表。 这个虚拟表只保存了sql逻辑，不会保存任何查询结果。他和临时表是不一样的。</p>
+<p>所以如果你创建了视图，我又新增了一条数据，然后我查询视图，我是可以查出来新数据的。</p>
+<p><strong>主要作用:</strong></p>
+<ul>
+<li>封装复杂sql语句，提高复用性</li>
+<li>逻辑放在数据库上面，更新不需要发布程序，面对频繁的需求变更更灵活</li>
+</ul>
+<p><strong>常用场景:</strong></p>
+<ul>
+<li>共用查询结果</li>
+<li>报表</li>
+</ul>
+<p><strong>语法:</strong></p>
+<p>创建</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> view_name <span class="token keyword">AS</span> <span class="token keyword">SELECT</span> column_name<span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token keyword">FROM</span> table_name  <span class="token keyword">WHERE</span> condition  
+</code></pre>
+<p>使用</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">#查询</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> view_name 
+<span class="token comment" spellcheck="true">#更新</span>
+<span class="token keyword">CREATE</span> <span class="token operator">OR</span> REPLACE <span class="token keyword">VIEW</span> view_name 
+<span class="token keyword">AS</span> <span class="token keyword">SELECT</span> column_name<span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token keyword">FROM</span> table_name <span class="token keyword">WHERE</span> condition
+
+<span class="token comment" spellcheck="true">#删除</span>
+<span class="token keyword">DROP</span> <span class="token keyword">VIEW</span> view_name<span class="token punctuation">;</span>
+</code></pre>
+<h2 id="MySQL锁"><a href="#MySQL锁" class="headerlink" title="MySQL锁"></a>MySQL锁</h2><p><strong>mysql支持读锁和写锁(都属于悲观锁)</strong></p>
+<p>读锁（共享锁，S锁(<strong>S</strong>hared)）：针对同一份数据，多个读操作可以同时进行而不会互相影响</p>
+<p>写锁（排它锁，X锁(e<strong>X</strong>clusive)）：当前写操作没有完成前，它会阻断其他写锁和读锁</p>
+<p>从对数据操作的粒度分，分为表锁和行锁</p>
+<h3 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h3><p>每次操作锁住整张表。开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高，并发度最低；</p>
+<p>一般用在整表数据迁移的场景。</p>
+<pre><code>-- 加锁
+lock table 表1 read(write),表2 read(write);
+-- 查看表锁
+show open tables;
+-- 删除本次session的表锁
+unlock tables;
+</code></pre>
+<p>案例：一个session添加A表的写锁，另一个session添加B表的写锁，第一个session测试A、B表数据读取</p>
+<h3 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h3><p>每次操作锁住一行数据，锁定粒度最小，发生锁冲突的概率最低，并发能力强。但是开销大、加锁慢、可能会出现死锁。InnoDB存储引擎在执行查询语句SELECT时(非串行隔离级别)，不会加锁。但是update、insert、delete操作会加行锁。</p>
+<p><strong>查看行锁：</strong></p>
+<pre><code>show status like &#39;innodb_row_lock%&#39;;
+</code></pre>
+<p>对各个状态量的说明如下：</p>
+<pre><code>Innodb_row_lock_current_waits: 当前正在等待锁定的数量
+Innodb_row_lock_time: 从系统启动到现在锁定总时间长度
+Innodb_row_lock_time_avg: 每次等待所花平均时间(*)
+Innodb_row_lock_time_max：从系统启动到现在等待最长的一次所花时间Innodb_row_lock_waits:系统启动后到现在总共等待的次数(*)
+Innodb_row_lock_waits: 等待总次数(*)
+</code></pre>
+<p><strong>测试行锁：</strong></p>
+<pre><code>Session_1执行：select * from account where id=1 for update;
+Session_2执行：select * from account where id=2 for update;
+Session_1执行：select * from account where id=2 for update;
+Session_2执行：select * from account where id=1 for update;
+-- 查看近期死锁日志信息：
+show engine innodb status\G;
+</code></pre>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>尽可能让所有数据检索都通过索引来完成，避免无索引行锁升级为表锁</p>
+<p>合理设计索引，尽量缩小锁的范围</p>
+<p>尽量控制事务大小，减少锁定资源量和时间长度，涉及事务加锁的sql尽量放在事务最后执行</p>
+<p>尽可能低级别事务隔离</p>
+<h2 id="主从集群"><a href="#主从集群" class="headerlink" title="主从集群"></a>主从集群</h2><p>mycat 无侵入，但是配置修改繁琐。逐渐被shardingsphere取代。详见<a target="_blank" rel="noopener" href="https://blog.csdn.net/moshowgame/article/details/123586511">文章</a></p>
+
                 
             </div>
             <hr/>
