@@ -29,8 +29,8 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="爱敲代码の鱼儿" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+<meta name="generator" content="Hexo 6.3.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/atom.xml" title="爱敲代码の鱼儿" type="application/atom+xml">
+</head>
 
 
 
@@ -685,6 +685,7 @@
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230830111616821.png"></p>
 <p>一旦锁发生了竞争，都会升级为重量级锁。  锁只能升级，不能降级。</p>
 <h3 id="JMM-Java内存模型"><a href="#JMM-Java内存模型" class="headerlink" title="JMM(Java内存模型)"></a>JMM(Java内存模型)</h3><p>Java内存模型(Java Memory Model)描述了Java程序中各种变量(线程共享变量)的访问规则，以及在JVM中将变量存储到内存和从内存中读取变量这样的底层细节。</p>
+<p>Java内存模型，就是为了屏蔽系统和硬件的差异，让一套代码在不同平台下能到达相同的访问结果。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230504181638237.png"></p>
 <p>特点：</p>
 <ol>
@@ -705,6 +706,27 @@
 <p>一个当前内存值V、旧的预期值A、即将更新的值B，当且仅当旧的预期值A和内存值V相同时，将内存值修改为B并返回true，否则什么都不做，并返回false。如果CAS操作失败，通过自旋的方式等待并再次尝试，直到成功</p>
 </blockquote>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230830134828544.png"></p>
+<p>缺点：</p>
+<p><strong>开销大</strong>：在并发量比较高的情况下，如果反复尝试更新某个变量，却又一直更新不成功，会给CPU带来较大的压力</p>
+<p><strong>ABA问题</strong>：当变量从A修改为B再修改回A时，变量值等于期望值A，但是无法判断是否修改，CAS操作在ABA修改后依然成功。 </p>
+<p><strong>不能保证代码块的原子性</strong>：CAS机制所保证的只是一个变量的原子性操作，而不能保证整个代码块的原子性。</p>
+<p>ABA问题的解决:</p>
+<p>AtomicStampedReference：版本号原子引用</p>
+<p>AtomicStampedReference在构建的时候需要一个类似于版本号的int类型变量stamped，每一次针对共享数据的变化都会导致该 stamped 的变化(stamped 需要应用程序自身去负责，AtomicStampedReference并不提供，一般使用时间戳作为版本号)</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    AtomicStampedReference<span class="token operator">&lt;</span>String<span class="token operator">></span> r <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AtomicStampedReference</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"修改前版本号："</span><span class="token operator">+</span>r<span class="token punctuation">.</span><span class="token function">getStamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" ,值: "</span><span class="token operator">+</span> r<span class="token punctuation">.</span><span class="token function">getReference</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    r<span class="token punctuation">.</span><span class="token function">compareAndSet</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token string">"b"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"第一次修改后版本号："</span><span class="token operator">+</span>r<span class="token punctuation">.</span><span class="token function">getStamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" ,值 "</span><span class="token operator">+</span> r<span class="token punctuation">.</span><span class="token function">getReference</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    r<span class="token punctuation">.</span><span class="token function">compareAndSet</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">,</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"第二次修改后版本号："</span><span class="token operator">+</span>r<span class="token punctuation">.</span><span class="token function">getStamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" ,值 "</span><span class="token operator">+</span> r<span class="token punctuation">.</span><span class="token function">getReference</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>结果：</p>
+<pre><code>修改前版本号：1 ,值: a
+第一次修改后版本号：2 ,值 b
+第二次修改后版本号：2 ,值 b
+</code></pre>
 <h3 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>全称是 AbstractQueuedSynchronizer，是阻塞式锁和相关的同步器工具的框架，它是构建锁或者其他同步组件的基础框架</p>
 <p>AQS与Synchronized的区别</p>
 <table>
@@ -732,6 +754,7 @@
 <li>ReentrantLock      阻塞式锁</li>
 <li>Semaphore        信号量</li>
 <li>CountDownLatch   倒计时锁</li>
+<li>CyclicBarrier       循环栅栏</li>
 </ul>
 <h4 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h4><ul>
 <li>在AQS中维护了一个使用了volatile修饰的state属性来表示资源的状态，0表示无锁，1表示有锁</li>

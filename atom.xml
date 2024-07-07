@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-07-03T11:55:31.862Z</updated>
+  <updated>2024-07-07T03:02:41.553Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>尚硅谷JavaEE技术之JUC&amp;&amp;JVM</title>
+    <link href="http://19shuidiph.github.io/2024/07/05/shang-huo-gu-javaee-ji-zhu-zhi-juc-jvm/"/>
+    <id>http://19shuidiph.github.io/2024/07/05/shang-huo-gu-javaee-ji-zhu-zhi-juc-jvm/</id>
+    <published>2024-07-05T12:03:27.000Z</published>
+    <updated>2024-07-07T03:02:41.553Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;尚硅谷JavaEE技术之JUC-amp-amp-JVM&quot;&gt;&lt;a href=&quot;#尚硅谷JavaEE技术之JUC-amp-amp-JVM&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://19shuidiph.github.io/categories/Java/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>尚硅谷JavaEE技术之MySQL高级</title>
@@ -449,29 +472,6 @@
     
     
     <category term="公司项目" scheme="http://19shuidiph.github.io/categories/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>项目自学记录8</title>
-    <link href="http://19shuidiph.github.io/2023/10/29/xiang-mu-zi-xue-ji-lu-8/"/>
-    <id>http://19shuidiph.github.io/2023/10/29/xiang-mu-zi-xue-ji-lu-8/</id>
-    <published>2023-10-29T13:26:15.000Z</published>
-    <updated>2023-12-11T14:34:04.425Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;项目自学记录8&quot;&gt;&lt;a href=&quot;#项目自学记录8&quot; class=&quot;headerlink&quot; title=&quot;项目自学记录8&quot;&gt;&lt;/a&gt;项目自学记录8&lt;/h1&gt;&lt;h2 id=&quot;断言的使用&quot;&gt;&lt;a href=&quot;#断言的使用&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
     
     
   </entry>
