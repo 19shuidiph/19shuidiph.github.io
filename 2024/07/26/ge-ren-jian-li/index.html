@@ -429,15 +429,6 @@
                 </div>
                 <div class="col s5 right-align">
                     
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E9%9D%A2%E8%AF%95/" class="post-category">
-                                面试
-                            </a>
-                        
-                    </div>
-                    
                 </div>
             </div>
 
@@ -445,7 +436,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-06-26
+                    2024-07-26
                 </div>
                 
 
@@ -468,8 +459,6 @@
             <div id="articleContent">
                 <h1 id="0-JavaGuide"><a href="#0-JavaGuide" class="headerlink" title="0.JavaGuide"></a>0.JavaGuide</h1><p><a target="_blank" rel="noopener" href="https://javaguide.cn/">https://javaguide.cn/</a></p>
 <p>这里面的东西也是推荐要看一看的。</p>
-<span id="more"></span>
-
 <h1 id="1-Java"><a href="#1-Java" class="headerlink" title="1.Java"></a>1.Java</h1><h2 id="ArrayList源码"><a href="#ArrayList源码" class="headerlink" title="ArrayList源码"></a>ArrayList源码</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17F411T7Ao?p=190&vd_source=6ed7f19911310aba47123ac6cc1674a0">参考资料</a></p>
 <p>1.用空参创建的集合，在底层创建一个默认长度为0的数组。</p>
 <p>2.添加第一个元素时，底层会创建一个新的长度为10的数组。</p>
@@ -634,43 +623,110 @@
 <h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>又被称为 发布 - 订阅（Publish &#x2F; Subscribe）模式, 监听器。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/dfb0e1b6e46b478ca073786f554effcc.png" alt="img"></p>
 <p>优点：解耦，可以实现广播机制。</p>
-<h1 id="4-MySQL"><a href="#4-MySQL" class="headerlink" title="4.MySQL"></a>4.MySQL</h1><h2 id="索引底层原理"><a href="#索引底层原理" class="headerlink" title="索引底层原理"></a>索引底层原理</h2><p>索引（Index）是帮助MySQL高效获取数据的数据结构.</p>
-<p>优点：查的快，降低IO成本； 通过创建唯一索引，可以保证数据的唯一性； 加速表与表之间的连接，减低分组和排序子句的时间。</p>
-<p>缺点：创建索引和维护索引要耗费时间； 索引需要占磁盘空间； 索引会降低更新表的速度。</p>
-<p>底层数据结构：B+树，很适合排序查找和范围查找。</p>
-<p>聚簇索引：所有的用户记录都存在了叶⼦节点，数据即索引，索引即数据。以主键值大小进行排序。</p>
-<p>非聚簇索引：以别的键为搜索条件时使用，回表。</p>
-<p>联合索引：可以先按C2列排序，再按C3列排序。</p>
-<p>InnoDB的B+树索引的注意事项</p>
-<p>1.根页面位置不动 2.非叶子节点目录项记录唯一 3.一个页面最少存储两条记录</p>
-<p>MyISAM索引：将数据和索引分开存储，索引树的叶子节点存的是主键值+数据记录地址</p>
-<p>MyISAM与InnoDB的对比：<br>1.InnoDB中，根据主键值对聚簇索引进行一次查询即可。而在MyISAM中，要进行一次回表。MyISAM的回表操作是十分 快速 的。</p>
-<p>2.InnoDB的数据文件本身就是索引文件，而MyISAM索引文件和数据文件是 分离的 ，索引文件仅保存数 据记录的地址。</p>
-<p>3.InnoDB的非聚簇索引data域存储相应记录 主键的值 ，而MyISAM索引记录的是 地址 。</p>
-<p>4.InnoDB要求表 必须有主键 （ MyISAM可以没有 ）。如果没有显式指定，则MySQL系统会自动选择一个 可以非空且唯一标识数据记录的列作为主键。再没有的话可以生成一个隐含字段。</p>
-<p>B+树优点：B+树查询效率更稳定（要访问到叶子节点）； B+树的查询效率更高（一般比B树更矮胖）；B+树的磁盘读写代价更低（因为内部非叶子节点存储的东西更少）</p>
-<p>B+树的存储能力如何？为何说一般查找行记录，最多只需1~3次磁盘IO？ InnoDB存储引擎中页的大小为16KB，一个int类型或者一个指针也就4个字节或者8个字节。所以一个页可以存储16KB&#x2F;(8B+8B)&#x3D;1000个键值。则深度为3的树就可以存储$10^3$×*$10^3$×$10^3$&#x3D;一亿条数据</p>
-<h2 id="Innodb存储引擎"><a href="#Innodb存储引擎" class="headerlink" title="Innodb存储引擎"></a>Innodb存储引擎</h2><p>InnoDB中页的大小默认为16KB，以页作为磁盘和内存之间交互的基本单位。</p>
+<h1 id="4-MySQL"><a href="#4-MySQL" class="headerlink" title="4.MySQL"></a>4.MySQL</h1><h2 id="MySQL基础语法"><a href="#MySQL基础语法" class="headerlink" title="MySQL基础语法"></a>MySQL基础语法</h2><h3 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/clip_image024.png"></p>
+<h3 id="MySQL-Full-join的实现"><a href="#MySQL-Full-join的实现" class="headerlink" title="MySQL Full join的实现"></a>MySQL Full join的实现</h3><p>因为MySQL不支持FULL JOIN,下面是替代方法&#x2F;</p>
+<p>1.UNION 会自动去重</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> t1 <span class="token keyword">left</span> <span class="token keyword">join</span> t2 <span class="token keyword">on</span> t1<span class="token punctuation">.</span>id <span class="token operator">=</span> t2<span class="token punctuation">.</span>id
+<span class="token keyword">union</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> t1 <span class="token keyword">right</span> <span class="token keyword">join</span> t2 <span class="token keyword">on</span> t1<span class="token punctuation">.</span>id <span class="token operator">=</span> t2<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+</code></pre>
+<p>2.UNION ALL 的方式 (<strong>取左表的全部和右表独有</strong>)</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> t1 <span class="token keyword">left</span> <span class="token keyword">join</span> t2 <span class="token keyword">on</span> t1<span class="token punctuation">.</span>id <span class="token operator">=</span> t2<span class="token punctuation">.</span>id
+<span class="token keyword">union</span> <span class="token keyword">all</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> t1 <span class="token keyword">right</span> <span class="token keyword">join</span> t2 <span class="token keyword">on</span> t1<span class="token punctuation">.</span>id <span class="token operator">=</span> t2<span class="token punctuation">.</span>id
+<span class="token keyword">where</span> t1<span class="token punctuation">.</span>id <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="sql实战"><a href="#sql实战" class="headerlink" title="sql实战"></a>sql实战</h3><p>阿里开发手册：</p>
+<pre><code>【强制】在 varchar 字段上建立索引时，必须指定索引长度，没必要对全字段建立索引，根据实际文本区
+分度决定索引长度。
+说明：索引的长度与区分度是一对矛盾体，一般对字符串类型数据，长度为 20 的索引，区分度会高达 90%以上，可以使用 count(distinct left(列名，索引长度)) / count(*) 的区分度来确定。
+</code></pre>
+<h3 id="时间日期处理"><a href="#时间日期处理" class="headerlink" title="时间日期处理"></a>时间日期处理</h3><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">,</span> <span class="token string">'%Y年%m月%d日 %H时%i分%s秒'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> ucenter_member <span class="token keyword">WHERE</span> <span class="token keyword">DATE</span><span class="token punctuation">(</span>gmt_create<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">'2019-01-02'</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> ucenter_member <span class="token keyword">WHERE</span> DATE_FORMAT<span class="token punctuation">(</span>gmt_create <span class="token punctuation">,</span> <span class="token string">'%Y-%m-%d'</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">'2019-01-02'</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h3><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t_score<span class="token punctuation">;</span>
+</code></pre>
+<p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/image-20211107083854828.png"></strong></p>
+<p>需求：<strong>行转列显示学生直观显示学生各科成绩</strong></p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> stuid <span class="token punctuation">,</span>
+<span class="token function">SUM</span><span class="token punctuation">(</span><span class="token keyword">IF</span><span class="token punctuation">(</span>SUBJECT <span class="token operator">=</span> <span class="token string">'Java基础'</span> <span class="token punctuation">,</span> score <span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token string">'Java基础'</span><span class="token punctuation">,</span>
+<span class="token function">SUM</span><span class="token punctuation">(</span><span class="token keyword">IF</span><span class="token punctuation">(</span>SUBJECT <span class="token operator">=</span> <span class="token string">'mysql'</span> <span class="token punctuation">,</span> score <span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token string">'mysql'</span><span class="token punctuation">,</span>
+<span class="token function">SUM</span><span class="token punctuation">(</span><span class="token keyword">IF</span><span class="token punctuation">(</span>SUBJECT <span class="token operator">=</span> <span class="token string">'Javaweb'</span> <span class="token punctuation">,</span> score <span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token string">'Javaweb'</span><span class="token punctuation">,</span>
+<span class="token function">SUM</span><span class="token punctuation">(</span><span class="token keyword">IF</span><span class="token punctuation">(</span>SUBJECT <span class="token operator">=</span> <span class="token string">'ssm'</span> <span class="token punctuation">,</span> score <span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token string">'ssm'</span>
+<span class="token keyword">FROM</span> t_score
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> stuid<span class="token punctuation">;</span>
+</code></pre>
+<p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/image-20211107084740186.png"></strong></p>
+<h3 id="删除重复行"><a href="#删除重复行" class="headerlink" title="删除重复行"></a>删除重复行</h3><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t_score <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> stuid<span class="token punctuation">,</span>SUBJECT<span class="token punctuation">;</span>
+</code></pre>
+<p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/image-20211107085451638.png"></strong></p>
+<p>需求：每个学生同一学科有多个成绩的，保留分数高的</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> t_score <span class="token keyword">WHERE</span> id <span class="token operator">NOT</span> <span class="token operator">IN</span><span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> tmp<span class="token punctuation">.</span>id <span class="token keyword">FROM</span>
+        <span class="token punctuation">(</span><span class="token keyword">SELECT</span> id <span class="token keyword">FROM</span> t_score t1 <span class="token keyword">JOIN</span> <span class="token punctuation">(</span>
+            <span class="token keyword">SELECT</span> stuid <span class="token punctuation">,</span> SUBJECT <span class="token punctuation">,</span> <span class="token function">MAX</span><span class="token punctuation">(</span>score<span class="token punctuation">)</span> m_score 
+            <span class="token keyword">FROM</span> t_score 
+            <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> stuid <span class="token punctuation">,</span> SUBJECT<span class="token punctuation">)</span> t2
+        <span class="token keyword">ON</span> t1<span class="token punctuation">.</span><span class="token punctuation">`</span>stuid<span class="token punctuation">`</span> <span class="token operator">=</span> t2<span class="token punctuation">.</span>stuid 
+        <span class="token operator">AND</span> t1<span class="token punctuation">.</span><span class="token punctuation">`</span>subject<span class="token punctuation">`</span> <span class="token operator">=</span> t2<span class="token punctuation">.</span>subject 
+        <span class="token operator">AND</span> t1<span class="token punctuation">.</span><span class="token punctuation">`</span>score<span class="token punctuation">`</span> <span class="token operator">=</span> t2<span class="token punctuation">.</span>m_score<span class="token punctuation">)</span>tmp
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><h3 id="存储引擎对比"><a href="#存储引擎对比" class="headerlink" title="存储引擎对比"></a>存储引擎对比</h3><p>MySQL 5.5.5 之前，MyISAM 是 MySQL 的默认存储引擎。5.5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。</p>
+<p>只有 InnoDB 支持事务。</p>
+<p><strong>存储引擎是基于表的，而不是数据库。</strong>我们可以为不同的数据库的表配置不同的存储引擎</p>
+<p>MyISAM 的性能还行，各种特性也还不错（比如全文索引、压缩、空间函数等）。但是，MyISAM 不支持事务和行级锁，而且最大的缺陷就是崩溃后无法安全恢复。</p>
+<p>重点区分还是<font color= 'red'>行级锁，事务，外键，MVCC，崩溃恢复，读性能，写性能</font></p>
+<ol>
+<li>InnoDB 支持<strong>行级别的锁</strong>粒度，MyISAM 不支持，只支持表级别的锁粒度。</li>
+<li>MyISAM 不提供<strong>事务</strong>支持。InnoDB 提供事务支持，实现了 SQL 标准定义了四个隔离级别。</li>
+<li>MyISAM 不支持<strong>外键</strong>，而 InnoDB 支持。</li>
+<li>MyISAM 不支持 <strong>MVCC</strong>，而 InnoDB 支持。</li>
+<li>虽然 MyISAM 引擎和 InnoDB 引擎都是使用 B+Tree 作为索引结构，但是两者的实现方式不太一样。</li>
+<li>MyISAM 不支持数据库异常<strong>崩溃后的安全恢复</strong>，而 InnoDB 支持。依赖于redo日志。</li>
+<li>InnoDB 的<strong>性能</strong>比 MyISAM 更强大。随着 CPU 核数的增加，InnoDB 的读写能力呈线性增长。MyISAM 因为读写不能并发，它的处理能力跟核数没关系。如果有更新和删除操作，应该首先考虑InnoDB.</li>
+</ol>
+<p>还有一些其他的存储引擎，各有特点。</p>
+<p>Archive引擎：用于数据存档，只支持INSERT和SELECT操作</p>
+<p>Blackhole引擎：丢弃写操作，读操作会返回空内容</p>
+<p>CSV引擎：存储数据时，以逗号分隔各个数据项</p>
+<p>Memory引擎：置于内存的表</p>
+<p>Federated引擎：访问远程表</p>
+<p>Merge引擎：管理多个MyISAM表构成的集合</p>
+<p>NDB引擎：Mysql集群专用存储引擎</p>
+<h3 id="页，区，段，表"><a href="#页，区，段，表" class="headerlink" title="页，区，段，表"></a>页，区，段，表</h3><p>InnoDB中页的大小默认为16KB，以页作为磁盘和内存之间交互的基本单位。</p>
+<p>查看mysql文件页大小（16K）：</p>
+<pre class=" language-mysql"><code class="language-mysql">SHOW GLOBAL STATUS LIKE '%page_size%'
+</code></pre>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/image-20230401080620770.png"><br><strong>为什么mysql页文件默认16K？</strong><br>假设我们一行数据大小为1K，那么一页就能存16条数据，也就是一个叶子节点能存16条数据；再看非叶子节点，假设主键ID为bigint类型，那么长度为8B，指针大小在Innodb源码中为6B，一共就是14B，那么一页里就可以存储16K&#x2F;14B&#x3D;1170个(主键+指针)</p>
+<pre><code>一颗高度为2的B+树能存储的数据为:1170*16=18720条，
+一颗高度为3的B+树能存储的数据为：1170*1170*16=21902400（千万级）
+</code></pre>
 <p>因为每次是将这个记录所在的页加载到内存中进行读取。一个页中有上千条记录。所以普通索引和唯一索引的性能差异不大。</p>
 <p>引入 区 的概念，一个区就是在物理位置上连续的 64个页。因为InnoDB 中的页大小默认是16KB，所以 一个区的大小是64*16KB&#x3D; 1MB 。</p>
 <p>InnoDB对 B+树的 叶子节点 和 非叶子节点 进行了区别对待，也就是说叶子节点有自己独有的区，非叶子节点也有自 己独有的区。存放叶子节点的区的集合就算是一个 段( segment) ，存放非叶子节点的区的集合也算是 一个段。</p>
 <p>段其实不对应表空间中某一个连续的物理区域，而是一个逻辑上的概念，由若干个零散的页面以及一些 完整的区组成。</p>
 <p>为了考虑以完整的区为单位分配给某个段对于 数据量较小 的表太浪费存储空间的这种情况，InnoDB提 出了一个 碎片(fragment)区 的概念。在一个碎片区中，并不是所有的页都是为了存储同一个段的数据 而存在的，而是碎片区中的页可以用于不同的目的，比如有些页用于段A，有些页用于段B，有些页甚至 哪个段都不属于。 碎片区直属于表空间 ，并不属于任何一个段。</p>
 <p>表空间可以看做是InnoDB存储引擎逻辑结构的最高层，所有的数据都存放在表空间中。 表空间是一个 逻辑容器 ，表空间存储的对象是段，在一个表空间中可以有一个或多个段，但是一个段只 能属于一个表空间。</p>
-<h2 id="性能分析工具"><a href="#性能分析工具" class="headerlink" title="性能分析工具"></a>性能分析工具</h2><p>首先要开启慢查询，指定一下阈值(默认是10s)</p>
-<p>慢查询日志分析工具：mysqldumpslow</p>
-<p>EXPLAIN加在查询语句前面。</p>
-<h2 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h2><p>最佳左前缀法则</p>
-<p>计算，函数，类型转换导致索引失效。</p>
-<p>范围条件右边的列索引失效</p>
-<p>不等于(!&#x3D; 或者 &lt;&gt;)索引失效</p>
-<p>is null 可以使用索引， is not null 无法使用索引</p>
-<p>like 以通配符%开头索引失效</p>
-<p>OR前后存在非索引的列，索引失效</p>
-<p>覆盖索引：简单说就是， 索引列+主键 包含 SELECT 到 FROM之间查询的列 。。</p>
-<p>索引下推：本来有100条需要回表，但是where里面有 name like %张%, 所以也可以用一下这种索引去查张，把回表数降为10.</p>
-<p>关于exits和In</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/QQ%E5%9B%BE%E7%89%8720230519205651.png" alt="img"></p>
+<h2 id="索引底层原理"><a href="#索引底层原理" class="headerlink" title="索引底层原理"></a>索引底层原理</h2><p>索引（Index）是帮助MySQL高效获取数据的数据结构.</p>
+<p>优点：查的快，降低IO成本； 通过创建唯一索引，可以保证数据的唯一性； 加速表与表之间的连接，减低分组和排序子句的时间。</p>
+<p>缺点：创建索引和维护索引要耗费时间； 索引需要占磁盘空间； 索引会降低更新表的速度。</p>
+<h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><p>底层数据结构：B+树，很适合排序查找和范围查找。</p>
+<p>B树</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101818936.png"></p>
+<p>B+树</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101839477.png"></p>
+<p>而且B+树的非叶子节点不存数据，则可以比B树存更多的数据。这使得B+树更加矮胖</p>
+<p><strong>B+树优点：B+树查询效率更稳定（要访问到叶子节点）； B+树的查询效率更高（一般比B树更矮胖）；B+树的磁盘读写代价更低（因为内部非叶子节点存储的东西更少）</strong></p>
+<p>B+树的存储能力如何？为何说一般查找行记录，最多只需1~3次磁盘IO？ InnoDB存储引擎中页的大小为16KB，一个int类型或者一个指针也就4个字节或者8个字节。所以一个页可以存储16KB&#x2F;(8B+8B)&#x3D;1000个键值。则深度为3的树就可以存储$10^3$×*$10^3$×$10^3$&#x3D;一亿条数据</p>
+<h3 id="InnoDB的B-树索引的注意事项"><a href="#InnoDB的B-树索引的注意事项" class="headerlink" title="InnoDB的B+树索引的注意事项"></a>InnoDB的B+树索引的注意事项</h3><p>1.根页面位置不动 2.非叶子节点目录项记录唯一 3.一个页面最少存储两条记录</p>
+<p>MyISAM索引：将数据和索引分开存储，索引树的叶子节点存的是主键值+数据记录地址</p>
+<p>MyISAM与InnoDB的对比：<br>1.InnoDB中，根据主键值对聚簇索引进行一次查询即可。而在MyISAM中，要进行一次回表。<strong>MyISAM的回表操作是十分 快速 的。</strong></p>
+<p>2.InnoDB的数据文件本身就是索引文件，而<strong>MyISAM索引文件和数据文件是 分离的</strong> ，索引文件仅保存数 据记录的地址。</p>
+<p>3.InnoDB的非聚簇索引data域存储相应记录 主键的值 ，而<strong>MyISAM索引记录的是 地址</strong> 。</p>
+<p>4.InnoDB要求表 必须有主键 （ MyISAM可以没有 ）。如果没有显式指定，则MySQL系统会自动选择一个 可以非空且唯一标识数据记录的列作为主键。再没有的话可以生成一个隐含字段。</p>
 <h2 id="事务与锁"><a href="#事务与锁" class="headerlink" title="事务与锁"></a>事务与锁</h2><h3 id="1-事务基础知识"><a href="#1-事务基础知识" class="headerlink" title="1)事务基础知识"></a>1)事务基础知识</h3><p>在MySQL中，只有InnoDB是支持事务的。</p>
 <p>事务的ACID特性：<br>原子性（atomicity): 要么全部提交，要么全部失败回滚。</p>
 <p>一致性(consistency)：指事务执行前后，数据从一个 合法性状态 变换到另外一个 合法性状态 。</p>
@@ -690,7 +746,7 @@
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720230423104501.png" alt="img"></p>
 <p>脏写的问题太严重了，不论是哪种隔离级别，都不允许脏写的情况发生。</p>
 <p>MySQL的默认隔离级别为REPEATABLE READ。</p>
-<h3 id="2-MySQL事务日志"><a href="#2-MySQL事务日志" class="headerlink" title="2)MySQL事务日志"></a>2)MySQL事务日志</h3><p>事务有4种特性：原子性、一致性、隔离性和持久性。那么事务的四种特性到底是基于什么机制实现呢？</p>
+<h3 id="2-MySQL事务日志-redo-undo-bin"><a href="#2-MySQL事务日志-redo-undo-bin" class="headerlink" title="2)MySQL事务日志-redo,undo,bin"></a>2)MySQL事务日志-redo,undo,bin</h3><p>事务有4种特性：原子性、一致性、隔离性和持久性。那么事务的四种特性到底是基于什么机制实现呢？</p>
 <p>事务的隔离性由 锁机制 实现。 而事务的原子性、一致性和持久性由事务的 redo 日志和undo 日志来保证。</p>
 <p><strong>REDO LOG</strong> 称为 重做日志 ，提供再写入操作，恢复提交事务修改的页操作，用来保证事务的持 久性。</p>
 <p><strong>UNDO LOG</strong> 称为 回滚日志 ，回滚行记录到某个特定版本，用来保证事务的原子性、一致性。</p>
@@ -711,6 +767,9 @@
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720230423134009.png" alt="img"></p>
 <p>undo log是逻辑日志，对事务回滚时，只是将数据库逻辑地恢复到原来的样子。</p>
 <p>redo log是物理日志，记录的是数据页的物理变化，undo log不是redo log的逆过程.</p>
+<p>binlog（归档日志）保证了 MySQL 集群架构的数据一致性。主节点写bin log 日志，从节点读bin log 日志。</p>
+<h4 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h4><p>redo log 在事务执行过程中可以不断写入，而 binlog 只有在提交事务时才写入，所以 redo log 与 binlog 的写入时机不一样。会出问题。所以将redo log拆为prepare阶段和commit阶段。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/04-20220305234956774.png"></p>
 <h3 id="3-锁"><a href="#3-锁" class="headerlink" title="3)锁"></a>3)锁</h3><p>事务的隔离性由 锁来实现</p>
 <p>怎么解决脏读 、 不可重复读 、 幻读 这些问题呢？其实有两种可选的解决方案：</p>
 <p>方案一：读操作利用多版本并发控制（ MVCC ，下章讲解），写操作进行 加锁 。</p>
@@ -721,17 +780,83 @@
 <p>按对锁的态度：悲观锁，乐观锁</p>
 <p>按加锁方式： 隐式锁， 显示锁</p>
 <p><strong>Java中 synchronized 和 ReentrantLock 等独占锁就是 悲观锁思想的实现</strong></p>
-<p>乐观锁：在更新 的时候会判断一下在此期间别人有没有去更新这个数据。在程序上，我们可以采用 版本号机制 或者 CAS机制 实现。在Java中 java.util.concurrent.atomic 包下的原子变量类就是使用了<strong>乐观锁的CAS</strong>实现的。</p>
+<p>乐观锁：在更新 的时候会判断一下在此期间别人有没有去更新这个数据。在程序上，我们可以采用 版本号机制 或者 CAS机制 实现。在Java中 java.util.concurrent.atomic 包下的<strong>原子变量类</strong>就是使用了<strong>乐观锁的CAS</strong>实现的。</p>
 <p>发生死锁应该怎么办？：1，直接进入等待，直到超时。2，发起死锁检测，发现死锁后，主动回滚死锁链条中的某一个事务。</p>
-<h2 id="MVCC机制"><a href="#MVCC机制" class="headerlink" title="MVCC机制"></a>MVCC机制</h2><p>MVCC （Multiversion Concurrency Control），多版本并发控制。顾名思义，MVCC 是通过数据行的多个版 本管理来实现数据库的 并发控制 。这项技术使得在InnoDB的事务隔离级别下执行 一致性读 操作有了保 证。换言之，就是为了查询一些正在被另一个事务更新的行，并且可以看到它们被更新之前的值，这样 在做查询的时候就不用等待另一个事务释放锁。</p>
+<p>InnoDB 行锁是通过对索引数据页上的记录加锁实现的，MySQL InnoDB 支持三种行锁定方式：</p>
+<ul>
+<li><strong>记录锁（Record Lock）</strong>：也被称为记录锁，属于单个行记录上的锁。</li>
+<li><strong>间隙锁（Gap Lock）</strong>：锁定一个范围，不包括记录本身。</li>
+<li><strong>临键锁（Next-Key Lock）</strong>：Record Lock+Gap Lock，锁定一个范围，包含记录本身，主要目的是为了解决幻读问题（MySQL 事务部分提到过）。记录锁只能锁住已经存在的记录，为了避免插入新记录，需要依赖间隙锁。</li>
+</ul>
+<p>在 InnoDB 默认的隔离级别 REPEATABLE-READ 下，行锁默认使用的是 Next-Key Lock。</p>
+<p>意向锁是表级锁，共有两种：</p>
+<ul>
+<li><strong>意向共享锁（Intention Shared Lock，IS 锁）</strong>：事务有意向对表中的某些记录加共享锁（S 锁），加共享锁前必须先取得该表的 IS 锁。</li>
+<li><strong>意向排他锁（Intention Exclusive Lock，IX 锁）</strong>：事务有意向对表中的某些记录加排他锁（X 锁），加排他锁之前必须先取得该表的 IX 锁。</li>
+</ul>
+<p><strong>意向锁是由数据引擎自己维护的，用户无法手动操作意向锁，在为数据行加共享&#x2F;排他锁之前，InooDB 会先获取该数据行所在在数据表的对应意向锁。</strong></p>
+<p>意向锁之间是互相兼容的。</p>
+<p>意向锁和共享锁和排它锁互斥（这里指的是表级别的共享锁和排他锁，意向锁不会与行级的共享锁和排他锁互斥）。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>IS 锁</th>
+<th>IX 锁</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S 锁</td>
+<td>兼容</td>
+<td>互斥</td>
+</tr>
+<tr>
+<td>X 锁</td>
+<td>互斥</td>
+<td>互斥</td>
+</tr>
+</tbody></table>
+<h2 id="MVCC机制"><a href="#MVCC机制" class="headerlink" title="MVCC机制"></a>MVCC机制</h2><p>MVCC （Multiversion Concurrency Control），多版本并发控制。顾名思义，MVCC 是通过数据行的多个版 本管理来实现数据库的 并发控制 。这项技术使得在InnoDB的事务隔离级别下执行 一致性读 操作有了保 证。<strong>换言之，就是为了查询一些正在被另一个事务更新的行，并且可以看到它们被更新之前的值，这样 在做查询的时候就不用等待另一个事务释放锁。</strong></p>
 <p>MVCC是快照读，是一种乐观锁的体现</p>
-<p>MVCC的实现依赖于：隐藏字段、 Undo Log版本链、 Read View</p>
+<p><strong>MVCC的实现依赖于：隐藏字段、 Undo Log版本链、 Read View</strong></p>
+<h3 id="隐藏字段"><a href="#隐藏字段" class="headerlink" title="隐藏字段"></a>隐藏字段</h3><p>在内部，<code>InnoDB</code> 存储引擎为每行数据添加了三个 隐藏字段：</p>
+<ul>
+<li><strong><code>DB_TRX_ID（6字节）</code>：表示最后一次插入或更新该行的事务 id。</strong>此外，<code>delete</code> 操作在内部被视为更新，只不过会在记录头 <code>Record header</code> 中的 <code>deleted_flag</code> 字段将其标记为已删除</li>
+<li><code>DB_ROLL_PTR（7字节）</code> 回滚指针，指向该行的 <code>undo log</code> 。如果该行未被更新，则为空</li>
+<li><code>DB_ROW_ID（6字节）</code>：如果没有设置主键且该表没有唯一非空索引时，<code>InnoDB</code> 会使用该 id 来生成聚簇索引</li>
+</ul>
 <p>隐藏字段，trx_id, 最近被哪个事务修改过，记录其Id。 roll_pointer 是undo log 版本链的指针。</p>
-<p>核心问 题就是需要判断一下版本链中的哪个版本是当前事务可见的，这是ReadView要解决的主要问题。</p>
-<p>ReadView就是事务A在使用MVCC机制进行快照读操作时产生的读视图。</p>
-<p>ReadView里面的内容：1.创建这个ReadView的事务Id, 2.生成ReadView时，当前系统中活跃的事务id的列表</p>
-<p>3.活跃的事务中最小的事务Id 4. 生成ReadView时系统中应该分配给下一个事务的id. (所有事务id中最大的id+1)</p>
-<p>查找规则：按照ReadView里面的事务id去Undo Log里面去查，找一样的版本。或者小于活跃的最小值，或者在活跃的最大值和最小值之间，但是不在ReadView里（即不活跃，已提交的事务）</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101200980.png"></p>
+<h3 id="undo-log-版本链"><a href="#undo-log-版本链" class="headerlink" title="undo log 版本链"></a>undo log 版本链</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101239830.png"></p>
+<h3 id="ReadView"><a href="#ReadView" class="headerlink" title="ReadView"></a>ReadView</h3><p>核心问 题就是需要判断一下版本链中的哪个版本是当前事务可见的，这是ReadView要解决的主要问题。</p>
+<p>Read View就是事务A在使用MVCC机制进行快照读操作时产生的读视图。</p>
+<p>Read View主要是用来做可见性判断，里面保存了 “当前对本事务不可见的其他活跃事务”</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">ReadView</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">/* ... */</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+  trx_id_t m_low_limit_id<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">/* 大于等于这个 ID 的事务均不可见 */</span>
+
+  trx_id_t m_up_limit_id<span class="token punctuation">;</span>       <span class="token comment" spellcheck="true">/* 小于这个 ID 的事务均可见 */</span>
+
+  trx_id_t m_creator_trx_id<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">/* 创建该 Read View 的事务ID */</span>
+
+  trx_id_t m_low_limit_no<span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">/* 事务 Number, 小于该 Number 的 Undo Logs 均可以被 Purge */</span>
+
+  ids_t m_ids<span class="token punctuation">;</span>                  <span class="token comment" spellcheck="true">/* 创建 Read View 时的活跃事务列表 */</span>
+
+  m_closed<span class="token punctuation">;</span>                     <span class="token comment" spellcheck="true">/* 标记 Read View 是否 close */</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image-20240525194733637.png"></p>
+<p>ReadView里面的内容：</p>
+<ol>
+<li>生成ReadView时，当前系统中活跃的事务id的列表</li>
+<li>活跃的事务中最小的事务Id </li>
+<li>生成ReadView时系统中应该分配给下一个事务的id. (所有事务id中最大的id+1)</li>
+<li>创建这个ReadView的事务Id</li>
+</ol>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101349735.png"></p>
+<p>查找规则：<strong>按照ReadView里面的事务id去Undo Log里面去查，找一样的版本</strong>。或者小于活跃的最小值，或者在活跃的最大值和最小值之间，但是不在ReadView里（即不活跃，已提交的事务）</p>
 <p>操作流程：</p>
 <ol>
 <li>首先获取事务自己的版本号，也就是事务 ID；</li>
@@ -740,11 +865,83 @@
 <li>如果不符合 ReadView 规则，就需要从 Undo Log 中获取历史快照；</li>
 <li>最后返回符合规则的数据</li>
 </ol>
-<p>因为读未提交可以读到最新数据，串行化读也是。所以只考虑读已提交和可重复读的MVCC</p>
+<p>因为读未提交可以读到最新数据，串行化读也是。所以只考虑读已提交RC和可重复读RR的MVCC</p>
 <p>READ COMMITTED ：每次读取数据前都生成一个ReadView。</p>
 <p>使用 REPEATABLE READ 隔离级别的事务来说，只会在第一次执行查询语句时生成一个 ReadView ，之 后的查询就不会重复生成了。</p>
-<p>可重复读如何解决幻读的？因为只生成了最开始的一个ReadView，生成ReadView的时机。</p>
-<h1 id="5-多线程编程"><a href="#5-多线程编程" class="headerlink" title="5.多线程编程"></a>5.多线程编程</h1><h2 id="synchronized-amp-wait-amp-notify-amp-sleep-amp-lock"><a href="#synchronized-amp-wait-amp-notify-amp-sleep-amp-lock" class="headerlink" title="synchronized &amp; wait &amp; notify &amp;sleep &amp;lock"></a>synchronized &amp; wait &amp; notify &amp;sleep &amp;lock</h2><h3 id="wait-vs-sleep"><a href="#wait-vs-sleep" class="headerlink" title="wait vs sleep"></a>wait vs sleep</h3><p>共同点</p>
+<p>可重复读(RR)如何解决幻读的？因为只生成了最开始的一个ReadView，生成ReadView的时机。</p>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p>性能分析工具：  首先要开启慢查询，指定一下阈值(默认是10s)，慢查询日志分析工具：mysqldumpslow</p>
+<p>EXPLAIN加在查询语句前面。</p>
+<p>聚簇索引：所有的用户记录都存在了叶⼦节点，数据即索引，索引即数据。以主键值大小进行排序。</p>
+<p>非聚簇索引（二级索引）：以别的键为搜索条件时使用，回表。</p>
+<p>联合索引：可以先按C2列排序，再按C3列排序。</p>
+<h3 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h3><p>最佳左前缀法则</p>
+<p>计算，函数，类型转换导致索引失效。</p>
+<p>范围条件右边的列索引失效</p>
+<p>不等于(!&#x3D; 或者 &lt;&gt;)索引失效</p>
+<p>is null 可以使用索引， is not null 无法使用索引</p>
+<p>like 以通配符%开头索引失效</p>
+<p>OR前后存在非索引的列，索引失效</p>
+<p>覆盖索引：简单说就是， 索引列+主键 包含 SELECT 到 FROM之间查询的列 </p>
+<p>索引下推：本来有100条需要回表，但是where里面有 name like %张%, 所以也可以用一下这种索引去查张，把回表数降为10.</p>
+<p>month会导致索引失效。所以下推的这个，只是个普通的查询条件？</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> <span class="token keyword">user</span> <span class="token keyword">WHERE</span> zipcode <span class="token operator">=</span> <span class="token string">'431200'</span> <span class="token operator">AND</span> MONTH<span class="token punctuation">(</span>birthdate<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+</code></pre>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/index-condition-pushdown-graphic-illustration.png"></p>
+<p>排序优化：</p>
+<p>以下三种情况不走索引：</p>
+<ol>
+<li>无过滤，不索引</li>
+<li>顺序错，不索引</li>
+<li>方向反，不索引</li>
+</ol>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">index</span> idx_age_deptid_name <span class="token keyword">on</span> emp <span class="token punctuation">(</span>age<span class="token punctuation">,</span>deptid<span class="token punctuation">,</span>name<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 下面没有where或limit，属于无过滤，则不会走索引。</span>
+<span class="token keyword">explain</span>  <span class="token keyword">select</span> SQL_NO_CACHE <span class="token operator">*</span> <span class="token keyword">from</span> emp <span class="token keyword">order</span> <span class="token keyword">by</span> age<span class="token punctuation">,</span>deptid<span class="token punctuation">;</span> 
+<span class="token comment" spellcheck="true"># 下面这种会走索引</span>
+<span class="token keyword">explain</span>  <span class="token keyword">select</span> SQL_NO_CACHE <span class="token operator">*</span> <span class="token keyword">from</span> emp <span class="token keyword">order</span> <span class="token keyword">by</span> age<span class="token punctuation">,</span>deptid <span class="token keyword">limit</span> <span class="token number">10</span><span class="token punctuation">;</span> 
+<span class="token keyword">explain</span>  <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> emp <span class="token keyword">where</span> age<span class="token operator">=</span><span class="token number">45</span> <span class="token keyword">order</span> <span class="token keyword">by</span> deptid<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true"># 顺序错，不索引</span>
+<span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> emp <span class="token keyword">where</span> age<span class="token operator">=</span><span class="token number">45</span> <span class="token keyword">order</span> <span class="token keyword">by</span>  deptid <span class="token keyword">desc</span><span class="token punctuation">,</span> name <span class="token keyword">desc</span> <span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true"># 方向反 不索引</span>
+<span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> emp <span class="token keyword">where</span> age<span class="token operator">=</span><span class="token number">45</span> <span class="token keyword">order</span> <span class="token keyword">by</span>  deptid <span class="token keyword">asc</span><span class="token punctuation">,</span> name <span class="token keyword">desc</span> <span class="token punctuation">;</span>
+</code></pre>
+<h3 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h3><p>驱动表的数据一定要全查。</p>
+<p>对于下面3个SQL</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> class <span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> book <span class="token keyword">ON</span> class<span class="token punctuation">.</span>card <span class="token operator">=</span> book<span class="token punctuation">.</span>card<span class="token punctuation">;</span>
+
+<span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> class <span class="token keyword">RIGHT</span> <span class="token keyword">JOIN</span> book <span class="token keyword">ON</span> class<span class="token punctuation">.</span>card <span class="token operator">=</span> book<span class="token punctuation">.</span>card<span class="token punctuation">;</span>
+
+<span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> class <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> book <span class="token keyword">ON</span> class<span class="token punctuation">.</span>card <span class="token operator">=</span> book<span class="token punctuation">.</span>card<span class="token punctuation">;</span>
+</code></pre>
+<p>如果我对Book创建了索引。</p>
+<p>第一条。class作为驱动表要全查，book有索引，查的很快。 16*1</p>
+<p>第二条。book作为驱动表要全查，没有被优化.  20*16</p>
+<p>第三条。inner join会自动选择记录少的作为驱动表。 class为驱动表， 16*1</p>
+<p><strong>综上，肯定是把20行变为1行好，所以应该是大表创建索引，然后将其作为被驱动表(小表驱动大表)。</strong></p>
+<h3 id="关于exits和In"><a href="#关于exits和In" class="headerlink" title="关于exits和In"></a>关于exits和In</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/QQ%E5%9B%BE%E7%89%8720230519205651.png"></p>
+<h3 id="filesort算法"><a href="#filesort算法" class="headerlink" title="filesort算法"></a>filesort算法</h3><p>如果不在索引列上，filesort有两种算法：mysql就要启动双路排序和单路排序</p>
+<p>MySQL在4.1版本之前是双路排序。<strong>从磁盘取排序字段，再buffer进行排序，再从磁盘取其他字段</strong>。</p>
+<p>在MySQL4.1之后，出现了第二种改进的算法，就是单路排序。</p>
+<p><strong>从磁盘读取查询需要的所有列</strong>，按照order by列在buffer对它们进行排序，然后扫描排序后的列表进行输出，它的效率更快一些，避免了第二次读取数据。并且把随机IO变成了顺序IO，但是它会<strong>使用更多的空间</strong>，因为它把每一行都保存在内存中了。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>尽量控制单表数据量的大小，建议控制在 500 万以内。</p>
+<p>常见索引列建议</p>
+<ol>
+<li>出现在 SELECT、UPDATE、DELETE 语句的 WHERE 从句中的列</li>
+<li>包含在 ORDER BY、GROUP BY、DISTINCT 中的字段</li>
+<li>并不要将符合 1 和 2 中的字段的列都建立一个索引， 通常将 1、2 中的字段建立联合索引效果更好</li>
+<li>多表 join 的关联列</li>
+</ol>
+<p><strong>索引列的顺序：区分度高的，字段长度小的，最频繁的列放在联合索引的左侧。</strong></p>
+<p>对于频繁的查询优先考虑覆盖索引。覆盖索引：就是包含了所有查询字段 (where,select,order by,group by 包含的字段) 的索引。</p>
+<p>这样可以，<strong>避免 InnoDB 表进行索引的二次查询，也就是回表操作</strong>。把随机IO变为顺序IO加快查询效率。</p>
+<p>在定义联合索引时，如果 a 列要用到范围查找的话，就要把 a 列放到联合索引的右侧，使用 left join 或 not exists 来优化 not in 操作，因为 not in 也通常会使用索引失效。</p>
+<p>将子查询优化为left join 操作。<strong>子查询性能差的原因：</strong> 子查询的结果集无法使用索引，通常子查询的结果集会被存储到临时表中，不论是内存临时表还是磁盘临时表都不会存在索引，所以查询性能会受到一定的影响。</p>
+<p>在明显不会有重复值时使用 UNION ALL 而不是 UNION</p>
+<ul>
+<li>UNION 会把两个结果集的所有数据放到临时表中后再进行去重操作</li>
+<li>UNION ALL 不会再对结果集进行去重操作</li>
+</ul>
+<h1 id="5-JUC"><a href="#5-JUC" class="headerlink" title="5.JUC"></a>5.JUC</h1><h2 id="synchronized-amp-lock等关键字"><a href="#synchronized-amp-lock等关键字" class="headerlink" title="synchronized &amp;lock等关键字"></a>synchronized &amp;lock等关键字</h2><h3 id="wait-vs-sleep"><a href="#wait-vs-sleep" class="headerlink" title="wait vs sleep"></a>wait vs sleep</h3><p>共同点</p>
 <ul>
 <li>wait() ，wait(long) 和 sleep(long) 的效果都是让当前线程暂时放弃 CPU 的使用权，进入阻塞状态</li>
 </ul>
@@ -925,7 +1122,7 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
 <li>loadFactor 只在计算初始数组大小时被使用，之后扩容固定为 3&#x2F;4</li>
 <li>超过树化阈值时的扩容问题，如果容量已经是 64，直接树化，否则在原来容量基础上做 3 轮扩容</li>
 </ul>
-<h2 id="ThreadLocal-不会"><a href="#ThreadLocal-不会" class="headerlink" title="ThreadLocal(不会)"></a>ThreadLocal(不会)</h2><p><strong>要求</strong></p>
+<h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h2><p><strong>要求</strong></p>
 <ul>
 <li>掌握 ThreadLocal 的作用与原理</li>
 <li>掌握 ThreadLocal 的内存释放时机</li>
@@ -1008,7 +1205,7 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://19shuidiph.github.io/2023/06/26/ge-ren-jian-li/">http://19shuidiph.github.io/2023/06/26/ge-ren-jian-li/</a>
+                    <a href="http://19shuidiph.github.io/2024/07/26/ge-ren-jian-li/">http://19shuidiph.github.io/2024/07/26/ge-ren-jian-li/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1213,42 +1410,39 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/06/26/shu-ru-shu-chu-liu/">
+                <a href="/2024/07/26/ge-ren-jian-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="输入输出流">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="个人简历总结">
                         
-                        <span class="card-title">输入输出流</span>
+                        <span class="card-title">个人简历总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            针对于笔试的一些输入输出数据做一些小结。
-主要是关于String相关的，当然也有一点数组和输入数据相关的。
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-06-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-26
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Java/" class="post-category">
-                                    Java
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            爱敲代码の鱼儿
                             
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -1259,30 +1453,33 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/06/26/di-yi-pian-bi-ji/">
+                <a href="/2024/07/05/shang-huo-gu-javaee-ji-zhu-zhi-juc-jvm/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="第一篇笔记-主题和内容介绍">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="尚硅谷JavaEE技术之JUC&amp;&amp;JVM">
                         
-                        <span class="card-title">第一篇笔记-主题和内容介绍</span>
+                        <span class="card-title">尚硅谷JavaEE技术之JUC&amp;&amp;JVM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            第一篇笔记-主题和内容介绍搭建个人博客这边主要是按照wushishu(不过这个网站现在已经寄了）的来进行搭建，还参考了这篇知乎文章,还要把Blog下的_config.yml中的https改为http;
-风格主题的话采用的就是我的友链argv
+                            
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-05
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            爱敲代码の鱼儿
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
                             
                         </span>
                     </div>

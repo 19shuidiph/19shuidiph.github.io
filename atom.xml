@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-07-07T03:02:41.553Z</updated>
+  <updated>2024-07-15T05:56:13.421Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>个人简历总结</title>
+    <link href="http://19shuidiph.github.io/2024/07/26/ge-ren-jian-li/"/>
+    <id>http://19shuidiph.github.io/2024/07/26/ge-ren-jian-li/</id>
+    <published>2024-07-26T02:13:52.000Z</published>
+    <updated>2024-07-15T05:56:13.421Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;0-JavaGuide&quot;&gt;&lt;a href=&quot;#0-JavaGuide&quot; class=&quot;headerlink&quot; title=&quot;0.JavaGuide&quot;&gt;&lt;/a&gt;0.JavaGuide&lt;/h1&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>尚硅谷JavaEE技术之JUC&amp;&amp;JVM</title>
@@ -228,7 +249,7 @@
     <link href="http://19shuidiph.github.io/2024/05/24/javaguide-zi-xue-ji-lu-8-mysql-chong-yao-zhi-shi-dian/"/>
     <id>http://19shuidiph.github.io/2024/05/24/javaguide-zi-xue-ji-lu-8-mysql-chong-yao-zhi-shi-dian/</id>
     <published>2024-05-24T09:12:51.000Z</published>
-    <updated>2024-06-01T10:52:48.330Z</updated>
+    <updated>2024-07-14T13:52:03.102Z</updated>
     
     
       
@@ -251,7 +272,7 @@
     <link href="http://19shuidiph.github.io/2024/05/23/javaguide-zi-xue-ji-lu-7-mysql-chang-jian-mian-shi-ti/"/>
     <id>http://19shuidiph.github.io/2024/05/23/javaguide-zi-xue-ji-lu-7-mysql-chang-jian-mian-shi-ti/</id>
     <published>2024-05-23T13:34:33.000Z</published>
-    <updated>2024-05-26T02:34:49.887Z</updated>
+    <updated>2024-07-14T13:22:10.689Z</updated>
     
     
       
@@ -449,29 +470,6 @@
     
     
     <category term="Redis" scheme="http://19shuidiph.github.io/categories/Redis/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>公司项目-进项发票归集的添加从表信息</title>
-    <link href="http://19shuidiph.github.io/2023/10/31/gong-si-xiang-mu-jin-xiang-fa-piao-gui-ji-de-tian-jia-cong-biao-xin-xi/"/>
-    <id>http://19shuidiph.github.io/2023/10/31/gong-si-xiang-mu-jin-xiang-fa-piao-gui-ji-de-tian-jia-cong-biao-xin-xi/</id>
-    <published>2023-10-31T00:46:46.000Z</published>
-    <updated>2024-05-26T04:12:14.776Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;公司项目-进项发票归集的添加从表信息&quot;&gt;&lt;a href=&quot;#公司项目-进项发票归集的添加从表信息&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="公司项目" scheme="http://19shuidiph.github.io/categories/%E5%85%AC%E5%8F%B8%E9%A1%B9%E7%9B%AE/"/>
     
     
   </entry>
