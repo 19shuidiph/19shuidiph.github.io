@@ -596,7 +596,7 @@
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506131229649.png"></p>
 <p>对于新生代，内部又被分为了三个区域。Eden区，S0区，S1区【8：1：1】</p>
 <p>当对新生代产生GC：MinorGC【young GC】</p>
-<p>当对老年代代产生GC：Major GC </p>
+<p>当对老年代代产生GC：Major GC 【old GC】</p>
 <p>当对新生代和老年代产生FullGC： 新生代 + 老年代完整垃圾回收，暂停时间长，<strong>应尽力避免</strong></p>
 <ul>
 <li><p>MinorGC【young GC】发生在新生代的垃圾回收，暂停时间短（STW）</p>

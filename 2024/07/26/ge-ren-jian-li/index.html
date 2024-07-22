@@ -592,6 +592,49 @@
 <p>美式风味的甜品工厂 ，生产美式咖啡和抹茶慕斯</p>
 <p>有咖啡和甜品两个产品族。</p>
 <p><a target="_blank" rel="noopener" href="https://luzhenyu.blog.csdn.net/article/details/122318746">文章</a></p>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>策略模式的主要角色如下：</p>
+<ol>
+<li>抽象策略（Strategy）类：这是一个抽象角色，通常由一个接口或抽象类实现。此角色给出所有的具体策略类所需的接口。</li>
+<li>具体策略（Concrete Strategy）类：实现了抽象策略定义的接口，提供具体的算法实现或行为。</li>
+<li>环境（Context）类：持有一个策略类的引用，最终给客户端调用。</li>
+</ol>
+<p><strong>优点：</strong></p>
+<ul>
+<li>策略类之间可以自由切换：由于策略类都实现同一个接口，所以使它们之间可以自由切换。</li>
+<li>易于扩展：增加一个新的策略只需要添加一个具体的策略类即可，基本不需要改变原有的代码，符合“开闭原则“</li>
+<li>避免使用多重条件选择语句（if else），充分体现面向对象设计思想。</li>
+</ul>
+<p>实例：</p>
+<pre class=" language-java"><code class="language-java">Arrays<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Comparator</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">compare</span><span class="token punctuation">(</span>Integer o1<span class="token punctuation">,</span> Integer o2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> o2 <span class="token operator">-</span> o1<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>其中Comparator 充当的是抽象策略角色，而具体的子实现类充当的是具体策略角色。</p>
+<p>不如我的发票管理的策略模式。</p>
+<p><a target="_blank" rel="noopener" href="https://luzhenyu.blog.csdn.net/article/details/122623421">文章</a></p>
+<h2 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h2><p>职责链模式主要包含以下角色:</p>
+<ol>
+<li>抽象处理者（Handler）角色：定义一个处理请求的接口，包含抽象处理方法和一个后继连接。</li>
+<li>具体处理者（Concrete Handler）角色：实现抽象处理者的处理方法，判断能否处理本次请求，如果可以处理请求则处理，否则将该请求转给它的后继者。</li>
+<li>客户类（Client）角色：创建处理链，并向链头的具体处理者对象提交请求，它不关心处理细节和请求的传递过程。</li>
+</ol>
+<p>最经典的就是请假流程控制系统</p>
+<p>优点：</p>
+<ul>
+<li><p>降低了对象之间的耦合度，该模式降低了请求发送者和接收者的耦合度。</p>
+</li>
+<li><p>增强了系统的可扩展性，可以根据需要增加新的请求处理类，满足开闭原则。</p>
+</li>
+<li><p>增强了给对象指派职责的灵活性，当工作流程发生变化，可以动态地改变链内的成员或者修改它们的次序，也可动态地新增或者删除责任。</p>
+</li>
+<li><p>责任链简化了对象之间的连接，一个对象只需保持一个指向其后继者的引用，不需保持其他所有处理者的引用，这避免了使用众多的 if 或者 if···else 语句。</p>
+</li>
+<li><p>责任分担，每个类只需要处理自己该处理的工作，不能处理的传递给下一个对象完成，明确各类的责任范围，符合类的单一职责原则。</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://luzhenyu.blog.csdn.net/article/details/122636960">文章</a></p>
 <h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>代理模式的作用：保护、增强、解耦</p>
 <p>当访问对象不适合或者不能直接引用目标对象，可以提供一个代理以控制对该对象的访问，代理对象作为访问对象和目标对象之间的中介。</p>
 <p>Java 中的代理按照代理类生成时机不同又分为静态代理和动态代理；</p>
@@ -604,25 +647,6 @@
 <p>CGLIB 动态代理可以不代理接口，直接代理类。</p>
 <p>使用场景：远程代理我们只能访问接口。</p>
 <p><a target="_blank" rel="noopener" href="https://luzhenyu.blog.csdn.net/article/details/122362769#518__404">文章</a></p>
-<h2 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h2><p>原来的话：<br><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/5feae29f62384cc881b0960a4ed82883.png" alt="img"></p>
-<p>改进之后：<br><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/62b392a8f1b34e939ca4f6cd9676e630.png" alt="img"></p>
-<p>使用场景：</p>
-<p>当不能采用继承的方式对系统进行扩充或者采用继承不利于系统扩展和维护时。</p>
-<p>在不影响其他对象的情况下，以动态、透明的方式给单个对象添加职责。</p>
-<p>当对象的功能要求可以动态地添加，也可以再动态地撤销时。</p>
-<p>JDK里面的IO流的包装类用到了装饰器模式</p>
-<p>BufferedInputStream，BufferedOutputStream，BufferedReader，BufferedWriter。</p>
-<p>BufferedWriter 使用装饰者模式对 Writer 子实现类进行了增强，添加了缓冲区，提高了写数据的效率</p>
-<p>代理和装饰者的区别：</p>
-<p>相同点：</p>
-<p>都要实现与目标类相同的业务接口<br>在两个类中都要声明目标对象<br>都可以在不修改目标类的前提下增强目标方法<br>不同点：</p>
-<p>目的不同</p>
-<p>装饰者是为了增强目标对象<br>静态代理是为了保护和隐藏目标对象（装饰者可以迭代增强，代理只能增强一次）</p>
-<p>获取目标对象构建的地方不同<br>装饰者是由外界传递进来，可以通过构造方法传递<br>静态代理是在代理类内部创建，以此来隐藏目标对象</p>
-<p><a target="_blank" rel="noopener" href="https://luzhenyu.blog.csdn.net/article/details/122579712">文章</a></p>
-<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>又被称为 发布 - 订阅（Publish &#x2F; Subscribe）模式, 监听器。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/dfb0e1b6e46b478ca073786f554effcc.png" alt="img"></p>
-<p>优点：解耦，可以实现广播机制。</p>
 <h1 id="4-MySQL"><a href="#4-MySQL" class="headerlink" title="4.MySQL"></a>4.MySQL</h1><h2 id="MySQL基础语法"><a href="#MySQL基础语法" class="headerlink" title="MySQL基础语法"></a>MySQL基础语法</h2><h3 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/clip_image024.png"></p>
 <h3 id="MySQL-Full-join的实现"><a href="#MySQL-Full-join的实现" class="headerlink" title="MySQL Full join的实现"></a>MySQL Full join的实现</h3><p>因为MySQL不支持FULL JOIN,下面是替代方法&#x2F;</p>
 <p>1.UNION 会自动去重</p>
@@ -941,7 +965,75 @@
 <li>UNION 会把两个结果集的所有数据放到临时表中后再进行去重操作</li>
 <li>UNION ALL 不会再对结果集进行去重操作</li>
 </ul>
-<h1 id="5-JUC"><a href="#5-JUC" class="headerlink" title="5.JUC"></a>5.JUC</h1><h2 id="synchronized-amp-lock等关键字"><a href="#synchronized-amp-lock等关键字" class="headerlink" title="synchronized &amp;lock等关键字"></a>synchronized &amp;lock等关键字</h2><h3 id="wait-vs-sleep"><a href="#wait-vs-sleep" class="headerlink" title="wait vs sleep"></a>wait vs sleep</h3><p>共同点</p>
+<h1 id="5-Redis"><a href="#5-Redis" class="headerlink" title="5.Redis"></a>5.Redis</h1><h2 id="常见数据结构"><a href="#常见数据结构" class="headerlink" title="常见数据结构"></a>常见数据结构</h2><p>详细请参考<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2238792">这篇文章</a></p>
+<p>五种基本数据类型：字符串（strings），散列表（hashes）， 列表（lists），集合（set），有序集合（sortedset）</p>
+<p>三种特殊数据类型：地理位置（Geospatial），基数统计(Hyperloglog), 位图(Bitmap)</p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><h2 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h2><h1 id="6-JUC"><a href="#6-JUC" class="headerlink" title="6.JUC"></a>6.JUC</h1><h2 id="线程基础知识"><a href="#线程基础知识" class="headerlink" title="线程基础知识"></a>线程基础知识</h2><p>多个线程共享进程的<strong>堆</strong>和<strong>方法区</strong>，但每个线程有自己的<strong>程序计数器</strong>、<strong>虚拟机栈</strong>和<strong>本地方法栈</strong>。</p>
+<p>程序计数器私有主要是为了<strong>线程切换后能恢复到正确的执行位置</strong></p>
+<p>为了<strong>保证线程中的局部变量不被别的线程访问到</strong>，虚拟机栈和本地方法栈是线程私有的</p>
+<p>产生死锁的四个必要条件</p>
+<ol>
+<li><p>互斥条件：该资源任意一个时刻只由一个线程占用。</p>
+</li>
+<li><p>请求与保持条件：一个线程因请求资源而阻塞时，对已获得的资源保持不放。</p>
+</li>
+<li><p>不剥夺条件:线程已获得的资源在未使用完之前不能被其他线程强行剥夺，只有自己使用完毕后才释放资源。</p>
+</li>
+<li><p>循环等待条件:若干线程之间形成一种头尾相接的循环等待资源关系。</p>
+</li>
+</ol>
+<h2 id="synchronized等关键字"><a href="#synchronized等关键字" class="headerlink" title="synchronized等关键字"></a>synchronized等关键字</h2><h3 id="如何使用synchronized"><a href="#如何使用synchronized" class="headerlink" title="如何使用synchronized"></a>如何使用synchronized</h3><p><code>synchronized</code> 关键字的使用方式主要有下面 3 种：</p>
+<ol>
+<li>修饰实例方法</li>
+<li>修饰静态方法</li>
+<li>修饰代码块</li>
+</ol>
+<p><strong>1、修饰实例方法</strong> （锁当前对象实例）</p>
+<p>给当前对象实例加锁，进入同步代码前要获得 <strong>当前对象实例的锁</strong> .</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//业务代码</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>2、修饰静态方法</strong> （锁当前类）</p>
+<p>给当前类加锁，会作用于类的所有对象实例 ，进入同步代码前要获得 <strong>当前 class 的锁</strong>。</p>
+<p>这是因为静态成员不属于任何一个实例对象，归整个类所有，不依赖于类的特定实例，被类的所有实例共享。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">synchronized</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">method</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//业务代码</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>静态 <code>synchronized</code> 方法和非静态 <code>synchronized</code> 方法之间的调用互斥么？不互斥！如果一个线程 A 调用一个实例对象的非静态 <code>synchronized</code> 方法，而线程 B 需要调用这个实例对象所属类的静态 <code>synchronized</code> 方法，是允许的，不会发生互斥现象，因为访问静态 <code>synchronized</code> 方法占用的锁是当前类的锁，而访问非静态 <code>synchronized</code> 方法占用的锁是当前实例对象锁。</p>
+<p><strong>3、修饰代码块</strong> （锁指定对象&#x2F;类）</p>
+<p>对括号里指定的对象&#x2F;类加锁：</p>
+<ul>
+<li><code>synchronized(object)</code> 表示进入同步代码库前要获得 <strong>给定对象的锁</strong>。</li>
+<li><code>synchronized(类.class)</code> 表示进入同步代码前要获得 <strong>给定 Class 的锁</strong></li>
+</ul>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">synchronized</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//业务代码</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>总结：</strong></p>
+<ul>
+<li><code>synchronized</code> 关键字加到 <code>static</code> 静态方法和 <code>synchronized(class)</code> 代码块上都是是给 Class 类上锁；</li>
+<li><code>synchronized</code> 关键字加到实例方法上是给对象实例上锁；</li>
+<li>尽量不要使用 <code>synchronized(String a)</code> 因为 JVM 中，字符串常量池具有缓存功能。</li>
+</ul>
+<p>本质都是对<strong>对象监视器 monitor 的获取</strong>,<code>monitor</code>另一个名字叫做管程</p>
+<p>在执行<code>monitorenter</code>时，会尝试获取对象的锁，如果锁的计数器为 0 则表示锁可以被获取，获取后将锁计数器设为 1 也就是加 1。</p>
+<p>对象锁的的拥有者线程才可以执行 <code>monitorexit</code> 指令来释放锁。在执行 <code>monitorexit</code> 指令后，将锁计数器设为 0，表明锁被释放，其他线程可以尝试获取锁。</p>
+<p>如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。</p>
+<h3 id="JDK6优化后synchronized锁的分类"><a href="#JDK6优化后synchronized锁的分类" class="headerlink" title="JDK6优化后synchronized锁的分类"></a>JDK6优化后synchronized锁的分类</h3><p>级别从低到高依次是：</p>
+<ol>
+<li>无锁状态</li>
+<li>偏向锁状态</li>
+<li>轻量级锁状态</li>
+<li>重量级锁状态</li>
+</ol>
+<p>锁可以升级，但不能降级。即：无锁 -&gt; 偏向锁 -&gt; 轻量级锁 -&gt; 重量级锁是单向的。</p>
+<p>Java中的synchronized有偏向锁、轻量级锁、重量级锁三种形式，分别对应了锁只被一个线程持有、不同线程交替持有锁、多线程竞争锁三种情况。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230830111616821.png"></p>
+<p>一旦锁发生了竞争，都会升级为重量级锁。  锁只能升级，不能降级。</p>
+<h3 id="wait-vs-sleep"><a href="#wait-vs-sleep" class="headerlink" title="wait vs sleep"></a>wait vs sleep</h3><p>共同点</p>
 <ul>
 <li>wait() ，wait(long) 和 sleep(long) 的效果都是让当前线程暂时放弃 CPU 的使用权，进入阻塞状态</li>
 </ul>
@@ -969,7 +1061,24 @@
 <p>备注：<br>没有获得对象锁，是不能调用wait()的。 Lock.wait()是不对的。要synchronized(Lock){Lock.wait();}</p>
 </li>
 </ul>
-<h3 id="lock-vs-synchronized"><a href="#lock-vs-synchronized" class="headerlink" title="lock vs synchronized"></a>lock vs synchronized</h3><p>不同点</p>
+<h3 id="lock-vs-synchronized"><a href="#lock-vs-synchronized" class="headerlink" title="lock vs synchronized"></a>lock vs synchronized</h3><p>相同点</p>
+<p>两者都是可重入锁。</p>
+<p><strong>可重入锁</strong> 也叫递归锁，指的是线程可以再次获取自己的内部锁。</p>
+<p>JDK 提供的所有现成的 <code>Lock</code> 实现类，包括 <code>synchronized</code> 关键字锁都是可重入的。</p>
+<p>在下面的代码中，<code>method1()</code> 和 <code>method2()</code>都被 <code>synchronized</code> 关键字修饰，<code>method1()</code>调用了<code>method2()</code>。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SynchronizedDemo</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">method1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"方法1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">method2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">method2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"方法2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>由于 <code>synchronized</code>锁是可重入的，同一个线程在调用<code>method1()</code> 时可以直接获得当前对象的锁，执行 <code>method2()</code> 的时候可以再次获取这个对象的锁，不会产生死锁问题。假如<code>synchronized</code>是不可重入锁的话，由于该对象的锁已被当前线程所持有且无法释放，这就导致线程在执行 <code>method2()</code>时获取锁失败，会出现死锁问题。</p>
+<p>不同点</p>
 <ul>
 <li>语法层面<ul>
 <li>synchronized 是关键字，源码在 jvm 中，用 c++ 语言实现</li>
@@ -989,6 +1098,150 @@
 </ul>
 </li>
 </ul>
+<h3 id="JMM-Java内存模型"><a href="#JMM-Java内存模型" class="headerlink" title="JMM(Java内存模型)"></a>JMM(Java内存模型)</h3><p>Java内存模型(Java Memory Model)描述了Java程序中各种变量(线程共享变量)的访问规则，以及在JVM中将变量存储到内存和从内存中读取变量这样的底层细节。</p>
+<p>Java内存模型，就是为了屏蔽系统和硬件的差异，让一套代码在不同平台下能到达相同的访问结果。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230504181638237.png"></p>
+<p>特点：</p>
+<ol>
+<li><p>所有的共享变量都存储于主内存(计算机的RAM)这里所说的变量指的是实例变量和类变量。不包含局部变量，因为局部变量是线程私有的，因此不存在竞争问题。</p>
+</li>
+<li><p>每一个线程还存在自己的工作内存，线程的工作内存，保留了被线程使用的变量的工作副本。</p>
+</li>
+<li><p>线程对变量的所有的操作(读，写)都必须在工作内存中完成，而不能直接读写主内存中的变量，不同线程之间也不能直接访问对方工作内存中的变量，线程间变量的值的传递需要通过主内存完成。</p>
+</li>
+</ol>
+<h3 id="volatile-原子性，可见性，有序性"><a href="#volatile-原子性，可见性，有序性" class="headerlink" title="volatile+原子性，可见性，有序性"></a>volatile+原子性，可见性，有序性</h3><p><strong>要求</strong></p>
+<ul>
+<li>掌握线程安全要考虑的三个问题-可见性，有序性，原子性</li>
+<li>掌握 volatile 能解决哪些问题-可以解决可见性和有序性，不能解决原子性</li>
+</ul>
+<p>可见性：一个线程对共享变量修改，另一个线程能看到最新的结果</p>
+<p>有序性：一个线程内代码按编写顺序执行</p>
+<p>原子性：一个线程内多行代码以一个整体运行，期间不能有其他线程的代码插队</p>
+<p><strong>原子性</strong></p>
+<ul>
+<li>起因：多线程下，不同线程的<strong>指令发生了交错</strong>导致的共享变量的读写混乱</li>
+<li>解决：用悲观锁或乐观锁解决，volatile 并不能解决原子性</li>
+</ul>
+<p><strong>可见性</strong></p>
+<ul>
+<li>起因：由于<strong>编译器优化、或缓存优化、或 CPU 指令重排序优化</strong>导致的对共享变量所做的修改另外的线程看不到</li>
+<li>解决：<strong>用 volatile 修饰共享变量</strong>，能够防止编译器等优化发生，让一个线程对共享变量的修改对另一个线程可见</li>
+</ul>
+<p>跳过本地内存，直接去主内存读取。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%953-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image/image-20231010151721958.png"></p>
+<p><strong>有序性</strong></p>
+<ul>
+<li><p>起因：由于<strong>编译器优化、或缓存优化、或 CPU 指令重排序优化</strong>导致指令的实际执行顺序与编写顺序不一致</p>
+</li>
+<li><p>解决：<strong>用 volatile 修饰共享变量</strong>会在读、写共享变量时加入不同的屏障，阻止其他读写操作越过屏障，从而达到阻止重排序的效果</p>
+</li>
+<li><p>注意：</p>
+<p>内存屏障</p>
+<ul>
+<li><strong>volatile 变量写</strong>加的屏障是阻止上方其它写操作越过屏障排到 <strong>volatile 变量写</strong>之下</li>
+<li><strong>volatile 变量读</strong>加的屏障是阻止下方其它读操作越过屏障排到 <strong>volatile 变量读</strong>之上</li>
+<li>volatile 读写加入的屏障只能防止同一线程内的指令重排</li>
+</ul>
+</li>
+</ul>
+<h3 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h3><p>乐观锁的代表是 AtomicInteger，使用 CAS(compare and swap)来保证原子性。AtomicInteger的底层是Unsafe。</p>
+<ul>
+<li>其核心思想是【无需加锁，每次只有一个线程能成功修改共享变量，其它失败的线程不需要停止，不断重试直至成功】</li>
+<li>由于线程一直运行，不需要阻塞，因此不涉及线程上下文切换</li>
+<li>它需要多核 cpu 支持，且线程数不应超过 cpu 核数</li>
+</ul>
+<p><strong>LongAdder</strong>,分成多个值，最后再加在一起。</p>
+<p>LongAddr中的cell数组，Cell就用了@Contended注解</p>
+<p>这个注解是为了解决伪共享问题，解决缓存行同步带来的性能问题。</p>
+<p>CPU缓存L1，是以缓存行为单位存储数据的，一般默认64字节。</p>
+<p>@Contended注解，就是将一个缓存行后面填充7个没有意义的数据。</p>
+<p>CAS避免了像悲观锁那种用户态和内核态的切换。</p>
+<p>在JUC（ java.util.concurrent ）包下实现的很多类都用到了CAS操作</p>
+<ul>
+<li>AbstractQueuedSynchronizer（AQS框架）</li>
+<li>AtomicXXX类</li>
+</ul>
+<blockquote>
+<p>一个当前内存值V、旧的预期值A、即将更新的值B，当且仅当旧的预期值A和内存值V相同时，将内存值修改为B并返回true，否则什么都不做，并返回false。如果CAS操作失败，通过自旋的方式等待并再次尝试，直到成功</p>
+</blockquote>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230830134828544.png"></p>
+<p>缺点：</p>
+<p><strong>开销大</strong>：在并发量比较高的情况下，如果反复尝试更新某个变量，却又一直更新不成功，会给CPU带来较大的压力</p>
+<p><strong>ABA问题</strong>：当变量从A修改为B再修改回A时，变量值等于期望值A，但是无法判断是否修改，CAS操作在ABA修改后依然成功。 </p>
+<p><strong>不能保证代码块的原子性</strong>：CAS机制所保证的只是一个变量的原子性操作，而不能保证整个代码块的原子性。</p>
+<p>ABA问题的解决:</p>
+<p>AtomicStampedReference：版本号原子引用</p>
+<p>AtomicStampedReference在构建的时候需要一个类似于版本号的int类型变量stamped，每一次针对共享数据的变化都会导致该 stamped 的变化(stamped 需要应用程序自身去负责，AtomicStampedReference并不提供，一般使用时间戳作为版本号)</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    AtomicStampedReference<span class="token operator">&lt;</span>String<span class="token operator">></span> r <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AtomicStampedReference</span><span class="token operator">&lt;</span>String<span class="token operator">></span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"修改前版本号："</span><span class="token operator">+</span>r<span class="token punctuation">.</span><span class="token function">getStamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" ,值: "</span><span class="token operator">+</span> r<span class="token punctuation">.</span><span class="token function">getReference</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    r<span class="token punctuation">.</span><span class="token function">compareAndSet</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token string">"b"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"第一次修改后版本号："</span><span class="token operator">+</span>r<span class="token punctuation">.</span><span class="token function">getStamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" ,值 "</span><span class="token operator">+</span> r<span class="token punctuation">.</span><span class="token function">getReference</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    r<span class="token punctuation">.</span><span class="token function">compareAndSet</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">,</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"第二次修改后版本号："</span><span class="token operator">+</span>r<span class="token punctuation">.</span><span class="token function">getStamp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">" ,值 "</span><span class="token operator">+</span> r<span class="token punctuation">.</span><span class="token function">getReference</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>结果：</p>
+<pre><code>修改前版本号：1 ,值: a
+第一次修改后版本号：2 ,值 b
+第二次修改后版本号：2 ,值 b
+</code></pre>
+<h3 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>全称是 AbstractQueuedSynchronizer，是阻塞式锁和相关的同步器工具的框架，它是构建锁或者其他同步组件的基础框架</p>
+<p>AQS与Synchronized的区别</p>
+<table>
+<thead>
+<tr>
+<th><strong>synchronized</strong></th>
+<th><strong>AQS</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关键字，c++ 语言实现</td>
+<td>java  语言实现</td>
+</tr>
+<tr>
+<td>悲观锁，自动释放锁</td>
+<td>悲观锁，手动开启和关闭</td>
+</tr>
+<tr>
+<td>锁竞争激烈都是重量级锁，性能差</td>
+<td>锁竞争激烈的情况下，提供了多种解决方案</td>
+</tr>
+</tbody></table>
+<p>AQS常见的实现类</p>
+<ul>
+<li>ReentrantLock      阻塞式锁</li>
+<li>Semaphore        信号量</li>
+<li>CountDownLatch   倒计时锁</li>
+<li>CyclicBarrier       循环栅栏</li>
+</ul>
+<h4 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h4><ul>
+<li>在AQS中维护了一个使用了volatile修饰的state属性来表示资源的状态，0表示无锁，1表示有锁</li>
+<li>提供了基于 FIFO 的等待队列，类似于 Monitor 的 EntryList</li>
+<li>条件变量来实现等待、唤醒机制，支持多个条件变量，类似于 Monitor 的 WaitSet</li>
+</ul>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505083840046.png"></p>
+<blockquote>
+<ul>
+<li>线程0来了以后，去尝试修改state属性，如果发现state属性是0，就修改state状态为1，表示线程0抢锁成功</li>
+<li>线程1和线程2也会先尝试修改state属性，发现state的值已经是1了，有其他线程持有锁，它们都会到FIFO队列中进行等待，</li>
+<li>FIFO是一个双向队列，head属性表示头结点，tail表示尾结点</li>
+</ul>
+</blockquote>
+<p><strong>如果多个线程共同去抢这个资源是如何保证原子性的呢？</strong></p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505084451193.png"></p>
+<p>在去修改state状态的时候，使用的cas自旋锁来保证原子性，确保只能有一个线程修改成功，修改失败的线程将会进入FIFO队列中等待</p>
+<p><strong>AQS是公平锁吗，还是非公平锁？</strong></p>
+<ul>
+<li><p>新的线程与队列中的线程共同来抢资源，是非公平锁</p>
+</li>
+<li><p>新的线程到队列中等待，只让队列中的head线程获取锁，是公平锁</p>
+</li>
+</ul>
+<blockquote>
+<p>比较典型的AQS实现类ReentrantLock，它默认就是非公平锁，新的线程与队列中的线程共同来抢资源</p>
+</blockquote>
 <h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h2><pre class=" language-java"><code class="language-java">ReentrantLock lock<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ReentrantLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">try</span><span class="token punctuation">{</span>
@@ -997,12 +1250,15 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
     lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="ReentrantLock的lock方法"><a href="#ReentrantLock的lock方法" class="headerlink" title="ReentrantLock的lock方法"></a>ReentrantLock的lock方法</h3><p>进入到lock方法后，发现内部调用了sync.lock()方法，他有两个实现</p>
-<p>FairSync:公平锁 NonfairSync:非公平锁,先用CAS抢锁，然后再排队 源码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token function">ReentrantLock</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> fair<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<h3 id="ReentrantLock的lock方法"><a href="#ReentrantLock的lock方法" class="headerlink" title="ReentrantLock的lock方法"></a>ReentrantLock的lock方法</h3><p><code>ReentrantLock</code> 里面有一个内部类 <code>Sync</code>，<code>Sync</code> 继承 AQS（<code>AbstractQueuedSynchronizer</code>），添加锁和释放锁的大部分操作实际上都是在 <code>Sync</code> 中实现的。<code>Sync</code> 有公平锁 <code>FairSync</code> 和非公平锁 <code>NonfairSync</code> 两个子类。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%953-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image/image-20231010171831007.png"></p>
+<p><code>ReentrantLock</code> 默认使用非公平锁，也可以通过构造器来显式的指定使用公平锁。</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 传入一个 boolean 值，true 时为公平锁，false 时为非公平锁</span>
+<span class="token keyword">public</span> <span class="token function">ReentrantLock</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> fair<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     sync <span class="token operator">=</span> fair <span class="token operator">?</span> <span class="token keyword">new</span> <span class="token class-name">FairSync</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">NonfairSync</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<p>从上面的内容可以看出， <code>ReentrantLock</code> 的底层就是由 AQS 来实现的。</p>
 <p>AQS(AbstractQueuedSynchronizer)内部维护着一个队列（或者说是双向链表）</p>
 <p>AQS内部三个变量，head,tail,state. 线程用CAS的方法让state从0变为1，这样就是获得锁了。</p>
 <p>没有拿到锁的线程就进入AQS的队列了。</p>
@@ -1047,81 +1303,38 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
     <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2><p><strong>要求</strong></p>
+<h3 id="ReentrantReadWriteLock"><a href="#ReentrantReadWriteLock" class="headerlink" title="ReentrantReadWriteLock"></a>ReentrantReadWriteLock</h3><p>ReentrantReadWriteLock 实现了 <code>ReadWriteLock</code> ，是一个可重入的读写锁，既可以保证多个线程同时读的效率，同时又可以保证有写入操作时的线程安全。适用于读多写少的情况。</p>
+<p><code>ReentrantReadWriteLock</code> 其实是两把锁，一把是 <code>WriteLock</code> (写锁)，一把是 <code>ReadLock</code>（读锁） 。读锁是共享锁，写锁是独占锁。读锁可以被同时读，可以同时被多个线程持有，而写锁最多只能同时被一个线程持有。</p>
 <ul>
-<li>掌握线程安全要考虑的三个问题-可见性，有序性，原子性</li>
-<li>掌握 volatile 能解决哪些问题-可以解决可见性和有序性，不能解决原子性</li>
+<li><strong>共享锁</strong>：一把锁可以被多个线程同时获得。</li>
+<li><strong>独占锁</strong>：一把锁只能被一个线程获得。</li>
 </ul>
-<p>可见性：一个线程对共享变量修改，另一个线程能看到最新的结果</p>
-<p>有序性：一个线程内代码按编写顺序执行</p>
-<p>原子性：一个线程内多行代码以一个整体运行，期间不能有其他线程的代码插队</p>
-<p><strong>原子性</strong></p>
+<p>实现原理：state的高16位是读锁，低16位是写锁。可重入锁。写锁对state加一就好，读锁要用ThreadLocal来记录一下每个线程锁重入的次数。</p>
+<h3 id="StampedLock"><a href="#StampedLock" class="headerlink" title="StampedLock"></a>StampedLock</h3><p><code>StampedLock</code> 不是直接实现 <code>Lock</code>或 <code>ReadWriteLock</code>接口，而是基于 <strong>CLH 锁</strong> 实现的（AQS 也是基于这玩意），CLH 锁是对自旋锁的一种改良，是一种隐式的链表队列。<code>StampedLock</code> 通过 CLH 队列进行线程的管理，通过同步状态值 <code>state</code> 来表示锁的状态和类型。</p>
+<p><code>StampedLock</code> 的原理和 AQS 原理比较类似。</p>
+<p><code>StampedLock</code> 提供了三种模式的读写控制模式：读锁、写锁和乐观读。</p>
 <ul>
-<li>起因：多线程下，不同线程的<strong>指令发生了交错</strong>导致的共享变量的读写混乱</li>
-<li>解决：用悲观锁或乐观锁解决，volatile 并不能解决原子性</li>
+<li><strong>写锁</strong>：独占锁，一把锁只能被一个线程获得。当一个线程获取写锁后，其他请求读锁和写锁的线程必须等待。类似于 <code>ReentrantReadWriteLock</code> 的写锁，不过这里的写锁是不可重入的。</li>
+<li><strong>读锁</strong> （悲观读）：共享锁，没有线程获取写锁的情况下，多个线程可以同时持有读锁。如果己经有线程持有写锁，则其他线程请求获取该读锁会被阻塞。类似于 <code>ReentrantReadWriteLock</code> 的读锁，不过这里的读锁是不可重入的。</li>
+<li><strong>乐观读</strong>：允许多个线程获取乐观读以及读锁。同时允许一个写线程获取写锁。</li>
 </ul>
-<p><strong>可见性</strong></p>
+<p><code>StampedLock</code> 在获取锁的时候会返回一个 long 型的数据戳，该数据戳用于稍后的锁释放参数，如果返回的数据戳为 0 则表示锁获取失败。当前线程持有了锁再次获取锁还是会返回一个新的数据戳，这也是<code>StampedLock</code>不可重入的原因。</p>
+<p>相比于传统读写锁多出来的乐观读是<code>StampedLock</code>比 <code>ReadWriteLock</code> 性能更好的关键原因。<code>StampedLock</code> 的乐观读允许一个写线程获取写锁，所以不会导致所有写线程阻塞，也就是当读多写少的时候，写线程有机会获取写锁，减少了线程饥饿的问题，吞吐量大大提高。</p>
+<p>和 <code>ReentrantReadWriteLock</code> 一样，<code>StampedLock</code> 同样适合读多写少的业务场景，可以作为 <code>ReentrantReadWriteLock</code>的替代品，性能更好。</p>
+<p>不过，需要注意的是<code>StampedLock</code>不可重入，不支持条件变量 <code>Conditon</code>，对中断操作支持也不友好（使用不当容易导致 CPU 飙升）。如果你需要用到 <code>ReentrantLock</code> 的一些高级性能，就不太建议使用 <code>StampedLock</code> 了。</p>
+<p>另外，<code>StampedLock</code> 性能虽好，但使用起来相对比较麻烦，一旦使用不当，就会出现生产问题。</p>
+<h2 id="AtomicInteger原子类"><a href="#AtomicInteger原子类" class="headerlink" title="AtomicInteger原子类"></a>AtomicInteger原子类</h2><h2 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h2><p>采用 CAS + Synchronized来保证并发安全进行实现</p>
 <ul>
-<li>起因：由于<strong>编译器优化、或缓存优化、或 CPU 指令重排序优化</strong>导致的对共享变量所做的修改另外的线程看不到</li>
-<li>解决：<strong>用 volatile 修饰共享变量</strong>，能够防止编译器等优化发生，让一个线程对共享变量的修改对另一个线程可见</li>
+<li>CAS控制数组节点的添加    (在判断数组中当前位置为null的时候，使用CAS来把这个新的Node写入数组中对应的位置)</li>
+<li>synchronized只锁定当前链表或红黑二叉树的首节点，只要hash不冲突，就不会产生并发的问题 , 效率得到提升</li>
 </ul>
-<p><strong>有序性</strong></p>
-<ul>
-<li><p>起因：由于<strong>编译器优化、或缓存优化、或 CPU 指令重排序优化</strong>导致指令的实际执行顺序与编写顺序不一致</p>
-</li>
-<li><p>解决：<strong>用 volatile 修饰共享变量</strong>会在读、写共享变量时加入不同的屏障，阻止其他读写操作越过屏障，从而达到阻止重排序的效果</p>
-</li>
-<li><p>注意：</p>
-<p>内存屏障</p>
-<ul>
-<li><strong>volatile 变量写</strong>加的屏障是阻止上方其它写操作越过屏障排到 <strong>volatile 变量写</strong>之下</li>
-<li><strong>volatile 变量读</strong>加的屏障是阻止下方其它读操作越过屏障排到 <strong>volatile 变量读</strong>之上</li>
-<li>volatile 读写加入的屏障只能防止同一线程内的指令重排</li>
-</ul>
-</li>
-</ul>
-<h2 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h2><p>乐观锁的代表是 AtomicInteger，使用 CAS(compare and swap)来保证原子性。AtomicInteger的底层是Unsafe。</p>
-<ul>
-<li>其核心思想是【无需加锁，每次只有一个线程能成功修改共享变量，其它失败的线程不需要停止，不断重试直至成功】</li>
-<li>由于线程一直运行，不需要阻塞，因此不涉及线程上下文切换</li>
-<li>它需要多核 cpu 支持，且线程数不应超过 cpu 核数</li>
-</ul>
-<h2 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h2><p><strong>ConcurrentHashMap 1.7</strong></p>
-<ul>
-<li>数据结构：<code>Segment(大数组) + HashEntry(小数组) + 链表</code>，每个 Segment 对应一把锁，如果多个线程访问不同的 Segment，则不会冲突</li>
-<li>并发度：Segment 数组大小即并发度，决定了同一时刻最多能有多少个线程并发访问。Segment 数组不能扩容，意味着并发度在 ConcurrentHashMap 创建时就固定了</li>
-<li>三个初始变量（capacity, factor, clevel)小数组的长度等于capacity&#x2F;clevel,小于2则取2.</li>
-<li>索引计算<ul>
-<li>假设大数组长度是 $2^m$，key 在大数组内的索引是 key 的二次 hash 值的高 m 位</li>
-<li>假设小数组长度是 $2^n$，key 在小数组内的索引是 key 的二次 hash 值的低 n 位</li>
-</ul>
-</li>
-<li>扩容：每个小数组的扩容相对独立，小数组在超过扩容因子时会触发扩容，每次扩容翻倍</li>
-<li>Segment[0] 原型：首次创建其它小数组时，会以此原型为依据，数组长度，扩容因子都会以原型为准</li>
-</ul>
-<p><strong>ConcurrentHashMap 1.8</strong></p>
-<ul>
-<li>数据结构：<code>Node 数组 + 链表或红黑树</code>，数组的每个头节点作为锁，如果多个线程访问的头节点不同，则不会冲突。首次生成头节点时如果发生竞争，利用 cas 而非 syncronized，进一步提升性能</li>
-<li>并发度：Node 数组有多大，并发度就有多大，与 1.7 不同，Node 数组可以扩容</li>
-<li>扩容条件：Node 数组满 3&#x2F;4 时就会扩容(3&#x2F;4指的是元素个数&#x2F;数组长度)</li>
-<li>扩容单位：以链表为单位从后向前迁移链表，迁移完成的将旧数组头节点替换为 ForwardingNode</li>
-<li>扩容时并发 get<ul>
-<li>根据是否为 ForwardingNode 来决定是在新数组查找还是在旧数组查找，不会阻塞</li>
-<li>如果链表长度超过 1，则需要对节点进行复制（创建新节点），怕的是节点迁移后 next 指针改变</li>
-<li>如果链表最后几个元素扩容后索引不变，则节点无需复制</li>
-</ul>
-</li>
-<li>扩容时并发 put<ul>
-<li>如果 put 的线程与扩容线程操作的链表是同一个，put 线程会阻塞</li>
-<li>如果 put 的线程操作的链表还未迁移完成，即头节点不是 ForwardingNode，则可以并发执行</li>
-<li>如果 put 的线程操作的链表已经迁移完成，即头结点是 ForwardingNode，则可以协助扩容</li>
-</ul>
-</li>
-<li>与 1.7 相比是懒惰初始化</li>
-<li>capacity 代表预估的元素个数，capacity &#x2F; factory 来计算出初始数组大小，需要贴近 $2^n$ （即当capacity&#x3D;16,且factor&#x3D;0.75时，会初始化出一个size&#x3D;32的数组）</li>
-<li>loadFactor 只在计算初始数组大小时被使用，之后扩容固定为 3&#x2F;4</li>
-<li>超过树化阈值时的扩容问题，如果容量已经是 64，直接树化，否则在原来容量基础上做 3 轮扩容</li>
-</ul>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505093507265.png"></p>
+<h3 id="concurrentHashMap在JDK1-8做的优化"><a href="#concurrentHashMap在JDK1-8做的优化" class="headerlink" title="concurrentHashMap在JDK1.8做的优化"></a>concurrentHashMap在JDK1.8做的优化</h3><p>引入红黑树。数组+链表。链表足够长会变为红黑树。</p>
+<p>在没有hash冲突时，CAS锁头节点去put。</p>
+<p>在出现hash冲突时，synchronized。</p>
+<p>扩容的时候会有协助扩容。</p>
+<p>计数器用addCount,与LongAdder极其相似。线程A对1位置++，线程B对2位置++，最后汇总。</p>
+<p>弱一致性。A写B查，但是B确实不一定能查到，不保证这种复合情况下的强一致性。</p>
 <h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h2><p><strong>要求</strong></p>
 <ul>
 <li>掌握 ThreadLocal 的作用与原理</li>
@@ -1176,9 +1389,332 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
 <p>比如1和2任务在被核心线程被执行，3和4任务在阻塞队列中，5任务来了。生成救急线程，执行5任务，然后再执行3任务和4任务。</p>
 <p>代码实现：</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/QQ%E5%9B%BE%E7%89%8720230427160251.jpg" alt="img"></p>
-<h1 id="6-Redis"><a href="#6-Redis" class="headerlink" title="6.Redis"></a>6.Redis</h1><h2 id="常见数据结构"><a href="#常见数据结构" class="headerlink" title="常见数据结构"></a>常见数据结构</h2><p>详细请参考<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2238792">这篇文章</a></p>
-<p>五种基本数据类型：字符串（strings），散列表（hashes）， 列表（lists），集合（set），有序集合（sortedset）</p>
-<p>三种特殊数据类型：地理位置（Geospatial），基数统计(Hyperloglog), 位图(Bitmap)</p>
+<p>这里借用《Java 并发编程的艺术》提到的来说一下<strong>使用线程池的好处</strong>：</p>
+<ul>
+<li><strong>降低资源消耗</strong>。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。</li>
+<li><strong>提高响应速度</strong>。当任务到达时，任务可以不需要等到线程创建就能立即执行。</li>
+<li><strong>提高线程的可管理性</strong>。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</li>
+</ul>
+<h2 id="CopyOnWrite容器"><a href="#CopyOnWrite容器" class="headerlink" title="CopyOnWrite容器"></a>CopyOnWrite容器</h2><p>ArrayList不是并发安全的，因为他的add方法没有加上synchronized也没有Lock。</p>
+<p><strong>CopyOnWrite容器</strong>（简称COW容器）即<strong>写时复制</strong>的容器。通俗的理解是当我们往一个容器添加元素的时候，不直接往当前容器添加，而是先将当前容器进行Copy，复制出一个新的容器，然后新的容器里添加元素，添加完元素之后，再将原容器的引用指向新的容器。这样做的好处是我们可以对CopyOnWrite容器进行并发的读，而不需要加锁，因为当前容器不会添加任何元素。所以<strong>CopyOnWrite容器也是一种读写分离的思想，读和写不同的容器</strong>。</p>
+<p><strong>CopyOnWrite并发容器用于读多写少的并发场景</strong>。比如：白名单，黑名单。假如我们有一个搜索网站，用户在这个网站的搜索框中，输入关键字搜索内容，但是某些关键字不允许被搜索。这些不能被搜索的关键字会被放在一个黑名单当中，黑名单一定周期才会更新一次。</p>
+<p>缺点：</p>
+<ol>
+<li><strong>内存占用问题。</strong>写的时候会创建新对象添加到新容器里，而旧容器的对象还在使用，所以有两份对象内存。通过压缩容器中的元素的方法来减少大对象的内存消耗，比如，如果元素全是10进制的数字，可以考虑把它压缩成36进制或64进制。或者不使用CopyOnWrite容器，而使用其他的并发容器，如ConcurrentHashMap。</li>
+<li><strong>数据一致性问题。</strong>CopyOnWrite容器只能保证数据的最终一致性，不能保证数据的实时一致性。所以如果你希望写入的的数据，马上能读到，请不要使用CopyOnWrite容器。</li>
+</ol>
+<p><strong>同步容器</strong>可以简单地理解为通过synchronized来实现同步的容器。同步容器会导致多个线程中对容器方法调用的串行执行，降低并发性，因为它们都是以容器自身对象为锁。<strong>在并发下进行迭代的读和写时并不是线程安全的</strong>。如：Vector、Stack、HashTable、Collections类的静态工厂方法创建的类（如Collections.synchronizedList）</p>
+<p><strong>并发容器</strong>是针对多个线程并发访问而设计的，在jdk5.0引入了concurrent包，其中提供了很多并发容器，如ConcurrentHashMap、CopyOnWriteArrayList等。</p>
+<h1 id="7-JVM"><a href="#7-JVM" class="headerlink" title="7.JVM"></a>7.JVM</h1><h2 id="内存区域详解"><a href="#内存区域详解" class="headerlink" title="内存区域详解"></a>内存区域详解</h2><p>JDK1.7线程共享区域有个方法区，JDK8变为了本地内存里的元空间。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231121193536683.png"></p>
+<p>在多线程的情况下，程序计数器用于记录当前线程执行的位置，从而当线程被切换回来的时候能够知道该线程上次运行到哪儿了。</p>
+<p>栈由一个个栈帧组成，而每个栈帧中都拥有：局部变量表、操作数栈、动态链接、方法返回地址。</p>
+<p>堆<strong>内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存</strong></p>
+<p><font color='red'>Java 堆还可以细分为：新生代和老年代；再细致一点新生代有：Eden、S0、S1 等空间</font></p>
+<p><strong>JDK 8 版本之后 PermGen(永久代) 已被 Metaspace(元空间) 取代，元空间使用的是本地内存。</strong></p>
+<p>新生代-&gt;老年代-&gt;永久代</p>
+<p>永久代和元空间是 HotSpot 虚拟机对虚拟机规范中方法区的两种实现方式。</p>
+<p><strong>Java对象的创建过程</strong>：1.类加载检查 2.分配内存 3.初始化零值 4.设置对象头 5.执行init方法 </p>
+<h2 id="GC算法"><a href="#GC算法" class="headerlink" title="GC算法"></a>GC算法</h2><p>GC 是 Garbage Collection 的简称，中文称为“垃圾回收”。GC ，是指程序把不用的内存空间视为垃圾并回收掉的整套动作。</p>
+<p>Java 自动内存管理最核心的功能是 <strong>堆</strong> 内存中对象的分配与回收。</p>
+<p>对象优先在Eden区分配，当 Eden 区没有足够空间进行分配时，虚拟机将发起一次 Minor GC。</p>
+<ol>
+<li>在这次垃圾回收过程中，存活的对象会被复制到Survivor区（通常是S0或S1），而不存活的对象则会被清除。</li>
+<li>如果Survivor区的空间不足，则存活的对象会被直接晋升到老年代。</li>
+<li>在下一次minor GC过程中，会将Eden区和上次的Survivor区（例如S0）中的存活对象复制到另一个Survivor区（例如S1）。同时，上一轮minor GC中存活下来的对象年龄会增加1，并一起复制到新的Survivor区。</li>
+</ol>
+<p>大对象就是需要大量连续内存空间的对象，直接进入老年代。</p>
+<p>针对 HotSpot VM 的实现，它里面的 GC 其实准确分类只有两大种：</p>
+<p>部分收集 (Partial GC)：</p>
+<ul>
+<li>新生代收集（Minor GC &#x2F; Young GC）：只对新生代进行垃圾收集；</li>
+<li>老年代收集（Major GC &#x2F; Old GC）：只对老年代进行垃圾收集。需要注意的是 Major GC 在有的语境中也用于指代整堆收集；目前只有CMS会有单独收集老年代的行为</li>
+<li>混合收集（Mixed GC）：对整个新生代和部分老年代进行垃圾收集。</li>
+</ul>
+<p>整堆收集 (Full GC)：收集整个 Java 堆和方法区。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231129164937009.png"></p>
+<p>空间分配担保：进行Minor GC之前，先看看老年代有没有足够的空间。如果没有，则进行Full GC</p>
+<p>垃圾收集算法：标记-清除算法。标记-复制算法。标记-整理算法。分代收集算法。</p>
+<h3 id="1-标记-清除算法"><a href="#1-标记-清除算法" class="headerlink" title="1.标记-清除算法"></a>1.标记-清除算法</h3><p>标记清除算法，是将垃圾回收分为2个阶段，分别是<strong>标记和清除</strong>。</p>
+<p>1.根据可达性分析算法得出的垃圾进行标记</p>
+<p>2.对这些标记为可回收的内容进行垃圾回收</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506112047190.png"></p>
+<p>可以看到，标记清除算法解决了引用计数算法中的循环引用的问题，没有从root节点引用的对象都会被回收。</p>
+<p>同样，标记清除算法也是有缺点的：</p>
+<ul>
+<li>效率较低，<strong>标记和清除两个动作都需要遍历所有的对象</strong>，并且在GC时，<strong>需要停止应用程序</strong>，对于交互性要求比较高的应用而言这个体验是非常差的。</li>
+<li>（<strong>重要</strong>）通过标记清除算法清理出来的内存，碎片化较为严重，因为被回收的对象可能存在于内存的各个角落，所以清理出来的内存是不连贯的。</li>
+</ul>
+<h3 id="2-标记-复制算法"><a href="#2-标记-复制算法" class="headerlink" title="2.标记-复制算法"></a>2.标记-复制算法</h3><p>复制算法的核心就是，<strong>将原有的内存空间一分为二，每次只用其中的一块</strong>，在垃圾回收时，将正在使用的对象复制到另一个内存空间中，然后将该内存空间清空，交换两个内存的角色，完成垃圾的回收。</p>
+<p>​	如果内存中的垃圾对象较多，需要复制的对象就较少，这种情况下适合使用该方式并且效率比较高，反之，则不适合。 </p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506111919008.png"></p>
+<p>1）将内存区域分成两部分，每次操作其中一个。</p>
+<p>2）当进行垃圾回收时，将正在使用的内存区域中的存活对象移动到未使用的内存区域。当移动完对这部分内存区域一次性清除。</p>
+<p>3）周而复始。</p>
+<p>优点：</p>
+<ul>
+<li>在垃圾对象多的情况下，效率较高</li>
+<li>清理后，内存无碎片</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>分配的2块内存空间，在同一个时刻，只能使用一半，内存使用率较低</li>
+</ul>
+<h3 id="3-标记-整理算法"><a href="#3-标记-整理算法" class="headerlink" title="3.标记-整理算法"></a>3.标记-整理算法</h3><p>标记压缩算法是在标记清除算法的基础之上，做了优化改进的算法。和标记清除算法一样，也是从根节点开始，对对象的引用进行标记，在清理阶段，并不是简单的直接清理可回收对象，而是将存活对象都向内存另一端移动，然后清理边界以外的垃圾，从而解决了碎片化的问题。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506111957793.png"></p>
+<p>1）标记垃圾。</p>
+<p>2）需要清除向右边走，不需要清除的向左边走。</p>
+<p>3）清除边界以外的垃圾。</p>
+<p>优缺点同标记清除算法，解决了标记清除算法的碎片化的问题，同时，标记整理算法多了一步，对象移动内存位置的步骤，其效率也有有一定的影响。</p>
+<p>与复制算法对比：复制算法标记完就复制，但标记整理算法得等把所有存活对象都标记完毕，再进行整理</p>
+<h3 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h3><p>比如在新生代中，每次收集都会有大量对象死去，所以可以选择”标记-复制“算法，只需要付出少量对象的复制成本就可以完成每次垃圾收集。而老年代的对象存活几率是比较高的，而且没有额外的空间对它进行分配担保，所以我们必须选择“标记-清除”或“标记-整理”算法进行垃圾收集。</p>
+<p>在java8时，堆被分为了两份：<strong>新生代和老年代【1：2】</strong></p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506131229649.png"></p>
+<p>对于新生代，内部又被分为了三个区域。Eden区，S0区，S1区【8：1：1】</p>
+<p>当对新生代产生GC：MinorGC【young GC】</p>
+<p>当对老年代代产生GC：Major GC 【old GC】</p>
+<p>当对新生代和老年代产生FullGC： 新生代 + 老年代完整垃圾回收，暂停时间长，<strong>应尽力避免</strong></p>
+<ul>
+<li><p>MinorGC【young GC】发生在新生代的垃圾回收，暂停时间短（STW）</p>
+</li>
+<li><p>Mixed GC 新生代 + 老年代部分区域的垃圾回收，G1 收集器特有</p>
+</li>
+<li><p>FullGC： 新生代 + 老年代完整垃圾回收，暂停时间长（STW），应尽力避免？</p>
+</li>
+</ul>
+<blockquote>
+<p>名词解释：</p>
+<p>STW（Stop-The-World）：暂停所有应用程序线程，等待垃圾回收的完成</p>
+</blockquote>
+<p>工作机制</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506131308654.png"></p>
+<ul>
+<li>新创建的对象，都会先分配到eden区</li>
+</ul>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506131415418.png"></p>
+<ul>
+<li><p>当伊甸园内存不足，标记伊甸园与 from（现阶段没有）的存活对象</p>
+</li>
+<li><p>将存活对象采用复制算法复制到 to 中，复制完毕后，伊甸园和 from 内存都得到释放</p>
+</li>
+</ul>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506131442503.png"></p>
+<ul>
+<li>经过一段时间后伊甸园的内存又出现不足，标记eden区域to区存活的对象，将存活的对象复制到from区</li>
+</ul>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506131544447.png"></p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506131607645.png"></p>
+<ul>
+<li>当幸存区对象熬过几次回收（最多15次），晋升到老年代（幸存区内存不足或大对象会导致提前晋升）</li>
+</ul>
+<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><p>JDK默认的垃圾收集器：</p>
+<ul>
+<li>JDK 8：Parallel Scavenge（新生代）+ Parallel Old（老年代），即Parallel GC</li>
+<li>JDK 9 ~ JDK20: G1</li>
+</ul>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1326194-20181017145352803-1499680295.png"></p>
+<p>如果两个收集器之间存在连线，则说明它们可以搭配使用。虚拟机所处的区域则表示它是属于新生代还是老年代收集器。</p>
+<p><strong>整堆收集器</strong>： G1</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/v2-8688e96d24a3fc683eaf7ad3efb3dbd3_720w.jpg"></p>
+<p>垃圾回收器选择策略 ：</p>
+<p>客户端程序 ： Serial + Serial Old；</p>
+<p>吞吐率优先的服务端程序（比如：计算密集型） ： Parallel Scavenge + Parallel Old；</p>
+<p>响应时间优先的服务端程序 ：ParNew + CMS。</p>
+<p>G1收集器是基于标记整理算法实现的，不会产生空间碎片，可以精确地控制停顿，将堆划分为多个大小固定的独立区域，并跟踪这些区域的垃圾堆积程度，在后台维护一个优先列表，每次根据允许的收集时间，优先回收垃圾最多的区域（Garbage First）。</p>
+<h3 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a>Serial收集器</h3><p><strong>Serial收集器</strong>：串行，单线程，在进行垃圾收集工作的时候必须暂停其他所有的工作线程（ <strong>“Stop The World”</strong> ），直到它收集结束。采用标记-复制算法.</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/image/image-20240717200833436.png"></p>
+<h3 id="Serial-Old-收集器"><a href="#Serial-Old-收集器" class="headerlink" title="Serial Old 收集器"></a>Serial Old 收集器</h3><p><strong>Serial Old 收集器</strong>：串行，单线程，Serial收集器的老年代版本(标记-整理算法)，与Parallel Scavenge配合使用。</p>
+<h3 id="ParNew收集器"><a href="#ParNew收集器" class="headerlink" title="ParNew收集器"></a>ParNew收集器</h3><p><strong>ParNew 收集器</strong>：其实就是 Serial 收集器的多线程版本，除了使用多线程进行垃圾收集外，其余行为（控制参数、收集算法、回收策略等等）和 Serial 收集器完全一样。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/image/image-20240717200846509.png"></p>
+<h3 id="Parallel-Scavenge收集器"><a href="#Parallel-Scavenge收集器" class="headerlink" title="Parallel Scavenge收集器"></a>Parallel Scavenge收集器</h3><p><strong>Parallel Scavenge 收集器</strong>：和ParNew收集器基本一样。Parallel Scavenge 收集器关注点是吞吐量（高效率的利用 CPU）。CMS 等垃圾收集器的关注点更多的是用户线程的停顿时间（提高用户体验）。</p>
+<p><strong>探究ParNew与Parallel Scavenge的区别：</strong></p>
+<p>ParNew收集器（新生代）通常与CMS收集器（老年代）配合使用，它们共同为低延迟场景提供服务。</p>
+<p>ParNew注重的是降低暂停时间，因此更适合需要低延迟的应用，如Web服务器、交互式应用等。而Parallel Scavenge注重高吞吐量，更适合后台运算为主的场景，如大型计算任务、批处理等。</p>
+<p>ParNew为了保证低延迟，可能会牺牲部分吞吐量。而Parallel Scavenge则相反，它会牺牲部分延迟来保证最大的吞吐量。Parallel Scavenge有一些参数可以进行调整。</p>
+<p>Parallel Scavenge具有自适应调节策略（-XX:+UseAdaptiveSizePolicy），能够根据系统的实际运行情况调整各个区域的大小及目标暂停时间。ParNew没有这种自适应机制。</p>
+<h3 id="Parallel-Old收集器"><a href="#Parallel-Old收集器" class="headerlink" title="Parallel Old收集器"></a>Parallel Old收集器</h3><p><strong>Parallel Old 收集器</strong>：多线程，Parallel Scavenge收集器的老年代版本，标记-整理算法</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/image/image-20240717202114683.png"></p>
+<h3 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h3><p>CMS收集器：<strong>CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器。它非常符合在注重用户体验的应用上使用</strong></p>
+<p><strong>CMS（Concurrent Mark Sweep）收集器是 HotSpot 虚拟机第一款真正意义上的并发收集器，它第一次实现了让垃圾收集线程与用户线程（基本上）同时工作。</strong></p>
+<p>CMS 收集器是一种 <strong>“标记-清除”算法</strong>实现的。</p>
+<p>整个过程分为四个步骤：</p>
+<ul>
+<li><strong>初始标记：</strong> 暂停所有的其他线程，并记录下直接与 root 相连的对象，速度很快 ；</li>
+<li><strong>并发标记：</strong> 同时开启 GC 和用户线程，用一个闭包结构去记录可达对象。但在这个阶段结束，这个闭包结构并不能保证包含当前所有的可达对象。因为用户线程可能会不断的更新引用域，所以 GC 线程无法保证可达性分析的实时性。所以这个算法里会跟踪记录这些发生引用更新的地方。</li>
+<li><strong>重新标记：</strong> 重新标记阶段就是为了修正并发标记期间因为用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始标记阶段的时间稍长，远远比并发标记阶段时间短</li>
+<li><strong>并发清除：</strong> 开启用户线程，同时 GC 线程开始对未标记的区域做清扫。</li>
+</ul>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231130165743467.png"></p>
+<p>主要优点：<strong>并发收集、低停顿</strong>。但是它有下面三个明显的缺点：</p>
+<ul>
+<li><strong>对 CPU 资源敏感；</strong></li>
+<li><strong>无法处理浮动垃圾；</strong></li>
+<li><strong>它使用的回收算法-“标记-清除”算法会导致收集结束时会有大量空间碎片产生</strong></li>
+</ul>
+<h3 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h3><p><strong>G1 (Garbage-First) 是一款面向服务器的垃圾收集器,主要针对配备多颗处理器及大容量内存的机器. 以极高概率满足 GC 停顿时间要求的同时,还具备高吞吐量性能特征.</strong></p>
+<p>它具备以下特点：</p>
+<ul>
+<li><strong>并行与并发</strong>：G1 能充分利用 CPU、多核环境下的硬件优势，使用多个 CPU（CPU 或者 CPU 核心）来缩短 Stop-The-World 停顿时间。部分其他收集器原本需要停顿 Java 线程执行的 GC 动作，G1 收集器仍然可以通过并发的方式让 java 程序继续执行。</li>
+<li><strong>分代收集</strong>：虽然 G1 可以不需要其他收集器配合就能独立管理整个 GC 堆，但是还是保留了分代的概念。但是在读书的时候发现，是将堆内存分为好多Region区域，然后每个区域都有8:1:1的新生代和老年代，然后回收的衡量标准是哪块区域内存中存放的垃圾最多。</li>
+<li><strong>空间整合</strong>：与 CMS 的“标记-清除”算法不同，G1 从整体来看是基于“标记-整理”算法实现的收集器；从局部上来看是基于“标记-复制”算法实现的。</li>
+<li><strong>可预测的停顿</strong>：这是 G1 相对于 CMS 的另一个大优势，降低停顿时间是 G1 和 CMS 共同的关注点，但 G1 除了追求低停顿外，还能建立可预测的停顿时间模型，能让使用者明确指定在一个长度为 M 毫秒的时间片段内，消耗在垃圾收集上的时间不得超过 N 毫秒。</li>
+</ul>
+<p>G1 收集器的运作大致分为以下几个步骤：</p>
+<ul>
+<li><strong>初始标记</strong></li>
+<li><strong>并发标记</strong></li>
+<li><strong>最终标记</strong></li>
+<li><strong>筛选回收</strong></li>
+</ul>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231130170314884.png"></p>
+<p><strong>G1 收集器在后台维护了一个优先列表，每次根据允许的收集时间，优先选择回收价值最大的 Region(这也就是它的名字 Garbage-First 的由来)</strong> 。这种使用 Region 划分内存空间以及有优先级的区域回收方式，保证了 G1 收集器在有限时间内可以尽可能高的收集效率（把内存化整为零）。</p>
+<p><strong>从 JDK9 开始，G1 垃圾收集器成为了默认的垃圾收集器</strong></p>
+<p>CMS新生代的Young GC、G1和ZGC都基于<strong>标记-复制</strong>算法，但算法具体实现的不同就导致了巨大的性能差异。</p>
+<p>G1停顿时间的瓶颈主要是标记-复制中的转移阶段STW。为什么转移阶段不能和标记阶段一样并发执行呢？主要是G1未能解决转移过程中准确定位对象地址的问题。</p>
+<ul>
+<li><p>分成三个阶段：新生代回收、并发标记、混合收集</p>
+</li>
+<li><p>如果并发失败（即回收速度赶不上创建新对象速度），会触发 Full GC</p>
+</li>
+<li></li>
+</ul>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506154323950.png"></p>
+<h4 id="Young-Collection-年轻代垃圾回收"><a href="#Young-Collection-年轻代垃圾回收" class="headerlink" title="Young Collection(年轻代垃圾回收)"></a>Young Collection(年轻代垃圾回收)</h4><ul>
+<li><p>初始时，所有区域都处于空闲状态</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506154542687.png"></p>
+</li>
+<li><p>创建了一些对象，挑出一些空闲区域作为伊甸园区存储这些对象</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506154607558.png"></p>
+</li>
+<li><p>当伊甸园需要垃圾回收时，挑出一个空闲区域作为幸存区，用复制算法复制存活对象，需要暂停用户线程</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506154633118.png"></p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506154705088.png"></p>
+</li>
+<li><p>随着时间流逝，伊甸园的内存又有不足</p>
+</li>
+<li><p>将伊甸园以及之前幸存区中的存活对象，采用复制算法，复制到新的幸存区，其中较老对象晋升至老年代</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506154759809.png"></p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506154826981.png"></p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506154859985.png"></p>
+</li>
+</ul>
+<h4 id="Young-Collection-Concurrent-Mark-年轻代垃圾回收-并发标记"><a href="#Young-Collection-Concurrent-Mark-年轻代垃圾回收-并发标记" class="headerlink" title="Young Collection + Concurrent Mark (年轻代垃圾回收+并发标记)"></a>Young Collection + Concurrent Mark (年轻代垃圾回收+并发标记)</h4><p>当老年代占用内存超过阈值(默认是45%)后，触发并发标记，这时无需暂停用户线程</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506155000503.png"></p>
+<ul>
+<li><p>并发标记之后，会有重新标记阶段解决漏标问题，此时需要暂停用户线程。</p>
+</li>
+<li><p>这些都完成后就知道了老年代有哪些存活对象，随后进入混合收集阶段。此时不会对所有老年代区域进行回收，而是根据暂停时间目标优先回收价值高（存活对象少）的区域（这也是 Gabage First 名称的由来）。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506155047765.png"></p>
+</li>
+</ul>
+<h4 id="Mixed-Collection-混合垃圾回收"><a href="#Mixed-Collection-混合垃圾回收" class="headerlink" title="Mixed Collection (混合垃圾回收)"></a>Mixed Collection (混合垃圾回收)</h4><p>复制完成，内存得到释放。进入下一轮的新生代回收、并发标记、混合收集</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506155116267.png"></p>
+<p>其中H叫做巨型对象，如果对象非常大，会开辟一块连续的空间存储巨型对象</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506155146370.png"></p>
+<h3 id="ZGC收集器"><a href="#ZGC收集器" class="headerlink" title="ZGC收集器"></a>ZGC收集器</h3><p>ZGC是一款JDK 11中新加入的具有实验性质的低延迟垃圾收集器，ZGC是Azul System公司开发的 C4(Concurrent Continuously  Compacting Collector)收集器。</p>
+<p><font color='red'>ZGC收集器是一款基于Region内存布局的，（暂时）不设分代的，使用了读屏障、染色指针和内存多重映射等技术来实现可并发的标记-整理算法的，以低延迟为首要目标的一款垃圾收集器。</font></p>
+<p>与 CMS 中的 ParNew 和 G1 类似，ZGC 也采用<strong>标记-复制算法</strong>，不过 ZGC 对该算法做了重大改进。</p>
+<p>在 ZGC 中出现 Stop The World 的情况会更少！</p>
+<p>它的设计目标包括：</p>
+<ul>
+<li>停顿时间不超过10ms；</li>
+<li>停顿时间不会随着堆的大小，或者活跃对象的大小而增加；</li>
+<li>支持8MB~4TB级别的堆（未来支持16TB）。</li>
+</ul>
+<p>与CMS中的ParNew和G1类似，ZGC也采用标记-复制算法，不过ZGC对该算法做了重大改进：ZGC在标记、转移和重定位阶段几乎都是并发的，这是ZGC实现停顿时间小于10ms目标的最关键原因。</p>
+<p><strong>ZGC运作过程</strong> </p>
+<p>ZGC的运作过程大致可划分为以下四个大的阶段： </p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/image-20220819172121880.png"></p>
+<p>①并发标记（Concurrent Mark）：与G1一样，并发标记是遍历对象图做可达性分析的阶段，它的初始标记 (<strong>Mark Start</strong>)和最终标记(<strong>Mark End</strong>)也会出现短暂的停顿，与G1不同的是， ZGC的标记是在指针上而不是在对象 上进行的， 标记阶段会更新染色指针中的Marked 0、 Marked 1标志位。 </p>
+<p>②并发预备重分配（Concurrent Prepare for Relocate）：这个阶段需要根据特定的查询条件统计得出本次收 集过程要清理哪些Region，将这些Region组成重分配集（Relocation Set）。ZGC每次回收都会扫描所有的 Region，用范围更大的扫描成本换取省去G1中记忆集的维护成本。 </p>
+<p>③并发重分配（Concurrent Relocate）：重分配是ZGC执行过程中的核心阶段，这个过程要把重分配集中的存 活对象复制到新的Region上，并为重分配集中的每个Region维护一个转发表（Forward Table），记录从旧对象 到新对象的转向关系。ZGC收集器能仅从引用上就明确得知一个对象是否处于重分配集之中，如果用户线程此时并 发访问了位于重分配集中的对象，这次访问将会被预置的内存屏障所截获，然后立即根据Region上的转发表记录将访问转发到新复制的对象上，并同时修正更新该引用的值，使其直接指向新对象，ZGC将这种行为称为指 针的“自愈”（Self-Healing）能力。 </p>
+<p>④并发重映射（Concurrent Remap）：重映射所做的就是修正整个堆中指向重分配集中旧对象的所有引用，但是ZGC中对象引用存在“自愈”功能，所以这个重映射操作并不是很迫切。ZGC很巧妙地把并发重映射阶段要做的工作，合并到了下一次垃圾收集循环中的并发标记阶段里去完成，反正它们都是要遍历所有对象的，这样合并就节 省了一次遍历对象图的开销。一旦所有指针都被修正之后， 原来记录新旧对象关系的转发表就可以释放掉了。</p>
+<p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html">ZGC关键技术</a>：</p>
+<p>ZGC通过<strong>着色指针</strong>和<strong>读屏障技术</strong>，解决了转移过程中准确访问对象的问题，实现了并发转移。大致原理描述如下：并发转移中“并发”意味着GC线程在转移对象的过程中，应用线程也在不停地访问对象。假设对象发生转移，但对象地址未及时更新，那么应用线程可能访问到旧地址，从而造成错误。而在ZGC中，应用线程访问对象将触发“读屏障”，如果发现对象被移动了，那么“读屏障”会把读出来的指针更新到对象的新地址上，这样应用线程始终访问的都是对象的新地址。那么，JVM是如何判断对象被移动过呢？就是利用对象引用的地址，即着色指针。</p>
+<h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p>双亲委派模型：当一个类需要被加载的时候，一步步往上问看是否已经被加载；都没有加载的话再从上到下一步步尝试去加载。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231214160921266.png"></p>
+<p>JVM 不仅要看类的全名是否相同，还要看加载此类的类加载器是否一样。只有两者都相同的情况，才认为两个类是相同的。</p>
+<p>双亲委派模型保证了 Java 程序的稳定运行，可以避免类的重复加载（JVM 区分不同类的方式不仅仅根据类名，相同的类文件被不同的类加载器加载产生的是两个不同的类），也保证了 Java 的核心 API 不被篡改。</p>
+<h2 id="实际调优"><a href="#实际调优" class="headerlink" title="实际调优"></a>实际调优</h2><p><strong>堆内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存</strong></p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231214172052217.png"></p>
+<p>显式指定堆内存最小值和最大值<code>–Xms</code>和<code>-Xmx</code></p>
+<p>我们还有很多JVM参数可以去调：</p>
+<p><a target="_blank" rel="noopener" href="https://javaguide.cn/java/jvm/jvm-parameters-intro.html#%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90">https://javaguide.cn/java/jvm/jvm-parameters-intro.html#%E6%96%87%E7%AB%A0%E6%8E%A8%E8%8D%90</a></p>
+<p>案例：</p>
+<p><a target="_blank" rel="noopener" href="https://javaguide.cn/java/jvm/jvm-in-action.html">https://javaguide.cn/java/jvm/jvm-in-action.html</a></p>
+<p><code>jps</code>:查看所有 Java 进程</p>
+<p><code>jstat</code>: 监视虚拟机各种运行状态信息</p>
+<p><code>jinfo</code>: 实时地查看和调整虚拟机各项参数</p>
+<p><code>jmap</code>（Memory Map for Java）命令用于生成堆转储快照</p>
+<p><strong><code>jhat</code></strong> 用于分析 heapdump 文件，它会建立一个 HTTP&#x2F;HTML 服务器，让用户可以在浏览器上查看分析结果。</p>
+<p><code>jstack</code>（Stack Trace for Java）命令用于生成虚拟机当前时刻的线程快照。线程快照就是当前虚拟机内每一条线程正在执行的方法堆栈的集合.</p>
+<p>JDK可视化分析工具：<br>JConsole:Java 监视与管理控制台；可以查看Java程序概况，内存监控，线程监控，</p>
+<p>Visual VM:多合一故障处理工具；</p>
+<h1 id="8-MQ-star"><a href="#8-MQ-star" class="headerlink" title="8.MQ:star:"></a>8.MQ:star:</h1><h2 id="阻塞队列-BlockingQueue"><a href="#阻塞队列-BlockingQueue" class="headerlink" title="阻塞队列-BlockingQueue"></a>阻塞队列-BlockingQueue</h2><p>被阻塞的情况主要有如下两种：</p>
+<ol>
+<li><p><strong>当队列满了的时候进行入队列操作</strong></p>
+</li>
+<li><p><strong>当队列空了的时候进行出队列操作</strong></p>
+</li>
+</ol>
+<p>因此，当一个线程试图对一个已经满了的队列进行入队列操作时，它将会被阻塞，除非有另一个线程做了出队列操作；同样，当一个线程试图对一个空队列进行出队列操作时，它将会被阻塞，除非有另一个线程进行了入队列操作。</p>
+<p><strong>阻塞队列主要用在生产者&#x2F;消费者的场景</strong>，下面这幅图展示了一个线程生产、一个线程消费的场景：</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1562942021825.png"></p>
+<p><strong>为什么需要BlockingQueue</strong><br>        好处是我们不需要关心什么时候需要阻塞线程，什么时候需要唤醒线程，因为这一切BlockingQueue都给你一手包办了。在concurrent包发布以前，在多线程环境下，我们每个程序员都必须去自己控制这些细节，尤其还要兼顾效率和线程安全，而这会给我们的程序带来不小的复杂度。</p>
+<p>java.util.concurrent 包里的 BlockingQueue是一个接口，继承Queue接口，Queue接口继承 Collection。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1562943086619.png"></p>
+<p>BlockingQueue接口主要有以下7个实现类：</p>
+<ol>
+<li><font color="red">ArrayBlockingQueue：由数组结构组成的有界阻塞队列。</font></li>
+<li><font color="red">LinkedBlockingQueue：由链表结构组成的有界（但大小默认值为integer.MAX_VALUE）阻塞队列。</font></li>
+<li>PriorityBlockingQueue：支持优先级排序的无界阻塞队列。</li>
+<li>DelayQueue：使用优先级队列实现的延迟无界阻塞队列。</li>
+<li><font color="red">SynchronousQueue：不存储元素的阻塞队列，也即单个元素的队列。</font></li>
+<li>LinkedTransferQueue：由链表组成的无界阻塞队列。</li>
+<li>LinkedBlockingDeque：由链表组成的双向阻塞队列。</li>
+</ol>
+<p>BlockingQueue接口有以下几个方法：</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1562943531362.png"></p>
+<p>它的方法可以分成以下4类：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>抛出异常</th>
+<th>特殊值</th>
+<th>阻塞</th>
+<th>超时</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>插入</strong></td>
+<td>add(e)</td>
+<td>offer(e)</td>
+<td>put(e)</td>
+<td>offer(e, time, unit)</td>
+</tr>
+<tr>
+<td><strong>移除</strong></td>
+<td>remove()</td>
+<td>poll()</td>
+<td>take()</td>
+<td>poll(time, unit)</td>
+</tr>
+<tr>
+<td><strong>检查</strong></td>
+<td>element()</td>
+<td>peek()</td>
+<td>不可用</td>
+<td>不可用</td>
+</tr>
+</tbody></table>
+<p><strong>抛出异常</strong></p>
+<p>​		add正常执行返回true，element（不删除）和remove返回阻塞队列中的第一个元素<br>​		当阻塞队列满时，再往队列里add插入元素会抛IllegalStateException:Queue full<br>​		当阻塞队列空时，再往队列里remove移除元素会抛NoSuchElementException<br>​		当阻塞队列空时，再调用element检查元素会抛出NoSuchElementException</p>
+<p><strong>特定值</strong><br>        插入方法，成功ture失败false<br>        移除方法，成功返回出队列的元素，队列里没有就返回null<br>        检查方法，成功返回队列中的元素，没有返回null</p>
+<p><strong>一直阻塞</strong></p>
+<p>​		如果试图的操作无法立即执行，该方法调用将会发生阻塞，直到能够执行。<br>​		当阻塞队列满时，再往队列里put元素，队列会一直阻塞生产者线程直到put数据or响应中断退出<br>​		当阻塞队列空时，再从队列里take元素，队列会一直阻塞消费者线程直到队列可用</p>
+<p><strong>超时退出</strong></p>
+<p>​		如果试图的操作无法立即执行，该方法调用将会发生阻塞，直到能够执行，但等待时间不会超过给定值。<br>​		返回一个特定值以告知该操作是否成功(典型的是 true &#x2F; false)。</p>
 
                 
             </div>
@@ -1453,13 +1989,13 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/07/05/shang-huo-gu-javaee-ji-zhu-zhi-juc-jvm/">
+                <a href="/2024/07/21/drools-gui-ze-yin-qing-xue-xi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="尚硅谷JavaEE技术之JUC&amp;&amp;JVM">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Drools规则引擎学习">
                         
-                        <span class="card-title">尚硅谷JavaEE技术之JUC&amp;&amp;JVM</span>
+                        <span class="card-title">Drools规则引擎学习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1470,7 +2006,7 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-21
                             </span>
                         <span class="publish-author">
                             

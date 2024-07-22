@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-07-15T05:56:13.421Z</updated>
+  <updated>2024-07-21T12:15:46.065Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://19shuidiph.github.io/2024/07/26/ge-ren-jian-li/"/>
     <id>http://19shuidiph.github.io/2024/07/26/ge-ren-jian-li/</id>
     <published>2024-07-26T02:13:52.000Z</published>
-    <updated>2024-07-15T05:56:13.421Z</updated>
+    <updated>2024-07-21T12:15:46.065Z</updated>
     
     
       
@@ -33,6 +33,29 @@
       
     
     
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Drools规则引擎学习</title>
+    <link href="http://19shuidiph.github.io/2024/07/21/drools-gui-ze-yin-qing-xue-xi/"/>
+    <id>http://19shuidiph.github.io/2024/07/21/drools-gui-ze-yin-qing-xue-xi/</id>
+    <published>2024-07-21T08:14:53.000Z</published>
+    <updated>2024-07-22T09:01:33.400Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Drools规则引擎学习&quot;&gt;&lt;a href=&quot;#Drools规则引擎学习&quot; class=&quot;headerlink&quot; title=&quot;Drools规则引擎学习&quot;&gt;&lt;/a&gt;Drools规则引擎学习&lt;/h1&gt;&lt;p&gt;通过尚硅谷的&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://19shuidiph.github.io/categories/Java/"/>
     
     
   </entry>
@@ -410,7 +433,7 @@
     <link href="http://19shuidiph.github.io/2023/11/21/javaguide-zi-xue-ji-lu-5-jvm/"/>
     <id>http://19shuidiph.github.io/2023/11/21/javaguide-zi-xue-ji-lu-5-jvm/</id>
     <published>2023-11-21T11:34:09.000Z</published>
-    <updated>2023-12-15T03:17:23.823Z</updated>
+    <updated>2024-07-17T01:34:52.010Z</updated>
     
     
       
@@ -433,7 +456,7 @@
     <link href="http://19shuidiph.github.io/2023/11/09/java-ba-gu-wen-bing-fa-xue-xi-ji-lu-2/"/>
     <id>http://19shuidiph.github.io/2023/11/09/java-ba-gu-wen-bing-fa-xue-xi-ji-lu-2/</id>
     <published>2023-11-09T04:00:45.000Z</published>
-    <updated>2023-12-13T15:05:14.444Z</updated>
+    <updated>2024-07-16T12:24:46.610Z</updated>
     
     
       
@@ -447,29 +470,6 @@
     
     
     <category term="Java" scheme="http://19shuidiph.github.io/categories/Java/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java八股文-Redis学习记录2</title>
-    <link href="http://19shuidiph.github.io/2023/10/31/java-ba-gu-wen-redis-xue-xi-ji-lu-2/"/>
-    <id>http://19shuidiph.github.io/2023/10/31/java-ba-gu-wen-redis-xue-xi-ji-lu-2/</id>
-    <published>2023-10-31T07:55:31.000Z</published>
-    <updated>2023-11-13T01:37:34.545Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;马士兵-Redis面试题&quot;&gt;&lt;a href=&quot;#马士兵-Redis面试题&quot; class=&quot;headerlink&quot; title=&quot;马士兵-Redis面试题&quot;&gt;&lt;/a&gt;马士兵-Redis面试题&lt;/h1&gt;&lt;h2 id=&quot;1-Redis为什么这么快&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Redis" scheme="http://19shuidiph.github.io/categories/Redis/"/>
     
     
   </entry>

@@ -867,9 +867,7 @@ ExecutorService threadPool <span class="token operator">=</span> <span class="to
     <span class="token comment" spellcheck="true">// 获取任务执行结果</span>
     V <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException<span class="token punctuation">,</span> ExecutionException<span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 指定时间内没有返回计算结果就抛出 TimeOutException 异常</span>
-    V <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">long</span> timeout<span class="token punctuation">,</span> TimeUnit unit<span class="token punctuation">)</span>
-
-        <span class="token keyword">throws</span> InterruptedException<span class="token punctuation">,</span> ExecutionException<span class="token punctuation">,</span> TimeoutExceptio
+    V <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">long</span> timeout<span class="token punctuation">,</span> TimeUnit unit<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException<span class="token punctuation">,</span> ExecutionException<span class="token punctuation">,</span> TimeoutException
 
 <span class="token punctuation">}</span>
 </code></pre>

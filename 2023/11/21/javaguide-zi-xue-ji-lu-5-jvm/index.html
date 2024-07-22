@@ -476,7 +476,7 @@
 <p>Java 堆还可以细分为：新生代和老年代；再细致一点新生代有：Eden、S0、S1 等空间</p>
 <p><strong>JDK 8 版本之后 PermGen(永久代) 已被 Metaspace(元空间) 取代，元空间使用的是本地内存。</strong></p>
 <p>新生代-&gt;老年代-&gt;永久代</p>
-<p>永久代以及元空间是 HotSpot 虚拟机对虚拟机规范中方法区的两种实现方式。</p>
+<p>永久代和元空间是 HotSpot 虚拟机对虚拟机规范中方法区的两种实现方式。</p>
 <p>元空间的一些可设置参数</p>
 <p>-XX:MetaspaceSize&#x3D;N &#x2F;&#x2F;设置 Metaspace 的初始（和最小大小）<br>-XX:MaxMetaspaceSize&#x3D;N &#x2F;&#x2F;设置 Metaspace 的最大大小</p>
 <p><strong>Java对象的创建过程</strong>：1.类加载检查 2.分配内存 3.初始化零值 4.设置对象头 5.执行init方法 </p>
@@ -500,14 +500,19 @@
 <p>空间分配担保：进行Minor GC之前，先看看老年代有没有足够的空间。如果没有，则进行Full GC</p>
 <p>如果一个对象只具有软引用，那就类似于<strong>可有可无的生活用品</strong>。如果内存空间足够，垃圾回收器就不会回收它，如果内存空间不足了，就会回收这些对象的内存，使用软引用的情况较多，比如高速敏感的缓存，这是因为<strong>软引用可以加速 JVM 对垃圾内存的回收速度，可以维护系统的运行安全，防止内存溢出（OutOfMemory）等问题的产生</strong>.</p>
 <p>无用的类：</p>
-<p>该类所有的实例都已经被回收，也就是 Java 堆中不存在该类的任何实例。</p>
-<p>加载该类的 <code>ClassLoader</code> 已经被回收。</p>
-<p>该类对应的 <code>java.lang.Class</code> 对象没有在任何地方被引用，无法在任何地方通过反射访问该类的方法。</p>
+<ol>
+<li><p>该类所有的实例都已经被回收，也就是 Java 堆中不存在该类的任何实例。</p>
+</li>
+<li><p>加载该类的 <code>ClassLoader</code> 已经被回收。</p>
+</li>
+<li><p>该类对应的 <code>java.lang.Class</code> 对象没有在任何地方被引用，无法在任何地方通过反射访问该类的方法。</p>
+</li>
+</ol>
 <p>垃圾收集算法：标记-清除算法。复制算法。标记-整理算法。分代收集算法。</p>
 <p>分代收集算法：比如在新生代中，每次收集都会有大量对象死去，所以可以选择”标记-复制“算法，只需要付出少量对象的复制成本就可以完成每次垃圾收集。而老年代的对象存活几率是比较高的，而且没有额外的空间对它进行分配担保，所以我们必须选择“标记-清除”或“标记-整理”算法进行垃圾收集。</p>
 <p>JDK默认的垃圾收集器：</p>
 <ul>
-<li>JDK 8：Parallel Scavenge（新生代）+ Parallel Old（老年代）</li>
+<li>JDK 8：Parallel Scavenge（新生代）+ Parallel Old（老年代），即Parallel GC</li>
 <li>JDK 9 ~ JDK20: G1</li>
 </ul>
 <h3 id="垃圾回收器"><a href="#垃圾回收器" class="headerlink" title="垃圾回收器"></a>垃圾回收器</h3><p><strong>Serial收集器</strong>：串行，单线程，在进行垃圾收集工作的时候必须暂停其他所有的工作线程（ <strong>“Stop The World”</strong> ），直到它收集结束。<strong>新生代采用标记-复制算法，老年代采用标记-整理算法。</strong></p>
