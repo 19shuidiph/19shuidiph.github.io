@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-07-21T12:15:46.065Z</updated>
+  <updated>2024-08-01T08:42:06.023Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>阿里代码规范学习</title>
+    <link href="http://19shuidiph.github.io/2024/08/01/a-li-dai-ma-gui-fan-xue-xi/"/>
+    <id>http://19shuidiph.github.io/2024/08/01/a-li-dai-ma-gui-fan-xue-xi/</id>
+    <published>2024-08-01T04:42:51.000Z</published>
+    <updated>2024-08-01T08:42:06.023Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;阿里代码规范学习&quot;&gt;&lt;a href=&quot;#阿里代码规范学习&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java" scheme="http://19shuidiph.github.io/categories/Java/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>个人简历总结</title>
     <link href="http://19shuidiph.github.io/2024/07/26/ge-ren-jian-li/"/>
     <id>http://19shuidiph.github.io/2024/07/26/ge-ren-jian-li/</id>
     <published>2024-07-26T02:13:52.000Z</published>
-    <updated>2024-07-21T12:15:46.065Z</updated>
+    <updated>2024-07-30T11:21:47.848Z</updated>
     
     
       
@@ -447,29 +470,6 @@
     
     
     <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java八股文-并发学习记录2</title>
-    <link href="http://19shuidiph.github.io/2023/11/09/java-ba-gu-wen-bing-fa-xue-xi-ji-lu-2/"/>
-    <id>http://19shuidiph.github.io/2023/11/09/java-ba-gu-wen-bing-fa-xue-xi-ji-lu-2/</id>
-    <published>2023-11-09T04:00:45.000Z</published>
-    <updated>2024-07-16T12:24:46.610Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Java多线程&quot;&gt;&lt;a href=&quot;#Java多线程&quot; class=&quot;headerlink&quot; title=&quot;Java多线程&quot;&gt;&lt;/a&gt;Java多线程&lt;/h1&gt;&lt;h2 id=&quot;1-Java中线程的实现方式&quot;&gt;&lt;a href=&quot;#1-Java中线程的实现方式&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="http://19shuidiph.github.io/categories/Java/"/>
     
     
   </entry>
