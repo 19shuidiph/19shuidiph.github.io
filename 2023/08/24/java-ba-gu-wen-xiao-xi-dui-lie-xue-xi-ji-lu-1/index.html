@@ -546,7 +546,7 @@
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824095010614.png"></p>
 <h2 id="Kafka-数据清理机制"><a href="#Kafka-数据清理机制" class="headerlink" title="Kafka-数据清理机制"></a>Kafka-数据清理机制</h2><p>在kafka中提供了两个日志的清理策略：</p>
 <p>第一，根据消息的保留时间，当消息保存的时间超过了指定的时间，就会触发清理，默认是168小时（ 7天）</p>
-<p>第二是根据topic存储的数据大小，当topic所占的日志文件大小大于一定的阈值，则开始删除最久的消息。这个默认是关闭的</p>
+<p>第二，是根据topic存储的数据大小，当topic所占的日志文件大小大于一定的阈值，则开始删除最久的消息。这个默认是关闭的</p>
 <p>这两个策略都可以通过kafka的broker中的配置文件进行设置</p>
 <h2 id="Kafka-高性能设计"><a href="#Kafka-高性能设计" class="headerlink" title="Kafka-高性能设计"></a>Kafka-高性能设计</h2><p>Kafka 高性能，是多方面协同的结果，包括宏观架构、分布式存储、ISR 数据同步、以及高效的利用磁盘、操作系统特性等。主要体现有这么几点：</p>
 <ol>

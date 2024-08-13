@@ -550,7 +550,7 @@
 <ol>
 <li>watch dog 在当前节点存活时每10s给分布式锁的key续期 30s；</li>
 <li>watch dog 机制启动，且代码中没有释放锁操作时，watch dog 会不断的给锁续期；</li>
-<li>从可2得出，如果程序释放锁操作时因为异常没有被执行，那么锁无法被释放，所以释放锁操作一定要放到 finally {} 中；</li>
+<li>从2得出，如果程序释放锁操作时因为异常没有被执行，那么锁无法被释放，所以释放锁操作一定要放到 finally {} 中；</li>
 </ol>
 <p>tryLock的第一个参数是尝试时间，第二个参数是预计运行业务时间。如果有第二个参数，则不会触发看门狗机制。如果没有第二个参数，默认续30s,每10s续一次。</p>
 <p>lock的参数是预计运行业务时间（也就是叫自动释放时间），有此参数则不会触发看门狗机制，没有则会触发。还是直接用tryLock吧。lock() <strong>一直</strong>等锁释放；tryLock() 获取到锁返回<strong>true</strong>，获取不到锁并直接返回<strong>false</strong>。</p>
@@ -625,7 +625,7 @@
 <p>候选人:嗯~~，I&#x2F;O多路复用是指利用单个线程来同时监听多个Socket，并在某个Socket可读、可写时得到通知，从而避免无效的等待，充分利用CPU资源。目前的I&#x2F;O多路复用都是采用的epoll模式实现，它会在通知用户进程Socket就绪的同时，把已就绪的Socket写入用户空间，不需要挨个遍历Socket来判断是否就绪，提升了性能。</p>
 <p>其中Redis的网络模型就是使用I&#x2F;O多路复用结合事件的处理器来应对多个Socket请求，比如，提供了连接应答处理器、命令回复处理器，命令请求处理器;<br>在Redis6.0之后，为了提升更好的性能，在命令回复处理器使用了多线程来处理回复事件，在命令请求处理器中，将命令的转换使用了多线程，增加命令转换速度，在命令执行的时候，依然是单线程</p>
 <h2 id="StringRedisTemplate-与-RedisTemplate的区别"><a href="#StringRedisTemplate-与-RedisTemplate的区别" class="headerlink" title="StringRedisTemplate 与 RedisTemplate的区别"></a>StringRedisTemplate 与 RedisTemplate的区别</h2><p>前者继承后者，一般用前者。</p>
-<p>最大不同在于序列化器不同。所以不能混用。不如在RDM客户端中，redisTemplate存储的东西为乱码，而stringRedisTemplate存储的东西为可见的字符串。</p>
+<p>最大不同在于序列化器不同。所以不能混用。如在RDM客户端中，redisTemplate存储的东西为乱码，而stringRedisTemplate存储的东西为可见的字符串。</p>
 <h2 id="StringRedisTemplate的常用方法"><a href="#StringRedisTemplate的常用方法" class="headerlink" title="StringRedisTemplate的常用方法"></a>StringRedisTemplate的常用方法</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43835717/article/details/92802040">https://blog.csdn.net/weixin_43835717/article/details/92802040</a></p>
 
                 

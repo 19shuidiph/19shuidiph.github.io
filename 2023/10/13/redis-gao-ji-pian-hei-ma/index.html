@@ -999,7 +999,7 @@
 </code></pre>
 <p>针对于集群下的批处理</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E9%AB%98%E7%BA%A7%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20231024100920438.png"></p>
-<p>Spring集群环境下批处理代码</p>
+<p>Spring集群环境下批处理代码，实现的是性能最好的并行slot</p>
 <pre class=" language-java"><code class="language-java">   <span class="token annotation punctuation">@Test</span>
     <span class="token keyword">void</span> <span class="token function">testMSetInCluster</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> String<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
