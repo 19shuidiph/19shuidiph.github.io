@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="一些正常的面试问题, 爱敲代码の鱼儿">
+    <meta name="keywords" content="项目自学记录10, 爱敲代码の鱼儿">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>一些正常的面试问题 | 爱敲代码の鱼儿</title>
+    <title>项目自学记录10 | 爱敲代码の鱼儿</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -303,12 +303,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">一些正常的面试问题</h1>
+                    <h1 class="description center-align post-title">项目自学记录10</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%9D%A2%E8%AF%95/" class="post-category">
-                                面试
+                            <a href="/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                实习期间学习
                             </a>
                         
                     </div>
@@ -445,7 +445,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-09-25
+                    2024-12-03
                 </div>
                 
 
@@ -466,21 +466,92 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一些正常的面试问题"><a href="#一些正常的面试问题" class="headerlink" title="一些正常的面试问题"></a>一些正常的面试问题</h1><p>降级和限流的区别</p>
-<p>redis消息队列如何实现延时</p>
-<p>redisson实现分布式锁和消息队列，介绍一下。</p>
-<p>kafka里面消费者和分区的关系（如果分区小于消费者）（3个分区，4个消费者）</p>
-<p>跨域</p>
-<p>分布式场景下的雪花ID唯一，雪花和UUID的区别</p>
-<p>实现一些对外提供的接口，如何去做。</p>
-<p>为什么要用令牌桶，也有很多开源的限流的。</p>
-<p>foreach的并行流和串行流</p>
-<p>final修饰的变量特征，如果是map可以修改吗。</p>
-<p>Java的深拷贝和浅拷贝</p>
-<p>微服务如何保证事务一致性</p>
-<p>自己实现一个MQ的话，要有全局思维。包括生产者和消费者。怎么实现一个阻塞的机制。</p>
-<h1 id="rpc"><a href="#rpc" class="headerlink" title="rpc"></a>rpc</h1><p>rpc既可以写JAVA又可以写Go,我感觉是一个很好的轮子类项目。因为其他的轮子类项目真的过于小众了。感觉用不到。</p>
-<p>1.架构 2.负载均衡 3.SPI 4.序列化 5.熔断 降级 接口超时 6.生产者下线怎么感知？ 7. rpc线程模型，NIO</p>
+                <h1 id="项目自学记录10"><a href="#项目自学记录10" class="headerlink" title="项目自学记录10"></a>项目自学记录10</h1><h2 id="json-extract"><a href="#json-extract" class="headerlink" title="json_extract"></a>json_extract</h2><p><code>json_extract</code>函数是MySQL数据库中的一个内置函数，用于从JSON字符串中提取数据。</p>
+<p>select json_extract(json_doc, path[, path] …)</p>
+<p>json_doc：这是你要提取数据的JSON字符串。<br>path：这是你要提取的数据的路径，可以是一个或多个。</p>
+<p>假设我们有一个名为users的表，其中有一个名为data的列，存储着JSON格式的数据，如下所示：</p>
+<pre class=" language-sql"><code class="language-sql">{  
+  <span class="token string">"name"</span>: <span class="token string">"张三"</span><span class="token punctuation">,</span>  
+  <span class="token string">"age"</span>: <span class="token number">30</span><span class="token punctuation">,</span>  
+  <span class="token string">"address"</span>: {  
+    <span class="token string">"city"</span>: <span class="token string">"北京"</span><span class="token punctuation">,</span>  
+    <span class="token string">"street"</span>: <span class="token string">"长安街"</span>  
+  }  
+}
+</code></pre>
+<p>如果我们想要提取name字段的值，可以这样写：</p>
+<p>SELECT json_extract(data, ‘$.name’)；<br>这样相应的就可以获取到 。张三。</p>
+<p>如果我们想要获取到city字段的值，涉及到了嵌套。那么可以这么处理。</p>
+<p>SELECT json_extract(data, ‘$.address.city’) ；<br>#使用.来拼接，获取内部字段内容</p>
+<h2 id="Collectors-toMap的暗坑"><a href="#Collectors-toMap的暗坑" class="headerlink" title="Collectors.toMap的暗坑"></a>Collectors.toMap的暗坑</h2><p>使用Java的stream中的Collectors可以很方便地做容器间的转换，可以少写很多代码。但是其中有暗含的坑需要注意和避免，本文探讨Collectors.toMap（JDK8版本）。</p>
+<p>Collectors.toMap可以将一个流转化成Map，常见于需要将List转换成Map以便于进一步操作的场景，比如在通过RPC接口获取一个返回结果、从DB中查询到匹配的多条数据后，对其按某个字段（经常是主键id）做分组。这里先定义一个简单的类：</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> Long id<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>后续所有代码的目的均为将这个User类组成的List转换为id作为key、name作为value的Map。</p>
+<h3 id="1-不使用stream"><a href="#1-不使用stream" class="headerlink" title="1. 不使用stream"></a>1. 不使用stream</h3><p>不使用stream时，需要先new一个map，然后手动把list的每一项放入map</p>
+<pre class=" language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test0</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        User user1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        user1<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span>1L<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        user1<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        User user2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        user2<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span>2L<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        user2<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        List<span class="token operator">&lt;</span>User<span class="token operator">></span> list <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>user1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>user2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Map<span class="token operator">&lt;</span>Long<span class="token punctuation">,</span> String<span class="token operator">></span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span>User user <span class="token operator">:</span> list<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>user<span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> user<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="2-使用stream的Collectors-toMap"><a href="#2-使用stream的Collectors-toMap" class="headerlink" title="2. 使用stream的Collectors.toMap"></a>2. 使用stream的Collectors.toMap</h3><p>构造list的代码不变，转化map的代码可以简化为</p>
+<pre class=" language-java"><code class="language-java">Map<span class="token operator">&lt;</span>Long<span class="token punctuation">,</span> String<span class="token operator">></span> map <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>User<span class="token operator">:</span><span class="token operator">:</span>getId<span class="token punctuation">,</span> User<span class="token operator">:</span><span class="token operator">:</span>getName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>相较第一种，简洁多了。<br>但是，如果User1和User2的id是一样的，会发生什么情况？将代码中<code>user2.setId(2L)</code>修改为<code>user2.setId(1L)</code>，再次执行，发现抛异常<code>java.lang.IllegalStateException: Duplicate key 1</code>，说明在merge时报错了：key不允许重复。<br><img src="https://img2024.cnblogs.com/blog/228024/202402/228024-20240204150009087-801556611.png" alt="img"></p>
+<p>但是有些情况下key确实是可以重复的，比如我调用上游的数据，上游没做校验和控制；再或者这个字段本身不是惟一的，多个数据可能重复。那么如何改进呢？</p>
+<h3 id="3-Collectors-toMap指定merge函数"><a href="#3-Collectors-toMap指定merge函数" class="headerlink" title="3. Collectors.toMap指定merge函数"></a>3. Collectors.toMap指定merge函数</h3><p>可以自定义一个merge函数来确定key重复时，如何取value。比如下面这种写法，是保留第一个value。你也可以保留第二个，或者是做一些更复杂的处理。</p>
+<pre class=" language-java"><code class="language-java">Map<span class="token operator">&lt;</span>Long<span class="token punctuation">,</span> String<span class="token operator">></span> map <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>User<span class="token operator">:</span><span class="token operator">:</span>getId<span class="token punctuation">,</span> User<span class="token operator">:</span><span class="token operator">:</span>getName<span class="token punctuation">,</span> <span class="token punctuation">(</span>x1<span class="token punctuation">,</span>x2<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>x1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="4-value为null的场景"><a href="#4-value为null的场景" class="headerlink" title="4. value为null的场景"></a>4. value为null的场景</h3><p>传入merge方法以后，看似万事大吉了，没想到还有坑。将user2.setName(null)，会发现抛了NullPointerException异常，异常栈信息为：<br><img src="https://img2024.cnblogs.com/blog/228024/202402/228024-20240204151343840-1064458595.png" alt="img"><br>可以看到对应的源码里，value是不允许为null的。<br><img src="https://img2024.cnblogs.com/blog/228024/202402/228024-20240204151413843-346785350.png" alt="img"></p>
+<p>虽然说Map的value是支持null值的，但是map自己的merge方法天生不支持，此时仅靠自定义merge方法也已经无能为力了。如果仍然想使用Collectors.toMap，需要手动处理null的值，比如：</p>
+<pre class=" language-java"><code class="language-java">Map<span class="token operator">&lt;</span>Long<span class="token punctuation">,</span> String<span class="token operator">></span> map <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>User<span class="token operator">:</span><span class="token operator">:</span>getId<span class="token punctuation">,</span> value <span class="token operator">-</span><span class="token operator">></span> Optional<span class="token punctuation">.</span><span class="token function">ofNullable</span><span class="token punctuation">(</span>value<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>当然，这样处理后的map的value并不是实际的值，并不适用于所有场景。<br>这样看来，Collectors.toMap的局限性无法避免了，使用的时候要确认不会发生预期的问题。</p>
+<p>当然你也可以做一些预处理，比如使用filter过滤掉value&#x3D;null的数据，来规避这个问题。</p>
+<h3 id="5-key-x3D-null时会怎么样？"><a href="#5-key-x3D-null时会怎么样？" class="headerlink" title="5. key&#x3D;null时会怎么样？"></a>5. key&#x3D;null时会怎么样？</h3><p>不会怎么样，一切正常。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">test5</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    User user1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    user1<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    user1<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    User user2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    user2<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span>2L<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    user2<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    List<span class="token operator">&lt;</span>User<span class="token operator">></span> list <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>user1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>user2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Map<span class="token operator">&lt;</span>Long<span class="token punctuation">,</span> String<span class="token operator">></span> map <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>User<span class="token operator">:</span><span class="token operator">:</span>getId<span class="token punctuation">,</span> User<span class="token operator">:</span><span class="token operator">:</span>getName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="6-还有什么要注意的？"><a href="#6-还有什么要注意的？" class="headerlink" title="6. 还有什么要注意的？"></a>6. 还有什么要注意的？</h3><p>上述的例子，均是建立在list不为空的前提下进行的。如果list本身为null，在调用stream()时自然也会抛NullPointerException；如果list是空的（内容为空但是容器本身初始化过，如list &#x3D; new ArrayList&lt;&gt;()），则不会报错。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>调用stream()前先确定容器本身是否为null</li>
+<li>如果不确定要通过Collectors.toMap转换为map的源容器的数据<ul>
+<li>对应key是否会重复，可以在toMap()传入merge方法</li>
+<li>对应value是否为null，可以做过滤或指定默认值</li>
+</ul>
+</li>
+<li>如果不想思考和求证，还是继续用for循环吧</li>
+</ul>
 
                 
             </div>
@@ -507,7 +578,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://19shuidiph.github.io/2023/09/25/yi-xie-zheng-chang-de-mian-shi-wen-ti/">http://19shuidiph.github.io/2023/09/25/yi-xie-zheng-chang-de-mian-shi-wen-ti/</a>
+                    <a href="http://19shuidiph.github.io/2024/12/03/xiang-mu-zi-xue-ji-lu-10/">http://19shuidiph.github.io/2024/12/03/xiang-mu-zi-xue-ji-lu-10/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -712,58 +783,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2023/09/28/java-ba-gu-wen-jvm-xue-xi-ji-lu-1/">
+                <a href="/2024/12/03/xiang-mu-zi-xue-ji-lu-10/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/35.jpg" class="responsive-img" alt="Java八股文-JVM学习记录1">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="项目自学记录10">
                         
-                        <span class="card-title">Java八股文-JVM学习记录1</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-09-28
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/JVM/" class="post-category">
-                                    JVM
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/09/22/xiang-mu-zi-xue-ji-lu-6/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="项目自学记录6">
-                        
-                        <span class="card-title">项目自学记录6</span>
+                        <span class="card-title">项目自学记录10</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -774,7 +805,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-09-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-03
                             </span>
                         <span class="publish-author">
                             
@@ -782,6 +813,48 @@
                             
                             <a href="/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/" class="post-category">
                                     实习期间学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/08/01/a-li-dai-ma-gui-fan-xue-xi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="阿里代码规范学习">
+                        
+                        <span class="card-title">阿里代码规范学习</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             

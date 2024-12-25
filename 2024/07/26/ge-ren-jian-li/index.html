@@ -567,22 +567,22 @@
 <p><a target="_blank" rel="noopener" href="https://luzhenyu.blog.csdn.net/article/details/122308030">文章</a></p>
 <h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>简单工厂模式：</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/26943a5bf49846279f3b92999aa966dc.png" alt="img"></p>
-<pre><code>简单咖啡工厂类，用来生产咖啡`
-`*/`
-`public class SimpleCoffeeFactory &#123;`
-`public Coffee createCoffee(String type) &#123;`
-`// 声明Coffee类型的变量，根据不同类型创建不同的coffee子类对象`
-`Coffee coffee = null;`
-`if (&quot;american&quot;.equals(type)) &#123;`
-`coffee = new AmericanCoffee();`
-`&#125; else if (&quot;latte&quot;.equals(type)) &#123;`
-`coffee = new LatteCoffee();`
-`&#125; else &#123;`
-`throw new RuntimeException(&quot;对不起，您所点的咖啡没有&quot;);`
-`&#125;`
-`return coffee;`
-`&#125;`
-`&#125;
+<pre><code>简单咖啡工厂类，用来生产咖啡
+*/
+public class SimpleCoffeeFactory &#123;
+public Coffee createCoffee(String type) &#123;
+// 声明Coffee类型的变量，根据不同类型创建不同的coffee子类对象
+Coffee coffee = null;
+if (&quot;american&quot;.equals(type)) &#123;
+coffee = new AmericanCoffee();
+&#125; else if (&quot;latte&quot;.equals(type)) &#123;
+coffee = new LatteCoffee();
+&#125; else &#123;`
+throw new RuntimeException(&quot;对不起，您所点的咖啡没有&quot;);`
+&#125;`
+return coffee;`
+&#125;
+&#125;
 </code></pre>
 <p>你传入type，然后工厂来生产。如果要增加新产品直接修改工厂类，容易扩展，但也违反了“开闭”原则。</p>
 <p>工厂方法模式：</p>
@@ -688,6 +688,12 @@
 <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> stuid<span class="token punctuation">;</span>
 </code></pre>
 <p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/image-20211107084740186.png"></strong></p>
+<p>1）SUM() 是为了能够使用GROUP BY根据stuid进行分组，因为每一个stuid对应的subject&#x3D;”mysql”的记录只有一条，所以SUM() 的值就等于对应那一条记录的score的值。</p>
+<p>假如stuid &#x3D;‘001’ and subject&#x3D;‘mysql’ 的记录有两条，则此时SUM() 的值将会是这两条记录的和，同理，使用Max()的值将会是这两条记录里面值最大的一个。但是正常情况下，一个stuid对应一个subject只有一个分数，因此可以使用SUM()、MAX()、MIN()、AVG()等聚合函数都可以达到行转列的效果。</p>
+<p>（2）IF(subject&#x3D;‘Java基础’,score,0) 作为条件，即对所有subject&#x3D;’语文’的记录的score字段进行SUM()、MAX()、MIN()、AVG()操作，如果score没有值则默认为0。</p>
+<p>附：UNION与UNION ALL的区别（摘）<br>对重复结果的处理：UNION会去掉重复记录，UNION ALL不会；</p>
+<p>对排序的处理：UNION会排序，UNION ALL只是简单地将两个结果集合并；</p>
+<p>效率方面的区别：因为UNION 会做去重和排序处理，因此效率比UNION ALL慢很多；</p>
 <h3 id="删除重复行"><a href="#删除重复行" class="headerlink" title="删除重复行"></a>删除重复行</h3><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t_score <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> stuid<span class="token punctuation">,</span>SUBJECT<span class="token punctuation">;</span>
 </code></pre>
 <p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/image-20211107085451638.png"></strong></p>
@@ -766,10 +772,8 @@
 <p>事务的使用： BEGIN; COMMIT; ROLLBACK;</p>
 <p>数据并发问题 : 脏写，脏读，不可重复读，幻读</p>
 <p>1)脏写（Dirty Write): 事务Session A 修改了 另一个 未提交 事务Session B 修改过 的数据</p>
-<ol>
-<li>脏读(Dirty Read): Session A 读取 了已经被 Session B <strong>更新 但还 没有被提交</strong> 的字段。 之后若 Session B 回滚 ，Session A 读取 的内容就是 临时且无效 的.</li>
-<li>不可重复读(Non-Repeatable Read):Session A 读取 了一个字段，然后 Session B 更新 了该字段。 之后 Session A 再次读取 同一个字段， 值就不同 了。</li>
-</ol>
+<p>2)脏读(Dirty Read): Session A 读取 了已经被 Session B <strong>更新 但还 没有被提交</strong> 的字段。 之后若 Session B 回滚 ，Session A 读取 的内容就是 临时且无效 的.</p>
+<p>3)不可重复读(Non-Repeatable Read):Session A 读取 了一个字段，然后 Session B 更新 了该字段。 之后 Session A 再次读取 同一个字段， 值就不同 了。</p>
 <p>4)幻读(Phantom): Session A 从一个表中 读取 了一个字段, 然后 Session B 在该表中 插 入 了一些新的行。 之后, 如果 Session A 再次读取 同一个表, 就会多出几行。</p>
 <p>四种隔离级别：未提交读，提交读，可重复读，序列化</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720230423104501.png" alt="img"></p>
@@ -807,7 +811,7 @@
 <p>按对数据的操作类型划分：读锁&#x2F;共享锁(S)， 写锁&#x2F;排他锁(X)</p>
 <p>按锁的粒度划分： 表级锁， 行级锁， 页级锁</p>
 <p>按对锁的态度：悲观锁，乐观锁</p>
-<p>按加锁方式： 隐式锁， 显示锁</p>
+<p>按加锁方式： 隐式锁， 显式锁</p>
 <p><strong>Java中 synchronized 和 ReentrantLock 等独占锁就是 悲观锁思想的实现</strong></p>
 <p>乐观锁：在更新 的时候会判断一下在此期间别人有没有去更新这个数据。在程序上，我们可以采用 版本号机制 或者 CAS机制 实现。在Java中 java.util.concurrent.atomic 包下的<strong>原子变量类</strong>就是使用了<strong>乐观锁的CAS</strong>实现的。</p>
 <p>发生死锁应该怎么办？：1，直接进入等待，直到超时。2，发起死锁检测，发现死锁后，主动回滚死锁链条中的某一个事务。</p>
@@ -818,6 +822,8 @@
 <li><strong>临键锁（Next-Key Lock）</strong>：Record Lock+Gap Lock，锁定一个范围，包含记录本身，主要目的是为了解决幻读问题（MySQL 事务部分提到过）。记录锁只能锁住已经存在的记录，为了避免插入新记录，需要依赖间隙锁。</li>
 </ul>
 <p>在 InnoDB 默认的隔离级别 REPEATABLE-READ 下，行锁默认使用的是 Next-Key Lock。</p>
+<p>但是仍然不能完全解决幻读，<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012836410/article/details/139381338">参考文章</a>。</p>
+<p>比如A事务快照读一次，B事务写入数据，A事务当前读一次。则会出现幻读。</p>
 <p>意向锁是表级锁，共有两种：</p>
 <ul>
 <li><strong>意向共享锁（Intention Shared Lock，IS 锁）</strong>：事务有意向对表中的某些记录加共享锁（S 锁），加共享锁前必须先取得该表的 IS 锁。</li>
@@ -857,7 +863,7 @@
 <p>隐藏字段，trx_id, 最近被哪个事务修改过，记录其Id。 roll_pointer 是undo log 版本链的指针。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101200980.png"></p>
 <h3 id="undo-log-版本链"><a href="#undo-log-版本链" class="headerlink" title="undo log 版本链"></a>undo log 版本链</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101239830.png"></p>
-<h3 id="ReadView"><a href="#ReadView" class="headerlink" title="ReadView"></a>ReadView</h3><p>核心问 题就是需要判断一下版本链中的哪个版本是当前事务可见的，这是ReadView要解决的主要问题。</p>
+<h3 id="ReadView"><a href="#ReadView" class="headerlink" title="ReadView"></a>ReadView</h3><p>核心问题就是需要判断一下版本链中的哪个版本是当前事务可见的，这是ReadView要解决的主要问题。</p>
 <p>Read View就是事务A在使用MVCC机制进行快照读操作时产生的读视图。</p>
 <p>Read View主要是用来做可见性判断，里面保存了 “当前对本事务不可见的其他活跃事务”</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">ReadView</span> <span class="token punctuation">{</span>
@@ -2570,6 +2576,24 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p><code>jstack</code>（Stack Trace for Java）命令用于生成虚拟机当前时刻的线程快照。线程快照就是当前虚拟机内每一条线程正在执行的方法堆栈的集合.</p>
 <p>JDK可视化分析工具：<br>JConsole:Java 监视与管理控制台；可以查看Java程序概况，内存监控，线程监控，</p>
 <p>Visual VM:多合一故障处理工具；</p>
+<h2 id="在光辉税月项目中，JDK6，进行了调优。因为发生了OOM"><a href="#在光辉税月项目中，JDK6，进行了调优。因为发生了OOM" class="headerlink" title="在光辉税月项目中，JDK6，进行了调优。因为发生了OOM"></a>在光辉税月项目中，JDK6，进行了调优。因为发生了OOM</h2><p>比较常见的 OOM 类型有以下几种</p>
+<p><strong>java.lang.OutOfMemoryError: PermGen space</strong></p>
+<p>Java7 永久代（方法区）溢出，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。每当一个类初次加载的时候，元数据都会存放到永久代</p>
+<p>一般出现于大量 Class 对象或者 JSP 页面，或者采用 CgLib 动态代理技术导致</p>
+<p>我们可以通过 <code>-XX：PermSize</code> 和 <code>-XX：MaxPermSize</code> 修改方法区大小</p>
+<blockquote>
+<p>-XX:PermSize&#x3D;N &#x2F;&#x2F;方法区 (永久代) 初始大小<br>-XX:MaxPermSize&#x3D;N &#x2F;&#x2F;方法区 (永久代) 最大大小,超过这个值将会抛出 OutOfMemoryError 异常PermGen space</p>
+</blockquote>
+<p>永久代中存储的内容：<br>Class文件信息：包括类名、方法名、字段等。<br>常量池：类中的常量（如字符串常量、被声明为final的常量变量等）。<br>静态变量：类级别的变量。<br>方法信息：包括方法的字节码等内容。<br>构造函数和异常处理类信息。<br>发生OOM的原因：<br>当永久代的空间不足以存储新的类或元数据时，就会抛出 OutOfMemoryError。这通常发生在以下几种情况：</p>
+<p>频繁的创建和加载大量的类，类的引用被长时间持有，第三方库的问题。</p>
+<p>Java8 将永久代变更为元空间，报错：java.lang.OutOfMemoryError: Metadata space，元空间内存不足默认进行动态扩展</p>
+<p><strong>java.lang.StackOverflowError</strong></p>
+<p><strong>虚拟机栈溢出</strong>，一般是由于程序中存在 <strong>死循环或者深度递归调用</strong> 造成的。如果栈大小设置过小也会出现溢出，可以通过 <code>-Xss</code> 设置栈的大小。</p>
+<p>虚拟机抛出栈溢出错误，可以在日志中定位到错误的类、方法。</p>
+<p><strong>java.lang.OutOfMemoryError: Java heap space</strong></p>
+<p><strong>Java 堆内存溢出</strong>，溢出的原因一般由于 JVM 堆内存设置不合理或者内存泄漏导致</p>
+<p>如果是内存泄漏，可以通过工具查看泄漏对象到 GC Roots 的引用链。掌握了泄漏对象的类型信息以及 GC Roots 引用链信息，就可以精准地定位出泄漏代码的位置</p>
+<p>如果不存在内存泄漏，就是内存中的对象确实都还必须存活着，那就应该检查虚拟机的堆参数（-Xmx 与 -Xms），查看是否可以将虚拟机的内存调大些。</p>
 <h1 id="8-MQ-star"><a href="#8-MQ-star" class="headerlink" title="8.MQ:star:"></a>8.MQ:star:</h1><h2 id="阻塞队列-BlockingQueue"><a href="#阻塞队列-BlockingQueue" class="headerlink" title="阻塞队列-BlockingQueue"></a>阻塞队列-BlockingQueue</h2><p>被阻塞的情况主要有如下两种：</p>
 <ol>
 <li><p><strong>当队列满了的时候进行入队列操作</strong></p>
@@ -2914,6 +2938,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>流式处理。Stream的流的组件。 Flink+Kakfa 做一个异步。</p>
 </blockquote>
 <p><strong>RocketMQ 的消息模型和 Kafka 基本是完全一样的。唯一的区别是 Kafka 中没有队列这个概念，与之对应的是 Partition（分区）</strong></p>
+<p><strong>在 Apache Kafka 中，一个分区在一个时刻只能由一个消费者实例消费。这是 Kafka 设计的一个基本原则，以保证消息的顺序性和一致性。</strong></p>
 <p>Kafka 将生产者发布的消息发送到 <strong>Topic（主题）</strong> 中，需要这些消息的消费者可以订阅这些 <strong>Topic（主题）</strong>，如下图所示：</p>
 <p><img src="https://oss.javaguide.cn/github/javaguide/high-performance/message-queue20210507200944439.png"></p>
 <p><strong>Topic（主题）</strong> : Producer 将消息发送到特定的主题，Consumer 通过订阅特定的 Topic(主题) 来消费消息。</p>

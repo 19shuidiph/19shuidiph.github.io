@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-08-01T08:42:06.023Z</updated>
+  <updated>2024-12-25T10:59:26.831Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>项目自学记录10</title>
+    <link href="http://19shuidiph.github.io/2024/12/03/xiang-mu-zi-xue-ji-lu-10/"/>
+    <id>http://19shuidiph.github.io/2024/12/03/xiang-mu-zi-xue-ji-lu-10/</id>
+    <published>2024-12-03T15:55:20.000Z</published>
+    <updated>2024-12-25T10:59:26.831Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;项目自学记录10&quot;&gt;&lt;a href=&quot;#项目自学记录10&quot; class=&quot;headerlink&quot; title=&quot;项目自学记录10&quot;&gt;&lt;/a&gt;项目自学记录10&lt;/h1&gt;&lt;h2 id=&quot;json-extract&quot;&gt;&lt;a href=&quot;#json-extract&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>阿里代码规范学习</title>
@@ -44,7 +67,7 @@
     <link href="http://19shuidiph.github.io/2024/07/26/ge-ren-jian-li/"/>
     <id>http://19shuidiph.github.io/2024/07/26/ge-ren-jian-li/</id>
     <published>2024-07-26T02:13:52.000Z</published>
-    <updated>2024-08-13T06:53:17.680Z</updated>
+    <updated>2024-08-28T10:45:48.470Z</updated>
     
     
       
@@ -452,29 +475,6 @@
     
     
     <category term="Java" scheme="http://19shuidiph.github.io/categories/Java/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JavaGuide自学记录5-JVM</title>
-    <link href="http://19shuidiph.github.io/2023/11/21/javaguide-zi-xue-ji-lu-5-jvm/"/>
-    <id>http://19shuidiph.github.io/2023/11/21/javaguide-zi-xue-ji-lu-5-jvm/</id>
-    <published>2023-11-21T11:34:09.000Z</published>
-    <updated>2024-07-17T01:34:52.010Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;JVM&quot;&gt;&lt;a href=&quot;#JVM&quot; class=&quot;headerlink&quot; title=&quot;JVM&quot;&gt;&lt;/a&gt;JVM&lt;/h1&gt;&lt;h2 id=&quot;内存区域详解&quot;&gt;&lt;a href=&quot;#内存区域详解&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
     
     
   </entry>
