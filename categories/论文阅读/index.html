@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分类, 爱敲代码の鱼儿">
+    <meta name="keywords" content="分类: 论文阅读, 爱敲代码の鱼儿">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>分类 | 爱敲代码の鱼儿</title>
+    <title>分类: 论文阅读 | 爱敲代码の鱼儿</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -442,7 +442,7 @@
                 
                 <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" title="论文阅读: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default "
+                             chip-active "
                             style="background-color: #F9E79F;">论文阅读
                         <span class="tag-length">1</span>
                     </span>
@@ -492,65 +492,61 @@
 
 
     
-    <style type="text/css">
-    #category-radar {
-        width: 100%;
-        height: 360px;
-    }
-</style>
 
-<div class="container" data-aos="fade-up">
-    <div class="card">
-        <div id="category-radar" class="card-content"></div>
-    </div>
-</div>
+    <article id="articles" class="container articles">
+        <div class="row tags-posts">
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2024/12/30/paperreading-llumnix/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="PaperReading-Llumnix">
+                            
+                            <span class="card-title">PaperReading-Llumnix</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Llumnix：大型语言模型服务的动态调度背景1.LLM服务多样化，有总结任务，有生成小说任务，有VIP任务。
 
-<script type="text/javascript" src="/libs/echarts/echarts.min.js"></script>
-<script type="text/javascript">
-    let radarChart = echarts.init(document.getElementById('category-radar'));
 
-    
 
-    let option = {
-        title: {
-            left: 'center',
-            text: '文章分类雷达图',
-            textStyle: {
-                fontWeight: 500,
-                fontSize: 22
-            }
-        },
-        tooltip: {},
-        radar: {
-            name: {
-                textStyle: {
-                    color: '#3C4858'
-                }
-            },
-            indicator: [{"name":"项目","max":13},{"name":"Java","max":13},{"name":"Effective-Java","max":13},{"name":"JavaGuide","max":13},{"name":"JavaWeb","max":13},{"name":"Redis","max":13},{"name":"MySQL","max":13},{"name":"JVM","max":13},{"name":"Spring","max":13},{"name":"面试","max":13},{"name":"前端","max":13},{"name":"论文阅读","max":13},{"name":"k8s","max":13},{"name":"框架使用和源码","max":13},{"name":"实习期间学习","max":13},{"name":"学成在线","max":13}],
-            nameGap: 5,
-            center: ['50%','55%'],
-            radius: '66%'
-        },
-        series: [{
-            type: 'radar',
-            color: ['#3ecf8e'],
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-            data : [
-                {
-                    value : [1,12,1,8,12,5,1,1,1,4,4,1,1,1,9,1],
-                    name : '文章分类数量'
-                }
-            ]
-        }]
-    };
+KV-cache会随着推理越来越多，对GPU内存的需求也在增加。
+使用动态内存分配的连续批处理
 
-    radarChart.setOption(option);
-</script>
 
-    
+GPU满载容易爆炸，所
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-30
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="post-category">
+                                    论文阅读
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
 
+                    
+                </div>
+            </div>
+            
+        </div>
+    </article>
 </main>
+
+
 
 
     <footer class="page-footer bg-color">

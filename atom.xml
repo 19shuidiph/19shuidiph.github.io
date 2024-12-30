@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-12-25T10:59:26.831Z</updated>
+  <updated>2024-12-30T07:38:57.857Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PaperReading-Llumnix</title>
+    <link href="http://19shuidiph.github.io/2024/12/30/paperreading-llumnix/"/>
+    <id>http://19shuidiph.github.io/2024/12/30/paperreading-llumnix/</id>
+    <published>2024-12-30T07:32:50.000Z</published>
+    <updated>2024-12-30T07:38:57.857Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Llumnix：大型语言模型服务的动态调度&quot;&gt;&lt;a href=&quot;#Llumnix：大型语言模型服务的动态调度&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="论文阅读" scheme="http://19shuidiph.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>项目自学记录10</title>
@@ -452,29 +475,6 @@
     
     
     <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java八股文-分布式学习记录1</title>
-    <link href="http://19shuidiph.github.io/2023/11/29/java-ba-gu-wen-fen-bu-shi-xue-xi-ji-lu-1/"/>
-    <id>http://19shuidiph.github.io/2023/11/29/java-ba-gu-wen-fen-bu-shi-xue-xi-ji-lu-1/</id>
-    <published>2023-11-29T01:18:57.000Z</published>
-    <updated>2023-12-11T14:32:30.364Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Java八股文-分布式学习记录1&quot;&gt;&lt;a href=&quot;#Java八股文-分布式学习记录1&quot; class=&quot;headerlink&quot; title=&quot;Java八股文-分布式学习记录1&quot;&gt;&lt;/a&gt;Java八股文-分布式学习记录1&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="http://19shuidiph.github.io/categories/Java/"/>
     
     
   </entry>
