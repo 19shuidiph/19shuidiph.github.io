@@ -457,14 +457,11 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>[toc]</p>
-<div style="page-break-after:always"></div>
+                <div style="page-break-after:always"></div>
 
-
-
-<h1 id="0-JavaGuide"><a href="#0-JavaGuide" class="headerlink" title="0.JavaGuide"></a>0.JavaGuide</h1><p><a target="_blank" rel="noopener" href="https://javaguide.cn/">https://javaguide.cn/</a></p>
+<h2 id="0-JavaGuide"><a href="#0-JavaGuide" class="headerlink" title="0.JavaGuide"></a>0.JavaGuide</h2><p><a target="_blank" rel="noopener" href="https://javaguide.cn/">https://javaguide.cn/</a></p>
 <p>这里面的东西也是推荐要看一看的。</p>
-<h1 id="1-Java"><a href="#1-Java" class="headerlink" title="1.Java"></a>1.Java</h1><h2 id="ArrayList源码"><a href="#ArrayList源码" class="headerlink" title="ArrayList源码"></a>ArrayList源码</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17F411T7Ao?p=190&vd_source=6ed7f19911310aba47123ac6cc1674a0">参考资料</a></p>
+<h2 id="1-Java"><a href="#1-Java" class="headerlink" title="1.Java"></a>1.Java</h2><h3 id="ArrayList源码"><a href="#ArrayList源码" class="headerlink" title="ArrayList源码"></a>ArrayList源码</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17F411T7Ao?p=190&vd_source=6ed7f19911310aba47123ac6cc1674a0">参考资料</a></p>
 <p>1.用空参创建的集合，在底层创建一个默认长度为0的数组。</p>
 <p>2.添加第一个元素时，底层会创建一个新的长度为10的数组。</p>
 <p>3.存满时，会扩容1.5倍。</p>
@@ -476,7 +473,7 @@
 <p>源码 newLength(int oldLength,int minGrowth,int prefGrowth)</p>
 <p>int prefLength&#x3D;oldLength+Math.max(minGrowth,prefGrowth);</p>
 <p>扩容因子1.5，一方面是位运算比较快，一方面是1.5可以让之前的内存空间可以得到复用。</p>
-<h2 id="HashMap源码"><a href="#HashMap源码" class="headerlink" title="HashMap源码"></a>HashMap源码</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1A84y1M73v/?spm_id_from=333.999.0.0&vd_source=6ed7f19911310aba47123ac6cc1674a0">参考资料1</a></p>
+<h3 id="HashMap源码"><a href="#HashMap源码" class="headerlink" title="HashMap源码"></a>HashMap源码</h3><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1A84y1M73v/?spm_id_from=333.999.0.0&vd_source=6ed7f19911310aba47123ac6cc1674a0">参考资料1</a></p>
 <p>加载因子0.75， 超过时会扩容为2倍。扩容之后桶下标要重新计算。</p>
 <p>树化：当容量大于等于64时，且一个Key下面的链表长度大于8。 将链表转为红黑树</p>
 <p>退化：扩容会拆分，当树的元素个数小于等于6，会退化为链表。remove之前，如果root.root.left, root.right, root.left.left如果有一个为null,则会退化为链表</p>
@@ -489,7 +486,7 @@
 <p>String对象的hashCode（）如何设计才能让散列的更加均匀？</p>
 <p>每个字符串的hashCode足够独特，$S_0$×$31^{n-1}$+……+$S_{n-1}$×$31^0$</p>
 <p>31×h又可以被优化为h&lt;&lt;5 - h</p>
-<h1 id="2-计算机网络"><a href="#2-计算机网络" class="headerlink" title="2.计算机网络"></a>2.计算机网络</h1><h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><h3 id="1-从输入URL到页面展示到底发生了什么？（打开一个网页，整个过程会使用哪些协议）"><a href="#1-从输入URL到页面展示到底发生了什么？（打开一个网页，整个过程会使用哪些协议）" class="headerlink" title="1)从输入URL到页面展示到底发生了什么？（打开一个网页，整个过程会使用哪些协议）"></a>1)从输入URL到页面展示到底发生了什么？（打开一个网页，整个过程会使用哪些协议）</h3><p>注意是OSPF协议。</p>
+<h2 id="2-计算机网络"><a href="#2-计算机网络" class="headerlink" title="2.计算机网络"></a>2.计算机网络</h2><h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><h4 id="1-从输入URL到页面展示到底发生了什么？（打开一个网页，整个过程会使用哪些协议）"><a href="#1-从输入URL到页面展示到底发生了什么？（打开一个网页，整个过程会使用哪些协议）" class="headerlink" title="1)从输入URL到页面展示到底发生了什么？（打开一个网页，整个过程会使用哪些协议）"></a>1)从输入URL到页面展示到底发生了什么？（打开一个网页，整个过程会使用哪些协议）</h4><p>注意是OSPF协议。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/url%E8%BE%93%E5%85%A5%E5%88%B0%E5%B1%95%E7%A4%BA%E5%87%BA%E6%9D%A5%E7%9A%84%E8%BF%87%E7%A8%8B.jpg" alt="img"></p>
 <ol>
 <li>DNS解析</li>
@@ -502,26 +499,26 @@
 <p>DNS解析：一个网址到IP地址的转换。</p>
 <p>浏览器中有DNS缓存，DNS负载均衡可以把最近的IP地址返回给用户。DNS端口是53</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/1618288278-57f00bf9444dd.png" alt="img"></p>
-<h3 id="2-HTTP-和-HTTPS-的区别"><a href="#2-HTTP-和-HTTPS-的区别" class="headerlink" title="2)HTTP 和 HTTPS 的区别"></a>2)HTTP 和 HTTPS 的区别</h3><p><strong>端口号</strong> ：HTTP 默认是 80，HTTPS 默认是 443</p>
+<h4 id="2-HTTP-和-HTTPS-的区别"><a href="#2-HTTP-和-HTTPS-的区别" class="headerlink" title="2)HTTP 和 HTTPS 的区别"></a>2)HTTP 和 HTTPS 的区别</h4><p><strong>端口号</strong> ：HTTP 默认是 80，HTTPS 默认是 443</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/http-vs-https.png" alt="img"></p>
-<h3 id="3-HTTP1-0-和-HTTP1-1的区别"><a href="#3-HTTP1-0-和-HTTP1-1的区别" class="headerlink" title="3)HTTP1.0 和 HTTP1.1的区别"></a>3)HTTP1.0 和 HTTP1.1的区别</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/http1.0-vs-http1.1.png" alt="img"></p>
+<h4 id="3-HTTP1-0-和-HTTP1-1的区别"><a href="#3-HTTP1-0-和-HTTP1-1的区别" class="headerlink" title="3)HTTP1.0 和 HTTP1.1的区别"></a>3)HTTP1.0 和 HTTP1.1的区别</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/http1.0-vs-http1.1.png" alt="img"></p>
 <p>连接方式：HTTP&#x2F;1.0 为短连接，HTTP&#x2F;1.1 支持长连接。</p>
 <p>状态响应码： HTTP&#x2F;1.1 中新加入了大量的状态码，</p>
 <p>缓存机制：HTTP&#x2F;1.1 则引入了更多的缓存控制策略</p>
 <p>带宽： HTTP&#x2F;1.1它允许只请求资源的某个部分，即返回码是 206（Partial Content）</p>
 <p>Host 头（Host Header）处理 :HTTP&#x2F;1.1 引入了 Host 头字段，允许在同一 IP 地址上托管多个域名，从而支持虚拟主机的功能。</p>
-<h3 id="4-HTTP1-1-和-HTTP2-0-的区别"><a href="#4-HTTP1-1-和-HTTP2-0-的区别" class="headerlink" title="4)HTTP1.1 和 HTTP2.0 的区别"></a>4)HTTP1.1 和 HTTP2.0 的区别</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/http1.1-vs-http2.0.png" alt="img"></p>
+<h4 id="4-HTTP1-1-和-HTTP2-0-的区别"><a href="#4-HTTP1-1-和-HTTP2-0-的区别" class="headerlink" title="4)HTTP1.1 和 HTTP2.0 的区别"></a>4)HTTP1.1 和 HTTP2.0 的区别</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/http1.1-vs-http2.0.png" alt="img"></p>
 <p><strong>IO 多路复用（Multiplexing）</strong> ：HTTP&#x2F;2.0 在同一连接上可以同时传输多个请求和响应（可以看作是 HTTP&#x2F;1.1 中长链接的升级版本）。HTTP&#x2F;1.1 则使用串行方式，每个请求和响应都需要独立的连接。这使得 HTTP&#x2F;2.0 在处理多个请求时更加高效，减少了网络延迟和提高了性能。</p>
 <p><strong>二进制帧（Binary Frames）</strong> ：HTTP&#x2F;2.0 使用二进制帧进行数据传输，而 HTTP&#x2F;1.1 则使用文本格式的报文。二进制帧更加紧凑和高效，减少了传输的数据量和带宽消耗。</p>
 <p><strong>头部压缩（Header Compression）</strong> ：HTTP&#x2F;1.1 支持<code>Body</code>压缩，<code>Header</code>不支持压缩。HTTP&#x2F;2.0 支持对<code>Header</code>压缩，减少了网络开销。</p>
 <p><strong>服务器推送（Server Push）</strong>：HTTP&#x2F;2.0 支持服务器推送，可以在客户端请求一个资源时，将其他相关资源一并推送给客户端，从而减少了客户端的请求次数和延迟。而 HTTP&#x2F;1.1 需要客户端自己发送请求来获取相关资源。</p>
-<h3 id="5-HTTP2-0-和-HTTP-3-0的区别"><a href="#5-HTTP2-0-和-HTTP-3-0的区别" class="headerlink" title="5)HTTP2.0 和 HTTP 3.0的区别"></a>5)HTTP2.0 和 HTTP 3.0的区别</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/http2.0-vs-http3.0.png" alt="img"></p>
+<h4 id="5-HTTP2-0-和-HTTP-3-0的区别"><a href="#5-HTTP2-0-和-HTTP-3-0的区别" class="headerlink" title="5)HTTP2.0 和 HTTP 3.0的区别"></a>5)HTTP2.0 和 HTTP 3.0的区别</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/http2.0-vs-http3.0.png" alt="img"></p>
 <p><strong>传输协议</strong> ：HTTP&#x2F;2.0 是基于 TCP 协议实现的，HTTP&#x2F;3.0 新增了 QUIC（Quick UDP Internet Connections） 协议来实现可靠的传输，提供与 TLS&#x2F;SSL 相当的安全性，具有较低的连接和传输延迟。你可以将 QUIC 看作是 UDP 的升级版本，在其基础上新增了很多功能比如加密、重传等等。HTTP&#x2F;3.0 之前名为 HTTP-over-QUIC，从这个名字中我们也可以发现，HTTP&#x2F;3 最大的改造就是使用了 QUIC。</p>
 <p><strong>连接建立</strong> ：HTTP&#x2F;2.0 需要经过经典的 TCP 三次握手过程（一般是 3 个 RTT）。由于 QUIC 协议的特性，HTTP&#x2F;3.0 可以避免 TCP 三次握手的延迟，允许在第一次连接时发送数据（0 个 RTT ，零往返时间）。</p>
 <p><strong>队头阻塞</strong> ：HTTP&#x2F;2.0 多请求复用一个 TCP 连接，一旦发生丢包，就会阻塞住所有的 HTTP 请求。由于 QUIC 协议的特性，HTTP&#x2F;3.0 在一定程度上解决了队头阻塞（Head-of-Line blocking, 简写：HOL blocking）问题，一个连接建立多个不同的数据流，这些数据流之间独立互不影响，某个数据流发生丢包了，其数据流不受影响（本质上是多路复用+轮询）。</p>
 <p><strong>错误恢复</strong> ：HTTP&#x2F;3.0 具有更好的错误恢复机制，当出现丢包、延迟等网络问题时，可以更快地进行恢复和重传。而 HTTP&#x2F;2.0 则需要依赖于 TCP 的错误恢复机制。</p>
 <p><strong>安全性</strong> ：HTTP&#x2F;2.0 和 HTTP&#x2F;3.0 在安全性上都有较高的要求，支持加密通信，但在实现上有所不同。HTTP&#x2F;2.0 使用 TLS 协议进行加密，而 HTTP&#x2F;3.0 基于 QUIC 协议，包含了内置的加密和身份验证机制，可以提供更强的安全性。</p>
-<h2 id="TCP-x2F-IP"><a href="#TCP-x2F-IP" class="headerlink" title="TCP&#x2F;IP"></a>TCP&#x2F;IP</h2><h3 id="1-TCP-与-UDP-的区别"><a href="#1-TCP-与-UDP-的区别" class="headerlink" title="1)TCP 与 UDP 的区别"></a>1)TCP 与 UDP 的区别</h3><ol>
+<h3 id="TCP-x2F-IP"><a href="#TCP-x2F-IP" class="headerlink" title="TCP&#x2F;IP"></a>TCP&#x2F;IP</h3><h4 id="1-TCP-与-UDP-的区别"><a href="#1-TCP-与-UDP-的区别" class="headerlink" title="1)TCP 与 UDP 的区别"></a>1)TCP 与 UDP 的区别</h4><ol>
 <li><strong>是否面向连接</strong> ：UDP 在传送数据之前不需要先建立连接。而 TCP 提供面向连接的服务，在传送数据之前必须先建立连接，数据传送结束后要释放连接。</li>
 <li><strong>是否是可靠传输</strong>：远地主机在收到 UDP 报文后，不需要给出任何确认，并且不保证数据不丢失，不保证是否顺序到达。TCP 提供可靠的传输服务，TCP 在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制。通过 TCP 连接传输的数据，无差错、不丢失、不重复、并且按序到达。</li>
 <li><strong>是否有状态</strong> ：这个和上面的“是否可靠传输”相对应。TCP 传输是有状态的，这个有状态说的是 TCP 会去记录自己发送消息的状态比如消息是否发送了、是否被接收了等等。为此 ，TCP 需要维持复杂的连接状态表。而 UDP 是无状态服务，简单来说就是不管发出去之后的事情了（<strong>这很渣男！</strong>）。</li>
@@ -530,9 +527,9 @@
 <li><strong>首部开销</strong> ：TCP 首部开销（20 ～ 60 字节）比 UDP 首部开销（8 字节）要大。</li>
 <li><strong>是否提供广播或多播服务</strong> ：TCP 只支持点对点通信，UDP 支持一对一、一对多、多对一、多对多；</li>
 </ol>
-<h3 id="2-TCP-的三次握手的过程"><a href="#2-TCP-的三次握手的过程" class="headerlink" title="2) TCP 的三次握手的过程"></a>2) TCP 的三次握手的过程</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/tcp-shakes-hands-three-times.png" alt="img"></p>
+<h4 id="2-TCP-的三次握手的过程"><a href="#2-TCP-的三次握手的过程" class="headerlink" title="2) TCP 的三次握手的过程"></a>2) TCP 的三次握手的过程</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/tcp-shakes-hands-three-times.png" alt="img"></p>
 <p>三次握手能够保证自己和对方的发送和接收功能都是正常的。</p>
-<h3 id="3-四次挥手"><a href="#3-四次挥手" class="headerlink" title="3)四次挥手"></a>3)四次挥手</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/tcp-waves-four-times.png" alt="img"></p>
+<h4 id="3-四次挥手"><a href="#3-四次挥手" class="headerlink" title="3)四次挥手"></a>3)四次挥手</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/tcp-waves-four-times.png" alt="img"></p>
 <p>为什么不能把服务器发送的 ACK 和 FIN 合并起来，变成三次挥手？</p>
 <p>因为服务器收到客户端断开连接的请求时，可能还有一些数据没有发完，这时先回复 ACK，表示接收到了断开连接的请求。等到数据发完之后再发 FIN，断开服务器到客户端的数据传送.</p>
 <p>当被动关闭方（服务端）在 TCP 挥手过程中，「没有数据要发送」并且「开启了 TCP 延迟确认机制」，那么第二和第三次挥手就会合并传输，这样就出现了三次挥手。</p>
@@ -545,10 +542,10 @@
 <li>如果在延迟等待发送 ACK 期间，对方的第二个数据报文又到达了，这时就会立刻发送 ACK</li>
 </ul>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/33f3d2d54a924b0a80f565038327e0e4.webp" alt="img"></p>
-<h3 id="4-TCP传输可靠性保证"><a href="#4-TCP传输可靠性保证" class="headerlink" title="4)TCP传输可靠性保证"></a>4)TCP传输可靠性保证</h3><p><a target="_blank" rel="noopener" href="https://javaguide.cn/cs-basics/network/tcp-reliability-guarantee.html#tcp-%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E4%BC%A0%E8%BE%93%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7">JavaGuide链接</a></p>
-<h3 id="5-NAT的作用"><a href="#5-NAT的作用" class="headerlink" title="5) NAT的作用"></a>5) NAT的作用</h3><p><strong>NAT（Network Address Translation，网络地址转换）</strong> 主要用于在不同网络之间转换 IP 地址。它允许将私有 IP 地址（如在局域网中使用的 IP 地址）映射为公有 IP 地址（在互联网中使用的 IP 地址）或者反向映射，从而实现局域网内的多个设备通过单一公有 IP 地址访问互联网。</p>
+<h4 id="4-TCP传输可靠性保证"><a href="#4-TCP传输可靠性保证" class="headerlink" title="4)TCP传输可靠性保证"></a>4)TCP传输可靠性保证</h4><p><a target="_blank" rel="noopener" href="https://javaguide.cn/cs-basics/network/tcp-reliability-guarantee.html#tcp-%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E4%BC%A0%E8%BE%93%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7">JavaGuide链接</a></p>
+<h4 id="5-NAT的作用"><a href="#5-NAT的作用" class="headerlink" title="5) NAT的作用"></a>5) NAT的作用</h4><p><strong>NAT（Network Address Translation，网络地址转换）</strong> 主要用于在不同网络之间转换 IP 地址。它允许将私有 IP 地址（如在局域网中使用的 IP 地址）映射为公有 IP 地址（在互联网中使用的 IP 地址）或者反向映射，从而实现局域网内的多个设备通过单一公有 IP 地址访问互联网。</p>
 <p>NAT 不光可以缓解 IPv4 地址资源短缺的问题，还可以隐藏内部网络的实际拓扑结构，使得外部网络无法直接访问内部网络中的设备，从而提高了内部网络的安全性。</p>
-<h1 id="3-设计模式"><a href="#3-设计模式" class="headerlink" title="3.设计模式"></a>3.设计模式</h1><p>软件设计原则：</p>
+<h2 id="3-设计模式"><a href="#3-设计模式" class="headerlink" title="3.设计模式"></a>3.设计模式</h2><p>软件设计原则：</p>
 <p>开闭原则：对拓展开放，对修改封闭。<br>里式代换原则：任何基类可以出现的地方，子类一定可以出现，反之不一定。<br>依赖倒转原则：高层模块不应该依赖低层模块，两者都应该依赖其抽象。<br>接口隔离原则：客户端不应该被迫依赖于它不使用的方法，一个类对另一个类的依赖应该建立在最小的接口上。<br>迪米特法则：只和你的直接朋友交谈，不跟 “陌生人” 说话<br>合成复用原则：尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现。</p>
 <p>设计模式分类：</p>
 <p>创建型：专注于对象的创建</p>
@@ -557,7 +554,7 @@
 <p>创建型模式：单例模式、工厂模式、原型模式、建造者模式</p>
 <p>结构型模式：代理模式、适配器模式、装饰器模式、桥接模式、外观模式、组合模式、享元模式</p>
 <p>行为型模式：模板方法模式、策略模式、命令模式、职责链模式、状态模式、观察者模式、中介者模式、迭代器模式、访问者模式、备忘录模式、解释器模式</p>
-<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>一个类只有一个实例</p>
+<h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p>一个类只有一个实例</p>
 <p>掌握单例模式常见五种实现方式</p>
 <p>了解jdk中有哪些地方体现了单例模式</p>
 <ul>
@@ -565,7 +562,7 @@
 <li><strong>懒汉式</strong>：类加载不会导致该单实例对象被创建，而是首次使用该对象时才会创建</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://luzhenyu.blog.csdn.net/article/details/122308030">文章</a></p>
-<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>简单工厂模式：</p>
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><p>简单工厂模式：</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/26943a5bf49846279f3b92999aa966dc.png" alt="img"></p>
 <pre><code>简单咖啡工厂类，用来生产咖啡
 */
@@ -597,7 +594,7 @@ return coffee;`
 <p>美式风味的甜品工厂 ，生产美式咖啡和抹茶慕斯</p>
 <p>有咖啡和甜品两个产品族。</p>
 <p><a target="_blank" rel="noopener" href="https://luzhenyu.blog.csdn.net/article/details/122318746">文章</a></p>
-<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>策略模式的主要角色如下：</p>
+<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><p>策略模式的主要角色如下：</p>
 <ol>
 <li>抽象策略（Strategy）类：这是一个抽象角色，通常由一个接口或抽象类实现。此角色给出所有的具体策略类所需的接口。</li>
 <li>具体策略（Concrete Strategy）类：实现了抽象策略定义的接口，提供具体的算法实现或行为。</li>
@@ -619,7 +616,7 @@ return coffee;`
 <p>其中Comparator 充当的是抽象策略角色，而具体的子实现类充当的是具体策略角色。</p>
 <p>不如我的发票管理的策略模式。</p>
 <p><a target="_blank" rel="noopener" href="https://luzhenyu.blog.csdn.net/article/details/122623421">文章</a></p>
-<h2 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h2><p>职责链模式主要包含以下角色:</p>
+<h3 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h3><p>职责链模式主要包含以下角色:</p>
 <ol>
 <li>抽象处理者（Handler）角色：定义一个处理请求的接口，包含抽象处理方法和一个后继连接。</li>
 <li>具体处理者（Concrete Handler）角色：实现抽象处理者的处理方法，判断能否处理本次请求，如果可以处理请求则处理，否则将该请求转给它的后继者。</li>
@@ -640,7 +637,7 @@ return coffee;`
 </li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://luzhenyu.blog.csdn.net/article/details/122636960">文章</a></p>
-<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>代理模式的作用：保护、增强、解耦</p>
+<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><p>代理模式的作用：保护、增强、解耦</p>
 <p>当访问对象不适合或者不能直接引用目标对象，可以提供一个代理以控制对该对象的访问，代理对象作为访问对象和目标对象之间的中介。</p>
 <p>Java 中的代理按照代理类生成时机不同又分为静态代理和动态代理；</p>
 <p>静态代理代理类在编译期就生成，而动态代理代理类则是在 Java 运行时动态生成；</p>
@@ -652,8 +649,8 @@ return coffee;`
 <p>CGLIB 动态代理可以不代理接口，直接代理类。</p>
 <p>使用场景：远程代理我们只能访问接口。</p>
 <p><a target="_blank" rel="noopener" href="https://luzhenyu.blog.csdn.net/article/details/122362769#518__404">文章</a></p>
-<h1 id="4-MySQL"><a href="#4-MySQL" class="headerlink" title="4.MySQL"></a>4.MySQL</h1><h2 id="MySQL基础语法"><a href="#MySQL基础语法" class="headerlink" title="MySQL基础语法"></a>MySQL基础语法</h2><h3 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/clip_image024.png"></p>
-<h3 id="MySQL-Full-join的实现"><a href="#MySQL-Full-join的实现" class="headerlink" title="MySQL Full join的实现"></a>MySQL Full join的实现</h3><p>因为MySQL不支持FULL JOIN,下面是替代方法&#x2F;</p>
+<h2 id="4-MySQL"><a href="#4-MySQL" class="headerlink" title="4.MySQL"></a>4.MySQL</h2><h3 id="MySQL基础语法"><a href="#MySQL基础语法" class="headerlink" title="MySQL基础语法"></a>MySQL基础语法</h3><h4 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/clip_image024.png"></p>
+<h4 id="MySQL-Full-join的实现"><a href="#MySQL-Full-join的实现" class="headerlink" title="MySQL Full join的实现"></a>MySQL Full join的实现</h4><p>因为MySQL不支持FULL JOIN,下面是替代方法&#x2F;</p>
 <p>1.UNION 会自动去重</p>
 <pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> t1 <span class="token keyword">left</span> <span class="token keyword">join</span> t2 <span class="token keyword">on</span> t1<span class="token punctuation">.</span>id <span class="token operator">=</span> t2<span class="token punctuation">.</span>id
 <span class="token keyword">union</span>
@@ -665,17 +662,17 @@ return coffee;`
 <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> t1 <span class="token keyword">right</span> <span class="token keyword">join</span> t2 <span class="token keyword">on</span> t1<span class="token punctuation">.</span>id <span class="token operator">=</span> t2<span class="token punctuation">.</span>id
 <span class="token keyword">where</span> t1<span class="token punctuation">.</span>id <span class="token operator">is</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="sql实战"><a href="#sql实战" class="headerlink" title="sql实战"></a>sql实战</h3><p>阿里开发手册：</p>
+<h4 id="sql实战"><a href="#sql实战" class="headerlink" title="sql实战"></a>sql实战</h4><p>阿里开发手册：</p>
 <pre><code>【强制】在 varchar 字段上建立索引时，必须指定索引长度，没必要对全字段建立索引，根据实际文本区
 分度决定索引长度。
 说明：索引的长度与区分度是一对矛盾体，一般对字符串类型数据，长度为 20 的索引，区分度会高达 90%以上，可以使用 count(distinct left(列名，索引长度)) / count(*) 的区分度来确定。
 </code></pre>
-<h3 id="时间日期处理"><a href="#时间日期处理" class="headerlink" title="时间日期处理"></a>时间日期处理</h3><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">,</span> <span class="token string">'%Y年%m月%d日 %H时%i分%s秒'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h4 id="时间日期处理"><a href="#时间日期处理" class="headerlink" title="时间日期处理"></a>时间日期处理</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> DATE_FORMAT<span class="token punctuation">(</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">,</span> <span class="token string">'%Y年%m月%d日 %H时%i分%s秒'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">SELECT</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> ucenter_member <span class="token keyword">WHERE</span> <span class="token keyword">DATE</span><span class="token punctuation">(</span>gmt_create<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">'2019-01-02'</span><span class="token punctuation">;</span>
 <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> ucenter_member <span class="token keyword">WHERE</span> DATE_FORMAT<span class="token punctuation">(</span>gmt_create <span class="token punctuation">,</span> <span class="token string">'%Y-%m-%d'</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token string">'2019-01-02'</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h3><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t_score<span class="token punctuation">;</span>
+<h4 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t_score<span class="token punctuation">;</span>
 </code></pre>
 <p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/image-20211107083854828.png"></strong></p>
 <p>需求：<strong>行转列显示学生直观显示学生各科成绩</strong></p>
@@ -694,7 +691,7 @@ return coffee;`
 <p>附：UNION与UNION ALL的区别（摘）<br>对重复结果的处理：UNION会去掉重复记录，UNION ALL不会；</p>
 <p>对排序的处理：UNION会排序，UNION ALL只是简单地将两个结果集合并；</p>
 <p>效率方面的区别：因为UNION 会做去重和排序处理，因此效率比UNION ALL慢很多；</p>
-<h3 id="删除重复行"><a href="#删除重复行" class="headerlink" title="删除重复行"></a>删除重复行</h3><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t_score <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> stuid<span class="token punctuation">,</span>SUBJECT<span class="token punctuation">;</span>
+<h4 id="删除重复行"><a href="#删除重复行" class="headerlink" title="删除重复行"></a>删除重复行</h4><pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t_score <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> stuid<span class="token punctuation">,</span>SUBJECT<span class="token punctuation">;</span>
 </code></pre>
 <p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BMySQL%E9%AB%98%E7%BA%A7/image/image-20211107085451638.png"></strong></p>
 <p>需求：每个学生同一学科有多个成绩的，保留分数高的</p>
@@ -709,7 +706,7 @@ return coffee;`
         <span class="token operator">AND</span> t1<span class="token punctuation">.</span><span class="token punctuation">`</span>score<span class="token punctuation">`</span> <span class="token operator">=</span> t2<span class="token punctuation">.</span>m_score<span class="token punctuation">)</span>tmp
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><h3 id="存储引擎对比"><a href="#存储引擎对比" class="headerlink" title="存储引擎对比"></a>存储引擎对比</h3><p>MySQL 5.5.5 之前，MyISAM 是 MySQL 的默认存储引擎。5.5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。</p>
+<h3 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h3><h4 id="存储引擎对比"><a href="#存储引擎对比" class="headerlink" title="存储引擎对比"></a>存储引擎对比</h4><p>MySQL 5.5.5 之前，MyISAM 是 MySQL 的默认存储引擎。5.5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。</p>
 <p>只有 InnoDB 支持事务。</p>
 <p><strong>存储引擎是基于表的，而不是数据库。</strong>我们可以为不同的数据库的表配置不同的存储引擎</p>
 <p>MyISAM 的性能还行，各种特性也还不错（比如全文索引、压缩、空间函数等）。但是，MyISAM 不支持事务和行级锁，而且最大的缺陷就是崩溃后无法安全恢复。</p>
@@ -731,7 +728,7 @@ return coffee;`
 <p>Federated引擎：访问远程表</p>
 <p>Merge引擎：管理多个MyISAM表构成的集合</p>
 <p>NDB引擎：Mysql集群专用存储引擎</p>
-<h3 id="页，区，段，表"><a href="#页，区，段，表" class="headerlink" title="页，区，段，表"></a>页，区，段，表</h3><p>InnoDB中页的大小默认为16KB，以页作为磁盘和内存之间交互的基本单位。</p>
+<h4 id="页，区，段，表"><a href="#页，区，段，表" class="headerlink" title="页，区，段，表"></a>页，区，段，表</h4><p>InnoDB中页的大小默认为16KB，以页作为磁盘和内存之间交互的基本单位。</p>
 <p>查看mysql文件页大小（16K）：</p>
 <pre class=" language-mysql"><code class="language-mysql">SHOW GLOBAL STATUS LIKE '%page_size%'
 </code></pre>
@@ -745,10 +742,10 @@ return coffee;`
 <p>段其实不对应表空间中某一个连续的物理区域，而是一个逻辑上的概念，由若干个零散的页面以及一些 完整的区组成。</p>
 <p>为了考虑以完整的区为单位分配给某个段对于 数据量较小 的表太浪费存储空间的这种情况，InnoDB提 出了一个 碎片(fragment)区 的概念。在一个碎片区中，并不是所有的页都是为了存储同一个段的数据 而存在的，而是碎片区中的页可以用于不同的目的，比如有些页用于段A，有些页用于段B，有些页甚至 哪个段都不属于。 碎片区直属于表空间 ，并不属于任何一个段。</p>
 <p>表空间可以看做是InnoDB存储引擎逻辑结构的最高层，所有的数据都存放在表空间中。 表空间是一个 逻辑容器 ，表空间存储的对象是段，在一个表空间中可以有一个或多个段，但是一个段只 能属于一个表空间。</p>
-<h2 id="索引底层原理"><a href="#索引底层原理" class="headerlink" title="索引底层原理"></a>索引底层原理</h2><p>索引（Index）是帮助MySQL高效获取数据的数据结构.</p>
+<h3 id="索引底层原理"><a href="#索引底层原理" class="headerlink" title="索引底层原理"></a>索引底层原理</h3><p>索引（Index）是帮助MySQL高效获取数据的数据结构.</p>
 <p>优点：查的快，降低IO成本； 通过创建唯一索引，可以保证数据的唯一性； 加速表与表之间的连接，减低分组和排序子句的时间。</p>
 <p>缺点：创建索引和维护索引要耗费时间； 索引需要占磁盘空间； 索引会降低更新表的速度。</p>
-<h3 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h3><p>底层数据结构：B+树，很适合排序查找和范围查找。</p>
+<h4 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h4><p>底层数据结构：B+树，很适合排序查找和范围查找。</p>
 <p>B树</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101818936.png"></p>
 <p>B+树</p>
@@ -756,13 +753,13 @@ return coffee;`
 <p>而且B+树的非叶子节点不存数据，则可以比B树存更多的数据。这使得B+树更加矮胖</p>
 <p><strong>B+树优点：B+树查询效率更稳定（要访问到叶子节点）； B+树的查询效率更高（一般比B树更矮胖）；B+树的磁盘读写代价更低（因为内部非叶子节点存储的东西更少）</strong></p>
 <p>B+树的存储能力如何？为何说一般查找行记录，最多只需1~3次磁盘IO？ InnoDB存储引擎中页的大小为16KB，一个int类型或者一个指针也就4个字节或者8个字节。所以一个页可以存储16KB&#x2F;(8B+8B)&#x3D;1000个键值。则深度为3的树就可以存储$10^3$×*$10^3$×$10^3$&#x3D;一亿条数据</p>
-<h3 id="InnoDB的B-树索引的注意事项"><a href="#InnoDB的B-树索引的注意事项" class="headerlink" title="InnoDB的B+树索引的注意事项"></a>InnoDB的B+树索引的注意事项</h3><p>1.根页面位置不动 2.非叶子节点目录项记录唯一 3.一个页面最少存储两条记录</p>
+<h4 id="InnoDB的B-树索引的注意事项"><a href="#InnoDB的B-树索引的注意事项" class="headerlink" title="InnoDB的B+树索引的注意事项"></a>InnoDB的B+树索引的注意事项</h4><p>1.根页面位置不动 2.非叶子节点目录项记录唯一 3.一个页面最少存储两条记录</p>
 <p>MyISAM索引：将数据和索引分开存储，索引树的叶子节点存的是主键值+数据记录地址</p>
 <p>MyISAM与InnoDB的对比：<br>1.InnoDB中，根据主键值对聚簇索引进行一次查询即可。而在MyISAM中，要进行一次回表。<strong>MyISAM的回表操作是十分 快速 的。</strong></p>
 <p>2.InnoDB的数据文件本身就是索引文件，而<strong>MyISAM索引文件和数据文件是 分离的</strong> ，索引文件仅保存数 据记录的地址。</p>
 <p>3.InnoDB的非聚簇索引data域存储相应记录 主键的值 ，而<strong>MyISAM索引记录的是 地址</strong> 。</p>
 <p>4.InnoDB要求表 必须有主键 （ MyISAM可以没有 ）。如果没有显式指定，则MySQL系统会自动选择一个 可以非空且唯一标识数据记录的列作为主键。再没有的话可以生成一个隐含字段。</p>
-<h2 id="事务与锁"><a href="#事务与锁" class="headerlink" title="事务与锁"></a>事务与锁</h2><h3 id="1-事务基础知识"><a href="#1-事务基础知识" class="headerlink" title="1)事务基础知识"></a>1)事务基础知识</h3><p>在MySQL中，只有InnoDB是支持事务的。</p>
+<h3 id="事务与锁"><a href="#事务与锁" class="headerlink" title="事务与锁"></a>事务与锁</h3><h4 id="1-事务基础知识"><a href="#1-事务基础知识" class="headerlink" title="1)事务基础知识"></a>1)事务基础知识</h4><p>在MySQL中，只有InnoDB是支持事务的。</p>
 <p>事务的ACID特性：<br>原子性（atomicity): 要么全部提交，要么全部失败回滚。</p>
 <p>一致性(consistency)：指事务执行前后，数据从一个 合法性状态 变换到另外一个 合法性状态 。</p>
 <p>隔离性(isolation): 指一个事务的执行 不能被其他事务干扰 ，即一个事务内部的操作及使用的数据对 并发 的 其他事务是隔离的，并发执行的各个事务之间不能互相干扰。</p>
@@ -779,7 +776,7 @@ return coffee;`
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720230423104501.png" alt="img"></p>
 <p>脏写的问题太严重了，不论是哪种隔离级别，都不允许脏写的情况发生。</p>
 <p>MySQL的默认隔离级别为REPEATABLE READ。</p>
-<h3 id="2-MySQL事务日志-redo-undo-bin"><a href="#2-MySQL事务日志-redo-undo-bin" class="headerlink" title="2)MySQL事务日志-redo,undo,bin"></a>2)MySQL事务日志-redo,undo,bin</h3><p>事务有4种特性：原子性、一致性、隔离性和持久性。那么事务的四种特性到底是基于什么机制实现呢？</p>
+<h4 id="2-MySQL事务日志-redo-undo-bin"><a href="#2-MySQL事务日志-redo-undo-bin" class="headerlink" title="2)MySQL事务日志-redo,undo,bin"></a>2)MySQL事务日志-redo,undo,bin</h4><p>事务有4种特性：原子性、一致性、隔离性和持久性。那么事务的四种特性到底是基于什么机制实现呢？</p>
 <p>事务的隔离性由 锁机制 实现。 而事务的原子性、一致性和持久性由事务的 redo 日志和undo 日志来保证。</p>
 <p><strong>REDO LOG</strong> 称为 重做日志 ，提供再写入操作，恢复提交事务修改的页操作，用来保证事务的持 久性。</p>
 <p><strong>UNDO LOG</strong> 称为 回滚日志 ，回滚行记录到某个特定版本，用来保证事务的原子性、一致性。</p>
@@ -801,9 +798,9 @@ return coffee;`
 <p>undo log是逻辑日志，对事务回滚时，只是将数据库逻辑地恢复到原来的样子。</p>
 <p>redo log是物理日志，记录的是数据页的物理变化，undo log不是redo log的逆过程.</p>
 <p>binlog（归档日志）保证了 MySQL 集群架构的数据一致性。主节点写bin log 日志，从节点读bin log 日志。</p>
-<h4 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h4><p>redo log 在事务执行过程中可以不断写入，而 binlog 只有在提交事务时才写入，所以 redo log 与 binlog 的写入时机不一样。会出问题。所以将redo log拆为prepare阶段和commit阶段。</p>
+<h5 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h5><p>redo log 在事务执行过程中可以不断写入，而 binlog 只有在提交事务时才写入，所以 redo log 与 binlog 的写入时机不一样。会出问题。所以将redo log拆为prepare阶段和commit阶段。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/04-20220305234956774.png"></p>
-<h3 id="3-锁"><a href="#3-锁" class="headerlink" title="3)锁"></a>3)锁</h3><p>事务的隔离性由 锁来实现</p>
+<h4 id="3-锁"><a href="#3-锁" class="headerlink" title="3)锁"></a>3)锁</h4><p>事务的隔离性由 锁来实现</p>
 <p>怎么解决脏读 、 不可重复读 、 幻读 这些问题呢？其实有两种可选的解决方案：</p>
 <p>方案一：读操作利用多版本并发控制（ MVCC ，下章讲解），写操作进行 加锁 。</p>
 <p>方案二：读、写操作都采用 加锁 的方式。</p>
@@ -851,10 +848,10 @@ return coffee;`
 <td>互斥</td>
 </tr>
 </tbody></table>
-<h2 id="MVCC机制"><a href="#MVCC机制" class="headerlink" title="MVCC机制"></a>MVCC机制</h2><p>MVCC （Multiversion Concurrency Control），多版本并发控制。顾名思义，MVCC 是通过数据行的多个版 本管理来实现数据库的 并发控制 。这项技术使得在InnoDB的事务隔离级别下执行 一致性读 操作有了保 证。<strong>换言之，就是为了查询一些正在被另一个事务更新的行，并且可以看到它们被更新之前的值，这样 在做查询的时候就不用等待另一个事务释放锁。</strong></p>
+<h3 id="MVCC机制"><a href="#MVCC机制" class="headerlink" title="MVCC机制"></a>MVCC机制</h3><p>MVCC （Multiversion Concurrency Control），多版本并发控制。顾名思义，MVCC 是通过数据行的多个版 本管理来实现数据库的 并发控制 。这项技术使得在InnoDB的事务隔离级别下执行 一致性读 操作有了保 证。<strong>换言之，就是为了查询一些正在被另一个事务更新的行，并且可以看到它们被更新之前的值，这样 在做查询的时候就不用等待另一个事务释放锁。</strong></p>
 <p>MVCC是快照读，是一种乐观锁的体现</p>
 <p><strong>MVCC的实现依赖于：隐藏字段、 Undo Log版本链、 Read View</strong></p>
-<h3 id="隐藏字段"><a href="#隐藏字段" class="headerlink" title="隐藏字段"></a>隐藏字段</h3><p>在内部，<code>InnoDB</code> 存储引擎为每行数据添加了三个 隐藏字段：</p>
+<h4 id="隐藏字段"><a href="#隐藏字段" class="headerlink" title="隐藏字段"></a>隐藏字段</h4><p>在内部，<code>InnoDB</code> 存储引擎为每行数据添加了三个 隐藏字段：</p>
 <ul>
 <li><strong><code>DB_TRX_ID（6字节）</code>：表示最后一次插入或更新该行的事务 id。</strong>此外，<code>delete</code> 操作在内部被视为更新，只不过会在记录头 <code>Record header</code> 中的 <code>deleted_flag</code> 字段将其标记为已删除</li>
 <li><code>DB_ROLL_PTR（7字节）</code> 回滚指针，指向该行的 <code>undo log</code> 。如果该行未被更新，则为空</li>
@@ -862,8 +859,8 @@ return coffee;`
 </ul>
 <p>隐藏字段，trx_id, 最近被哪个事务修改过，记录其Id。 roll_pointer 是undo log 版本链的指针。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101200980.png"></p>
-<h3 id="undo-log-版本链"><a href="#undo-log-版本链" class="headerlink" title="undo log 版本链"></a>undo log 版本链</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101239830.png"></p>
-<h3 id="ReadView"><a href="#ReadView" class="headerlink" title="ReadView"></a>ReadView</h3><p>核心问题就是需要判断一下版本链中的哪个版本是当前事务可见的，这是ReadView要解决的主要问题。</p>
+<h4 id="undo-log-版本链"><a href="#undo-log-版本链" class="headerlink" title="undo log 版本链"></a>undo log 版本链</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101239830.png"></p>
+<h4 id="ReadView"><a href="#ReadView" class="headerlink" title="ReadView"></a>ReadView</h4><p>核心问题就是需要判断一下版本链中的哪个版本是当前事务可见的，这是ReadView要解决的主要问题。</p>
 <p>Read View就是事务A在使用MVCC机制进行快照读操作时产生的读视图。</p>
 <p>Read View主要是用来做可见性判断，里面保存了 “当前对本事务不可见的其他活跃事务”</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">ReadView</span> <span class="token punctuation">{</span>
@@ -904,12 +901,12 @@ return coffee;`
 <p>READ COMMITTED ：每次读取数据前都生成一个ReadView。</p>
 <p>使用 REPEATABLE READ 隔离级别的事务来说，只会在第一次执行查询语句时生成一个 ReadView ，之 后的查询就不会重复生成了。</p>
 <p>可重复读(RR)如何解决幻读的？因为只生成了最开始的一个ReadView，生成ReadView的时机。</p>
-<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p>性能分析工具：  首先要开启慢查询，指定一下阈值(默认是10s)，慢查询日志分析工具：mysqldumpslow</p>
+<h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><p>性能分析工具：  首先要开启慢查询，指定一下阈值(默认是10s)，慢查询日志分析工具：mysqldumpslow</p>
 <p>EXPLAIN加在查询语句前面。</p>
 <p>聚簇索引：所有的用户记录都存在了叶⼦节点，数据即索引，索引即数据。以主键值大小进行排序。</p>
 <p>非聚簇索引（二级索引）：以别的键为搜索条件时使用，回表。</p>
 <p>联合索引：可以先按C2列排序，再按C3列排序。</p>
-<h3 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h3><p>最佳左前缀法则</p>
+<h4 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h4><p>最佳左前缀法则</p>
 <p>计算，函数，类型转换导致索引失效。</p>
 <p>范围条件右边的列索引失效</p>
 <p>不等于(!&#x3D; 或者 &lt;&gt;)索引失效</p>
@@ -940,7 +937,7 @@ return coffee;`
 <span class="token comment" spellcheck="true"># 方向反 不索引</span>
 <span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> emp <span class="token keyword">where</span> age<span class="token operator">=</span><span class="token number">45</span> <span class="token keyword">order</span> <span class="token keyword">by</span>  deptid <span class="token keyword">asc</span><span class="token punctuation">,</span> name <span class="token keyword">desc</span> <span class="token punctuation">;</span>
 </code></pre>
-<h3 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h3><p>驱动表的数据一定要全查。</p>
+<h4 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h4><p>驱动表的数据一定要全查。</p>
 <p>对于下面3个SQL</p>
 <pre class=" language-sql"><code class="language-sql"><span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> class <span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> book <span class="token keyword">ON</span> class<span class="token punctuation">.</span>card <span class="token operator">=</span> book<span class="token punctuation">.</span>card<span class="token punctuation">;</span>
 
@@ -953,12 +950,12 @@ return coffee;`
 <p>第二条。book作为驱动表要全查，没有被优化.  20*16</p>
 <p>第三条。inner join会自动选择记录少的作为驱动表。 class为驱动表， 16*1</p>
 <p><strong>综上，肯定是把20行变为1行好，所以应该是大表创建索引，然后将其作为被驱动表(小表驱动大表)。</strong></p>
-<h3 id="关于exits和In"><a href="#关于exits和In" class="headerlink" title="关于exits和In"></a>关于exits和In</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/QQ%E5%9B%BE%E7%89%8720230519205651.png"></p>
-<h3 id="filesort算法"><a href="#filesort算法" class="headerlink" title="filesort算法"></a>filesort算法</h3><p>如果不在索引列上，filesort有两种算法：mysql就要启动双路排序和单路排序</p>
+<h4 id="关于exits和In"><a href="#关于exits和In" class="headerlink" title="关于exits和In"></a>关于exits和In</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/QQ%E5%9B%BE%E7%89%8720230519205651.png"></p>
+<h4 id="filesort算法"><a href="#filesort算法" class="headerlink" title="filesort算法"></a>filesort算法</h4><p>如果不在索引列上，filesort有两种算法：mysql就要启动双路排序和单路排序</p>
 <p>MySQL在4.1版本之前是双路排序。<strong>从磁盘取排序字段，再buffer进行排序，再从磁盘取其他字段</strong>。</p>
 <p>在MySQL4.1之后，出现了第二种改进的算法，就是单路排序。</p>
 <p><strong>从磁盘读取查询需要的所有列</strong>，按照order by列在buffer对它们进行排序，然后扫描排序后的列表进行输出，它的效率更快一些，避免了第二次读取数据。并且把随机IO变成了顺序IO，但是它会<strong>使用更多的空间</strong>，因为它把每一行都保存在内存中了。</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>尽量控制单表数据量的大小，建议控制在 500 万以内。</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>尽量控制单表数据量的大小，建议控制在 500 万以内。</p>
 <p>常见索引列建议</p>
 <ol>
 <li>出现在 SELECT、UPDATE、DELETE 语句的 WHERE 从句中的列</li>
@@ -976,8 +973,8 @@ return coffee;`
 <li>UNION 会把两个结果集的所有数据放到临时表中后再进行去重操作</li>
 <li>UNION ALL 不会再对结果集进行去重操作</li>
 </ul>
-<h1 id="5-Redis"><a href="#5-Redis" class="headerlink" title="5.Redis"></a>5.Redis</h1><p>mysql的并发是1000&#x2F;s，  redis的并发是10W&#x2F;s</p>
-<h2 id="常见数据结构"><a href="#常见数据结构" class="headerlink" title="常见数据结构"></a>常见数据结构</h2><p>详细请参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/2401_83384536/article/details/137644549">这篇文章</a></p>
+<h2 id="5-Redis"><a href="#5-Redis" class="headerlink" title="5.Redis"></a>5.Redis</h2><p>mysql的并发是1000&#x2F;s，  redis的并发是10W&#x2F;s</p>
+<h3 id="常见数据结构"><a href="#常见数据结构" class="headerlink" title="常见数据结构"></a>常见数据结构</h3><p>详细请参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/2401_83384536/article/details/137644549">这篇文章</a></p>
 <p>五种基本数据类型：字符串（string），散列表（hash）， 列表（list），集合（set），有序集合（sortedset）</p>
 <p>三种特殊数据类型：地理位置（Geospatial），基数统计(Hyperloglog), 位图(Bitmap)</p>
 <p>应用场景：</p>
@@ -989,7 +986,7 @@ return coffee;`
 <p>bitmap:<strong>需要保存状态信息（0&#x2F;1 即可表示）的场景</strong>,用户签到情况、活跃用户情况、用户行为统计（比如是否点赞过某个视频）。</p>
 <p>Hyperloglog:<strong>数量量巨大（百万、千万级别以上）的计数场景</strong>,热门网站每日&#x2F;每周&#x2F;每月访问 ip 数统计、热门帖子 uv 统计</p>
 <p>Geospatial:<strong>需要管理使用地理空间数据的场景</strong>,附近的人。</p>
-<h2 id="对于这些数据结构更底层的实现"><a href="#对于这些数据结构更底层的实现" class="headerlink" title="对于这些数据结构更底层的实现"></a>对于这些数据结构更底层的实现</h2><h3 id="动态字符串-SDS"><a href="#动态字符串-SDS" class="headerlink" title="动态字符串-SDS"></a>动态字符串-SDS</h3><p>C语言字符串存在很多问题：获取字符串长度的需要通过运算,非二进制安全,不可修改</p>
+<h3 id="对于这些数据结构更底层的实现"><a href="#对于这些数据结构更底层的实现" class="headerlink" title="对于这些数据结构更底层的实现"></a>对于这些数据结构更底层的实现</h3><h4 id="动态字符串-SDS"><a href="#动态字符串-SDS" class="headerlink" title="动态字符串-SDS"></a>动态字符串-SDS</h4><p>C语言字符串存在很多问题：获取字符串长度的需要通过运算,非二进制安全,不可修改</p>
 <p>SDS是一个结构体：当flag&#x3D;1时，为uint8_t的类型</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240121214640627.png"></p>
 <p>假如我们要给SDS追加一段字符串“,Amy”，这里首先会申请新内存空间：</p>
@@ -1000,7 +997,7 @@ return coffee;`
 <p>②支持动态扩容</p>
 <p>③减少内存分配次数</p>
 <p>④二进制安全</p>
-<h3 id="IntSet"><a href="#IntSet" class="headerlink" title="IntSet"></a>IntSet</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240121215423558.png"></p>
+<h4 id="IntSet"><a href="#IntSet" class="headerlink" title="IntSet"></a>IntSet</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240121215423558.png"></p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240121215504565.png"></p>
 <p>先把20放到合适的位置，再放10，再放5.</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240121215554724.png"></p>
@@ -1008,31 +1005,31 @@ return coffee;`
 <p>①Redis会确保Intset中的元素唯一、有序</p>
 <p>②具备类型升级机制，可以节省内存空间</p>
 <p>③底层采用二分查找方式来查询</p>
-<h3 id="Dict"><a href="#Dict" class="headerlink" title="Dict"></a>Dict</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240121220939065.png"></p>
+<h4 id="Dict"><a href="#Dict" class="headerlink" title="Dict"></a>Dict</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240121220939065.png"></p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240121220320505.png"></p>
 <p>uDict采用渐进式rehash，每次访问Dict时执行一次rehash</p>
 <p>urehash时ht[0]只减不增，新增操作只在ht[1]执行，其它操作在两个哈希表</p>
-<h3 id="ZipList"><a href="#ZipList" class="headerlink" title="ZipList"></a>ZipList</h3><p>ZipList特性：</p>
+<h4 id="ZipList"><a href="#ZipList" class="headerlink" title="ZipList"></a>ZipList</h4><p>ZipList特性：</p>
 <p>①压缩列表的可以看做一种连续内存空间的”双向链表”</p>
 <p>②列表的节点之间不是通过指针连接，而是记录上一节点和本节点长度来寻址，内存占用较低</p>
 <p>③如果列表数据过多，导致链表过长，可能影响查询性能</p>
 <p>④增或删较大数据时有可能发生连续更新问题</p>
-<h3 id="QuickList"><a href="#QuickList" class="headerlink" title="QuickList"></a>QuickList</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240121222140101.png"></p>
+<h4 id="QuickList"><a href="#QuickList" class="headerlink" title="QuickList"></a>QuickList</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240121222140101.png"></p>
 <p>每个ZipList的内存占用不能超过8kb（可配置），控制ziplist占用内存的大小。</p>
 <p>zipList的中间节点可以压缩，进一步节省了内存</p>
-<h3 id="SkipList"><a href="#SkipList" class="headerlink" title="SkipList"></a>SkipList</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240121222830742.png"></p>
+<h4 id="SkipList"><a href="#SkipList" class="headerlink" title="SkipList"></a>SkipList</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240121222830742.png"></p>
 <p>跳表，比AVL树好在不用旋转保持平衡的耗时，红黑树太复杂，Redis作为内存数据库不用存储大量数据，也就不用B+树</p>
-<h2 id="Redis五种数据结构"><a href="#Redis五种数据结构" class="headerlink" title="Redis五种数据结构"></a>Redis五种数据结构</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240122124539752.png"></p>
-<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>其基本编码方式是<strong>RAW</strong>，基于简单动态字符串（SDS）实现，存储上限为512mb。</p>
+<h3 id="Redis五种数据结构"><a href="#Redis五种数据结构" class="headerlink" title="Redis五种数据结构"></a>Redis五种数据结构</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240122124539752.png"></p>
+<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><p>其基本编码方式是<strong>RAW</strong>，基于简单动态字符串（SDS）实现，存储上限为512mb。</p>
 <p>如果存储的SDS长度小于44字节，则会采用<strong>EMBSTR</strong>编码，此时object head与SDS是一段连续空间。申请内存时只需要调用一次内存分配函数，效率更高。</p>
 <p>如果存储的字符串是整数值，并且大小在LONG_MAX范围内，则会采用<strong>INT</strong>编码：直接将数据保存在RedisObject的ptr指针位置（刚好8字节），不再需要SDS了。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240122124417726.png"></p>
-<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>在3.2版本之前，Redis采用ZipList和LinkedList来实现List，当元素数量小于512并且元素大小小于64字节时采用ZipList编码，超过则采用LinkedList编码。</p>
+<h4 id="List"><a href="#List" class="headerlink" title="List"></a>List</h4><p>在3.2版本之前，Redis采用ZipList和LinkedList来实现List，当元素数量小于512并且元素大小小于64字节时采用ZipList编码，超过则采用LinkedList编码。</p>
 <p>在3.2版本之后，采用QuickList<br><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240122124832295.png"></p>
-<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>少量整数IntSet，正常采用Dict，元素存在key中，value为null</p>
+<h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><p>少量整数IntSet，正常采用Dict，元素存在key中，value为null</p>
 <p>当添加一个字符串后，会从上面变成下面。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240122133718951.png"></p>
-<h3 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h3><p>zset底层数据结构必须满足<strong>键值存储、键必须唯一、可排序</strong>这几个需求。</p>
+<h4 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h4><p>zset底层数据结构必须满足<strong>键值存储、键必须唯一、可排序</strong>这几个需求。</p>
 <p><strong>SkipList</strong>：可以排序，并且可以同时存储score和ele值（member）</p>
 <p><strong>HashTable</strong>：可以键值存储，并且可以根据key找value</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240122134508212.png"></p>
@@ -1046,7 +1043,7 @@ return coffee;`
 <li>score越小越接近队首，score越大越接近队尾，按照score值升序排列</li>
 </ol>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240122140044517.png"></p>
-<h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><p>少量数据ziplist，大量数据dict</p>
+<h4 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h4><p>少量数据ziplist，大量数据dict</p>
 <p>Hash结构默认采用ZipList编码，用以节省内存。 ZipList中相邻的两个entry 分别保存field和value</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240122140232670.png"></p>
 <p>当数据量较大时，Hash结构会转为HT编码，也就是Dict，触发条件有两个：</p>
@@ -1055,7 +1052,7 @@ return coffee;`
 <li>ZipList中的任意entry大小超过了hash-max-ziplist-value（默认64字节）</li>
 </ol>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240122140323958.png"></p>
-<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><h3 id="写入-x2F-写出redis-要序列化JSONUtil-⭐⭐⭐"><a href="#写入-x2F-写出redis-要序列化JSONUtil-⭐⭐⭐" class="headerlink" title="写入&#x2F;写出redis,要序列化JSONUtil(⭐⭐⭐)"></a>写入&#x2F;写出redis,要序列化JSONUtil(⭐⭐⭐)</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><h4 id="写入-x2F-写出redis-要序列化JSONUtil-⭐⭐⭐"><a href="#写入-x2F-写出redis-要序列化JSONUtil-⭐⭐⭐" class="headerlink" title="写入&#x2F;写出redis,要序列化JSONUtil(⭐⭐⭐)"></a>写入&#x2F;写出redis,要序列化JSONUtil(⭐⭐⭐)</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ShopServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token operator">&lt;</span>ShopMapper<span class="token punctuation">,</span> Shop<span class="token operator">></span> <span class="token keyword">implements</span> <span class="token class-name">IShopService</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Resource</span>
@@ -1083,7 +1080,7 @@ return coffee;`
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="查很多东西，并且写。设置有效时间。"><a href="#查很多东西，并且写。设置有效时间。" class="headerlink" title="查很多东西，并且写。设置有效时间。"></a>查很多东西，并且写。设置有效时间。</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<h4 id="查很多东西，并且写。设置有效时间。"><a href="#查很多东西，并且写。设置有效时间。" class="headerlink" title="查很多东西，并且写。设置有效时间。"></a>查很多东西，并且写。设置有效时间。</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ShopTypeServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token operator">&lt;</span>ShopTypeMapper<span class="token punctuation">,</span> ShopType<span class="token operator">></span> <span class="token keyword">implements</span> <span class="token class-name">IShopTypeService</span> <span class="token punctuation">{</span>
 
     <span class="token annotation punctuation">@Resource</span>
@@ -1122,16 +1119,16 @@ return coffee;`
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="更新数据库的时候要删除缓存，以实现缓存和数据库双写一致"><a href="#更新数据库的时候要删除缓存，以实现缓存和数据库双写一致" class="headerlink" title="更新数据库的时候要删除缓存，以实现缓存和数据库双写一致"></a>更新数据库的时候要删除缓存，以实现缓存和数据库双写一致</h3><h2 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h2><h3 id="定义概念-："><a href="#定义概念-：" class="headerlink" title="定义概念 ："></a>定义概念 ：</h3><p>缓存穿透是指查询一个一定<strong>不存在</strong>的数据，如果从存储层查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到 DB 去查询，可能导致 DB 挂掉。这种情况大概率是遭到了攻击。</p>
+<h4 id="更新数据库的时候要删除缓存，以实现缓存和数据库双写一致"><a href="#更新数据库的时候要删除缓存，以实现缓存和数据库双写一致" class="headerlink" title="更新数据库的时候要删除缓存，以实现缓存和数据库双写一致"></a>更新数据库的时候要删除缓存，以实现缓存和数据库双写一致</h4><h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><h4 id="定义概念-："><a href="#定义概念-：" class="headerlink" title="定义概念 ："></a>定义概念 ：</h4><p>缓存穿透是指查询一个一定<strong>不存在</strong>的数据，如果从存储层查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到 DB 去查询，可能导致 DB 挂掉。这种情况大概率是遭到了攻击。</p>
 <p>比如<a target="_blank" rel="noopener" href="http://localhost:15080/vat-admin-gateway/rc/rcModel/selectById/id=0">http://localhost:15080/vat-admin-gateway/rc/rcModel/selectById/id=0</a></p>
 <p>显然id不能等于0，从1开始</p>
-<h3 id="解决方案-："><a href="#解决方案-：" class="headerlink" title="解决方案 ："></a>解决方案 ：</h3><p>（1）业务层校验，先对参数进行校验，id小于等于0的直接返回错误请求。</p>
+<h4 id="解决方案-："><a href="#解决方案-：" class="headerlink" title="解决方案 ："></a>解决方案 ：</h4><p>（1）业务层校验，先对参数进行校验，id小于等于0的直接返回错误请求。</p>
 <p>（2）缓存空对象：在没有的数据中存一个null，而这些空的对象会设置一个有效期）</p>
 <p>   (3)  布隆过滤器。  先访问布隆过滤器，再访问Redis,再访问数据库</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808095355913.png"></p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808095515637.png"></p>
-<h2 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h2><h3 id="定义概念："><a href="#定义概念：" class="headerlink" title="定义概念："></a>定义概念：</h3><p>缓存击穿的意思是对于设置了过期时间的key，缓存在某个时间点过期的时候，恰好这时间点对这个Key有大量的并发请求过来，这些请求发现缓存过期一般都会从后端 DB 加载数据并回设到缓存，这个时候大并发的请求可能会瞬间把 DB 压垮。</p>
-<h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><p> 1.粗暴的设置永不过期  2.定时更新过期时间 3.设置互斥锁  4.逻辑过期</p>
+<h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><h4 id="定义概念："><a href="#定义概念：" class="headerlink" title="定义概念："></a>定义概念：</h4><p>缓存击穿的意思是对于设置了过期时间的key，缓存在某个时间点过期的时候，恰好这时间点对这个Key有大量的并发请求过来，这些请求发现缓存过期一般都会从后端 DB 加载数据并回设到缓存，这个时候大并发的请求可能会瞬间把 DB 压垮。</p>
+<h4 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h4><p> 1.粗暴的设置永不过期  2.定时更新过期时间 3.设置互斥锁  4.逻辑过期</p>
 <p>①、设置热点数据永不过期</p>
 <p>对于某个需要频繁获取的信息，缓存在Redis中，并设置其永不过期。当然这种方式比较粗暴，对于某些业务场景是不适合的。</p>
 <p>②、定时更新&#x2F;提前预热</p>
@@ -1144,17 +1141,17 @@ return coffee;`
 <p>2)：当查询的时候，从redis取出数据后判断时间是否过期</p>
 <p>3)：如果过期则开通另外一个线程进行数据同步，当前线程正常返回数据，这个数据不是最新</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808100334176.png"></p>
-<h2 id="缓存雪崩："><a href="#缓存雪崩：" class="headerlink" title="缓存雪崩："></a>缓存雪崩：</h2><h3 id="定义概念：-1"><a href="#定义概念：-1" class="headerlink" title="定义概念："></a>定义概念：</h3><p>缓存雪崩意思是设置缓存时采用了相同的过期时间，导致缓存在某一时刻同时失效，请求全部转发到DB，DB 瞬时压力过重雪崩。与缓存击穿的区别：雪崩是很多key，击穿是某一个key缓存。</p>
-<h3 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h3><p>主要是可以将缓存失效时间分散开，比如可以在原有的失效时间基础上增加一个随机值，比如1-5分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件。</p>
+<h3 id="缓存雪崩："><a href="#缓存雪崩：" class="headerlink" title="缓存雪崩："></a>缓存雪崩：</h3><h4 id="定义概念：-1"><a href="#定义概念：-1" class="headerlink" title="定义概念："></a>定义概念：</h4><p>缓存雪崩意思是设置缓存时采用了相同的过期时间，导致缓存在某一时刻同时失效，请求全部转发到DB，DB 瞬时压力过重雪崩。与缓存击穿的区别：雪崩是很多key，击穿是某一个key缓存。</p>
+<h4 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h4><p>主要是可以将缓存失效时间分散开，比如可以在原有的失效时间基础上增加一个随机值，比如1-5分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件。</p>
 <p>提前预热，设置合理的过期时间。</p>
 <p>当然也可以利用Redis的集群提高服务的可用性。（哨兵模式、集群模式）；给缓存业务添加降级限流策略（nginx或spring cloud gateway）；给业务添加多级缓存</p>
-<h2 id="双写一致性"><a href="#双写一致性" class="headerlink" title="双写一致性"></a>双写一致性</h2><p>redis做为缓存，mysql的数据如何与redis进行同步呢？ 要根据业务场景来回答</p>
-<h3 id="强一致性"><a href="#强一致性" class="headerlink" title="强一致性"></a>强一致性</h3><p>我们采用的是redisson实现的读写锁，在读的时候添加共享锁，可以保证读读不互斥，读写互斥。当我们更新数据的时候，添加排他锁，它是读写，读读都互斥，这样就能保证在写数据的同时是不会让其他线程读数据的，避免了脏数据。这里面需要注意的是读方法和写方法上需要使用同一把锁才行。</p>
+<h3 id="双写一致性"><a href="#双写一致性" class="headerlink" title="双写一致性"></a>双写一致性</h3><p>redis做为缓存，mysql的数据如何与redis进行同步呢？ 要根据业务场景来回答</p>
+<h4 id="强一致性"><a href="#强一致性" class="headerlink" title="强一致性"></a>强一致性</h4><p>我们采用的是redisson实现的读写锁，在读的时候添加共享锁，可以保证读读不互斥，读写互斥。当我们更新数据的时候，添加排他锁，它是读写，读读都互斥，这样就能保证在写数据的同时是不会让其他线程读数据的，避免了脏数据。这里面需要注意的是读方法和写方法上需要使用同一把锁才行。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808101742500.png"></p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808101752281.png"></p>
 <p>排他锁是如何保证读写、读读互斥的呢？</p>
 <p>排他锁底层使用也是setnx，保证了同时只能有一个线程操作锁住的方法</p>
-<h3 id="延时双删（被抛弃"><a href="#延时双删（被抛弃" class="headerlink" title="延时双删（被抛弃)"></a>延时双删（被抛弃)</h3><p><strong>面试官</strong>：你听说过延时双删吗？为什么不用它呢？</p>
+<h4 id="延时双删（被抛弃"><a href="#延时双删（被抛弃" class="headerlink" title="延时双删（被抛弃)"></a>延时双删（被抛弃)</h4><p><strong>面试官</strong>：你听说过延时双删吗？为什么不用它呢？</p>
 <p><strong>候选人</strong>：延迟双删，如果是写操作，我们先把缓存中的数据删除，然后更新数据库，最后再延时删除缓存中的数据，其中这个延时多久不太好确定，在延时的过程中可能会出现脏数据，并不能保证强一致性，所以没有采用它。</p>
 <p>数据工作的大致流程：</p>
 <ol>
@@ -1165,9 +1162,9 @@ return coffee;`
 <li>当前或其它服务节点读取 redis 从库数据，发现 redis 从库没有数据，从 mysql 从库读取数据，并写入 redis 主库。</li>
 </ol>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808101941931.png"></p>
-<h3 id="数据同步允许延时"><a href="#数据同步允许延时" class="headerlink" title="数据同步允许延时"></a>数据同步允许延时</h3><p>我们当时采用的阿里的canal组件实现数据同步：不需要更改业务代码，部署一个canal服务。canal服务把自己伪装成mysql的一个从节点，当mysql数据更新以后，canal会读取binlog数据，然后在通过canal的客户端获取到数据，更新缓存即可。</p>
+<h4 id="数据同步允许延时"><a href="#数据同步允许延时" class="headerlink" title="数据同步允许延时"></a>数据同步允许延时</h4><p>我们当时采用的阿里的canal组件实现数据同步：不需要更改业务代码，部署一个canal服务。canal服务把自己伪装成mysql的一个从节点，当mysql数据更新以后，canal会读取binlog数据，然后在通过canal的客户端获取到数据，更新缓存即可。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808104853363.png"></p>
-<h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><h3 id="一人一单的秒杀Redisson"><a href="#一人一单的秒杀Redisson" class="headerlink" title="一人一单的秒杀Redisson"></a>一人一单的秒杀Redisson</h3><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
+<h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><h4 id="一人一单的秒杀Redisson"><a href="#一人一单的秒杀Redisson" class="headerlink" title="一人一单的秒杀Redisson"></a>一人一单的秒杀Redisson</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
 <span class="token keyword">private</span> RedissonClient redissonClient<span class="token punctuation">;</span>
 
 业务方法<span class="token punctuation">{</span>
@@ -1193,7 +1190,7 @@ return coffee;`
         <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="看门狗watchdog"><a href="#看门狗watchdog" class="headerlink" title="看门狗watchdog"></a>看门狗watchdog</h3><p><strong><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1228501">tryLock(waitTime,leaseTime,TimeUnit)</a></strong></p>
+<h4 id="看门狗watchdog"><a href="#看门狗watchdog" class="headerlink" title="看门狗watchdog"></a>看门狗watchdog</h4><p><strong><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1228501">tryLock(waitTime,leaseTime,TimeUnit)</a></strong></p>
 <p>waitTime:获取锁的等待时长，获取锁失败后等待waitTime再去获取锁</p>
 <p>leaseTime: 锁自动失效时间，这里测试锁重试不需要用到</p>
 <blockquote>
@@ -1238,10 +1235,10 @@ return coffee;`
 </code></pre>
 <p>Redisson实现的分布式锁。可重入。这样做是为了避免死锁的产生，判断是否是当前线程持有的锁。如果是当前线程，就会计数。释放锁就会减一。在存储此数据的时候用的hash.大key是业务，小key是当前线程的唯一标识（比如线程Id)，value是当前重入的次数。</p>
 <p>redisson实现的分布式锁不能解决主从一致问题。用redisson提供的红锁（锁一半以上从节点）效率太低了。如果要保证强一致性，建议使用zookeeper实现的分布式锁。</p>
-<h2 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107122908606.png"></p>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107122908606.png"></p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/9T_%5DAI%5B8VN%7B5F%5BFUNW7%7DD7.png"></p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107123430778.png"></p>
-<h2 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h2><p>点赞-用set。 每一篇博客都多少用户点赞（显然一个用户只能点赞一次）</p>
+<h3 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h3><p>点赞-用set。 每一篇博客都多少用户点赞（显然一个用户只能点赞一次）</p>
 <p> stringRedisTemplate.opsForSet().add(key,userId.toString()); &#x2F;&#x2F;key是博客</p>
 <p>排行榜用zset-因为要排序，但是真实的redis命令是zadd key score value。Java封装的时候颠倒了一下</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// zadd key value score</span>
@@ -1293,7 +1290,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <li>“three”</li>
 <li>“3”</li>
 </ol>
-<h2 id="Redis最佳实践"><a href="#Redis最佳实践" class="headerlink" title="Redis最佳实践"></a>Redis最佳实践</h2><h3 id="一、BigKey"><a href="#一、BigKey" class="headerlink" title="一、BigKey"></a>一、BigKey</h3><p>Redis的Key虽然可以自定义，但最好遵循下面的几个最佳实践约定：</p>
+<h3 id="Redis最佳实践"><a href="#Redis最佳实践" class="headerlink" title="Redis最佳实践"></a>Redis最佳实践</h3><h4 id="一、BigKey"><a href="#一、BigKey" class="headerlink" title="一、BigKey"></a>一、BigKey</h4><p>Redis的Key虽然可以自定义，但最好遵循下面的几个最佳实践约定：</p>
 <ul>
 <li>遵循基本格式：[业务名称]:[数据名]:[id]</li>
 <li>长度不超过44字节</li>
@@ -1328,7 +1325,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <li>对于业务的数据规模考虑不周到，比如使用集合类型的时候没有考虑到数据量的快速增长。</li>
 <li>未及时清理垃圾数据，比如哈希中冗余了大量的无用键值对。</li>
 </ol>
-<h4 id="BigKey的危害"><a href="#BigKey的危害" class="headerlink" title="BigKey的危害"></a>BigKey的危害</h4><ul>
+<h5 id="BigKey的危害"><a href="#BigKey的危害" class="headerlink" title="BigKey的危害"></a>BigKey的危害</h5><ul>
 <li>网络阻塞<ul>
 <li>对BigKey执行读请求时，少量的QPS就可能导致带宽使用率被占满，导致Redis实例，乃至所在物理机变慢</li>
 </ul>
@@ -1346,18 +1343,18 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 </ul>
 </li>
 </ul>
-<h4 id="如何发现BigKey"><a href="#如何发现BigKey" class="headerlink" title="如何发现BigKey"></a>如何发现BigKey</h4><h5 id="①redis-cli-–bigkeys"><a href="#①redis-cli-–bigkeys" class="headerlink" title="①redis-cli –bigkeys"></a>①redis-cli –bigkeys</h5><p>利用redis-cli提供的–bigkeys参数，可以遍历分析所有key，并返回Key的整体统计信息与每个数据的Top1的big key</p>
+<h5 id="如何发现BigKey"><a href="#如何发现BigKey" class="headerlink" title="如何发现BigKey"></a>如何发现BigKey</h5><h6 id="①redis-cli-–bigkeys"><a href="#①redis-cli-–bigkeys" class="headerlink" title="①redis-cli –bigkeys"></a>①redis-cli –bigkeys</h6><p>利用redis-cli提供的–bigkeys参数，可以遍历分析所有key，并返回Key的整体统计信息与每个数据的Top1的big key</p>
 <p>命令：<code>redis-cli -a 密码 --bigkeys</code></p>
-<h5 id="②scan扫描"><a href="#②scan扫描" class="headerlink" title="②scan扫描"></a>②scan扫描</h5><p>自己编程，利用scan扫描Redis中的所有key，利用strlen、hlen等命令判断key的长度（此处不建议使用MEMORY USAGE）</p>
-<h5 id="③第三方工具"><a href="#③第三方工具" class="headerlink" title="③第三方工具"></a>③第三方工具</h5><ul>
+<h6 id="②scan扫描"><a href="#②scan扫描" class="headerlink" title="②scan扫描"></a>②scan扫描</h6><p>自己编程，利用scan扫描Redis中的所有key，利用strlen、hlen等命令判断key的长度（此处不建议使用MEMORY USAGE）</p>
+<h6 id="③第三方工具"><a href="#③第三方工具" class="headerlink" title="③第三方工具"></a>③第三方工具</h6><ul>
 <li>利用第三方工具，如 Redis-Rdb-Tools 分析RDB快照文件，全面分析内存使用情况</li>
 <li><a target="_blank" rel="noopener" href="https://github.com/sripathikrishnan/redis-rdb-tools">https://github.com/sripathikrishnan/redis-rdb-tools</a></li>
 </ul>
-<h5 id="④网络监控"><a href="#④网络监控" class="headerlink" title="④网络监控"></a>④网络监控</h5><ul>
+<h6 id="④网络监控"><a href="#④网络监控" class="headerlink" title="④网络监控"></a>④网络监控</h6><ul>
 <li>自定义工具，监控进出Redis的网络数据，超出预警值时主动告警</li>
 <li>一般阿里云搭建的云服务器就有相关监控页面</li>
 </ul>
-<h4 id="如何删除BigKey"><a href="#如何删除BigKey" class="headerlink" title="如何删除BigKey"></a>如何删除BigKey</h4><p>BigKey内存占用较多，即便时删除这样的key也需要耗费很长时间，导致Redis主线程阻塞，引发一系列问题。</p>
+<h5 id="如何删除BigKey"><a href="#如何删除BigKey" class="headerlink" title="如何删除BigKey"></a>如何删除BigKey</h5><p>BigKey内存占用较多，即便时删除这样的key也需要耗费很长时间，导致Redis主线程阻塞，引发一系列问题。</p>
 <p>redis 3.0 及以下版本</p>
 <ul>
 <li>如果是集合类型，则遍历BigKey的元素，先逐个删除子元素，最后删除BigKey</li>
@@ -1370,7 +1367,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <p><strong>分割 bigkey</strong>：将一个 bigkey 分割为多个小 key。例如，将一个含有上万字段数量的 Hash 按照一定策略（比如二次哈希）拆分为多个 Hash。</p>
 <p><strong>采用合适的数据结构</strong>：例如，文件二进制数据不使用 String 保存、使用 HyperLogLog 统计页面 UV、Bitmap 保存状态信息（0&#x2F;1）。</p>
 <p><strong>开启 lazy-free（惰性删除&#x2F;延迟释放）</strong> ：lazy-free 特性是 Redis 4.0 开始引入的，指的是让 Redis 采用异步方式延迟释放 key 使用的内存，将该操作交给单独的子线程处理，避免阻塞主线程。</p>
-<h3 id="二、恰当的数据类型"><a href="#二、恰当的数据类型" class="headerlink" title="二、恰当的数据类型"></a>二、恰当的数据类型</h3><h4 id="例1：比如存储一个User对象，我们有三种存储方式："><a href="#例1：比如存储一个User对象，我们有三种存储方式：" class="headerlink" title="例1：比如存储一个User对象，我们有三种存储方式："></a>例1：比如存储一个User对象，我们有三种存储方式：</h4><h5 id="①方式一：json字符串"><a href="#①方式一：json字符串" class="headerlink" title="①方式一：json字符串"></a>①方式一：json字符串</h5><table>
+<h4 id="二、恰当的数据类型"><a href="#二、恰当的数据类型" class="headerlink" title="二、恰当的数据类型"></a>二、恰当的数据类型</h4><h5 id="例1：比如存储一个User对象，我们有三种存储方式："><a href="#例1：比如存储一个User对象，我们有三种存储方式：" class="headerlink" title="例1：比如存储一个User对象，我们有三种存储方式："></a>例1：比如存储一个User对象，我们有三种存储方式：</h5><h6 id="①方式一：json字符串"><a href="#①方式一：json字符串" class="headerlink" title="①方式一：json字符串"></a>①方式一：json字符串</h6><table>
 <thead>
 <tr>
 <th align="center">user:1</th>
@@ -1380,7 +1377,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 </table>
 <p>优点：实现简单粗暴</p>
 <p>缺点：数据耦合，不够灵活</p>
-<h5 id="②方式二：字段打散"><a href="#②方式二：字段打散" class="headerlink" title="②方式二：字段打散"></a>②方式二：字段打散</h5><table>
+<h6 id="②方式二：字段打散"><a href="#②方式二：字段打散" class="headerlink" title="②方式二：字段打散"></a>②方式二：字段打散</h6><table>
 <thead>
 <tr>
 <th align="center">user:1:name</th>
@@ -1394,7 +1391,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 </tbody></table>
 <p>优点：可以灵活访问对象任意字段</p>
 <p>缺点：占用空间大、没办法做统一控制</p>
-<h5 id="③方式三：hash（推荐）"><a href="#③方式三：hash（推荐）" class="headerlink" title="③方式三：hash（推荐）"></a>③方式三：hash（推荐）</h5><table>
+<h6 id="③方式三：hash（推荐）"><a href="#③方式三：hash（推荐）" class="headerlink" title="③方式三：hash（推荐）"></a>③方式三：hash（推荐）</h6><table>
     <tr>
         <td rowspan="2">user:1</td>
         <td>name</td>
@@ -1410,7 +1407,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 
 <p>优点：底层使用ziplist，空间占用小，可以灵活访问对象的任意字段</p>
 <p>缺点：代码相对复杂</p>
-<h4 id="例2：假如有hash类型的key，其中有100万对field和value，field是自增id，这个key存在什么问题？如何优化？"><a href="#例2：假如有hash类型的key，其中有100万对field和value，field是自增id，这个key存在什么问题？如何优化？" class="headerlink" title="例2：假如有hash类型的key，其中有100万对field和value，field是自增id，这个key存在什么问题？如何优化？"></a>例2：假如有hash类型的key，其中有100万对field和value，field是自增id，这个key存在什么问题？如何优化？</h4><table>
+<h5 id="例2：假如有hash类型的key，其中有100万对field和value，field是自增id，这个key存在什么问题？如何优化？"><a href="#例2：假如有hash类型的key，其中有100万对field和value，field是自增id，这个key存在什么问题？如何优化？" class="headerlink" title="例2：假如有hash类型的key，其中有100万对field和value，field是自增id，这个key存在什么问题？如何优化？"></a>例2：假如有hash类型的key，其中有100万对field和value，field是自增id，这个key存在什么问题？如何优化？</h5><table>
     <tr style="color:red">
         <td>key</td>
         <td>field</td>
@@ -1441,7 +1438,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 </li>
 <li>可以通过hash-max-ziplist-entries配置entry上限。但是如果entry过多就会导致BigKey问题</li>
 </ul>
-<h5 id="方案一–77-54M"><a href="#方案一–77-54M" class="headerlink" title="方案一–77.54M"></a>方案一–77.54M</h5><p>拆分为string类型</p>
+<h6 id="方案一–77-54M"><a href="#方案一–77-54M" class="headerlink" title="方案一–77.54M"></a>方案一–77.54M</h6><p>拆分为string类型</p>
 <table>
     <tr style="color:red">
         <td>key</td>
@@ -1470,7 +1467,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <li><p>想要批量获取这些数据比较麻烦</p>
 </li>
 </ul>
-<h5 id="方案二-24-46M"><a href="#方案二-24-46M" class="headerlink" title="方案二-24.46M"></a>方案二-24.46M</h5><p>拆分为小的hash，将 id &#x2F; 100 作为key， 将id % 100 作为field，这样每100个元素为一个Hash</p>
+<h6 id="方案二-24-46M"><a href="#方案二-24-46M" class="headerlink" title="方案二-24.46M"></a>方案二-24.46M</h6><p>拆分为小的hash，将 id &#x2F; 100 作为key， 将id % 100 作为field，这样每100个元素为一个Hash</p>
 <table>
     <tr style="color:red">
         <td>key</td>
@@ -1521,7 +1518,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
     </tr>
 </table>
 
-<h3 id="三、批处理优化"><a href="#三、批处理优化" class="headerlink" title="三、批处理优化"></a>三、批处理优化</h3><p>Redis提供了一些原生的批处理指令，不过每条指令只能处理特定的数据结构，例如mset，hmset</p>
+<h4 id="三、批处理优化"><a href="#三、批处理优化" class="headerlink" title="三、批处理优化"></a>三、批处理优化</h4><p>Redis提供了一些原生的批处理指令，不过每条指令只能处理特定的数据结构，例如mset，hmset</p>
 <p>如果有对复杂数据类型的批处理需要，建议使用Pipeline</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">void</span> <span class="token function">testPipeline</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -1557,7 +1554,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 
     <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="Redis为什么那么快"><a href="#Redis为什么那么快" class="headerlink" title="Redis为什么那么快"></a>Redis为什么那么快</h2><ol>
+<h3 id="Redis为什么那么快"><a href="#Redis为什么那么快" class="headerlink" title="Redis为什么那么快"></a>Redis为什么那么快</h3><ol>
 <li>Redis是纯内存操作，执行速度非常快</li>
 <li>采用单线程，避免不必要的上下文切换可竞争条件，多线程还要考虑线程安全问题</li>
 <li>使用I&#x2F;O多路复用模型，非阻塞IO</li>
@@ -1566,21 +1563,21 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <li>Redis内部的数据类型&#x2F;结构实现都是经过优化的，性能非常高。</li>
 </ol>
 <p>其中，渐进式Rehash用到了两张全局哈希表，缓存时间戳就是，不用System.currentTimeInMillis（因为要调用系统级别的IO，很耗时，单线程的Redis承受不起），而是对时间进行缓存，由一个定时任务，每毫秒更新一次时间缓存，获取时间都是从缓存中直接拿。</p>
-<h2 id="能解释一下I-x2F-O多路复用模型？"><a href="#能解释一下I-x2F-O多路复用模型？" class="headerlink" title="能解释一下I&#x2F;O多路复用模型？"></a>能解释一下I&#x2F;O多路复用模型？</h2><p>Redis是纯内存操作，执行速度非常快，它的性能瓶颈是网络延迟而不是执行速度， I&#x2F;O多路复用模型主要就是实现了高效的网络请求</p>
+<h3 id="能解释一下I-x2F-O多路复用模型？"><a href="#能解释一下I-x2F-O多路复用模型？" class="headerlink" title="能解释一下I&#x2F;O多路复用模型？"></a>能解释一下I&#x2F;O多路复用模型？</h3><p>Redis是纯内存操作，执行速度非常快，它的性能瓶颈是网络延迟而不是执行速度， I&#x2F;O多路复用模型主要就是实现了高效的网络请求</p>
 <p>IO多路复用监听的是socket集合，而普通的阻塞IO和非阻塞IO都是只监听一个socket.阻塞IO就是在第一步等待，非阻塞就是不停重试，非阻塞IO感觉好笨。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809105420644.png"></p>
 <p>候选人:嗯~~，I&#x2F;O多路复用是指利用单个线程来同时监听多个Socket，并在某个Socket可读、可写时得到通知，从而避免无效的等待，充分利用CPU资源。目前的I&#x2F;O多路复用都是采用的epoll模式实现，它会在通知用户进程Socket就绪的同时，把已就绪的Socket写入用户空间，不需要挨个遍历Socket来判断是否就绪，提升了性能。</p>
 <p>其中Redis的网络模型就是使用I&#x2F;O多路复用结合事件的处理器来应对多个Socket请求，比如，提供了连接应答处理器、命令回复处理器，命令请求处理器;<br>在Redis6.0之后，为了提升更好的性能，在命令回复处理器使用了多线程来处理回复事件，在命令请求处理器中，将命令的转换使用了多线程，增加命令转换速度，在命令执行的时候，依然是单线程</p>
-<h2 id="StringRedisTemplate-与-RedisTemplate的区别"><a href="#StringRedisTemplate-与-RedisTemplate的区别" class="headerlink" title="StringRedisTemplate 与 RedisTemplate的区别"></a>StringRedisTemplate 与 RedisTemplate的区别</h2><p>前者继承后者，一般用前者。</p>
+<h3 id="StringRedisTemplate-与-RedisTemplate的区别"><a href="#StringRedisTemplate-与-RedisTemplate的区别" class="headerlink" title="StringRedisTemplate 与 RedisTemplate的区别"></a>StringRedisTemplate 与 RedisTemplate的区别</h3><p>前者继承后者，一般用前者。</p>
 <p>最大不同在于序列化器不同。所以不能混用。如在RDM客户端中，redisTemplate存储的东西为乱码，而stringRedisTemplate存储的东西为可见的字符串。</p>
-<h2 id="StringRedisTemplate的常用方法"><a href="#StringRedisTemplate的常用方法" class="headerlink" title="StringRedisTemplate的常用方法"></a>StringRedisTemplate的常用方法</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43835717/article/details/92802040">https://blog.csdn.net/weixin_43835717/article/details/92802040</a></p>
-<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><p>RDB和AOF</p>
+<h3 id="StringRedisTemplate的常用方法"><a href="#StringRedisTemplate的常用方法" class="headerlink" title="StringRedisTemplate的常用方法"></a>StringRedisTemplate的常用方法</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43835717/article/details/92802040">https://blog.csdn.net/weixin_43835717/article/details/92802040</a></p>
+<h3 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h3><p>RDB和AOF</p>
 <p>Redis 提供了两个命令来生成 RDB 快照文件：</p>
 <ul>
 <li><code>save</code> : 同步保存操作，会阻塞 Redis 主线程；</li>
 <li><code>bgsave</code> : fork 出一个子进程，子进程执行，不会阻塞 Redis 主线程，默认选项。</li>
 </ul>
-<h1 id="6-JUC"><a href="#6-JUC" class="headerlink" title="6.JUC"></a>6.JUC</h1><h2 id="线程基础知识"><a href="#线程基础知识" class="headerlink" title="线程基础知识"></a>线程基础知识</h2><p>多个线程共享进程的<strong>堆</strong>和<strong>方法区</strong>，但每个线程有自己的<strong>程序计数器</strong>、<strong>虚拟机栈</strong>和<strong>本地方法栈</strong>。</p>
+<h2 id="6-JUC"><a href="#6-JUC" class="headerlink" title="6.JUC"></a>6.JUC</h2><h3 id="线程基础知识"><a href="#线程基础知识" class="headerlink" title="线程基础知识"></a>线程基础知识</h3><p>多个线程共享进程的<strong>堆</strong>和<strong>方法区</strong>，但每个线程有自己的<strong>程序计数器</strong>、<strong>虚拟机栈</strong>和<strong>本地方法栈</strong>。</p>
 <p>程序计数器私有主要是为了<strong>线程切换后能恢复到正确的执行位置</strong></p>
 <p>为了<strong>保证线程中的局部变量不被别的线程访问到</strong>，虚拟机栈和本地方法栈是线程私有的</p>
 <p>产生死锁的四个必要条件</p>
@@ -1594,7 +1591,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <li><p>循环等待条件:若干线程之间形成一种头尾相接的循环等待资源关系。</p>
 </li>
 </ol>
-<h2 id="synchronized等关键字"><a href="#synchronized等关键字" class="headerlink" title="synchronized等关键字"></a>synchronized等关键字</h2><h3 id="如何使用synchronized"><a href="#如何使用synchronized" class="headerlink" title="如何使用synchronized"></a>如何使用synchronized</h3><p><code>synchronized</code> 关键字的使用方式主要有下面 3 种：</p>
+<h3 id="synchronized等关键字"><a href="#synchronized等关键字" class="headerlink" title="synchronized等关键字"></a>synchronized等关键字</h3><h4 id="如何使用synchronized"><a href="#如何使用synchronized" class="headerlink" title="如何使用synchronized"></a>如何使用synchronized</h4><p><code>synchronized</code> 关键字的使用方式主要有下面 3 种：</p>
 <ol>
 <li>修饰实例方法</li>
 <li>修饰静态方法</li>
@@ -1634,7 +1631,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <p>在执行<code>monitorenter</code>时，会尝试获取对象的锁，如果锁的计数器为 0 则表示锁可以被获取，获取后将锁计数器设为 1 也就是加 1。</p>
 <p>对象锁的的拥有者线程才可以执行 <code>monitorexit</code> 指令来释放锁。在执行 <code>monitorexit</code> 指令后，将锁计数器设为 0，表明锁被释放，其他线程可以尝试获取锁。</p>
 <p>如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。</p>
-<h3 id="JDK6优化后synchronized锁的分类"><a href="#JDK6优化后synchronized锁的分类" class="headerlink" title="JDK6优化后synchronized锁的分类"></a>JDK6优化后synchronized锁的分类</h3><p>级别从低到高依次是：</p>
+<h4 id="JDK6优化后synchronized锁的分类"><a href="#JDK6优化后synchronized锁的分类" class="headerlink" title="JDK6优化后synchronized锁的分类"></a>JDK6优化后synchronized锁的分类</h4><p>级别从低到高依次是：</p>
 <ol>
 <li>无锁状态</li>
 <li>偏向锁状态</li>
@@ -1645,7 +1642,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <p>Java中的synchronized有偏向锁、轻量级锁、重量级锁三种形式，分别对应了锁只被一个线程持有、不同线程交替持有锁、多线程竞争锁三种情况。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230830111616821.png"></p>
 <p>一旦锁发生了竞争，都会升级为重量级锁。  锁只能升级，不能降级。</p>
-<h3 id="wait-vs-sleep"><a href="#wait-vs-sleep" class="headerlink" title="wait vs sleep"></a>wait vs sleep</h3><p>共同点</p>
+<h4 id="wait-vs-sleep"><a href="#wait-vs-sleep" class="headerlink" title="wait vs sleep"></a>wait vs sleep</h4><p>共同点</p>
 <ul>
 <li>wait() ，wait(long) 和 sleep(long) 的效果都是让当前线程暂时放弃 CPU 的使用权，进入阻塞状态</li>
 </ul>
@@ -1673,7 +1670,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <p>备注：<br>没有获得对象锁，是不能调用wait()的。 Lock.wait()是不对的。要synchronized(Lock){Lock.wait();}</p>
 </li>
 </ul>
-<h3 id="lock-vs-synchronized"><a href="#lock-vs-synchronized" class="headerlink" title="lock vs synchronized"></a>lock vs synchronized</h3><p>相同点</p>
+<h4 id="lock-vs-synchronized"><a href="#lock-vs-synchronized" class="headerlink" title="lock vs synchronized"></a>lock vs synchronized</h4><p>相同点</p>
 <p>两者都是可重入锁。</p>
 <p><strong>可重入锁</strong> 也叫递归锁，指的是线程可以再次获取自己的内部锁。</p>
 <p>JDK 提供的所有现成的 <code>Lock</code> 实现类，包括 <code>synchronized</code> 关键字锁都是可重入的。</p>
@@ -1710,7 +1707,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 </ul>
 </li>
 </ul>
-<h3 id="JMM-Java内存模型"><a href="#JMM-Java内存模型" class="headerlink" title="JMM(Java内存模型)"></a>JMM(Java内存模型)</h3><p>Java内存模型(Java Memory Model)描述了Java程序中各种变量(线程共享变量)的访问规则，以及在JVM中将变量存储到内存和从内存中读取变量这样的底层细节。</p>
+<h4 id="JMM-Java内存模型"><a href="#JMM-Java内存模型" class="headerlink" title="JMM(Java内存模型)"></a>JMM(Java内存模型)</h4><p>Java内存模型(Java Memory Model)描述了Java程序中各种变量(线程共享变量)的访问规则，以及在JVM中将变量存储到内存和从内存中读取变量这样的底层细节。</p>
 <p>Java内存模型，就是为了屏蔽系统和硬件的差异，让一套代码在不同平台下能到达相同的访问结果。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230504181638237.png"></p>
 <p>特点：</p>
@@ -1722,7 +1719,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <li><p>线程对变量的所有的操作(读，写)都必须在工作内存中完成，而不能直接读写主内存中的变量，不同线程之间也不能直接访问对方工作内存中的变量，线程间变量的值的传递需要通过主内存完成。</p>
 </li>
 </ol>
-<h3 id="volatile-原子性，可见性，有序性"><a href="#volatile-原子性，可见性，有序性" class="headerlink" title="volatile+原子性，可见性，有序性"></a>volatile+原子性，可见性，有序性</h3><p><strong>要求</strong></p>
+<h4 id="volatile-原子性，可见性，有序性"><a href="#volatile-原子性，可见性，有序性" class="headerlink" title="volatile+原子性，可见性，有序性"></a>volatile+原子性，可见性，有序性</h4><p><strong>要求</strong></p>
 <ul>
 <li>掌握线程安全要考虑的三个问题-可见性，有序性，原子性</li>
 <li>掌握 volatile 能解决哪些问题-可以解决可见性和有序性，不能解决原子性</li>
@@ -1757,7 +1754,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 </ul>
 </li>
 </ul>
-<h3 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h3><p>乐观锁的代表是 AtomicInteger，使用 CAS(compare and swap)来保证原子性。AtomicInteger的底层是Unsafe。</p>
+<h4 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h4><p>乐观锁的代表是 AtomicInteger，使用 CAS(compare and swap)来保证原子性。AtomicInteger的底层是Unsafe。</p>
 <ul>
 <li>其核心思想是【无需加锁，每次只有一个线程能成功修改共享变量，其它失败的线程不需要停止，不断重试直至成功】</li>
 <li>由于线程一直运行，不需要阻塞，因此不涉及线程上下文切换</li>
@@ -1799,7 +1796,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 第一次修改后版本号：2 ,值 b
 第二次修改后版本号：2 ,值 b
 </code></pre>
-<h3 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>全称是 AbstractQueuedSynchronizer，是阻塞式锁和相关的同步器工具的框架，它是构建锁或者其他同步组件的基础框架</p>
+<h4 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h4><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>全称是 AbstractQueuedSynchronizer，是阻塞式锁和相关的同步器工具的框架，它是构建锁或者其他同步组件的基础框架</p>
 <p>AQS与Synchronized的区别</p>
 <table>
 <thead>
@@ -1828,7 +1825,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <li>CountDownLatch   倒计时锁</li>
 <li>CyclicBarrier       循环栅栏</li>
 </ul>
-<h4 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h4><ul>
+<h5 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h5><ul>
 <li>在AQS中维护了一个使用了volatile修饰的state属性来表示资源的状态，0表示无锁，1表示有锁</li>
 <li>提供了基于 FIFO 的等待队列，类似于 Monitor 的 EntryList</li>
 <li>条件变量来实现等待、唤醒机制，支持多个条件变量，类似于 Monitor 的 WaitSet</li>
@@ -1854,7 +1851,7 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <blockquote>
 <p>比较典型的AQS实现类ReentrantLock，它默认就是非公平锁，新的线程与队列中的线程共同来抢资源</p>
 </blockquote>
-<h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h2><pre class=" language-java"><code class="language-java">ReentrantLock lock<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ReentrantLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h3 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h3><pre class=" language-java"><code class="language-java">ReentrantLock lock<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ReentrantLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">try</span><span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//任务</span>
@@ -1862,7 +1859,7 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
     lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="ReentrantLock的lock方法"><a href="#ReentrantLock的lock方法" class="headerlink" title="ReentrantLock的lock方法"></a>ReentrantLock的lock方法</h3><p><code>ReentrantLock</code> 里面有一个内部类 <code>Sync</code>，<code>Sync</code> 继承 AQS（<code>AbstractQueuedSynchronizer</code>），添加锁和释放锁的大部分操作实际上都是在 <code>Sync</code> 中实现的。<code>Sync</code> 有公平锁 <code>FairSync</code> 和非公平锁 <code>NonfairSync</code> 两个子类。</p>
+<h4 id="ReentrantLock的lock方法"><a href="#ReentrantLock的lock方法" class="headerlink" title="ReentrantLock的lock方法"></a>ReentrantLock的lock方法</h4><p><code>ReentrantLock</code> 里面有一个内部类 <code>Sync</code>，<code>Sync</code> 继承 AQS（<code>AbstractQueuedSynchronizer</code>），添加锁和释放锁的大部分操作实际上都是在 <code>Sync</code> 中实现的。<code>Sync</code> 有公平锁 <code>FairSync</code> 和非公平锁 <code>NonfairSync</code> 两个子类。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%953-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image/image-20231010171831007.png"></p>
 <p><code>ReentrantLock</code> 默认使用非公平锁，也可以通过构造器来显式的指定使用公平锁。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 传入一个 boolean 值，true 时为公平锁，false 时为非公平锁</span>
@@ -1915,14 +1912,14 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
     <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="ReentrantReadWriteLock"><a href="#ReentrantReadWriteLock" class="headerlink" title="ReentrantReadWriteLock"></a>ReentrantReadWriteLock</h3><p>ReentrantReadWriteLock 实现了 <code>ReadWriteLock</code> ，是一个可重入的读写锁，既可以保证多个线程同时读的效率，同时又可以保证有写入操作时的线程安全。适用于读多写少的情况。</p>
+<h4 id="ReentrantReadWriteLock"><a href="#ReentrantReadWriteLock" class="headerlink" title="ReentrantReadWriteLock"></a>ReentrantReadWriteLock</h4><p>ReentrantReadWriteLock 实现了 <code>ReadWriteLock</code> ，是一个可重入的读写锁，既可以保证多个线程同时读的效率，同时又可以保证有写入操作时的线程安全。适用于读多写少的情况。</p>
 <p><code>ReentrantReadWriteLock</code> 其实是两把锁，一把是 <code>WriteLock</code> (写锁)，一把是 <code>ReadLock</code>（读锁） 。读锁是共享锁，写锁是独占锁。读锁可以被同时读，可以同时被多个线程持有，而写锁最多只能同时被一个线程持有。</p>
 <ul>
 <li><strong>共享锁</strong>：一把锁可以被多个线程同时获得。</li>
 <li><strong>独占锁</strong>：一把锁只能被一个线程获得。</li>
 </ul>
 <p>实现原理：state的高16位是读锁，低16位是写锁。可重入锁。写锁对state加一就好，读锁要用ThreadLocal来记录一下每个线程锁重入的次数。</p>
-<h3 id="StampedLock"><a href="#StampedLock" class="headerlink" title="StampedLock"></a>StampedLock</h3><p><code>StampedLock</code> 不是直接实现 <code>Lock</code>或 <code>ReadWriteLock</code>接口，而是基于 <strong>CLH 锁</strong> 实现的（AQS 也是基于这玩意），CLH 锁是对自旋锁的一种改良，是一种隐式的链表队列。<code>StampedLock</code> 通过 CLH 队列进行线程的管理，通过同步状态值 <code>state</code> 来表示锁的状态和类型。</p>
+<h4 id="StampedLock"><a href="#StampedLock" class="headerlink" title="StampedLock"></a>StampedLock</h4><p><code>StampedLock</code> 不是直接实现 <code>Lock</code>或 <code>ReadWriteLock</code>接口，而是基于 <strong>CLH 锁</strong> 实现的（AQS 也是基于这玩意），CLH 锁是对自旋锁的一种改良，是一种隐式的链表队列。<code>StampedLock</code> 通过 CLH 队列进行线程的管理，通过同步状态值 <code>state</code> 来表示锁的状态和类型。</p>
 <p><code>StampedLock</code> 的原理和 AQS 原理比较类似。</p>
 <p><code>StampedLock</code> 提供了三种模式的读写控制模式：读锁、写锁和乐观读。</p>
 <ul>
@@ -1935,7 +1932,7 @@ lock<span class="token punctuation">.</span><span class="token function">lock</s
 <p>和 <code>ReentrantReadWriteLock</code> 一样，<code>StampedLock</code> 同样适合读多写少的业务场景，可以作为 <code>ReentrantReadWriteLock</code>的替代品，性能更好。</p>
 <p>不过，需要注意的是<code>StampedLock</code>不可重入，不支持条件变量 <code>Conditon</code>，对中断操作支持也不友好（使用不当容易导致 CPU 飙升）。如果你需要用到 <code>ReentrantLock</code> 的一些高级性能，就不太建议使用 <code>StampedLock</code> 了。</p>
 <p>另外，<code>StampedLock</code> 性能虽好，但使用起来相对比较麻烦，一旦使用不当，就会出现生产问题。</p>
-<h2 id="AtomicInteger原子类"><a href="#AtomicInteger原子类" class="headerlink" title="AtomicInteger原子类"></a>AtomicInteger原子类</h2><p>其原子性操作的实现是基于CAS.</p>
+<h3 id="AtomicInteger原子类"><a href="#AtomicInteger原子类" class="headerlink" title="AtomicInteger原子类"></a>AtomicInteger原子类</h3><p>其原子性操作的实现是基于CAS.</p>
 <p>多线程下原子的加减</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span>atomic<span class="token punctuation">.</span>AtomicInteger<span class="token punctuation">;</span>
 
@@ -1945,7 +1942,7 @@ AtomicInteger counter <span class="token operator">=</span> <span class="token k
 result <span class="token operator">=</span> counter<span class="token punctuation">.</span><span class="token function">addAndGet</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 原子加5</span>
 result <span class="token operator">=</span> counter<span class="token punctuation">.</span><span class="token function">updateAndGet</span><span class="token punctuation">(</span>x <span class="token operator">-</span><span class="token operator">></span> x <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 使用自定义函数原子更新</span>
 </code></pre>
-<h3 id="LongAdder"><a href="#LongAdder" class="headerlink" title="LongAdder"></a>LongAdder</h3><p>为什么 LongAdder 在高并发环境下更具优势？<br>减少竞争： 在高并发情况下，使用传统的AtomicInteger或AtomicLong时，多个线程可能会争夺同一个原子变量的更新，导致性能瓶颈。而LongAdder采用了一种分段的思想，将一个变量分成多个小的段，每个线程只更新其中一个段，最后再将这些段的值相加。这样可以大大减少线程之间的竞争，提高了性能。</p>
+<h4 id="LongAdder"><a href="#LongAdder" class="headerlink" title="LongAdder"></a>LongAdder</h4><p>为什么 LongAdder 在高并发环境下更具优势？<br>减少竞争： 在高并发情况下，使用传统的AtomicInteger或AtomicLong时，多个线程可能会争夺同一个原子变量的更新，导致性能瓶颈。而LongAdder采用了一种分段的思想，将一个变量分成多个小的段，每个线程只更新其中一个段，最后再将这些段的值相加。这样可以大大减少线程之间的竞争，提高了性能。</p>
 <p>懒惰初始化： LongAdder在初始化时不会分配一个连续的数组，而是在需要的时候再进行懒惰初始化。这减少了初始开销，提高了并发更新时的性能。</p>
 <p>分段累加： LongAdder内部使用Cell数组，每个Cell代表一个独立的段，线程更新时通过hash定位到不同的Cell，实现分段累加。这种方式在高并发情况下避免了对同一个变量的竞争，降低了锁的粒度，提高了吞吐量<br>使用 LongAdder 解决传统 Atomic 类型的性能瓶颈问题：</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span>atomic<span class="token punctuation">.</span>LongAdder<span class="token punctuation">;</span>
@@ -1993,19 +1990,19 @@ result <span class="token operator">=</span> counter<span class="token punctuati
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h2><p>采用 CAS + Synchronized来保证并发安全进行实现</p>
+<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><p>采用 CAS + Synchronized来保证并发安全进行实现</p>
 <ul>
 <li>CAS控制数组节点的添加    (在判断数组中当前位置为null的时候，使用CAS来把这个新的Node写入数组中对应的位置)</li>
 <li>synchronized只锁定当前链表或红黑二叉树的首节点，只要hash不冲突，就不会产生并发的问题 , 效率得到提升</li>
 </ul>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505093507265.png"></p>
-<h3 id="concurrentHashMap在JDK1-8做的优化"><a href="#concurrentHashMap在JDK1-8做的优化" class="headerlink" title="concurrentHashMap在JDK1.8做的优化"></a>concurrentHashMap在JDK1.8做的优化</h3><p>引入红黑树。数组+链表。链表足够长会变为红黑树。</p>
+<h4 id="concurrentHashMap在JDK1-8做的优化"><a href="#concurrentHashMap在JDK1-8做的优化" class="headerlink" title="concurrentHashMap在JDK1.8做的优化"></a>concurrentHashMap在JDK1.8做的优化</h4><p>引入红黑树。数组+链表。链表足够长会变为红黑树。</p>
 <p>在没有hash冲突时，CAS锁头节点去put。</p>
 <p>在出现hash冲突时，synchronized。</p>
 <p>扩容的时候会有协助扩容。</p>
 <p>计数器用addCount,与LongAdder极其相似。线程A对1位置++，线程B对2位置++，最后汇总。</p>
 <p>弱一致性。A写B查，但是B确实不一定能查到，不保证这种复合情况下的强一致性。</p>
-<h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h2><p><strong>要求</strong></p>
+<h3 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h3><p><strong>要求</strong></p>
 <ul>
 <li>掌握 ThreadLocal 的作用与原理</li>
 <li>掌握 ThreadLocal 的内存释放时机</li>
@@ -2050,22 +2047,22 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 </ul>
 </li>
 </ul>
-<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><p>线程状态：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720230426153243.png" alt="img"></p>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h3><p>线程状态：</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/QQ%E5%9B%BE%E7%89%8720230426153243.png"></p>
 <p>线程池的核心参数：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/QQ%E5%9B%BE%E7%89%8720230427155254.png" alt="img"></p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/QQ%E5%9B%BE%E7%89%8720230427155254.png"></p>
 <p>keepAliveTime是没有任务以后救急线程会生存多久。</p>
 <p>当核心线程和阻塞队列满了之后，才会创造救急线程。</p>
 <p>比如1和2任务在被核心线程被执行，3和4任务在阻塞队列中，5任务来了。生成救急线程，执行5任务，然后再执行3任务和4任务。</p>
 <p>代码实现：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/QQ%E5%9B%BE%E7%89%8720230427160251.jpg" alt="img"></p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/QQ%E5%9B%BE%E7%89%8720230427160251.jpg"></p>
 <p>这里借用《Java 并发编程的艺术》提到的来说一下<strong>使用线程池的好处</strong>：</p>
 <ul>
 <li><strong>降低资源消耗</strong>。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。</li>
 <li><strong>提高响应速度</strong>。当任务到达时，任务可以不需要等到线程创建就能立即执行。</li>
 <li><strong>提高线程的可管理性</strong>。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</li>
 </ul>
-<h2 id="CopyOnWrite容器"><a href="#CopyOnWrite容器" class="headerlink" title="CopyOnWrite容器"></a>CopyOnWrite容器</h2><p>ArrayList不是并发安全的，因为他的add方法没有加上synchronized也没有Lock。</p>
+<h3 id="CopyOnWrite容器"><a href="#CopyOnWrite容器" class="headerlink" title="CopyOnWrite容器"></a>CopyOnWrite容器</h3><p>ArrayList不是并发安全的，因为他的add方法没有加上synchronized也没有Lock。</p>
 <p><strong>CopyOnWrite容器</strong>（简称COW容器）即<strong>写时复制</strong>的容器。通俗的理解是当我们往一个容器添加元素的时候，不直接往当前容器添加，而是先将当前容器进行Copy，复制出一个新的容器，然后新的容器里添加元素，添加完元素之后，再将原容器的引用指向新的容器。这样做的好处是我们可以对CopyOnWrite容器进行并发的读，而不需要加锁，因为当前容器不会添加任何元素。所以<strong>CopyOnWrite容器也是一种读写分离的思想，读和写不同的容器</strong>。</p>
 <p><strong>CopyOnWrite并发容器用于读多写少的并发场景</strong>。比如：白名单，黑名单。假如我们有一个搜索网站，用户在这个网站的搜索框中，输入关键字搜索内容，但是某些关键字不允许被搜索。这些不能被搜索的关键字会被放在一个黑名单当中，黑名单一定周期才会更新一次。</p>
 <p>缺点：</p>
@@ -2075,7 +2072,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 </ol>
 <p><strong>同步容器</strong>可以简单地理解为通过synchronized来实现同步的容器。同步容器会导致多个线程中对容器方法调用的串行执行，降低并发性，因为它们都是以容器自身对象为锁。<strong>在并发下进行迭代的读和写时并不是线程安全的</strong>。如：Vector、Stack、HashTable、Collections类的静态工厂方法创建的类（如Collections.synchronizedList）</p>
 <p><strong>并发容器</strong>是针对多个线程并发访问而设计的，在jdk5.0引入了concurrent包，其中提供了很多并发容器，如ConcurrentHashMap、CopyOnWriteArrayList等。</p>
-<h2 id="分布式事务解决方案"><a href="#分布式事务解决方案" class="headerlink" title="分布式事务解决方案"></a>分布式事务解决方案</h2><p>分布式事务是企业集成中的一个<strong>技术难点</strong>，也是每一个分布式系统架构中都会涉及到的一个东西，特别是在微服务架构中，<strong>几乎可以说是无法避免</strong>。</p>
+<h3 id="分布式事务解决方案"><a href="#分布式事务解决方案" class="headerlink" title="分布式事务解决方案"></a>分布式事务解决方案</h3><p>分布式事务是企业集成中的一个<strong>技术难点</strong>，也是每一个分布式系统架构中都会涉及到的一个东西，特别是在微服务架构中，<strong>几乎可以说是无法避免</strong>。</p>
 <p><font color='blue'>操作数据在不同的数据库里面，保证不同数据库里面数据一致性</font></p>
 <p>主流的解决方案如下：<strong>一般用方法3和方法5</strong></p>
 <p>1.XA两段提交(低效率)-分布式事务解决方案</p>
@@ -2083,15 +2080,15 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p><strong>3.本地消息(MQ+Table)</strong></p>
 <p>4.消息事务+最终一致性(RocketMQ[alibaba])</p>
 <p><strong>5.Seata(alibaba)</strong></p>
-<h3 id="基于XA协议的两阶段提交-2PC"><a href="#基于XA协议的两阶段提交-2PC" class="headerlink" title="基于XA协议的两阶段提交(2PC)"></a>基于XA协议的两阶段提交(2PC)</h3><p>X&#x2F;Open 组织（即现在的 Open Group ）定义了分布式事务处理模型</p>
+<h4 id="基于XA协议的两阶段提交-2PC"><a href="#基于XA协议的两阶段提交-2PC" class="headerlink" title="基于XA协议的两阶段提交(2PC)"></a>基于XA协议的两阶段提交(2PC)</h4><p>X&#x2F;Open 组织（即现在的 Open Group ）定义了分布式事务处理模型</p>
 <p>XA协议：XA是一个分布式事务协议。XA中大致分为两部分：<strong>事务管理器</strong>和<strong>本地资源管理器</strong>。其中本地资源管理器往往由数据库实现，比如Oracle、DB2这些商业数据库都实现了XA接口(MySQL从5.5版本开始支持，SQL Server 2005 开始支持，Oracle 7 开始支持。)，而事务管理器作为全局的调度者，负责各个本地资源的提交和回滚。</p>
-<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>二阶段提交2PC（Two phase Commit）是指，在分布式系统里，为了保证所有节点在进行事务提交时保持一致性的一种算法。</p>
-<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><p>在分布式系统里，每个节点都可以知晓自己操作的成功或者失败，却无法知道其他节点操作的成功或失败。</p>
+<h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><p>二阶段提交2PC（Two phase Commit）是指，在分布式系统里，为了保证所有节点在进行事务提交时保持一致性的一种算法。</p>
+<h5 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h5><p>在分布式系统里，每个节点都可以知晓自己操作的成功或者失败，却无法知道其他节点操作的成功或失败。</p>
 <p>当一个事务跨多个节点时，为了保持事务的原子性与一致性，需要引入一个协调者（Coordinator）来统一掌控所有参与者（Participant）的操作结果，并指示它们是否要把操作结果进行真正的提交（commit）或者回滚（rollback）。</p>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>2PC顾名思义分为两个阶段，其实施思路可概括为：</p>
+<h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>2PC顾名思义分为两个阶段，其实施思路可概括为：</p>
 <p>（1）投票阶段（voting phase）：参与者将操作结果通知协调者；</p>
 <p>（2）提交阶段（commit phase）：收到参与者的通知后，协调者再向参与者发出通知，根据反馈情况决定各参与者是否要提交还是回滚；</p>
-<h4 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h4><p>甲乙丙丁四人要组织一个会议，需要确定会议时间，不妨设甲是协调者，乙丙丁是参与者。</p>
+<h5 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h5><p>甲乙丙丁四人要组织一个会议，需要确定会议时间，不妨设甲是协调者，乙丙丁是参与者。</p>
 <p><strong>投票阶段：</strong></p>
 <p>（1）甲发邮件给乙丙丁，周二十点开会是否有时间；</p>
 <p>（2）丁回复有时间；</p>
@@ -2103,7 +2100,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>（2）乙收到；</p>
 <p>（3）丙收到；</p>
 <p>（4）丁收到；</p>
-<h4 id="实际应用交互流程"><a href="#实际应用交互流程" class="headerlink" title="实际应用交互流程"></a>实际应用交互流程</h4><h5 id="1、2PC两阶段提交的正向流程"><a href="#1、2PC两阶段提交的正向流程" class="headerlink" title="1、2PC两阶段提交的正向流程"></a>1、2PC两阶段提交的正向流程</h5><p><strong>第一阶段：</strong></p>
+<h5 id="实际应用交互流程"><a href="#实际应用交互流程" class="headerlink" title="实际应用交互流程"></a>实际应用交互流程</h5><h6 id="1、2PC两阶段提交的正向流程"><a href="#1、2PC两阶段提交的正向流程" class="headerlink" title="1、2PC两阶段提交的正向流程"></a>1、2PC两阶段提交的正向流程</h6><p><strong>第一阶段：</strong></p>
 <p>2PC中包含着两个角色：事务协调者和事务参与者。让我们来看一看他们之间的交互流程：</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181920146.png"></p>
 <p>在分布式事务的第一阶段，作为事务协调者的节点会首先向所有的参与者节点发送Prepare请求。</p>
@@ -2114,14 +2111,14 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>在2PC分布式事务的第二阶段，如果事务协调节点在之前所收到都是正向返回，那么它将会向所有事务参与者发出Commit请求。</p>
 <p>接到Commit请求之后，事务参与者节点会各自进行本地的事务提交，并释放锁资源。当本地事务完成提交后，将会向事务协调者返回”完成”消息。</p>
 <p>当事务协调者接收到所有事务参与者的”完成”反馈，整个分布式事务完成。</p>
-<h5 id="2、失败情况的处理流程"><a href="#2、失败情况的处理流程" class="headerlink" title="2、失败情况的处理流程"></a>2、失败情况的处理流程</h5><p><strong>第一阶段：</strong></p>
+<h6 id="2、失败情况的处理流程"><a href="#2、失败情况的处理流程" class="headerlink" title="2、失败情况的处理流程"></a>2、失败情况的处理流程</h6><p><strong>第一阶段：</strong></p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181939698.png"></p>
 <p><strong>第二阶段：</strong></p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181947884.png"></p>
 <p>在2PC的第一阶段，如果某个事务参与者反馈失败消息，说明该节点的本地事务执行不成功，必须回滚。</p>
 <p>于是在第二阶段，事务协调节点向所有的事务参与者发送Abort(中止)请求。接收到Abort请求之后，各个事务参与者节点需要在本地进行事务的回滚操作，回滚操作依照Undo Log来进行。</p>
 <p>以上就是2PC两阶段提交协议的详细过程。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><strong>2PC两阶段提交究竟有哪些不足呢？</strong></p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p><strong>2PC两阶段提交究竟有哪些不足呢？</strong></p>
 <ol>
 <li><strong>性能问题</strong></li>
 </ol>
@@ -2146,7 +2143,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>对应的开源框架：atomikos</p>
 <p><strong>总的来说，2PC是一种比较保守的算法，效率很低。</strong></p>
 <p>低并发强一致性</p>
-<h3 id="代码补偿事务-TCC）"><a href="#代码补偿事务-TCC）" class="headerlink" title="代码补偿事务(TCC）"></a>代码补偿事务(TCC）</h3><p>TCC的作用主要是解决跨服务调用场景下的分布式事务问题</p>
+<h4 id="代码补偿事务-TCC）"><a href="#代码补偿事务-TCC）" class="headerlink" title="代码补偿事务(TCC）"></a>代码补偿事务(TCC）</h4><p>TCC的作用主要是解决跨服务调用场景下的分布式事务问题</p>
 <p>是一种编程式分布式事务解决方案。</p>
 <p>TCC 其实就是采用的补偿机制，其核心思想是：针对每个操作，都要注册一个与其对应的确认和补偿（撤销）操作。TCC模式要求从服务提供三个接口：Try、Confirm、Cancel。</p>
 <ul>
@@ -2154,7 +2151,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <li>Confirm：真正执行业务，不作任何业务检查；只使用Try阶段预留的业务资源；Confirm操作满足幂等性。</li>
 <li>Cancel：释放Try阶段预留的业务资源；Cancel操作满足幂等性。</li>
 </ul>
-<h4 id="场景案例"><a href="#场景案例" class="headerlink" title="场景案例"></a>场景案例</h4><p>以航班预定的案例，来介绍TCC要解决的事务场景。这里虚构一个场景，把自己当做航班预定的主人公，来介绍这个案例。从合肥 –&gt; 昆明 –&gt; 大理。</p>
+<h5 id="场景案例"><a href="#场景案例" class="headerlink" title="场景案例"></a>场景案例</h5><p>以航班预定的案例，来介绍TCC要解决的事务场景。这里虚构一个场景，把自己当做航班预定的主人公，来介绍这个案例。从合肥 –&gt; 昆明 –&gt; 大理。</p>
 <p>准备从合肥出发，到云南大理去游玩，然后使用美团App(机票代理商)来订机票。发现没有从合肥直达大理的航班，需要到昆明进行中转。如下图：</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182006892.png"></p>
 <p>从图中我们可以看出来，从合肥到昆明乘坐的是四川航空，从昆明到大理乘坐的是东方航空。</p>
@@ -2207,7 +2204,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <h4 id="TCC两阶段提交与XA两阶段提交的区别"><a href="#TCC两阶段提交与XA两阶段提交的区别" class="headerlink" title="TCC两阶段提交与XA两阶段提交的区别"></a>TCC两阶段提交与XA两阶段提交的区别</h4><p> XA是资源层面的分布式事务，d遨游性，在两阶段提交的整个过程中，一直会持有资源的锁。</p>
 <p>TCC是业务层面的分布式事务，最终一致性，不会一直持有资源的锁。</p>
 <p>其核心在于将业务分为两个操作步骤完成。不依赖 RM 对分布式事务的支持，而是通过对业务逻辑的分解来实现分布式事务。</p>
-<h3 id="本地消息表（异步确保）-事务最终一致性（-star"><a href="#本地消息表（异步确保）-事务最终一致性（-star" class="headerlink" title="本地消息表（异步确保）- 事务最终一致性（:star:)"></a>本地消息表（异步确保）- 事务最终一致性（:star:)</h3><p>这种实现方式的思路，其实是源于 ebay，后来通过支付宝等公司的布道，在业内广泛使用。其基本的设计思想是将远程分布式事务拆分成一系列的本地事务。如果不考虑性能及设计优雅，借助关系型数据库中的表即可实现。</p>
+<h4 id="本地消息表（异步确保）-事务最终一致性（-star"><a href="#本地消息表（异步确保）-事务最终一致性（-star" class="headerlink" title="本地消息表（异步确保）- 事务最终一致性（:star:)"></a>本地消息表（异步确保）- 事务最终一致性（:star:)</h4><p>这种实现方式的思路，其实是源于 ebay，后来通过支付宝等公司的布道，在业内广泛使用。其基本的设计思想是将远程分布式事务拆分成一系列的本地事务。如果不考虑性能及设计优雅，借助关系型数据库中的表即可实现。</p>
 <ul>
 <li>订单系统新增一条消息表，将新增订单和新增消息放到一个事务里完成，然后通过轮询的方式去查询消息表，将消息推送到 MQ，库存系统去消费 MQ。</li>
 </ul>
@@ -2239,7 +2236,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p><strong>适用于高并发最终一致</strong></p>
 <p>低并发基本一致：二阶段提交</p>
 <p>高并发强一致：没有解决方案</p>
-<h3 id="RocetMQ-事务消息"><a href="#RocetMQ-事务消息" class="headerlink" title="RocetMQ 事务消息"></a>RocetMQ 事务消息</h3><p>有一些第三方的MQ是支持事务消息的，比如RocketMQ，他们支持事务消息的方式也是类似于采用的二阶段提交，但是市面上一些主流的MQ都是不支持事务消息的，比如 RabbitMQ 和 Kafka 都不支持。</p>
+<h4 id="RocetMQ-事务消息"><a href="#RocetMQ-事务消息" class="headerlink" title="RocetMQ 事务消息"></a>RocetMQ 事务消息</h4><p>有一些第三方的MQ是支持事务消息的，比如RocketMQ，他们支持事务消息的方式也是类似于采用的二阶段提交，但是市面上一些主流的MQ都是不支持事务消息的，比如 RabbitMQ 和 Kafka 都不支持。</p>
 <p>以阿里的 RocketMQ 中间件为例，其思路大致为：</p>
 <ol>
 <li><p>RocketMQ提供了类似X&#x2F;Open XA的分布事务功能，通过MQ的事务消息能达到分布式事务的最终一致。</p>
@@ -2269,7 +2266,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>注意 1-4 为事务消息的发送过程</p>
 <p><strong>优点：</strong> 实现了最终一致性，不需要依赖本地数据库事务。</p>
 <p><strong>缺点：</strong> 目前主流MQ中只有RocketMQ支持事务消息。</p>
-<h3 id="Seata（-star"><a href="#Seata（-star" class="headerlink" title="Seata（:star:)"></a>Seata（:star:)</h3><p><strong>介绍</strong></p>
+<h4 id="Seata（-star"><a href="#Seata（-star" class="headerlink" title="Seata（:star:)"></a>Seata（:star:)</h4><p><strong>介绍</strong></p>
 <p>seata：Simple Extensible Autonomous Transaction Architecture</p>
 <p>简单可扩展自治事务框架。</p>
 <p><a target="_blank" rel="noopener" href="http://seata.io/zh-cn/">http://seata.io/zh-cn/</a></p>
@@ -2291,7 +2288,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p><strong>Seata社区</strong></p>
 <p>Seata：简单的可扩展自治交易架构。 Ant Financial加入Fescar，使其成为一个更加中立和开放的分布式服务社区，并将Fescar更名为Seata。</p>
 <p><strong>Seata</strong>是一个分布式事务框架，设计思路是将一个分布式事务可以理解成一个全局事务，下面挂了若干个分支事务，而一个分支事务是一个满足 ACID 的本地事务，因此我们可以操作分布式事务像操作本地事务一样。一个注解搞定分布式事务。<strong>Seata中有两种分布式事务实现方案，AT及TCC</strong></p>
-<h4 id="AT模式"><a href="#AT模式" class="headerlink" title="AT模式"></a>AT模式</h4><p>Automatic (Branch) Transaction Mode</p>
+<h5 id="AT模式"><a href="#AT模式" class="headerlink" title="AT模式"></a>AT模式</h5><p>Automatic (Branch) Transaction Mode</p>
 <p>基于支持本地ACID事务的关系型数据库，对<strong>业务无侵入</strong></p>
 <ul>
 <li><p><strong>Transaction Coordinator （TC）：</strong>事务协调器，<strong>维护全局事务的运行状态</strong>，负责协调并决定全局事务的提交或回滚。</p>
@@ -2325,13 +2322,13 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>而 Fescar 的 RM 是以二方包的形式作为中间件层部署在应用程序这一侧的，不依赖于数据库本身对协议的支持，当然也不需要数据库支持 XA 协议。这点对于微服务化的架构来说是非常重要的：应用层不需要为本地事务和分布式事务两类不同场景来适配两套不同的数据库驱动。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/seata-xa.png"></p>
 <p>这个设计，剥离了分布式事务方案对数据库在 <strong>协议支持</strong> 上的要求。</p>
-<h4 id="MT模式-TCC"><a href="#MT模式-TCC" class="headerlink" title="MT模式(TCC)"></a>MT模式(TCC)</h4><p>Manual (Branch) Transaction Mode</p>
+<h5 id="MT模式-TCC"><a href="#MT模式-TCC" class="headerlink" title="MT模式(TCC)"></a>MT模式(TCC)</h5><p>Manual (Branch) Transaction Mode</p>
 <p>Seata还支持MT模式。MT模式本质上是一种TCC方案，业务逻辑需要被拆分为 Prepare&#x2F;Commit&#x2F;Rollback 3 部分，形成一个 MT 分支，加入全局事务。</p>
 <p>不依赖于底层数据资源的事务支持，需自定义<code>prepare/commit/rollback</code>操作，对业务有侵入</p>
 <p>如图所示：</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182340810.png"></p>
 <p>MT 模式一方面是 AT 模式的补充。另外，更重要的价值在于，通过 MT 模式可以把众多非事务性资源纳入全局事务的管理中。</p>
-<h1 id="7-JVM"><a href="#7-JVM" class="headerlink" title="7.JVM"></a>7.JVM</h1><h2 id="内存区域详解"><a href="#内存区域详解" class="headerlink" title="内存区域详解"></a>内存区域详解</h2><p>JDK1.7线程共享区域有个方法区，JDK8变为了本地内存里的元空间。</p>
+<h2 id="7-JVM"><a href="#7-JVM" class="headerlink" title="7.JVM"></a>7.JVM</h2><h3 id="内存区域详解"><a href="#内存区域详解" class="headerlink" title="内存区域详解"></a>内存区域详解</h3><p>JDK1.7线程共享区域有个方法区，JDK8变为了本地内存里的元空间。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231121193536683.png"></p>
 <p>在多线程的情况下，程序计数器用于记录当前线程执行的位置，从而当线程被切换回来的时候能够知道该线程上次运行到哪儿了。</p>
 <p>栈由一个个栈帧组成，而每个栈帧中都拥有：局部变量表、操作数栈、动态链接、方法返回地址。</p>
@@ -2341,7 +2338,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>新生代-&gt;老年代-&gt;永久代</p>
 <p>永久代和元空间是 HotSpot 虚拟机对虚拟机规范中方法区的两种实现方式。</p>
 <p><strong>Java对象的创建过程</strong>：1.类加载检查 2.分配内存 3.初始化零值 4.设置对象头 5.执行init方法 </p>
-<h2 id="GC算法"><a href="#GC算法" class="headerlink" title="GC算法"></a>GC算法</h2><p>GC 是 Garbage Collection 的简称，中文称为“垃圾回收”。GC ，是指程序把不用的内存空间视为垃圾并回收掉的整套动作。</p>
+<h3 id="GC算法"><a href="#GC算法" class="headerlink" title="GC算法"></a>GC算法</h3><p>GC 是 Garbage Collection 的简称，中文称为“垃圾回收”。GC ，是指程序把不用的内存空间视为垃圾并回收掉的整套动作。</p>
 <p>Java 自动内存管理最核心的功能是 <strong>堆</strong> 内存中对象的分配与回收。</p>
 <p>对象优先在Eden区分配，当 Eden 区没有足够空间进行分配时，虚拟机将发起一次 Minor GC。</p>
 <ol>
@@ -2361,7 +2358,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231129164937009.png"></p>
 <p>空间分配担保：进行Minor GC之前，先看看老年代有没有足够的空间。如果没有，则进行Full GC</p>
 <p>垃圾收集算法：标记-清除算法。标记-复制算法。标记-整理算法。分代收集算法。</p>
-<h3 id="1-标记-清除算法"><a href="#1-标记-清除算法" class="headerlink" title="1.标记-清除算法"></a>1.标记-清除算法</h3><p>标记清除算法，是将垃圾回收分为2个阶段，分别是<strong>标记和清除</strong>。</p>
+<h4 id="1-标记-清除算法"><a href="#1-标记-清除算法" class="headerlink" title="1.标记-清除算法"></a>1.标记-清除算法</h4><p>标记清除算法，是将垃圾回收分为2个阶段，分别是<strong>标记和清除</strong>。</p>
 <p>1.根据可达性分析算法得出的垃圾进行标记</p>
 <p>2.对这些标记为可回收的内容进行垃圾回收</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506112047190.png"></p>
@@ -2371,7 +2368,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <li>效率较低，<strong>标记和清除两个动作都需要遍历所有的对象</strong>，并且在GC时，<strong>需要停止应用程序</strong>，对于交互性要求比较高的应用而言这个体验是非常差的。</li>
 <li>（<strong>重要</strong>）通过标记清除算法清理出来的内存，碎片化较为严重，因为被回收的对象可能存在于内存的各个角落，所以清理出来的内存是不连贯的。</li>
 </ul>
-<h3 id="2-标记-复制算法"><a href="#2-标记-复制算法" class="headerlink" title="2.标记-复制算法"></a>2.标记-复制算法</h3><p>复制算法的核心就是，<strong>将原有的内存空间一分为二，每次只用其中的一块</strong>，在垃圾回收时，将正在使用的对象复制到另一个内存空间中，然后将该内存空间清空，交换两个内存的角色，完成垃圾的回收。</p>
+<h4 id="2-标记-复制算法"><a href="#2-标记-复制算法" class="headerlink" title="2.标记-复制算法"></a>2.标记-复制算法</h4><p>复制算法的核心就是，<strong>将原有的内存空间一分为二，每次只用其中的一块</strong>，在垃圾回收时，将正在使用的对象复制到另一个内存空间中，然后将该内存空间清空，交换两个内存的角色，完成垃圾的回收。</p>
 <p>​	如果内存中的垃圾对象较多，需要复制的对象就较少，这种情况下适合使用该方式并且效率比较高，反之，则不适合。 </p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506111919008.png"></p>
 <p>1）将内存区域分成两部分，每次操作其中一个。</p>
@@ -2386,14 +2383,14 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <ul>
 <li>分配的2块内存空间，在同一个时刻，只能使用一半，内存使用率较低</li>
 </ul>
-<h3 id="3-标记-整理算法"><a href="#3-标记-整理算法" class="headerlink" title="3.标记-整理算法"></a>3.标记-整理算法</h3><p>标记压缩算法是在标记清除算法的基础之上，做了优化改进的算法。和标记清除算法一样，也是从根节点开始，对对象的引用进行标记，在清理阶段，并不是简单的直接清理可回收对象，而是将存活对象都向内存另一端移动，然后清理边界以外的垃圾，从而解决了碎片化的问题。</p>
+<h4 id="3-标记-整理算法"><a href="#3-标记-整理算法" class="headerlink" title="3.标记-整理算法"></a>3.标记-整理算法</h4><p>标记压缩算法是在标记清除算法的基础之上，做了优化改进的算法。和标记清除算法一样，也是从根节点开始，对对象的引用进行标记，在清理阶段，并不是简单的直接清理可回收对象，而是将存活对象都向内存另一端移动，然后清理边界以外的垃圾，从而解决了碎片化的问题。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506111957793.png"></p>
 <p>1）标记垃圾。</p>
 <p>2）需要清除向右边走，不需要清除的向左边走。</p>
 <p>3）清除边界以外的垃圾。</p>
 <p>优缺点同标记清除算法，解决了标记清除算法的碎片化的问题，同时，标记整理算法多了一步，对象移动内存位置的步骤，其效率也有有一定的影响。</p>
 <p>与复制算法对比：复制算法标记完就复制，但标记整理算法得等把所有存活对象都标记完毕，再进行整理</p>
-<h3 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h3><p>比如在新生代中，每次收集都会有大量对象死去，所以可以选择”标记-复制“算法，只需要付出少量对象的复制成本就可以完成每次垃圾收集。而老年代的对象存活几率是比较高的，而且没有额外的空间对它进行分配担保，所以我们必须选择“标记-清除”或“标记-整理”算法进行垃圾收集。</p>
+<h4 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h4><p>比如在新生代中，每次收集都会有大量对象死去，所以可以选择”标记-复制“算法，只需要付出少量对象的复制成本就可以完成每次垃圾收集。而老年代的对象存活几率是比较高的，而且没有额外的空间对它进行分配担保，所以我们必须选择“标记-清除”或“标记-整理”算法进行垃圾收集。</p>
 <p>在java8时，堆被分为了两份：<strong>新生代和老年代【1：2】</strong></p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506131229649.png"></p>
 <p>对于新生代，内部又被分为了三个区域。Eden区，S0区，S1区【8：1：1】</p>
@@ -2433,7 +2430,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <ul>
 <li>当幸存区对象熬过几次回收（最多15次），晋升到老年代（幸存区内存不足或大对象会导致提前晋升）</li>
 </ul>
-<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><p>JDK默认的垃圾收集器：</p>
+<h3 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h3><p>JDK默认的垃圾收集器：</p>
 <ul>
 <li>JDK 8：Parallel Scavenge（新生代）+ Parallel Old（老年代），即Parallel GC</li>
 <li>JDK 9 ~ JDK20: G1</li>
@@ -2447,20 +2444,20 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>吞吐率优先的服务端程序（比如：计算密集型） ： Parallel Scavenge + Parallel Old；</p>
 <p>响应时间优先的服务端程序 ：ParNew + CMS。</p>
 <p>G1收集器是基于标记整理算法实现的，不会产生空间碎片，可以精确地控制停顿，将堆划分为多个大小固定的独立区域，并跟踪这些区域的垃圾堆积程度，在后台维护一个优先列表，每次根据允许的收集时间，优先回收垃圾最多的区域（Garbage First）。</p>
-<h3 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a>Serial收集器</h3><p><strong>Serial收集器</strong>：串行，单线程，在进行垃圾收集工作的时候必须暂停其他所有的工作线程（ <strong>“Stop The World”</strong> ），直到它收集结束。采用标记-复制算法.</p>
+<h4 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a>Serial收集器</h4><p><strong>Serial收集器</strong>：串行，单线程，在进行垃圾收集工作的时候必须暂停其他所有的工作线程（ <strong>“Stop The World”</strong> ），直到它收集结束。采用标记-复制算法.</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/image/image-20240717200833436.png"></p>
-<h3 id="Serial-Old-收集器"><a href="#Serial-Old-收集器" class="headerlink" title="Serial Old 收集器"></a>Serial Old 收集器</h3><p><strong>Serial Old 收集器</strong>：串行，单线程，Serial收集器的老年代版本(标记-整理算法)，与Parallel Scavenge配合使用。</p>
-<h3 id="ParNew收集器"><a href="#ParNew收集器" class="headerlink" title="ParNew收集器"></a>ParNew收集器</h3><p><strong>ParNew 收集器</strong>：其实就是 Serial 收集器的多线程版本，除了使用多线程进行垃圾收集外，其余行为（控制参数、收集算法、回收策略等等）和 Serial 收集器完全一样。</p>
+<h4 id="Serial-Old-收集器"><a href="#Serial-Old-收集器" class="headerlink" title="Serial Old 收集器"></a>Serial Old 收集器</h4><p><strong>Serial Old 收集器</strong>：串行，单线程，Serial收集器的老年代版本(标记-整理算法)，与Parallel Scavenge配合使用。</p>
+<h4 id="ParNew收集器"><a href="#ParNew收集器" class="headerlink" title="ParNew收集器"></a>ParNew收集器</h4><p><strong>ParNew 收集器</strong>：其实就是 Serial 收集器的多线程版本，除了使用多线程进行垃圾收集外，其余行为（控制参数、收集算法、回收策略等等）和 Serial 收集器完全一样。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/image/image-20240717200846509.png"></p>
-<h3 id="Parallel-Scavenge收集器"><a href="#Parallel-Scavenge收集器" class="headerlink" title="Parallel Scavenge收集器"></a>Parallel Scavenge收集器</h3><p><strong>Parallel Scavenge 收集器</strong>：和ParNew收集器基本一样。Parallel Scavenge 收集器关注点是吞吐量（高效率的利用 CPU）。CMS 等垃圾收集器的关注点更多的是用户线程的停顿时间（提高用户体验）。</p>
+<h4 id="Parallel-Scavenge收集器"><a href="#Parallel-Scavenge收集器" class="headerlink" title="Parallel Scavenge收集器"></a>Parallel Scavenge收集器</h4><p><strong>Parallel Scavenge 收集器</strong>：和ParNew收集器基本一样。Parallel Scavenge 收集器关注点是吞吐量（高效率的利用 CPU）。CMS 等垃圾收集器的关注点更多的是用户线程的停顿时间（提高用户体验）。</p>
 <p><strong>探究ParNew与Parallel Scavenge的区别：</strong></p>
 <p>ParNew收集器（新生代）通常与CMS收集器（老年代）配合使用，它们共同为低延迟场景提供服务。</p>
 <p>ParNew注重的是降低暂停时间，因此更适合需要低延迟的应用，如Web服务器、交互式应用等。而Parallel Scavenge注重高吞吐量，更适合后台运算为主的场景，如大型计算任务、批处理等。</p>
 <p>ParNew为了保证低延迟，可能会牺牲部分吞吐量。而Parallel Scavenge则相反，它会牺牲部分延迟来保证最大的吞吐量。Parallel Scavenge有一些参数可以进行调整。</p>
 <p>Parallel Scavenge具有自适应调节策略（-XX:+UseAdaptiveSizePolicy），能够根据系统的实际运行情况调整各个区域的大小及目标暂停时间。ParNew没有这种自适应机制。</p>
-<h3 id="Parallel-Old收集器"><a href="#Parallel-Old收集器" class="headerlink" title="Parallel Old收集器"></a>Parallel Old收集器</h3><p><strong>Parallel Old 收集器</strong>：多线程，Parallel Scavenge收集器的老年代版本，标记-整理算法</p>
+<h4 id="Parallel-Old收集器"><a href="#Parallel-Old收集器" class="headerlink" title="Parallel Old收集器"></a>Parallel Old收集器</h4><p><strong>Parallel Old 收集器</strong>：多线程，Parallel Scavenge收集器的老年代版本，标记-整理算法</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/image/image-20240717202114683.png"></p>
-<h3 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h3><p>CMS收集器：<strong>CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器。它非常符合在注重用户体验的应用上使用</strong></p>
+<h4 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h4><p>CMS收集器：<strong>CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器。它非常符合在注重用户体验的应用上使用</strong></p>
 <p><strong>CMS（Concurrent Mark Sweep）收集器是 HotSpot 虚拟机第一款真正意义上的并发收集器，它第一次实现了让垃圾收集线程与用户线程（基本上）同时工作。</strong></p>
 <p>CMS 收集器是一种 <strong>“标记-清除”算法</strong>实现的。</p>
 <p>整个过程分为四个步骤：</p>
@@ -2477,7 +2474,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <li><strong>无法处理浮动垃圾；</strong></li>
 <li><strong>它使用的回收算法-“标记-清除”算法会导致收集结束时会有大量空间碎片产生</strong></li>
 </ul>
-<h3 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h3><p><strong>G1 (Garbage-First) 是一款面向服务器的垃圾收集器,主要针对配备多颗处理器及大容量内存的机器. 以极高概率满足 GC 停顿时间要求的同时,还具备高吞吐量性能特征.</strong></p>
+<h4 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h4><p><strong>G1 (Garbage-First) 是一款面向服务器的垃圾收集器,主要针对配备多颗处理器及大容量内存的机器. 以极高概率满足 GC 停顿时间要求的同时,还具备高吞吐量性能特征.</strong></p>
 <p>它具备以下特点：</p>
 <ul>
 <li><strong>并行与并发</strong>：G1 能充分利用 CPU、多核环境下的硬件优势，使用多个 CPU（CPU 或者 CPU 核心）来缩短 Stop-The-World 停顿时间。部分其他收集器原本需要停顿 Java 线程执行的 GC 动作，G1 收集器仍然可以通过并发的方式让 java 程序继续执行。</li>
@@ -2505,7 +2502,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <li></li>
 </ul>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506154323950.png"></p>
-<h4 id="Young-Collection-年轻代垃圾回收"><a href="#Young-Collection-年轻代垃圾回收" class="headerlink" title="Young Collection(年轻代垃圾回收)"></a>Young Collection(年轻代垃圾回收)</h4><ul>
+<h5 id="Young-Collection-年轻代垃圾回收"><a href="#Young-Collection-年轻代垃圾回收" class="headerlink" title="Young Collection(年轻代垃圾回收)"></a>Young Collection(年轻代垃圾回收)</h5><ul>
 <li><p>初始时，所有区域都处于空闲状态</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506154542687.png"></p>
 </li>
@@ -2524,7 +2521,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506154859985.png"></p>
 </li>
 </ul>
-<h4 id="Young-Collection-Concurrent-Mark-年轻代垃圾回收-并发标记"><a href="#Young-Collection-Concurrent-Mark-年轻代垃圾回收-并发标记" class="headerlink" title="Young Collection + Concurrent Mark (年轻代垃圾回收+并发标记)"></a>Young Collection + Concurrent Mark (年轻代垃圾回收+并发标记)</h4><p>当老年代占用内存超过阈值(默认是45%)后，触发并发标记，这时无需暂停用户线程</p>
+<h5 id="Young-Collection-Concurrent-Mark-年轻代垃圾回收-并发标记"><a href="#Young-Collection-Concurrent-Mark-年轻代垃圾回收-并发标记" class="headerlink" title="Young Collection + Concurrent Mark (年轻代垃圾回收+并发标记)"></a>Young Collection + Concurrent Mark (年轻代垃圾回收+并发标记)</h5><p>当老年代占用内存超过阈值(默认是45%)后，触发并发标记，这时无需暂停用户线程</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506155000503.png"></p>
 <ul>
 <li><p>并发标记之后，会有重新标记阶段解决漏标问题，此时需要暂停用户线程。</p>
@@ -2533,11 +2530,11 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506155047765.png"></p>
 </li>
 </ul>
-<h4 id="Mixed-Collection-混合垃圾回收"><a href="#Mixed-Collection-混合垃圾回收" class="headerlink" title="Mixed Collection (混合垃圾回收)"></a>Mixed Collection (混合垃圾回收)</h4><p>复制完成，内存得到释放。进入下一轮的新生代回收、并发标记、混合收集</p>
+<h5 id="Mixed-Collection-混合垃圾回收"><a href="#Mixed-Collection-混合垃圾回收" class="headerlink" title="Mixed Collection (混合垃圾回收)"></a>Mixed Collection (混合垃圾回收)</h5><p>复制完成，内存得到释放。进入下一轮的新生代回收、并发标记、混合收集</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506155116267.png"></p>
 <p>其中H叫做巨型对象，如果对象非常大，会开辟一块连续的空间存储巨型对象</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-JVM%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230506155146370.png"></p>
-<h3 id="ZGC收集器"><a href="#ZGC收集器" class="headerlink" title="ZGC收集器"></a>ZGC收集器</h3><p>ZGC是一款JDK 11中新加入的具有实验性质的低延迟垃圾收集器，ZGC是Azul System公司开发的 C4(Concurrent Continuously  Compacting Collector)收集器。</p>
+<h4 id="ZGC收集器"><a href="#ZGC收集器" class="headerlink" title="ZGC收集器"></a>ZGC收集器</h4><p>ZGC是一款JDK 11中新加入的具有实验性质的低延迟垃圾收集器，ZGC是Azul System公司开发的 C4(Concurrent Continuously  Compacting Collector)收集器。</p>
 <p><font color='red'>ZGC收集器是一款基于Region内存布局的，（暂时）不设分代的，使用了读屏障、染色指针和内存多重映射等技术来实现可并发的标记-整理算法的，以低延迟为首要目标的一款垃圾收集器。</font></p>
 <p>与 CMS 中的 ParNew 和 G1 类似，ZGC 也采用<strong>标记-复制算法</strong>，不过 ZGC 对该算法做了重大改进。</p>
 <p>在 ZGC 中出现 Stop The World 的情况会更少！</p>
@@ -2557,11 +2554,11 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>④并发重映射（Concurrent Remap）：重映射所做的就是修正整个堆中指向重分配集中旧对象的所有引用，但是ZGC中对象引用存在“自愈”功能，所以这个重映射操作并不是很迫切。ZGC很巧妙地把并发重映射阶段要做的工作，合并到了下一次垃圾收集循环中的并发标记阶段里去完成，反正它们都是要遍历所有对象的，这样合并就节 省了一次遍历对象图的开销。一旦所有指针都被修正之后， 原来记录新旧对象关系的转发表就可以释放掉了。</p>
 <p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html">ZGC关键技术</a>：</p>
 <p>ZGC通过<strong>着色指针</strong>和<strong>读屏障技术</strong>，解决了转移过程中准确访问对象的问题，实现了并发转移。大致原理描述如下：并发转移中“并发”意味着GC线程在转移对象的过程中，应用线程也在不停地访问对象。假设对象发生转移，但对象地址未及时更新，那么应用线程可能访问到旧地址，从而造成错误。而在ZGC中，应用线程访问对象将触发“读屏障”，如果发现对象被移动了，那么“读屏障”会把读出来的指针更新到对象的新地址上，这样应用线程始终访问的都是对象的新地址。那么，JVM是如何判断对象被移动过呢？就是利用对象引用的地址，即着色指针。</p>
-<h2 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h2><p>双亲委派模型：当一个类需要被加载的时候，一步步往上问看是否已经被加载；都没有加载的话再从上到下一步步尝试去加载。</p>
+<h3 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h3><p>双亲委派模型：当一个类需要被加载的时候，一步步往上问看是否已经被加载；都没有加载的话再从上到下一步步尝试去加载。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231214160921266.png"></p>
 <p>JVM 不仅要看类的全名是否相同，还要看加载此类的类加载器是否一样。只有两者都相同的情况，才认为两个类是相同的。</p>
 <p>双亲委派模型保证了 Java 程序的稳定运行，可以避免类的重复加载（JVM 区分不同类的方式不仅仅根据类名，相同的类文件被不同的类加载器加载产生的是两个不同的类），也保证了 Java 的核心 API 不被篡改。</p>
-<h2 id="实际调优"><a href="#实际调优" class="headerlink" title="实际调优"></a>实际调优</h2><p><strong>堆内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存</strong></p>
+<h3 id="实际调优"><a href="#实际调优" class="headerlink" title="实际调优"></a>实际调优</h3><p><strong>堆内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存</strong></p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231214172052217.png"></p>
 <p>显式指定堆内存最小值和最大值<code>–Xms</code>和<code>-Xmx</code></p>
 <p>我们还有很多JVM参数可以去调：</p>
@@ -2576,7 +2573,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p><code>jstack</code>（Stack Trace for Java）命令用于生成虚拟机当前时刻的线程快照。线程快照就是当前虚拟机内每一条线程正在执行的方法堆栈的集合.</p>
 <p>JDK可视化分析工具：<br>JConsole:Java 监视与管理控制台；可以查看Java程序概况，内存监控，线程监控，</p>
 <p>Visual VM:多合一故障处理工具；</p>
-<h2 id="在光辉税月项目中，JDK6，进行了调优。因为发生了OOM"><a href="#在光辉税月项目中，JDK6，进行了调优。因为发生了OOM" class="headerlink" title="在光辉税月项目中，JDK6，进行了调优。因为发生了OOM"></a>在光辉税月项目中，JDK6，进行了调优。因为发生了OOM</h2><p>比较常见的 OOM 类型有以下几种</p>
+<h3 id="在光辉税月项目中，JDK6，进行了调优。因为发生了OOM"><a href="#在光辉税月项目中，JDK6，进行了调优。因为发生了OOM" class="headerlink" title="在光辉税月项目中，JDK6，进行了调优。因为发生了OOM"></a>在光辉税月项目中，JDK6，进行了调优。因为发生了OOM</h3><p>比较常见的 OOM 类型有以下几种</p>
 <p><strong>java.lang.OutOfMemoryError: PermGen space</strong></p>
 <p>Java7 永久代（方法区）溢出，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。每当一个类初次加载的时候，元数据都会存放到永久代</p>
 <p>一般出现于大量 Class 对象或者 JSP 页面，或者采用 CgLib 动态代理技术导致</p>
@@ -2594,7 +2591,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p><strong>Java 堆内存溢出</strong>，溢出的原因一般由于 JVM 堆内存设置不合理或者内存泄漏导致</p>
 <p>如果是内存泄漏，可以通过工具查看泄漏对象到 GC Roots 的引用链。掌握了泄漏对象的类型信息以及 GC Roots 引用链信息，就可以精准地定位出泄漏代码的位置</p>
 <p>如果不存在内存泄漏，就是内存中的对象确实都还必须存活着，那就应该检查虚拟机的堆参数（-Xmx 与 -Xms），查看是否可以将虚拟机的内存调大些。</p>
-<h1 id="8-MQ-star"><a href="#8-MQ-star" class="headerlink" title="8.MQ:star:"></a>8.MQ:star:</h1><h2 id="阻塞队列-BlockingQueue"><a href="#阻塞队列-BlockingQueue" class="headerlink" title="阻塞队列-BlockingQueue"></a>阻塞队列-BlockingQueue</h2><p>被阻塞的情况主要有如下两种：</p>
+<h2 id="8-MQ"><a href="#8-MQ" class="headerlink" title="8.MQ"></a>8.MQ</h2><h3 id="阻塞队列-BlockingQueue"><a href="#阻塞队列-BlockingQueue" class="headerlink" title="阻塞队列-BlockingQueue"></a>阻塞队列-BlockingQueue</h3><p>被阻塞的情况主要有如下两种：</p>
 <ol>
 <li><p><strong>当队列满了的时候进行入队列操作</strong></p>
 </li>
@@ -2659,7 +2656,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>​		如果试图的操作无法立即执行，该方法调用将会发生阻塞，直到能够执行。<br>​		当阻塞队列满时，再往队列里put元素，队列会一直阻塞生产者线程直到put数据or响应中断退出<br>​		当阻塞队列空时，再从队列里take元素，队列会一直阻塞消费者线程直到队列可用</p>
 <p><strong>超时退出</strong></p>
 <p>​		如果试图的操作无法立即执行，该方法调用将会发生阻塞，直到能够执行，但等待时间不会超过给定值。<br>​		返回一个特定值以告知该操作是否成功(典型的是 true &#x2F; false)。</p>
-<h2 id="自己实现一个简单的MQ"><a href="#自己实现一个简单的MQ" class="headerlink" title="自己实现一个简单的MQ"></a>自己实现一个简单的MQ</h2><p>项目里原本是使用Kafka当消息队列的，但是组内大师觉得Kafka太重了，只要确保订单信息都持久化到数据库里，每次重启的时候重新加载任务，那么其实是可以自己写一个消息队列来替代Kafka的</p>
+<h3 id="自己实现一个简单的MQ"><a href="#自己实现一个简单的MQ" class="headerlink" title="自己实现一个简单的MQ"></a>自己实现一个简单的MQ</h3><p>项目里原本是使用Kafka当消息队列的，但是组内大师觉得Kafka太重了，只要确保订单信息都持久化到数据库里，每次重启的时候重新加载任务，那么其实是可以自己写一个消息队列来替代Kafka的</p>
 <ul>
 <li>下面是我自己写的一个任务队列执行器，使用了<code>ArrayBlockingQueue</code>来存储任务，并创建一个单独的线程来处理队列中的任务。并且允许指定处理任务的处理器（Processor），可以根据需要执行不同的任务。</li>
 <li>关于TaskQueueExecutor的构造函数，我这里自定义了一个函数式接口，但是其实也可以直接用Java内置的函数式接口：Function，写法类似于<code>public TaskQueueExecutor(String threadName, int queueSize, Function&lt;T, R&gt; processor) &#123;&#125;</code></li>
@@ -2868,7 +2865,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="MQ基础知识"><a href="#MQ基础知识" class="headerlink" title="MQ基础知识"></a>MQ基础知识</h2><p>MQ的作用：异步，削峰，解耦。实现分布式事务、顺序保证、延时&#x2F;定时处理，即时通讯数据流处理。</p>
+<h3 id="MQ基础知识"><a href="#MQ基础知识" class="headerlink" title="MQ基础知识"></a>MQ基础知识</h3><p>MQ的作用：异步，削峰，解耦。实现分布式事务、顺序保证、延时&#x2F;定时处理，即时通讯数据流处理。</p>
 <p>RocketMQ、 Kafka 都提供了事务相关的功能。事务允许事件流应用将消费，处理，生产消息整个过程定义为一个原子操作。</p>
 <p>大部分消息队列，例如 RocketMQ、RabbitMQ、Kafka，都支持顺序消息，延时&#x2F;定时处理。</p>
 <p>RabbitMQ 内置了 MQTT 插件用于实现 MQTT 功能（默认不启用，需要手动开启），支持即时消息传递，即使在网络条件较差的情况下也能保持通信的稳定性。</p>
@@ -2889,7 +2886,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>消息重复设计</p>
 <p>网络框架：Netty 高效的NIO框架。</p>
 </blockquote>
-<h2 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h2><p>2007开源</p>
+<h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><p>2007开源</p>
 <p>RabbitMQ 是一个在 AMQP（Advanced Message Queuing Protocol ）基础上实现的，使用 Erlang 编写的一个开源的消息队列。</p>
 <p>RabbitMQ 中通过 <strong>Binding(绑定)</strong> 将 <strong>Exchange(交换器)</strong> 与 <strong>Queue(消息队列)</strong> 关联起来，在绑定的时候一般会指定一个 <strong>BindingKey(绑定建)</strong> ,这样 RabbitMQ 就知道如何正确将消息路由到队列了,如下图所示。一个绑定就是基于路由键将交换器和消息队列连接起来的路由规则，所以可以将交换器理解成一个由绑定构成的路由表。Exchange 和 Queue 的绑定可以是多对多的关系。</p>
 <p><img src="https://oss.javaguide.cn/github/javaguide/rabbitmq/37008021.jpg"></p>
@@ -2897,7 +2894,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p><strong>多个消费者可以订阅同一个队列</strong>，这时队列中的消息会被平均分摊（Round-Robin，即轮询）给多个消费者进行处理，而不是每个消费者都收到所有的消息并处理，这样避免消息被重复消费。</p>
 <p><strong>RabbitMQ</strong> 不支持队列层面的广播消费,如果有广播消费的需求，需要在其上进行二次开发,这样会很麻烦，不建议这样做。</p>
 <p>交换机类型有fanout,direct,topic,headers四种，最后一种性能很差，第一种太简单，第二种如上图，第三种就是将Routing Key改为*.rabbitmq.*这种偏正则的</p>
-<h3 id="AMQP"><a href="#AMQP" class="headerlink" title="AMQP"></a>AMQP</h3><p>RabbitMQ 就是 AMQP 协议的 <code>Erlang</code> 的实现</p>
+<h4 id="AMQP"><a href="#AMQP" class="headerlink" title="AMQP"></a>AMQP</h4><p>RabbitMQ 就是 AMQP 协议的 <code>Erlang</code> 的实现</p>
 <p><strong>AMQP 协议的三层</strong>：</p>
 <ul>
 <li><strong>Module Layer</strong>:协议最高层，主要定义了一些客户端调用的命令，客户端可以用这些命令实现自己的业务逻辑。</li>
@@ -2910,20 +2907,20 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <li>**队列 (Queue)**：用来存储消息的数据结构，位于硬盘或内存中。</li>
 <li>**绑定 (Binding)**：一套规则，告知交换器消息应该将消息投递给哪个队列。</li>
 </ul>
-<h3 id="死信队列"><a href="#死信队列" class="headerlink" title="死信队列"></a>死信队列</h3><p>DLX，全称为 <code>Dead-Letter-Exchange</code>，死信交换器，死信邮箱。当消息在一个队列中变成死信 (<code>dead message</code>) 之后，它能被重新发送到另一个交换器中，这个交换器就是 DLX，绑定 DLX 的队列就称之为死信队列（Dead Letter Queue，简称 DLQ）。</p>
+<h4 id="死信队列"><a href="#死信队列" class="headerlink" title="死信队列"></a>死信队列</h4><p>DLX，全称为 <code>Dead-Letter-Exchange</code>，死信交换器，死信邮箱。当消息在一个队列中变成死信 (<code>dead message</code>) 之后，它能被重新发送到另一个交换器中，这个交换器就是 DLX，绑定 DLX 的队列就称之为死信队列（Dead Letter Queue，简称 DLQ）。</p>
 <p><strong>导致的死信的几种原因</strong>：</p>
 <ul>
 <li>消息被拒（<code>Basic.Reject /Basic.Nack</code>) 且 <code>requeue = false</code>。</li>
 <li>消息 TTL 过期。</li>
 <li>队列满了，无法再添加。</li>
 </ul>
-<h3 id="延迟队列"><a href="#延迟队列" class="headerlink" title="延迟队列"></a>延迟队列</h3><p>RabbitMQ 本身是没有延迟队列的，要实现延迟消息，一般有两种方式：</p>
+<h4 id="延迟队列"><a href="#延迟队列" class="headerlink" title="延迟队列"></a>延迟队列</h4><p>RabbitMQ 本身是没有延迟队列的，要实现延迟消息，一般有两种方式：</p>
 <ol>
 <li>通过 RabbitMQ 本身队列的特性来实现，需要使用 RabbitMQ 的死信交换机（Exchange）和消息的存活时间 TTL（Time To Live）。</li>
 <li>在 RabbitMQ 3.5.7 及以上的版本提供了一个插件（rabbitmq-delayed-message-exchange）来实现延迟队列功能。同时，插件依赖 Erlang&#x2F;OPT 18.0 及以上。</li>
 </ol>
 <p>也就是说，AMQP 协议以及 RabbitMQ 本身没有直接支持延迟队列的功能，但是可以通过 TTL 和 DLX 模拟出延迟队列的功能。</p>
-<h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><p>2011年开源，2015年成为Apache顶级项目</p>
+<h3 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h3><p>2011年开源，2015年成为Apache顶级项目</p>
 <p>一些参数：</p>
 <blockquote>
 <p>broker.id 每一个broker在集群中的唯一表示。</p>
@@ -2944,7 +2941,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p><strong>Topic（主题）</strong> : Producer 将消息发送到特定的主题，Consumer 通过订阅特定的 Topic(主题) 来消费消息。</p>
 <p><strong>Partition（分区）</strong> : Partition 属于 Topic 的一部分。一个 Topic 可以有多个 Partition ，并且同一 Topic 下的 Partition 可以分布在不同的 Broker 上</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094420940.png"></p>
-<h3 id="消费顺序"><a href="#消费顺序" class="headerlink" title="消费顺序"></a>消费顺序</h3><p><img src="https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/KafkaTopicPartionsLayout.png"></p>
+<h4 id="消费顺序"><a href="#消费顺序" class="headerlink" title="消费顺序"></a>消费顺序</h4><p><img src="https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/KafkaTopicPartionsLayout.png"></p>
 <p>每次添加消息到 Partition(分区) 的时候都会采用尾加法，如上图所示。 <strong>Kafka 只能为我们保证 Partition(分区) 中的消息有序。</strong></p>
 <p>我们就有一种很简单的保证消息消费顺序的方法：<strong>1 个 Topic 只对应一个 Partition</strong>。</p>
 <p>Kafka 中发送 1 条消息的时候，可以指定 topic, partition, key,data（数据） 4 个参数。如果你发送消息的时候指定了 Partition 的话，所有消息都会被发送到指定的 Partition。并且，同一个 key 的消息可以保证只发送到同一个 partition，这个我们可以采用表&#x2F;对象的 id 来作为 key 。</p>
@@ -2953,7 +2950,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <li>1 个 Topic 只对应一个 Partition。</li>
 <li>（推荐）发送消息的时候指定 key&#x2F;Partition。</li>
 </ol>
-<h3 id="消息不丢失"><a href="#消息不丢失" class="headerlink" title="消息不丢失"></a>消息不丢失</h3><p>生产者send消息，如果用get方法获取调用结果判断是否消息丢失，就变成同步的了。可以添加回调函数</p>
+<h4 id="消息不丢失"><a href="#消息不丢失" class="headerlink" title="消息不丢失"></a>消息不丢失</h4><p>生产者send消息，如果用get方法获取调用结果判断是否消息丢失，就变成同步的了。可以添加回调函数</p>
 <pre class=" language-java"><code class="language-java">        ListenableFuture<span class="token operator">&lt;</span>SendResult<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Object<span class="token operator">>></span> future <span class="token operator">=</span> kafkaTemplate<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>topic<span class="token punctuation">,</span> o<span class="token punctuation">)</span><span class="token punctuation">;</span>
         future<span class="token punctuation">.</span><span class="token function">addCallback</span><span class="token punctuation">(</span>result <span class="token operator">-</span><span class="token operator">></span> logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"生产者成功发送消息到topic:{} partition:{}的消息"</span><span class="token punctuation">,</span> result<span class="token punctuation">.</span><span class="token function">getRecordMetadata</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">topic</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> result<span class="token punctuation">.</span><span class="token function">getRecordMetadata</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">partition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
                 ex <span class="token operator">-</span><span class="token operator">></span> logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"生产者发送消失败，原因：{}"</span><span class="token punctuation">,</span> ex<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2962,7 +2959,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>消费者这边主要是聚焦于（真正消费，提交offset）这俩的顺序谁先谁后。禁止自动提交偏移量，改为手动。</p>
 <p>Kafka本身丢失信息：<strong>设置acks&#x3D;all</strong>,去同步所有的副本；<strong>设置 replication.factor &gt;&#x3D; 3</strong>，保证每个分区至少有3个副本；<strong>设置 min.insync.replicas &gt; 1</strong>，消息至少要被写入到 2 个副本才算是被成功发送。</p>
 <p>一般推荐设置成 <strong>replication.factor &#x3D; min.insync.replicas + 1</strong>。</p>
-<h3 id="不重复消费"><a href="#不重复消费" class="headerlink" title="不重复消费"></a>不重复消费</h3><p><strong>kafka 出现消息重复消费的原因：</strong></p>
+<h4 id="不重复消费"><a href="#不重复消费" class="headerlink" title="不重复消费"></a>不重复消费</h4><p><strong>kafka 出现消息重复消费的原因：</strong></p>
 <ul>
 <li>服务端侧已经消费的数据没有成功提交 offset（根本原因）。</li>
 <li>Kafka 侧 由于服务端处理业务时间长或者网络链接等等原因让 Kafka 认为服务假死，触发了分区 rebalance。</li>
@@ -2976,8 +2973,8 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 </ul>
 </li>
 </ul>
-<h3 id="重试机制"><a href="#重试机制" class="headerlink" title="重试机制"></a>重试机制</h3><p>Kafka 消费者在默认配置下会进行最多 10 次 的重试，每次重试的时间间隔为 0，即立即进行重试。如果在 10 次重试后仍然无法成功消费消息，则不再进行重试，消息将被视为消费失败。</p>
-<h2 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h2><p>2012年开源，2017年成为Apache顶级项目</p>
+<h4 id="重试机制"><a href="#重试机制" class="headerlink" title="重试机制"></a>重试机制</h4><p>Kafka 消费者在默认配置下会进行最多 10 次 的重试，每次重试的时间间隔为 0，即立即进行重试。如果在 10 次重试后仍然无法成功消费消息，则不再进行重试，消息将被视为消费失败。</p>
+<h3 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h3><p>2012年开源，2017年成为Apache顶级项目</p>
 <p><font color='red'>Kafka的分区对应RocketMQ的队列</font></p>
 <p><strong>一个队列只会被一个消费者消费</strong>。如果某个消费者挂掉，分组内其它消费者会接替挂掉的消费者继续消费。所以一般来讲要控制 <strong>消费者组中的消费者个数和主题中队列个数相同</strong> 。当然也可以消费者个数小于队列个数，只不过不太建议。</p>
 <p><strong>每个消费组在每个队列上维护一个消费位置</strong>.仅仅是为每个<strong>消费者组</strong>维护一个 <strong>消费位移(offset)</strong> .</p>
@@ -2992,7 +2989,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>你可以试想一下，如果没有从第 5 步开始的 <strong>事务反查机制</strong> ，如果出现网路波动第 4 步没有发送成功，这样就会产生 MQ 不知道是不是需要给消费者消费的问题，他就像一个无头苍蝇一样。在 <code>RocketMQ</code> 中就是使用的上述的事务反查来解决的，而在 <code>Kafka</code> 中通常是直接抛出一个异常让用户来自行解决。</p>
 <p>你还需要注意的是，在 <code>MQ Server</code> 指向系统 B 的操作已经和系统 A 不相关了，也就是说在消息队列中的分布式事务是——<strong>本地事务和存储消息到消息队列才是同一个事务</strong>。这样也就产生了事务的<strong>最终一致性</strong>，因为整个过程是异步的，<strong>每个系统只要保证它自己那一部分的事务就行了</strong>。</p>
 <p>最快速解决消息堆积问题的方法还是增加消费者实例，不过 <strong>同时你还需要增加每个主题的队列数量</strong> 。因为一个队列只会被一个消费者消费。</p>
-<h3 id="零拷贝技术"><a href="#零拷贝技术" class="headerlink" title="零拷贝技术"></a>零拷贝技术</h3><p>传统的IO：<br><img src="https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/31699457085_.pic.jpg"></p>
+<h4 id="零拷贝技术"><a href="#零拷贝技术" class="headerlink" title="零拷贝技术"></a>零拷贝技术</h4><p>传统的IO：<br><img src="https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/31699457085_.pic.jpg"></p>
 <ul>
 <li>用户调用 read()方法，开始读取数据，此时发生一次上下文从用户态到内核态的切换，也就是图示的切换 1</li>
 <li>将磁盘数据通过 DMA 拷贝到内核缓存区</li>
@@ -3004,22 +3001,22 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <li>write()方法返回，上下文重新从内核态切换到用户态，即图示切换 4</li>
 </ul>
 <p>整个过程发生了 4 次上下文切换和 4 次数据的拷贝，这在高并发场景下肯定会严重影响读写性能故引入了零拷贝技术</p>
-<h4 id="mmap"><a href="#mmap" class="headerlink" title="mmap"></a>mmap</h4><p>mmap（memory map）是一种内存映射文件的方法，即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系。</p>
+<h5 id="mmap"><a href="#mmap" class="headerlink" title="mmap"></a>mmap</h5><p>mmap（memory map）是一种内存映射文件的方法，即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系。</p>
 <p>简单地说就是内核缓冲区和应用缓冲区共享，从而减少了从读缓冲区到用户缓冲区的一次 CPU 拷贝。基于此上述架构图可变为：</p>
 <p><img src="https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/41699457086_.pic.jpg"></p>
 <p>基于 mmap IO 读写其实就变成 mmap + write 的操作，也就是用 mmap 替代传统 IO 中的 read 操作。</p>
 <p>当用户发起 mmap 调用的时候会发生上下文切换 1，进行内存映射，然后数据被拷贝到内核缓冲区，mmap 返回，发生上下文切换 2；随后用户调用 write，发生上下文切换 3，将内核缓冲区的数据拷贝到 Socket 缓冲区，write 返回，发生上下文切换 4。</p>
 <p>发生 4 次上下文切换和 3 次 IO 拷贝操作</p>
-<h4 id="sendfile"><a href="#sendfile" class="headerlink" title="sendfile"></a>sendfile</h4><p>sendfile()跟 mmap()一样，也会减少一次 CPU 拷贝，但是它同时也会减少两次上下文切换。</p>
+<h5 id="sendfile"><a href="#sendfile" class="headerlink" title="sendfile"></a>sendfile</h5><p>sendfile()跟 mmap()一样，也会减少一次 CPU 拷贝，但是它同时也会减少两次上下文切换。</p>
 <p><img src="https://oss.javaguide.cn/github/javaguide/high-performance/message-queue/51699457087_.pic.jpg"></p>
 <p>如图，用户在发起 sendfile()调用时会发生切换 1，之后数据通过 DMA 拷贝到内核缓冲区，之后再将内核缓冲区的数据 CPU 拷贝到 Socket 缓冲区，最后拷贝到网卡，sendfile()返回，发生切换 2。发生了 3 次拷贝和两次切换。</p>
 <p>sendfile 是无法知道文件的具体的数据的；但是 mmap 不一样，他是可以修改内核缓冲区的数据的。假设如果需要对文件的内容进行修改之后再传输，只有 mmap 可以满足。Kafka用sendfile,RocketMQ因为功能很多，需要一些数据的返回值，所以采用mmp.</p>
-<h3 id="RocketMQ中的分布式事务及其实现"><a href="#RocketMQ中的分布式事务及其实现" class="headerlink" title="RocketMQ中的分布式事务及其实现"></a>RocketMQ中的分布式事务及其实现</h3><p>银行转账，A-&gt;B。</p>
+<h4 id="RocketMQ中的分布式事务及其实现"><a href="#RocketMQ中的分布式事务及其实现" class="headerlink" title="RocketMQ中的分布式事务及其实现"></a>RocketMQ中的分布式事务及其实现</h4><p>银行转账，A-&gt;B。</p>
 <p>A账户 -100 SQL事务，B账户 +100 SQL事务</p>
 <p>两阶段提交，半消息。MQ的消费者本身就会不断重试。</p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104110420703.png"></p>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104110435196.png"></p>
-<h2 id="超时订单自动取消"><a href="#超时订单自动取消" class="headerlink" title="超时订单自动取消"></a>超时订单自动取消</h2><p>使用延迟队列消息实现，有很多种方式：但基本都是死信和延时</p>
+<h3 id="超时订单自动取消"><a href="#超时订单自动取消" class="headerlink" title="超时订单自动取消"></a>超时订单自动取消</h3><p>使用延迟队列消息实现，有很多种方式：但基本都是死信和延时</p>
 <p>第一种 使用RabbitMQ里面TTL和死信队列实现。如果死信队列里有消息，则执行订单取消逻辑。</p>
 <p>第二种 在RabbitMQ安装延迟队列实现</p>
 <p>第三种 使用Redisson实现，也是用的延迟队列。</p>
@@ -3662,7 +3659,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2023-2024</span>
+                <span id="year">2023-2025</span>
             
             <span id="year">2023</span>
             <a href="/about" target="_blank">爱敲代码の鱼儿</a>
