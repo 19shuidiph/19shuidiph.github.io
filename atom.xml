@@ -40,6 +40,29 @@
   </entry>
   
   <entry>
+    <title>DistServe：为大语言模型服务进行prefill和decode的分解</title>
+    <link href="http://19shuidiph.github.io/2024/12/12/paperreading-distserve/"/>
+    <id>http://19shuidiph.github.io/2024/12/12/paperreading-distserve/</id>
+    <published>2024-12-12T11:11:35.000Z</published>
+    <updated>2025-01-12T11:44:20.724Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;DistServe：为大语言模型服务进行prefill和decode的分解&quot;&gt;&lt;a href=&quot;#DistServe：为大语言模型服务进行prefill和decode的分解&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="论文阅读" scheme="http://19shuidiph.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>项目自学记录10</title>
     <link href="http://19shuidiph.github.io/2024/12/03/xiang-mu-zi-xue-ji-lu-10/"/>
     <id>http://19shuidiph.github.io/2024/12/03/xiang-mu-zi-xue-ji-lu-10/</id>
@@ -58,6 +81,52 @@
     
     
     <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ServerlessLLM：大型语言模型的低延迟无服务器推理</title>
+    <link href="http://19shuidiph.github.io/2024/11/12/paperreading-serverlessllm/"/>
+    <id>http://19shuidiph.github.io/2024/11/12/paperreading-serverlessllm/</id>
+    <published>2024-11-12T11:12:05.000Z</published>
+    <updated>2025-01-12T11:41:33.661Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;ServerlessLLM：大型语言模型的低延迟无服务器推理&quot;&gt;&lt;a href=&quot;#ServerlessLLM：大型语言模型的低延迟无服务器推理&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="论文阅读" scheme="http://19shuidiph.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据中心中大语言模型开发的表征-NSDI&#39;24</title>
+    <link href="http://19shuidiph.github.io/2024/10/14/paperreading-nsdi24/"/>
+    <id>http://19shuidiph.github.io/2024/10/14/paperreading-nsdi24/</id>
+    <published>2024-10-14T11:12:37.000Z</published>
+    <updated>2025-01-12T11:41:19.199Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;数据中心中大语言模型开发的表征-NSDI’24&quot;&gt;&lt;a href=&quot;#数据中心中大语言模型开发的表征-NSDI’24&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="论文阅读" scheme="http://19shuidiph.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
     
     
   </entry>
@@ -403,75 +472,6 @@
     
     
     <category term="面试" scheme="http://19shuidiph.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>EffectiveJava读后感</title>
-    <link href="http://19shuidiph.github.io/2023/12/25/effectivejava-du-hou-gan/"/>
-    <id>http://19shuidiph.github.io/2023/12/25/effectivejava-du-hou-gan/</id>
-    <published>2023-12-25T03:14:38.000Z</published>
-    <updated>2024-01-08T12:52:55.850Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;EffectiveJava读后感&quot;&gt;&lt;a href=&quot;#EffectiveJava读后感&quot; class=&quot;headerlink&quot; title=&quot;EffectiveJava读后感&quot;&gt;&lt;/a&gt;EffectiveJava读后感&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="Effective-Java" scheme="http://19shuidiph.github.io/categories/Effective-Java/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Redis原理篇-黑马</title>
-    <link href="http://19shuidiph.github.io/2023/12/16/redis-yuan-li-pian-hei-ma/"/>
-    <id>http://19shuidiph.github.io/2023/12/16/redis-yuan-li-pian-hei-ma/</id>
-    <published>2023-12-16T02:13:20.000Z</published>
-    <updated>2024-01-22T06:15:49.418Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Redis原理篇-黑马&quot;&gt;&lt;a href=&quot;#Redis原理篇-黑马&quot; class=&quot;headerlink&quot; title=&quot;Redis原理篇-黑马&quot;&gt;&lt;/a&gt;Redis原理篇-黑马&lt;/h1&gt;&lt;p&gt;参考文章：&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Redis" scheme="http://19shuidiph.github.io/categories/Redis/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JavaGuide自学记录6-数据库基础</title>
-    <link href="http://19shuidiph.github.io/2023/12/15/javaguide-zi-xue-ji-lu-6-shu-ju-ku-ji-chu/"/>
-    <id>http://19shuidiph.github.io/2023/12/15/javaguide-zi-xue-ji-lu-6-shu-ju-ku-ji-chu/</id>
-    <published>2023-12-15T03:12:05.000Z</published>
-    <updated>2024-05-04T14:50:34.693Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;数据库基础&quot;&gt;&lt;a href=&quot;#数据库基础&quot; class=&quot;headerlink&quot; title=&quot;数据库基础&quot;&gt;&lt;/a&gt;数据库基础&lt;/h1&gt;&lt;h2 id=&quot;范式&quot;&gt;&lt;a href=&quot;#范式&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
     
     
   </entry>
