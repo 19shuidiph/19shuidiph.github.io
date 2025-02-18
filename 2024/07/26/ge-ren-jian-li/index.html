@@ -821,6 +821,9 @@ return coffee;`
 <p>在 InnoDB 默认的隔离级别 REPEATABLE-READ 下，行锁默认使用的是 Next-Key Lock。</p>
 <p>但是仍然不能完全解决幻读，<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012836410/article/details/139381338">参考文章</a>。</p>
 <p>比如A事务快照读一次，B事务写入数据，A事务当前读一次。则会出现幻读。</p>
+<p>间隙锁：假如emp表中只有101条记录，其empid的值分别是 1,2,…,100,101，下面的SQL：</p>
+<p>mysql&gt; select * from emp where empid &gt; 100 for update;</p>
+<p>是一个范围条件的检索，InnoDB不仅会对符合条件的empid值为101的记录加锁，也会对empid大于101（这些记录并不存在）的“间隙”加锁。这样可以避免幻读。</p>
 <p>意向锁是表级锁，共有两种：</p>
 <ul>
 <li><strong>意向共享锁（Intention Shared Lock，IS 锁）</strong>：事务有意向对表中的某些记录加共享锁（S 锁），加共享锁前必须先取得该表的 IS 锁。</li>
@@ -848,6 +851,13 @@ return coffee;`
 <td>互斥</td>
 </tr>
 </tbody></table>
+<h5 id="行级锁定实现方式"><a href="#行级锁定实现方式" class="headerlink" title="行级锁定实现方式"></a>行级锁定实现方式</h5><p>InnoDB行锁是通过给索引上的<strong>索引项加锁</strong>来实现的。所以，只有通过索引条件检索数据，InnoDB才使用行级锁，否则，InnoDB将使用表锁。其他注意事项：</p>
+<p>在不通过索引条件查询的时候，InnoDB使用的是表锁，而不是行锁。<br>由于MySQL的行锁是针对索引加的锁，不是针对记录加的锁，所以<strong>即使是访问不同行的记录，如果使用了相同的索引键，也是会出现锁冲突的。</strong><br>当表有多个索引的时候，不同的事务可以使用不同的索引锁定不同的行，另外，不论是使用主键索引、唯一索引或普通索引，InnoDB都会使用行锁来对数据加锁。<br>即便在条件中使用了索引字段，但具体是否使用索引来检索数据是由MySQL通过判断不同执行计划的代价来决定的，如果MySQL认为全表扫描效率更高，比如对一些很小的表，它就不会使用索引，这种情况下InnoDB将使用表锁，而不是行锁。因此，在分析锁冲突时，别忘了检查SQL的执行计划，以确认是否真正使用了索引。</p>
+<p>隐式加锁：</p>
+<p>InnoDB自动加意向锁。<br>对于UPDATE、DELETE和INSERT语句，InnoDB会自动给涉及数据集加排他锁（X)；<br>对于普通SELECT语句，InnoDB不会加任何锁；</p>
+<p>显示加锁：</p>
+<p>共享锁（S）：SELECT * FROM table_name WHERE … LOCK IN SHARE MODE<br>排他锁（X) ：SELECT * FROM table_name WHERE … FOR UPDATE<br>  用SELECT … IN SHARE MODE获得共享锁，主要用在需要数据依存关系时来确认某行记录是否存在，并确保没有人对这个记录进行UPDATE或者DELETE操作。</p>
+<p>  但是如果当前事务也需要对该记录进行更新操作，则很有可能造成死锁，对于锁定行记录后需要进行更新操作的应用，应该使用SELECT… FOR UPDATE方式获得排他锁。</p>
 <h3 id="MVCC机制"><a href="#MVCC机制" class="headerlink" title="MVCC机制"></a>MVCC机制</h3><p>MVCC （Multiversion Concurrency Control），多版本并发控制。顾名思义，MVCC 是通过数据行的多个版 本管理来实现数据库的 并发控制 。这项技术使得在InnoDB的事务隔离级别下执行 一致性读 操作有了保 证。<strong>换言之，就是为了查询一些正在被另一个事务更新的行，并且可以看到它们被更新之前的值，这样 在做查询的时候就不用等待另一个事务释放锁。</strong></p>
 <p>MVCC是快照读，是一种乐观锁的体现</p>
 <p><strong>MVCC的实现依赖于：隐藏字段、 Undo Log版本链、 Read View</strong></p>
@@ -901,6 +911,7 @@ return coffee;`
 <p>READ COMMITTED ：每次读取数据前都生成一个ReadView。</p>
 <p>使用 REPEATABLE READ 隔离级别的事务来说，只会在第一次执行查询语句时生成一个 ReadView ，之 后的查询就不会重复生成了。</p>
 <p>可重复读(RR)如何解决幻读的？因为只生成了最开始的一个ReadView，生成ReadView的时机。</p>
+<p>但是可重复读也没有完全解决幻读，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/564735312">https://zhuanlan.zhihu.com/p/564735312</a></p>
 <h3 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h3><p>性能分析工具：  首先要开启慢查询，指定一下阈值(默认是10s)，慢查询日志分析工具：mysqldumpslow</p>
 <p>EXPLAIN加在查询语句前面。</p>
 <p>聚簇索引：所有的用户记录都存在了叶⼦节点，数据即索引，索引即数据。以主键值大小进行排序。</p>
@@ -1052,6 +1063,17 @@ return coffee;`
 <li>ZipList中的任意entry大小超过了hash-max-ziplist-value（默认64字节）</li>
 </ol>
 <p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%8E%9F%E7%90%86%E7%AF%87-%E9%BB%91%E9%A9%AC/image/image-20240122140323958.png"></p>
+<h5 id="渐进式rehash"><a href="#渐进式rehash" class="headerlink" title="渐进式rehash"></a>渐进式rehash</h5><p>扩展或收缩哈希表需要将 ht[0] （旧全局哈希表） 的所有键值对移动到 ht[1]（新全局哈希表） 当中。这个动作是分多次，渐进式地完成的。原因在于当键值对过多时，一次性移动所有键值对会导致Redis在一段时间内无法对外提供服务。</p>
+<p>渐进式 rehash 步骤如下：</p>
+<ol>
+<li>为 ht[1] 分配内存空间，此时字典同时存在两个哈希表。</li>
+<li>将 dict::rehashidx 置为 0，rehash 工作正式开始。</li>
+<li>在 rehash 进行期间，每次对字典执行增删改查操作时，程序在执行客户端指定操作之外，还会将 ht[0] 在 rehashidx 索引上的所有键值对rehash 到 ht[1]，然后将 rehashidx 的值加一。也就是从ht[0] 的第一个索引位置开始，将这个索引位置上的所有 entries 拷贝到ht[1] 中，接着依次处理下一个哈希桶。</li>
+</ol>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/7bf121a21ead0f20b53d0f53cc9ad8c6.png"></p>
+<p>随着字典操作的不断执行，ht[0] 的所有键值对最终会全部移动到 ht[1]，此时程序会将 rehashidx 设为 -1，释放ht[0]的空间，表示 rehash 操作已完成。</p>
+<p>需要注意的是，在渐进式 rehash 操作过程中，因为同时存在两个哈希表，所以对key的删除，查找，更新操作会在两个哈希表上进行。redis会先尝试在 ht[0] 中寻找目标键值对，如果没有找到则会在 ht[1] 再次寻找。</p>
+<p>但是新增操作就不一样了，新增key只会在新的哈希表 ht[1] 上进行，为的是确保 ht[0] 中的已经被清空的单向链表不会新增元素。在 rehash 被触发后，即使没有收到新请求，Redis 也会定时执行一次 rehash 操作，而且，每次执行时长不会超过 1ms，以免对其他任务造成影响。</p>
 <h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><h4 id="写入-x2F-写出redis-要序列化JSONUtil-⭐⭐⭐"><a href="#写入-x2F-写出redis-要序列化JSONUtil-⭐⭐⭐" class="headerlink" title="写入&#x2F;写出redis,要序列化JSONUtil(⭐⭐⭐)"></a>写入&#x2F;写出redis,要序列化JSONUtil(⭐⭐⭐)</h4><pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ShopServiceImpl</span> <span class="token keyword">extends</span> <span class="token class-name">ServiceImpl</span><span class="token operator">&lt;</span>ShopMapper<span class="token punctuation">,</span> Shop<span class="token operator">></span> <span class="token keyword">implements</span> <span class="token class-name">IShopService</span> <span class="token punctuation">{</span>
 
@@ -1577,6 +1599,36 @@ ZRANGEBYSCORE <span class="token function">zset</span> <span class="token punctu
 <li><code>save</code> : 同步保存操作，会阻塞 Redis 主线程；</li>
 <li><code>bgsave</code> : fork 出一个子进程，子进程执行，不会阻塞 Redis 主线程，默认选项。</li>
 </ul>
+<p>在redis停机时会触发一次save命令；Redis内部有触发RDB的机制，可以在redis.conf文件中找到，格式如下：</p>
+<p>&#x2F;&#x2F; 900秒内，如果至少有1个key被修改，则执行bgsave ， 如果是save “” 则表示禁用RDB</p>
+<p>save 900 1  </p>
+<p>Redis处理的每一个写命令都会记录在AOF文件，可以看做是命令日志文件。刷盘策略可选：同步刷盘，每秒刷盘，no[由操作系统控制刷盘，不可靠]。</p>
+<p>只有最后一次写操作才有意义。通过执行bgrewriteaof命令，可以让AOF文件执行重写功能，用最少的命令达到相同效果。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/image-20210725151940515.png"></p>
+<h3 id="内存回收策略"><a href="#内存回收策略" class="headerlink" title="内存回收策略"></a>内存回收策略</h3><p>最经典 ：可以通过expire命令给Redis的key设置TTL（存活时间）</p>
+<p>过期Key的处理：<strong>惰性删除</strong>和<strong>周期删除</strong></p>
+<p>惰性删除：顾明思议并不是在TTL到期后就立刻删除，而是在访问一个key的时候，检查该key的存活时间，如果已经过期才执行删除。</p>
+<p>周期删除：顾明思议是通过一个定时任务，周期性的抽样部分过期的key，然后执行删除。执行周期有两种：<br>Redis服务初始化函数initServer()中设置定时任务，按照server.hz的频率来执行过期key清理，模式为SLOW。SLOW模式执行频率默认为10，每次不超过25ms<br>Redis的每个事件循环前会调用beforeSleep()函数，执行过期key清理，模式为FAST。FAST模式执行频率不固定，但两次间隔不低于2ms，每次耗时不超过1ms</p>
+<p>内存淘汰策略：就是当Redis内存使用达到设置的上限时，主动挑选部分key删除以释放更多内存的流程。Redis会在处理客户端命令的方法processCommand()中尝试做内存淘汰，有8种淘汰策略。</p>
+<ul>
+<li>noeviction： 不淘汰任何key，但是内存满时不允许写入新数据，<strong>默认就是这种策略。</strong></li>
+<li>volatile-ttl： 对设置了TTL的key，比较key的剩余TTL值，TTL越小越先被淘汰</li>
+<li>allkeys-random：对全体key ，随机进行淘汰。也就是直接从db-&gt;dict中随机挑选</li>
+<li>volatile-random：对设置了TTL的key ，随机进行淘汰。也就是从db-&gt;expires中随机挑选。</li>
+<li>allkeys-lru： 对全体key，基于LRU算法进行淘汰</li>
+<li>volatile-lru： 对设置了TTL的key，基于LRU算法进行淘汰</li>
+<li>allkeys-lfu： 对全体key，基于LFU算法进行淘汰</li>
+<li>volatile-lfu： 对设置了TTL的key，基于LFI算法进行淘汰<br>比较容易混淆的有两个：<ul>
+<li>LRU（Least Recently Used），最少最近使用。用当前时间减去最后一次访问时间，这个值越大则淘汰优先级越高。</li>
+<li>LFU（Least Frequently Used），最少频率使用。会统计每个key的访问频率，值越小淘汰优先级越高。</li>
+</ul>
+</li>
+</ul>
+<p>配置内存淘汰策略</p>
+<p>可以通过配置文件或命令行来设置Redis的内存淘汰策略。例如，通过命令行设置内存淘汰策略为<em>volatile-lru</em>：</p>
+<p>config set maxmemory-policy volatile-lru</p>
+<p>通过命令行查看当前的内存淘汰策略：</p>
+<p>config get maxmemory-policy</p>
 <h2 id="6-JUC"><a href="#6-JUC" class="headerlink" title="6.JUC"></a>6.JUC</h2><h3 id="线程基础知识"><a href="#线程基础知识" class="headerlink" title="线程基础知识"></a>线程基础知识</h3><p>多个线程共享进程的<strong>堆</strong>和<strong>方法区</strong>，但每个线程有自己的<strong>程序计数器</strong>、<strong>虚拟机栈</strong>和<strong>本地方法栈</strong>。</p>
 <p>程序计数器私有主要是为了<strong>线程切换后能恢复到正确的执行位置</strong></p>
 <p>为了<strong>保证线程中的局部变量不被别的线程访问到</strong>，虚拟机栈和本地方法栈是线程私有的</p>
@@ -2886,6 +2938,11 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <p>消息重复设计</p>
 <p>网络框架：Netty 高效的NIO框架。</p>
 </blockquote>
+<h3 id="保证消息幂等性的办法"><a href="#保证消息幂等性的办法" class="headerlink" title="保证消息幂等性的办法"></a>保证消息幂等性的办法</h3><p>一,生成者不重复发送消息到MQ<br>       mq内部可以为每条消息生成一个全局唯一、与业务无关的消息id，当mq接收到消息时，会先根据该id判断消息是否重复发送，mq再决定是否接收该消息。</p>
+<p>二, 消费者不重复消费<br>        消费者怎么保证不重复消费的关键在于消费者端做控制，因为MQ不能保证不重复发送消息，所以应该在消费者端控制：即使MQ重复发送了消息，消费者拿到了消息之后，要判断是否已经消费过，如果已经消费，直接丢弃。所以根据实际业务情况，有下面几种方式：</p>
+<p>1、如果从MQ拿到数据是要存到数据库，那么可以根据数据创建唯一约束，这样的话，同样的数据从MQ发送过来之后，当插入数据库的时候，会报违反唯一约束，不会插入成功的。（或者可以先查一次，是否在数据库中已经保存了，如果能查到，那就直接丢弃就好了）。</p>
+<p>2、让生产者发送消息时，每条消息加一个全局的唯一id，然后消费时，将该id保存到redis里面。消费时先去redis里面查一下有么有，没有再消费。（其实原理跟第一点差不多）。</p>
+<p>3、如果拿到的数据是直接放到redis的set中的话，那就不用考虑了，因为set集合就是自动有去重的。</p>
 <h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><p>2007开源</p>
 <p>RabbitMQ 是一个在 AMQP（Advanced Message Queuing Protocol ）基础上实现的，使用 Erlang 编写的一个开源的消息队列。</p>
 <p>RabbitMQ 中通过 <strong>Binding(绑定)</strong> 将 <strong>Exchange(交换器)</strong> 与 <strong>Queue(消息队列)</strong> 关联起来，在绑定的时候一般会指定一个 <strong>BindingKey(绑定建)</strong> ,这样 RabbitMQ 就知道如何正确将消息路由到队列了,如下图所示。一个绑定就是基于路由键将交换器和消息队列连接起来的路由规则，所以可以将交换器理解成一个由绑定构成的路由表。Exchange 和 Queue 的绑定可以是多对多的关系。</p>
