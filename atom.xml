@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2024-12-30T07:45:26.547Z</updated>
+  <updated>2025-02-22T11:34:25.798Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>并发向数组中add值的解决方案测评</title>
+    <link href="http://19shuidiph.github.io/2025/02/22/bing-fa-xiang-shu-zu-zhong-add-zhi-de-jie-jue-fang-an-ce-ping/"/>
+    <id>http://19shuidiph.github.io/2025/02/22/bing-fa-xiang-shu-zu-zhong-add-zhi-de-jie-jue-fang-an-ce-ping/</id>
+    <published>2025-02-22T11:17:02.000Z</published>
+    <updated>2025-02-22T11:34:25.798Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;并发向数组中add值的解决方案测评&quot;&gt;&lt;a href=&quot;#并发向数组中add值的解决方案测评&quot; class=&quot;headerlink&quot; title=&quot;并发向数组中add值的解决方案测评&quot;&gt;&lt;/a&gt;并发向数组中add值的解决方案测评&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Llumnix：大型语言模型服务的动态调度</title>
@@ -159,7 +182,7 @@
     <link href="http://19shuidiph.github.io/2024/07/26/ge-ren-jian-li/"/>
     <id>http://19shuidiph.github.io/2024/07/26/ge-ren-jian-li/</id>
     <published>2024-07-26T02:13:52.000Z</published>
-    <updated>2025-02-11T07:00:50.029Z</updated>
+    <updated>2025-02-22T11:48:09.534Z</updated>
     
     
       
@@ -449,29 +472,6 @@
     
     
     <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java八股文-消息队列学习记录2</title>
-    <link href="http://19shuidiph.github.io/2023/12/27/java-ba-gu-wen-xiao-xi-dui-lie-xue-xi-ji-lu-2/"/>
-    <id>http://19shuidiph.github.io/2023/12/27/java-ba-gu-wen-xiao-xi-dui-lie-xue-xi-ji-lu-2/</id>
-    <published>2023-12-27T07:51:48.000Z</published>
-    <updated>2024-01-04T03:10:45.108Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Java八股文-消息队列学习记录2&quot;&gt;&lt;a href=&quot;#Java八股文-消息队列学习记录2&quot; class=&quot;headerlink&quot; title=&quot;Java八股文-消息队列学习记录2&quot;&gt;&lt;/a&gt;Java八股文-消息队列学习记录2&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="面试" scheme="http://19shuidiph.github.io/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
   </entry>
