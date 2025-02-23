@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="并发向数组中add值的解决方案测评, 爱敲代码の鱼儿">
+    <meta name="keywords" content="大模型科研篇1-PD概念和并行计算概念, 爱敲代码の鱼儿">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>并发向数组中add值的解决方案测评 | 爱敲代码の鱼儿</title>
+    <title>大模型科研篇1-PD概念和并行计算概念 | 爱敲代码の鱼儿</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -303,12 +303,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/25.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">并发向数组中add值的解决方案测评</h1>
+                    <h1 class="description center-align post-title">大模型科研篇1-PD概念和并行计算概念</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                实习期间学习
+                            <a href="/categories/%E7%A7%91%E7%A0%94/" class="post-category">
+                                科研
                             </a>
                         
                     </div>
@@ -445,7 +445,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2025-02-22
+                    2025-02-23
                 </div>
                 
 
@@ -466,100 +466,109 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="并发向数组中add值的解决方案测评"><a href="#并发向数组中add值的解决方案测评" class="headerlink" title="并发向数组中add值的解决方案测评"></a>并发向数组中add值的解决方案测评</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>将业务场景抽象如下：</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 使用CompleteFuture并发的向ArrayList中add操作</span>
-        <span class="token keyword">long</span> start <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//CopyOnWriteArrayList&lt;Object> list = new CopyOnWriteArrayList&lt;>();</span>
-        ArrayList<span class="token operator">&lt;</span>Object<span class="token operator">></span> list1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        List<span class="token operator">&lt;</span>Object<span class="token operator">></span> list <span class="token operator">=</span> Collections<span class="token punctuation">.</span><span class="token function">synchronizedList</span><span class="token punctuation">(</span>list1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        CompletableFuture<span class="token operator">&lt;</span>Void<span class="token operator">></span> future1 <span class="token operator">=</span> CompletableFuture<span class="token punctuation">.</span><span class="token function">runAsync</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        CompletableFuture<span class="token operator">&lt;</span>Void<span class="token operator">></span> future2 <span class="token operator">=</span> CompletableFuture<span class="token punctuation">.</span><span class="token function">runAsync</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        CompletableFuture<span class="token operator">&lt;</span>Void<span class="token operator">></span> future3 <span class="token operator">=</span> CompletableFuture<span class="token punctuation">.</span><span class="token function">runAsync</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        CompletableFuture<span class="token operator">&lt;</span>Void<span class="token operator">></span> future4 <span class="token operator">=</span> CompletableFuture<span class="token punctuation">.</span><span class="token function">runAsync</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
-            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10000</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        CompletableFuture<span class="token punctuation">.</span><span class="token function">allOf</span><span class="token punctuation">(</span>future1<span class="token punctuation">,</span> future2<span class="token punctuation">,</span> future3<span class="token punctuation">,</span> future4<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">long</span> end <span class="token operator">=</span> System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>end<span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token punctuation">}</span>
-</code></pre>
-<h2 id="如果不加锁"><a href="#如果不加锁" class="headerlink" title="如果不加锁"></a>如果不加锁</h2><p>最后add的元素应该是4W个，但是实际的大小只有1W多不到2W；大量数据会丢失。</p>
-<h2 id="加锁-vector"><a href="#加锁-vector" class="headerlink" title="加锁-vector"></a>加锁-vector</h2><p>Vector类实现了可扩展的对象数组，并且它是线程安全的。Vector的解决方案很简单,它采用了同步关键词synchronized修饰所有方法。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">,</span> E element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">insertElementAt</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-<span class="token comment" spellcheck="true">// 使用了synchronized关键词修饰</span>
-<span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">insertElementAt</span><span class="token punctuation">(</span>E obj<span class="token punctuation">,</span> <span class="token keyword">int</span> index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        modCount<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">></span> elementCount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ArrayIndexOutOfBoundsException</span><span class="token punctuation">(</span>index
-                                                     <span class="token operator">+</span> <span class="token string">" > "</span> <span class="token operator">+</span> elementCount<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token function">ensureCapacityHelper</span><span class="token punctuation">(</span>elementCount <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span><span class="token function">arraycopy</span><span class="token punctuation">(</span>elementData<span class="token punctuation">,</span> index<span class="token punctuation">,</span> elementData<span class="token punctuation">,</span> index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> elementCount <span class="token operator">-</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        elementData<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> obj<span class="token punctuation">;</span>
-        elementCount<span class="token operator">++</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-
-    <span class="token keyword">public</span> <span class="token keyword">synchronized</span> E <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">>=</span> elementCount<span class="token punctuation">)</span>
-            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ArrayIndexOutOfBoundsException</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        <span class="token keyword">return</span> <span class="token function">elementData</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-</code></pre>
-<h2 id="加锁-synchronizedList"><a href="#加锁-synchronizedList" class="headerlink" title="加锁-synchronizedList"></a>加锁-synchronizedList</h2><p>他的读和写都加锁了;</p>
-<p>他继承了SynchronizedList<E>,里面的读写操作如下，也是加了锁，只不过加的是对象锁。</p>
-<pre class=" language-java"><code class="language-java"> List<span class="token operator">&lt;</span>Object<span class="token operator">></span> list <span class="token operator">=</span> Collections<span class="token punctuation">.</span><span class="token function">synchronizedList</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">,</span> E element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>mutex<span class="token punctuation">)</span> <span class="token punctuation">{</span>list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> element<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">public</span> E <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">int</span> index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>mutex<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> list<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<h2 id="加锁-CopyOnWriteArrayList"><a href="#加锁-CopyOnWriteArrayList" class="headerlink" title="加锁-CopyOnWriteArrayList"></a>加锁-CopyOnWriteArrayList</h2><p>写时复制，加的是ReentrantLock，只能有一个线程去写去复制；</p>
-<p>性能很差，因为复制了一份副本。不适用于疯狂写入的场景，适合读多写少。</p>
-<pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">add</span><span class="token punctuation">(</span>E e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">final</span> ReentrantLock lock <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>lock
-    lock<span class="token punctuation">.</span><span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">try</span><span class="token punctuation">{</span>
-        Object<span class="token punctuation">[</span><span class="token punctuation">]</span> elements <span class="token operator">=</span> <span class="token function">getArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> len <span class="token operator">=</span> elements<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//复制数组</span>
-        Object<span class="token punctuation">[</span><span class="token punctuation">]</span> newElements <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>elements<span class="token punctuation">,</span> len <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//赋值</span>
-        newElements<span class="token punctuation">[</span>len<span class="token punctuation">]</span> <span class="token operator">=</span> e<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//再把引用变为 这个新复制的数组 也就是覆盖原数组</span>
-        <span class="token function">setArray</span><span class="token punctuation">(</span>newElements<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
-        lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    
-<span class="token punctuation">}</span>
-</code></pre>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对于四个业务线程做处理来疯狂写入的操作，应该用vector或者synchronizedList.</p>
+                <h1 id="大模型科研篇1-PD概念和并行计算概念"><a href="#大模型科研篇1-PD概念和并行计算概念" class="headerlink" title="大模型科研篇1-PD概念和并行计算概念"></a>大模型科研篇1-PD概念和并行计算概念</h1><h2 id="PD概念"><a href="#PD概念" class="headerlink" title="PD概念"></a>PD概念</h2><p><strong>大模型</strong>的 prefill 和 decode 是什么意思？</p>
+<p>在大规模语言模型（如 GPT-3、GPT-4 等）的推理（inference）过程中，<strong>prefill</strong> 和 <strong>decode</strong> 是两个关键阶段，分别对应于模型在生成文本时的不同处理过程。这两个概念对于理解和优化大模型的性能至关重要。</p>
+<ul>
+<li><strong>预填充阶段（Prefilling）</strong>：在 LLM 推理过程中，预填充阶段是指模型在收到输入序列后，生成第一个输出词元之前的计算过程。</li>
+<li><strong>解码阶段（Decoding）</strong>：解码阶段是指在预填充阶段生成第一个词元后，模型通过迭代生成后续词元的过程，直到生成结束标志或达到最大序列长度。</li>
+</ul>
+<h2 id="1-Encoder-和-Prefill-的区别"><a href="#1-Encoder-和-Prefill-的区别" class="headerlink" title="1.Encoder 和 Prefill 的区别"></a>1.Encoder 和 Prefill 的区别</h2><h4 id="1-1-模型架构差异"><a href="#1-1-模型架构差异" class="headerlink" title="1.1 模型架构差异"></a><strong>1.1 模型架构差异</strong></h4><ul>
+<li><strong>Encoder 是模型架构中的一个组件</strong>：它是特定模型（如 Encoder-Decoder 模型）中的一个模块，专门用于编码输入序列。</li>
+<li><strong>Prefill 是模型推理过程中的一个阶段</strong>：它是模型在生成输出时的一个计算阶段，不一定对应于模型架构中的特定组件。</li>
+</ul>
+<h4 id="1-2-应用对象不同"><a href="#1-2-应用对象不同" class="headerlink" title="1.2 应用对象不同"></a><strong>1.2 应用对象不同</strong></h4><ul>
+<li><strong>Encoder 针对 Encoder-Decoder 模型</strong>：<ul>
+<li><strong>模型结构</strong>：Encoder-Decoder 模型明确区分了编码器和解码器部分。</li>
+<li><strong>任务类型</strong>：适用于需要将输入序列转换为输出序列的任务，如机器翻译。</li>
+</ul>
+</li>
+<li><strong>Prefill 针对自回归语言模型（Decoder-only 模型）</strong>：<ul>
+<li>Prefill  decode </li>
+<li><strong>模型结构</strong>：如 GPT-3、GPT-4，没有明确的编码器部分，整个模型是一个大型的解码器。</li>
+<li><strong>任务类型</strong>：以文本生成为主，根据输入提示生成后续文本。</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-3-与解码器的关系"><a href="#1-3-与解码器的关系" class="headerlink" title="1.3 与解码器的关系"></a><strong>1.3 与解码器的关系</strong></h4><ul>
+<li><strong>Encoder 与</strong> <strong>Decoder</strong> <strong>是模型的两个部分</strong>：<ul>
+<li><strong>协同工作</strong>：编码器提供输入的表示，解码器利用这些表示生成输出。</li>
+</ul>
+</li>
+<li><strong>Prefill 与 Decode 是推理过程的两个阶段</strong>：<ul>
+<li><strong>顺序执行</strong>：prefill 阶段准备好初始状态，decode 阶段逐步生成输出。</li>
+</ul>
+</li>
+</ul>
+<p>Transformer &#x3D; Bert +GPT &#x3D; Encoder + Decoder</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/202502231.png"></p>
+<h2 id="2-LLM-推理性能指标"><a href="#2-LLM-推理性能指标" class="headerlink" title="2.LLM 推理性能指标"></a>2.LLM 推理性能指标</h2><p>下面是 Anyscale 公司，在 llmperf 工具中采用的一些推理性能测试指标：</p>
+<ul>
+<li><strong>每分钟完成请求数</strong>（RPS，Requests Per Second）：衡量模型在一定时间内能处理的请求数量，反映了并发处理能力。</li>
+<li><strong>首字输出时间</strong>（TTFT，Time to First Token）：从接收到请求到输出第一个字符的时间，表示初始响应速度。</li>
+<li><strong>字符间延迟</strong>（ITL，Inter-Token Latency）：连续生成字符之间的平均时间，影响生成文本的流畅性和速度。</li>
+<li><strong>端到端延迟</strong>（End-to-End Latency）：从请求发出到完成整个响应的时间，总体响应速度的体现。</li>
+<li><strong>每次典型请求的成本</strong>（Cost per Typical Request）：综合考虑性能指标的成本效率。</li>
+</ul>
+<h2 id="3-KV-cache"><a href="#3-KV-cache" class="headerlink" title="3.KV-cache"></a>3.KV-cache</h2><p>重温一下self-attention什么是QKV，3个W是要学的参数矩阵，X是输入。</p>
+<p><strong>注意力机制</strong>：使用 Q、K、V 计算注意力权重，生成每个令牌的上下文感知表示（Contextual Representation）</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022302.png"></p>
+<p>X&#x3D;[1,2,3,4]  分别对应缓慢输入进来的Q1,Q2,Q3,Q4</p>
+<p><a target="_blank" rel="noopener" href="https://www.yidoo.xyz/images/3dd4913cf39f78580f17710ee638c773.gif">https://www.yidoo.xyz/images/3dd4913cf39f78580f17710ee638c773.gif</a></p>
+<p>推理过程中，W是不变了。所以之前的K和V可以缓存。只是省去了K&#x3D;XW的计算过程而已。</p>
+<p>这样，在后续 token 的 Attention 计算中，无需重复计算 K 和 V，从而显著节约计算时间。</p>
+<p>Qwen2 7B 这个国产大模型，在 4 K 序列长度下，KV Cache 大小是 1.6 GB！这是什么概念呢？要知道很多人的显卡也就 8GB 或者 16GB。怎么解决， PagedAttention！PagedAttention 的设计灵感来源于操作系统的虚拟内存分页技术。</p>
+<p>将KV缓存分割成固定大小的“页” ,根据当前需要处理的数据，动态地加载相关的页面到内存中，并卸载不再需要的页面。</p>
+<h2 id="4-prefill和decode分离式架构"><a href="#4-prefill和decode分离式架构" class="headerlink" title="4.prefill和decode分离式架构"></a>4.prefill和decode分离式架构</h2><h3 id="预填充阶段："><a href="#预填充阶段：" class="headerlink" title="预填充阶段："></a>预填充阶段：</h3><p>输入序列被分词器转换为令牌token。一个个英文单词X how are you</p>
+<p>模型计算这些令牌的嵌入表示。</p>
+<p>通过自注意力机制，计算出每个令牌位置的键和值向量，并存储在KV缓存中。</p>
+<p>生成第一个输出令牌。I;m </p>
+<h3 id="传递内容："><a href="#传递内容：" class="headerlink" title="传递内容："></a>传递内容：</h3><p>KV缓存：包含所有输入令的键和值向量。</p>
+<p>第一个输出令牌：预填充阶段生成的第一个输出令牌。</p>
+<h3 id="解码阶段："><a href="#解码阶段：" class="headerlink" title="解码阶段："></a>解码阶段：</h3><p>使用传递过来的KV缓存和第一个输出令牌作为初始状态。</p>
+<p>逐步生成后续的输出令牌，每次生成一个新令牌时，都会更新KV缓存。</p>
+<p>重复上述过程，直到生成完整的输出序列。</p>
+<h2 id="5-令牌-token"><a href="#5-令牌-token" class="headerlink" title="5.令牌-token"></a>5.令牌-token</h2><h3 id="例子：文本生成"><a href="#例子：文本生成" class="headerlink" title="例子：文本生成"></a>例子：文本生成</h3><p>假设我们有一个简单的句子：“Hello, how are you?”，并且我们想用一个语言模型来生成接下来的回复。</p>
+<ol>
+<li>分词： 首先，输入文本会被分词器转换成一系列的令牌。例如，对于这个句子，分词器可能会将其分割为以下令牌序列：<ol>
+<li><code>[&quot;Hello&quot;, &quot;,&quot;, &quot;how&quot;, &quot;are&quot;, &quot;you&quot;, &quot;?&quot;]</code></li>
+</ol>
+</li>
+<li>预填充阶段 (Prefill Phase)： 在预填充阶段，模型会处理整个输入序列，以生成初始的键-值6个（KV）缓存。这些缓存将用于后续的解码步骤。在这个阶段，模型实际上是在理解输入的上下文，并准备好生成输出“Today”。</li>
+<li>解码阶段 (Decode Phase)： 接下来，进入解码阶段，模型开始逐个生成新的令牌。假设我们的模型预测下一个令牌是“Today”，那么输出序列现在变为：<ol>
+<li><code>[&quot;Hello&quot;, &quot;,&quot;, &quot;how&quot;, &quot;are&quot;, &quot;you&quot;, &quot;?&quot;, &quot;Today&quot;]</code></li>
+</ol>
+</li>
+</ol>
+<p>模型继续基于当前的上下文和之前的KV缓存来预测下一个令牌。比如，模型可能接着生成“I’m”、“fine”等，直到完成整个句子或达到预设的最大长度。</p>
+<p>通过这种方式，令牌作为文本的基本单位，使得模型能够逐步理解和生成自然语言。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022303.png"></p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022304.png"></p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022305.png"></p>
+<p>参考：</p>
+<p>扫盲视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Zz4y127h1/?spm_id_from=333.999.0.0&vd_source=6ed7f19911310aba47123ac6cc1674a0">Transformer</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/jOOD1wlyFOX0_jgHzT474Q?poc_token=HMcPS2ejE9zSk5ZDHfxujB_19S1hXv5Tq_2vMjUe">LLM推理入门</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/ZmfE_YxDn4fEPXr3waXBug">kv-cache</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU1MjkzNzg5Nw==&mid=2247484079&idx=1&sn=0fe3a4a222b0320c4f934ea867fd3b48&chksm=fbfb3269cc8cbb7fd0cd317d9928e63dbe39580adec0df91352d0fa16012bd8ad1649329321f&cur_album_id=3482444111666266119&scene=190#rd">pagedAttention</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU1MjkzNzg5Nw==&mid=2247484088&idx=1&sn=a8725dc1f0e17483c1f276c6afd431ee&chksm=fbfb327ecc8cbb687f9145ec6d4f6bde650e58b35d812ff19b818c92c1fd55584c63d1f4d7dc&cur_album_id=3482444111666266119&scene=189#wechat_redirect">prefill-decode 分离式架构</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yorkhunter/article/details/140139848">OSDI‘24–DistServe:分解预填充和解码实现吞吐量优化的LLM服务</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/PpWgIKvScYtE5Z4IUypWvw">Sigcomm’24-CacheGen用于快速大型语言模型服务的KV缓存压缩和流式传输</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/701772045">通过pd分离提高gpu利用率</a></p>
+<h2 id="并行计算概念"><a href="#并行计算概念" class="headerlink" title="并行计算概念"></a>并行计算概念</h2><p>模型越来越大，需要更多的GPU时间； 1块GPU训练十天，则1024块GPU只需要训练14分钟。</p>
+<h2 id="数据并行"><a href="#数据并行" class="headerlink" title="数据并行"></a>数据并行</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022306.png"></p>
+<p>蓝色绿色橙色，不同的数据集【将数据集切分为三份】。在不同的GPU上跑。跑的都是一个模型，比如都是”RestNet”</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022307.png"></p>
+<p>将权重改变全部交给中心服务器（比如zookeeper),比如四个是+1，+1，+1，-1，则ZK改变权重为+2。改变完之后再通知每个边缘服务器开始拉最新的参数。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022308.png"></p>
+<p>Replicate -&gt; Split Data -&gt; Compute Gradients -&gt; Push &amp; Sum -&gt; Update</p>
+<p>先复制5份一样的模型（一份中心，四份边缘），然后把数据随机切分四份（数量相同），然后计算梯度，然后把计算值上传给中心模型，中心模型进行累加，最后中心模型把改变结果同步给边缘模型。</p>
+<h2 id="流水线并行"><a href="#流水线并行" class="headerlink" title="流水线并行"></a>流水线并行</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022309.png"></p>
+<p>不同的GPU负责模型的不同的层，比如34个GPU负责RestNet的34个层。</p>
+<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022310.png"></p>
+<p>微批，是将一个大的数据流切分为好多批次。</p>
+<p>横坐标是随着时间的流动。4种颜色对应4块GPU。每个GPU处理模型的一层。Bubble代表空闲期。</p>
+<p>F0,0  F1,0.  F2,0. 是一个微批。</p>
+<p>F0,1. 是另一个微批。另一批数据。</p>
+<h2 id="张量并行"><a href="#张量并行" class="headerlink" title="张量并行"></a>张量并行</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022311.png"></p>
 
                 
             </div>
@@ -586,7 +595,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://19shuidiph.github.io/2025/02/22/bing-fa-xiang-shu-zu-zhong-add-zhi-de-jie-jue-fang-an-ce-ping/">http://19shuidiph.github.io/2025/02/22/bing-fa-xiang-shu-zu-zhong-add-zhi-de-jie-jue-fang-an-ce-ping/</a>
+                    <a href="http://19shuidiph.github.io/2025/02/23/da-mo-xing-ke-yan-pian-1-pd-gai-nian-he-bing-xing-ji-suan-gai-nian/">http://19shuidiph.github.io/2025/02/23/da-mo-xing-ke-yan-pian-1-pd-gai-nian-he-bing-xing-ji-suan-gai-nian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -791,9 +800,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2025/02/23/da-mo-xing-ke-yan-pian-1-pd-gai-nian-he-bing-xing-ji-suan-gai-nian/">
                     <div class="card-image">
@@ -811,9 +821,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-02-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -826,6 +836,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -836,13 +847,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/12/30/paperreading-llumnix/">
+                <a href="/2025/02/22/bing-fa-xiang-shu-zu-zhong-add-zhi-de-jie-jue-fang-an-ce-ping/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="Llumnix：大型语言模型服务的动态调度">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="并发向数组中add值的解决方案测评">
                         
-                        <span class="card-title">Llumnix：大型语言模型服务的动态调度</span>
+                        <span class="card-title">并发向数组中add值的解决方案测评</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -853,14 +864,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-12-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-22
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="post-category">
-                                    论文阅读
+                            <a href="/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    实习期间学习
                                 </a>
                             
                             

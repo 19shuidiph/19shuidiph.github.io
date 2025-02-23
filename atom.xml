@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2025-02-22T11:34:25.798Z</updated>
+  <updated>2025-02-23T14:11:50.400Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>大模型科研篇1-PD概念和并行计算概念</title>
+    <link href="http://19shuidiph.github.io/2025/02/23/da-mo-xing-ke-yan-pian-1-pd-gai-nian-he-bing-xing-ji-suan-gai-nian/"/>
+    <id>http://19shuidiph.github.io/2025/02/23/da-mo-xing-ke-yan-pian-1-pd-gai-nian-he-bing-xing-ji-suan-gai-nian/</id>
+    <published>2025-02-23T13:55:19.000Z</published>
+    <updated>2025-02-23T14:11:50.400Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;大模型科研篇1-PD概念和并行计算概念&quot;&gt;&lt;a href=&quot;#大模型科研篇1-PD概念和并行计算概念&quot; class=&quot;headerlink&quot; title=&quot;大模型科研篇1-PD概念和并行计算概念&quot;&gt;&lt;/a&gt;大模型科研篇1-PD概念和并行计算概念&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="科研" scheme="http://19shuidiph.github.io/categories/%E7%A7%91%E7%A0%94/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>并发向数组中add值的解决方案测评</title>
@@ -443,29 +466,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;MySQL重要知识点&quot;&gt;&lt;a href=&quot;#MySQL重要知识点&quot; class=&quot;headerlink&quot; title=&quot;MySQL重要知识点&quot;&gt;&lt;/a&gt;MySQL重要知识点&lt;/h1&gt;&lt;h2 id=&quot;索引&quot;&gt;&lt;a href=&quot;#索引&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JavaGuide自学记录7-MySQL常见面试题</title>
-    <link href="http://19shuidiph.github.io/2024/05/23/javaguide-zi-xue-ji-lu-7-mysql-chang-jian-mian-shi-ti/"/>
-    <id>http://19shuidiph.github.io/2024/05/23/javaguide-zi-xue-ji-lu-7-mysql-chang-jian-mian-shi-ti/</id>
-    <published>2024-05-23T13:34:33.000Z</published>
-    <updated>2024-07-14T13:22:10.689Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;MySQL常见面试题&quot;&gt;&lt;a href=&quot;#MySQL常见面试题&quot; class=&quot;headerlink&quot; title=&quot;MySQL常见面试题&quot;&gt;&lt;/a&gt;MySQL常见面试题&lt;/h1&gt;&lt;h2 id=&quot;字段类型&quot;&gt;&lt;a href=&quot;#字段类型&quot;</summary>
         
       
     
