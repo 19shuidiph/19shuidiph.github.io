@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2025-02-23T14:11:50.400Z</updated>
+  <updated>2025-03-29T14:41:26.287Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>卸载BloomFilter-业务实践</title>
+    <link href="http://19shuidiph.github.io/2025/03/29/xie-zai-bloomfilter-ye-wu-shi-jian/"/>
+    <id>http://19shuidiph.github.io/2025/03/29/xie-zai-bloomfilter-ye-wu-shi-jian/</id>
+    <published>2025-03-29T14:19:17.000Z</published>
+    <updated>2025-03-29T14:41:26.287Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;卸载BloomFilter-业务实践&quot;&gt;&lt;a href=&quot;#卸载BloomFilter-业务实践&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>大模型科研篇1-PD概念和并行计算概念</title>
@@ -449,29 +472,6 @@
     
     
     <category term="k8s" scheme="http://19shuidiph.github.io/categories/k8s/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JavaGuide自学记录8-MySQL重要知识点</title>
-    <link href="http://19shuidiph.github.io/2024/05/24/javaguide-zi-xue-ji-lu-8-mysql-chong-yao-zhi-shi-dian/"/>
-    <id>http://19shuidiph.github.io/2024/05/24/javaguide-zi-xue-ji-lu-8-mysql-chong-yao-zhi-shi-dian/</id>
-    <published>2024-05-24T09:12:51.000Z</published>
-    <updated>2024-07-14T13:52:03.102Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;MySQL重要知识点&quot;&gt;&lt;a href=&quot;#MySQL重要知识点&quot; class=&quot;headerlink&quot; title=&quot;MySQL重要知识点&quot;&gt;&lt;/a&gt;MySQL重要知识点&lt;/h1&gt;&lt;h2 id=&quot;索引&quot;&gt;&lt;a href=&quot;#索引&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JavaGuide" scheme="http://19shuidiph.github.io/categories/JavaGuide/"/>
     
     
   </entry>
