@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2025-03-29T14:41:26.287Z</updated>
+  <updated>2025-04-21T11:53:27.780Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mooncake：以 KVCache 为中心的服务分解架构LLM</title>
+    <link href="http://19shuidiph.github.io/2025/04/21/paperreading-mooncake/"/>
+    <id>http://19shuidiph.github.io/2025/04/21/paperreading-mooncake/</id>
+    <published>2025-04-21T11:44:47.000Z</published>
+    <updated>2025-04-21T11:53:27.780Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Mooncake：以-KVCache-为中心的服务分解架构LLM&quot;&gt;&lt;a href=&quot;#Mooncake：以-KVCache-为中心的服务分解架构LLM&quot; class=&quot;headerlink&quot; title=&quot;Mooncake：以 KVCache</summary>
+        
+      
+    
+    
+    
+    <category term="论文阅读" scheme="http://19shuidiph.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>卸载BloomFilter-业务实践</title>
@@ -449,29 +472,6 @@
     
     
     <category term="学成在线" scheme="http://19shuidiph.github.io/categories/%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>K8S学习</title>
-    <link href="http://19shuidiph.github.io/2024/05/31/k8s-learning/"/>
-    <id>http://19shuidiph.github.io/2024/05/31/k8s-learning/</id>
-    <published>2024-05-31T01:15:18.000Z</published>
-    <updated>2024-06-02T01:00:02.107Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;K8S学习&quot;&gt;&lt;a href=&quot;#K8S学习&quot; class=&quot;headerlink&quot; title=&quot;K8S学习&quot;&gt;&lt;/a&gt;K8S学习&lt;/h1&gt;&lt;h2 id=&quot;容器-x2F-docker的基本知识&quot;&gt;&lt;a href=&quot;#容器-x2F-docker的基本知识&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="k8s" scheme="http://19shuidiph.github.io/categories/k8s/"/>
     
     
   </entry>
