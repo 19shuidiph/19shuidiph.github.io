@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分布式锁业务实战, 爱敲代码の鱼儿">
+    <meta name="keywords" content="鹅厂实习收获, 爱敲代码の鱼儿">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>分布式锁业务实战 | 爱敲代码の鱼儿</title>
+    <title>鹅厂实习收获 | 爱敲代码の鱼儿</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -303,12 +303,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">分布式锁业务实战</h1>
+                    <h1 class="description center-align post-title">鹅厂实习收获</h1>
                 </div>
             </div>
         </div>
@@ -466,7 +466,9 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="分布式锁业务实战"><a href="#分布式锁业务实战" class="headerlink" title="分布式锁业务实战"></a>分布式锁业务实战</h1><p>在没有Redis的情况下使用数据库中去重表的唯一索引处理幂等性校验。后续引入Redis使用分布式锁处理，同时使用全局变量和sync.Once实现单例模式，保证新建Redis连接池的代码在多线程多请求环境下只初始化一次。后期使用Redsync做分布式锁，同时在业务耗时不稳定的情况下新建协程实现锁自动续期.</p>
+                <h1 id="鹅厂实习收获"><a href="#鹅厂实习收获" class="headerlink" title="鹅厂实习收获"></a>鹅厂实习收获</h1><p>我将业务进行了抽象，本文符合保密协议，不涉及真实业务场景。</p>
+<p>本文只讨论技术，所有代码均根据网络资料改编。</p>
+<h2 id="分布式锁业务实战"><a href="#分布式锁业务实战" class="headerlink" title="分布式锁业务实战"></a>分布式锁业务实战</h2><p>在没有Redis的情况下使用数据库中去重表的唯一索引处理幂等性校验。后续引入Redis使用分布式锁处理，同时使用全局变量和sync.Once实现单例模式，保证新建Redis连接池的代码在多线程多请求环境下只初始化一次。后期使用Redsync做分布式锁，同时在业务耗时不稳定的情况下新建协程实现锁自动续期.</p>
 <p>废话不多说，直接上代码。</p>
 <pre class=" language-go"><code class="language-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
     <span class="token string">"fmt"</span>
@@ -590,6 +592,134 @@
 
 <span class="token punctuation">}</span>
 </code></pre>
+<h2 id="函数式选项模式"><a href="#函数式选项模式" class="headerlink" title="函数式选项模式"></a>函数式选项模式</h2><p>go中的一种设计模式，和常见的设计模式一样，也是通过代码的设计，让配置更加方便。</p>
+<p>可以参考这两篇博客，<a target="_blank" rel="noopener" href="https://polarisxu.studygolang.com/posts/go/action/functional-options-pattern/">博客1</a>, <a target="_blank" rel="noopener" href="https://www.liwenzhou.com/posts/Go/functional-options-pattern/">博客2</a></p>
+<p>业务背景：初始化一个类，有些是固定的参数，有些是可选的。这些可选的叫插件Plugins。</p>
+<p>我们以一个服务器为例子，可以给服务器添加多个插件。</p>
+<p>如果每种都要写构造函数，那要写很多构造函数。所以进行了改造。</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"testing"</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// 插件结构体</span>
+<span class="token keyword">type</span> Plugin <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    Name   <span class="token builtin">string</span>
+    Config <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Server 结构体（对外暴露）</span>
+<span class="token keyword">type</span> Server <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    Host    <span class="token builtin">string</span>
+    Port    <span class="token builtin">int</span>
+    Plugins <span class="token punctuation">[</span><span class="token punctuation">]</span>Plugin
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 内部配置结构体（对外隐藏）</span>
+<span class="token keyword">type</span> serverConfig <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    host    <span class="token builtin">string</span>
+    port    <span class="token builtin">int</span>
+    plugins <span class="token punctuation">[</span><span class="token punctuation">]</span>Plugin
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// IOption 接口：用于配置 Server</span>
+<span class="token keyword">type</span> IOption <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+    <span class="token function">apply</span><span class="token punctuation">(</span><span class="token operator">*</span>serverConfig<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// funcOption 类型：实现 IOption 接口</span>
+<span class="token keyword">type</span> funcOption <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token operator">*</span>serverConfig<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>fo funcOption<span class="token punctuation">)</span> <span class="token function">apply</span><span class="token punctuation">(</span>cfg <span class="token operator">*</span>serverConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">fo</span><span class="token punctuation">(</span>cfg<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// NewServer 构造函数</span>
+<span class="token keyword">func</span> <span class="token function">NewServer</span><span class="token punctuation">(</span>opts <span class="token operator">...</span>IOption<span class="token punctuation">)</span> <span class="token operator">*</span>Server <span class="token punctuation">{</span>
+    cfg <span class="token operator">:=</span> <span class="token operator">&amp;</span>serverConfig<span class="token punctuation">{</span>
+        host<span class="token punctuation">:</span>    <span class="token string">"localhost"</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 默认 Host</span>
+        port<span class="token punctuation">:</span>    <span class="token number">8080</span><span class="token punctuation">,</span>        <span class="token comment" spellcheck="true">// 默认 Port</span>
+        plugins<span class="token punctuation">:</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span>Plugin<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> opt <span class="token operator">:=</span> <span class="token keyword">range</span> opts <span class="token punctuation">{</span>
+        opt<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>cfg<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>Server<span class="token punctuation">{</span>
+        Host<span class="token punctuation">:</span>    cfg<span class="token punctuation">.</span>host<span class="token punctuation">,</span>
+        Port<span class="token punctuation">:</span>    cfg<span class="token punctuation">.</span>port<span class="token punctuation">,</span>
+        Plugins<span class="token punctuation">:</span> cfg<span class="token punctuation">.</span>plugins<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// WithHost 设置 Host 字段</span>
+<span class="token keyword">func</span> <span class="token function">WithHost</span><span class="token punctuation">(</span>host <span class="token builtin">string</span><span class="token punctuation">)</span> IOption <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">funcOption</span><span class="token punctuation">(</span>
+        <span class="token keyword">func</span><span class="token punctuation">(</span>cfg <span class="token operator">*</span>serverConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            cfg<span class="token punctuation">.</span>host <span class="token operator">=</span> host
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// WithPort 设置 Port 字段</span>
+<span class="token keyword">func</span> <span class="token function">WithPort</span><span class="token punctuation">(</span>port <span class="token builtin">int</span><span class="token punctuation">)</span> IOption <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">funcOption</span><span class="token punctuation">(</span>
+        <span class="token keyword">func</span><span class="token punctuation">(</span>cfg <span class="token operator">*</span>serverConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            cfg<span class="token punctuation">.</span>port <span class="token operator">=</span> port
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// WithAuthPlugin 添加认证插件</span>
+<span class="token keyword">func</span> <span class="token function">WithAuthPlugin</span><span class="token punctuation">(</span>realm <span class="token builtin">string</span><span class="token punctuation">)</span> IOption <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">funcOption</span><span class="token punctuation">(</span>
+        <span class="token keyword">func</span><span class="token punctuation">(</span>cfg <span class="token operator">*</span>serverConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            cfg<span class="token punctuation">.</span>plugins <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>cfg<span class="token punctuation">.</span>plugins<span class="token punctuation">,</span> Plugin<span class="token punctuation">{</span>
+                Name<span class="token punctuation">:</span>   <span class="token string">"auth"</span><span class="token punctuation">,</span>
+                Config<span class="token punctuation">:</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">{</span><span class="token string">"realm"</span><span class="token punctuation">:</span> realm<span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// WithRateLimitPlugin 添加限流插件</span>
+<span class="token keyword">func</span> <span class="token function">WithRateLimitPlugin</span><span class="token punctuation">(</span>limit <span class="token builtin">int</span><span class="token punctuation">)</span> IOption <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">funcOption</span><span class="token punctuation">(</span>
+        <span class="token keyword">func</span><span class="token punctuation">(</span>cfg <span class="token operator">*</span>serverConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            cfg<span class="token punctuation">.</span>plugins <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>cfg<span class="token punctuation">.</span>plugins<span class="token punctuation">,</span> Plugin<span class="token punctuation">{</span>
+                Name<span class="token punctuation">:</span>   <span class="token string">"rate_limit"</span><span class="token punctuation">,</span>
+                Config<span class="token punctuation">:</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">{</span><span class="token string">"limit"</span><span class="token punctuation">:</span> limit<span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// WithLoggerPlugin 添加日志插件</span>
+<span class="token keyword">func</span> <span class="token function">WithLoggerPlugin</span><span class="token punctuation">(</span>level <span class="token builtin">string</span><span class="token punctuation">)</span> IOption <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">funcOption</span><span class="token punctuation">(</span>
+        <span class="token keyword">func</span><span class="token punctuation">(</span>cfg <span class="token operator">*</span>serverConfig<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            cfg<span class="token punctuation">.</span>plugins <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>cfg<span class="token punctuation">.</span>plugins<span class="token punctuation">,</span> Plugin<span class="token punctuation">{</span>
+                Name<span class="token punctuation">:</span>   <span class="token string">"logger"</span><span class="token punctuation">,</span>
+                Config<span class="token punctuation">:</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">{</span><span class="token string">"level"</span><span class="token punctuation">:</span> level<span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">TestPlugins</span><span class="token punctuation">(</span>t <span class="token operator">*</span>testing<span class="token punctuation">.</span>T<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    server <span class="token operator">:=</span> <span class="token function">NewServer</span><span class="token punctuation">(</span>
+        <span class="token function">WithHost</span><span class="token punctuation">(</span><span class="token string">"example.com"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">WithPort</span><span class="token punctuation">(</span><span class="token number">8000</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">WithAuthPlugin</span><span class="token punctuation">(</span><span class="token string">"admin"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">WithRateLimitPlugin</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">WithLoggerPlugin</span><span class="token punctuation">(</span><span class="token string">"debug"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
+
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"Host: %s\n"</span><span class="token punctuation">,</span> server<span class="token punctuation">.</span>Host<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"Port: %d\n"</span><span class="token punctuation">,</span> server<span class="token punctuation">.</span>Port<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Plugins:"</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> plugin <span class="token operator">:=</span> <span class="token keyword">range</span> server<span class="token punctuation">.</span>Plugins <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"- %s: %v\n"</span><span class="token punctuation">,</span> plugin<span class="token punctuation">.</span>Name<span class="token punctuation">,</span> plugin<span class="token punctuation">.</span>Config<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
 
                 
             </div>
@@ -616,7 +746,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://19shuidiph.github.io/2025/06/29/fen-bu-shi-suo-ye-wu-shi-zhan/">http://19shuidiph.github.io/2025/06/29/fen-bu-shi-suo-ye-wu-shi-zhan/</a>
+                    <a href="http://19shuidiph.github.io/2025/06/29/e-han-shi-xi-shou-huo/">http://19shuidiph.github.io/2025/06/29/e-han-shi-xi-shou-huo/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -826,13 +956,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2025/06/29/fen-bu-shi-suo-ye-wu-shi-zhan/">
+                <a href="/2025/06/29/e-han-shi-xi-shou-huo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="分布式锁业务实战">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="鹅厂实习收获">
                         
-                        <span class="card-title">分布式锁业务实战</span>
+                        <span class="card-title">鹅厂实习收获</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
