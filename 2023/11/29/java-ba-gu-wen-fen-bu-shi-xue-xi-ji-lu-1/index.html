@@ -478,7 +478,7 @@
 <p>try阶段只要是对业务系统做检测及资源预留。</p>
 <p>confirm阶段主要是对业务系统做确认提交。try能成功则confirm一定成功。</p>
 <p>cancel是业务取消，资源释放</p>
-<h2 id="5-消息队列和事件表实现分布式事务"><a href="#5-消息队列和事件表实现分布式事务" class="headerlink" title="5.消息队列和事件表实现分布式事务"></a>5.消息队列和事件表实现分布式事务</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image-20231207192555256.png"></p>
+<h2 id="5-消息队列和事件表实现分布式事务"><a href="#5-消息队列和事件表实现分布式事务" class="headerlink" title="5.消息队列和事件表实现分布式事务"></a>5.消息队列和事件表实现分布式事务</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image-20231207192555256.png"></p>
 <p>优势：给用户的响应速度会快。 缺点：编码复杂，排查问题困难。</p>
 <h2 id="6-分布式id的生成方案"><a href="#6-分布式id的生成方案" class="headerlink" title="6.分布式id的生成方案"></a>6.分布式id的生成方案</h2><p>唯一性，有序递增性，高可用性，带时间。</p>
 <p>UUID：结合机器的网卡，本地时间，一个随机数来生成</p>

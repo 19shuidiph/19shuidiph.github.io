@@ -903,7 +903,7 @@ CopyOnWriteArrayList:CopyOnWrite写时复制一份新的，在新的上面修改
 </li>
 </ol>
 <p>创建多个线程，会怎样？</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1562862680071.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1562862680071.png"></p>
 <p>运行结果：依然只有一个就是threadName。</p>
 <p>如果想打印threadName2的结果，即<strong>不想复用之前的计算结果。怎么办？再创建一个FutureTask对象即可。</strong></p>
 <h3 id="callable接口和runnable接口的区别"><a href="#callable接口和runnable接口的区别" class="headerlink" title="callable接口和runnable接口的区别"></a>callable接口和runnable接口的区别</h3><p>相同点：<strong>都是接口，都可以编写多线程程序，都采用Thread.start()启动线程</strong></p>
@@ -925,10 +925,10 @@ CopyOnWriteArrayList:CopyOnWrite写时复制一份新的，在新的上面修改
 </ol>
 <p>因此，当一个线程试图对一个已经满了的队列进行入队列操作时，它将会被阻塞，除非有另一个线程做了出队列操作；同样，当一个线程试图对一个空队列进行出队列操作时，它将会被阻塞，除非有另一个线程进行了入队列操作。</p>
 <p><strong>阻塞队列主要用在生产者&#x2F;消费者的场景</strong>，下面这幅图展示了一个线程生产、一个线程消费的场景：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1562942021825.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1562942021825.png"></p>
 <p><strong>为什么需要BlockingQueue</strong><br>        好处是我们不需要关心什么时候需要阻塞线程，什么时候需要唤醒线程，因为这一切BlockingQueue都给你一手包办了。在concurrent包发布以前，在多线程环境下，我们每个程序员都必须去自己控制这些细节，尤其还要兼顾效率和线程安全，而这会给我们的程序带来不小的复杂度。</p>
 <h3 id="认识BlockingQueue"><a href="#认识BlockingQueue" class="headerlink" title="认识BlockingQueue"></a>认识BlockingQueue</h3><p>java.util.concurrent 包里的 BlockingQueue是一个接口，继承Queue接口，Queue接口继承 Collection。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1562943086619.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1562943086619.png"></p>
 <p>BlockingQueue接口主要有以下7个实现类：</p>
 <ol>
 <li><font color="red">ArrayBlockingQueue：由数组结构组成的有界阻塞队列。</font></li>
@@ -940,7 +940,7 @@ CopyOnWriteArrayList:CopyOnWrite写时复制一份新的，在新的上面修改
 <li>LinkedBlockingDeque：由链表组成的双向阻塞队列。</li>
 </ol>
 <p>BlockingQueue接口有以下几个方法：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1562943531362.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1562943531362.png"></p>
 <p>它的方法可以分成以下4类：</p>
 <table>
 <thead>
@@ -981,17 +981,17 @@ CopyOnWriteArrayList:CopyOnWrite写时复制一份新的，在新的上面修改
 <p>​		如果试图的操作无法立即执行，该方法调用将会发生阻塞，直到能够执行。<br>​		当阻塞队列满时，再往队列里put元素，队列会一直阻塞生产者线程直到put数据or响应中断退出<br>​		当阻塞队列空时，再从队列里take元素，队列会一直阻塞消费者线程直到队列可用</p>
 <p><strong>超时退出</strong></p>
 <p>​		如果试图的操作无法立即执行，该方法调用将会发生阻塞，直到能够执行，但等待时间不会超过给定值。<br>​		返回一个特定值以告知该操作是否成功(典型的是 true &#x2F; false)。</p>
-<h2 id="垃圾回收器比较"><a href="#垃圾回收器比较" class="headerlink" title="垃圾回收器比较"></a>垃圾回收器比较</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1326194-20181017145352803-1499680295.png"></p>
+<h2 id="垃圾回收器比较"><a href="#垃圾回收器比较" class="headerlink" title="垃圾回收器比较"></a>垃圾回收器比较</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/1326194-20181017145352803-1499680295.png"></p>
 <p>如果两个收集器之间存在连线，则说明它们可以搭配使用。虚拟机所处的区域则表示它是属于新生代还是老年代收集器。</p>
 <p><strong>整堆收集器</strong>： G1</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/v2-8688e96d24a3fc683eaf7ad3efb3dbd3_720w.jpg"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/v2-8688e96d24a3fc683eaf7ad3efb3dbd3_720w.jpg"></p>
 <p>垃圾回收器选择策略 ：</p>
 <p>客户端程序 ： Serial + Serial Old；</p>
 <p>吞吐率优先的服务端程序（比如：计算密集型） ： Parallel Scavenge + Parallel Old；</p>
 <p>响应时间优先的服务端程序 ：ParNew + CMS。</p>
 <p>G1收集器是基于标记整理算法实现的，不会产生空间碎片，可以精确地控制停顿，将堆划分为多个大小固定的独立区域，并跟踪这些区域的垃圾堆积程度，在后台维护一个优先列表，每次根据允许的收集时间，优先回收垃圾最多的区域（Garbage First）。</p>
 <h2 id="ZGC收集器-XX-UseZGC"><a href="#ZGC收集器-XX-UseZGC" class="headerlink" title="ZGC收集器(-XX:+UseZGC)"></a>ZGC收集器(-XX:+UseZGC)</h2><p>ZGC是一款JDK 11中新加入的具有实验性质的低延迟垃圾收集器，ZGC是Azul System公司开发的 C4(Concurrent Continuously  Compacting Collector)收集器</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/image-20220819170335305.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/image-20220819170335305.png"></p>
 <p><strong>ZGC的目标主要有4个：</strong></p>
 <p>①支持TB量级的堆。</p>
 <p>②最大GC停顿时间不超10ms。目前一般线上环境运行良好的JAVA应用Minor GC停顿时间在10ms左右， Major GC一般都需要100ms以上（G1可以调节停顿时间，但是如果调的过低的话，反而会适得其反），之所以能 做到这一点是因为它的停顿时间主要跟Root扫描有关，而Root数量和堆大小是没有任何关系的。 </p>
@@ -1010,10 +1010,10 @@ CopyOnWriteArrayList:CopyOnWrite写时复制一份新的，在新的上面修改
 <blockquote>
 <p>大型Region（Large Region） ： 容量不固定， 可以动态变化， 但必须为2MB的整数倍， 用于放置4MB或 以上的大对象。 每个大型Region中 只会存放一个大对象， 这也预示着虽然名字叫作“大型Region”， 但它的实际容量完全有可能小于中型 Region， 最小容量可低至4MB。 大型Region在ZGC的实现中是不会被重分配（重分配是ZGC的一种处理动作， 用于复制对象的收集器阶段， 稍后会介绍到）的， 因为复制一个大对象的代价非常高昂。</p>
 </blockquote>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/image-20220819170750932.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/image-20220819170750932.png"></p>
 <p><strong>ZGC运作过程</strong> </p>
 <p>ZGC的运作过程大致可划分为以下四个大的阶段： </p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/image-20220819172121880.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8BJUC/image/image-20220819172121880.png"></p>
 <p>①并发标记（Concurrent Mark）：与G1一样，并发标记是遍历对象图做可达性分析的阶段，它的初始标记 (<strong>Mark Start</strong>)和最终标记(<strong>Mark End</strong>)也会出现短暂的停顿，与G1不同的是， ZGC的标记是在指针上而不是在对象 上进行的， 标记阶段会更新染色指针中的Marked 0、 Marked 1标志位。 </p>
 <p>②并发预备重分配（Concurrent Prepare for Relocate）：这个阶段需要根据特定的查询条件统计得出本次收 集过程要清理哪些Region，将这些Region组成重分配集（Relocation Set）。ZGC每次回收都会扫描所有的 Region，用范围更大的扫描成本换取省去G1中记忆集的维护成本。 </p>
 <p>③并发重分配（Concurrent Relocate）：重分配是ZGC执行过程中的核心阶段，这个过程要把重分配集中的存 活对象复制到新的Region上，并为重分配集中的每个Region维护一个转发表（Forward Table），记录从旧对象 到新对象的转向关系。ZGC收集器能仅从引用上就明确得知一个对象是否处于重分配集之中，如果用户线程此时并 发访问了位于重分配集中的对象，这次访问将会被预置的内存屏障所截获，然后立即根据Region上的转发表记录将访问转发到新复制的对象上，并同时修正更新该引用的值，使其直接指向新对象，ZGC将这种行为称为指 针的“自愈”（Self-Healing）能力。 </p>

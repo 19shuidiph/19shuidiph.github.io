@@ -720,15 +720,15 @@ Date offsetDate <span class="token operator">=</span> dateTime<span class="token
 <p>后面还做了一个图形验证码。</p>
 <h2 id="19章，MQ削峰"><a href="#19章，MQ削峰" class="headerlink" title="19章，MQ削峰"></a>19章，MQ削峰</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/szhNJUPT/p/17483359.html">博客</a></p>
 <p>拿到锁以后就可以扔给异步线程。说明用户就能成功买到票。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/12306%E9%A1%B9%E7%9B%AE/image/image-20231119103845816.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E7%AE%80%E5%8E%861/12306%E9%A1%B9%E7%9B%AE/image/image-20231119103845816.png"></p>
 <p>轮询查询购票结果，可以搞个定时任务。</p>
 <p>MQ的生产者和消费者一般放在两个不同的节点，两个不同的模块。</p>
 <p>分布式锁必须跟购票逻辑放一起</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/12306%E9%A1%B9%E7%9B%AE/image/image-20231119212719070.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E7%AE%80%E5%8E%861/12306%E9%A1%B9%E7%9B%AE/image/image-20231119212719070.png"></p>
 <p> 有一个问题，拿锁的时候有可能失败，没拿到锁的会快速失败，会抛异常。正确的方法是让订单更新成失败，用户查询到失败会重新发起购票。</p>
 <p>但是拿不到锁还会使令牌消耗过大，拿到令牌后就有买票的资格，不能因为没抢到车次锁就买票失败，因此要有排队功能</p>
 <p>新的时序图</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E7%AE%80%E5%8E%861/12306%E9%A1%B9%E7%9B%AE/image/image-20231119213101125.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E7%AE%80%E5%8E%861/12306%E9%A1%B9%E7%9B%AE/image/image-20231119213101125.png"></p>
 <p>一个车次一个锁。</p>
 <p>不要把数据库里一万条数据同时查出来，可以使用分页插件多查几次。不然一次性全放到内存里，压力太大了。</p>
 <p>要保证库存超卖和库存卖完的情况。</p>

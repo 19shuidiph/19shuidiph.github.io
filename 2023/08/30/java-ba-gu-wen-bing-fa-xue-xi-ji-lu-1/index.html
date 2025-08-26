@@ -521,7 +521,7 @@
     <span class="token punctuation">}</span>
 </code></pre>
 <p>状态之间是如何变化的</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230503203629212.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230503203629212.png"></p>
 <p>分别是</p>
 <ul>
 <li>新建<ul>
@@ -680,13 +680,13 @@
 <blockquote>
 <p>另外，<code>wait/notify</code>等方法也依赖于<code>monitor</code>对象，这就是为什么只有在同步的块或者方法中才能调用<code>wait/notify</code>等方法，否则会抛出<code>java.lang.IllegalMonitorStateException</code>的异常的原因</p>
 </blockquote>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230830110547540.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230830110547540.png"></p>
 <h3 id="synchronized的锁升级"><a href="#synchronized的锁升级" class="headerlink" title="synchronized的锁升级"></a>synchronized的锁升级</h3><p>Java中的synchronized有偏向锁、轻量级锁、重量级锁三种形式，分别对应了锁只被一个线程持有、不同线程交替持有锁、多线程竞争锁三种情况。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230830111616821.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230830111616821.png"></p>
 <p>一旦锁发生了竞争，都会升级为重量级锁。  锁只能升级，不能降级。</p>
 <h3 id="JMM-Java内存模型"><a href="#JMM-Java内存模型" class="headerlink" title="JMM(Java内存模型)"></a>JMM(Java内存模型)</h3><p>Java内存模型(Java Memory Model)描述了Java程序中各种变量(线程共享变量)的访问规则，以及在JVM中将变量存储到内存和从内存中读取变量这样的底层细节。</p>
 <p>Java内存模型，就是为了屏蔽系统和硬件的差异，让一套代码在不同平台下能到达相同的访问结果。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230504181638237.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230504181638237.png"></p>
 <p>特点：</p>
 <ol>
 <li><p>所有的共享变量都存储于主内存(计算机的RAM)这里所说的变量指的是实例变量和类变量。不包含局部变量，因为局部变量是线程私有的，因此不存在竞争问题。</p>
@@ -705,7 +705,7 @@
 <blockquote>
 <p>一个当前内存值V、旧的预期值A、即将更新的值B，当且仅当旧的预期值A和内存值V相同时，将内存值修改为B并返回true，否则什么都不做，并返回false。如果CAS操作失败，通过自旋的方式等待并再次尝试，直到成功</p>
 </blockquote>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230830134828544.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230830134828544.png"></p>
 <p>缺点：</p>
 <p><strong>开销大</strong>：在并发量比较高的情况下，如果反复尝试更新某个变量，却又一直更新不成功，会给CPU带来较大的压力</p>
 <p><strong>ABA问题</strong>：当变量从A修改为B再修改回A时，变量值等于期望值A，但是无法判断是否修改，CAS操作在ABA修改后依然成功。 </p>
@@ -761,7 +761,7 @@
 <li>提供了基于 FIFO 的等待队列，类似于 Monitor 的 EntryList</li>
 <li>条件变量来实现等待、唤醒机制，支持多个条件变量，类似于 Monitor 的 WaitSet</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505083840046.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505083840046.png"></p>
 <blockquote>
 <ul>
 <li>线程0来了以后，去尝试修改state属性，如果发现state属性是0，就修改state状态为1，表示线程0抢锁成功</li>
@@ -770,7 +770,7 @@
 </ul>
 </blockquote>
 <p><strong>如果多个线程共同去抢这个资源是如何保证原子性的呢？</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505084451193.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505084451193.png"></p>
 <p>在去修改state状态的时候，使用的cas自旋锁来保证原子性，确保只能有一个线程修改成功，修改失败的线程将会进入FIFO队列中等待</p>
 <p><strong>AQS是公平锁吗，还是非公平锁？</strong></p>
 <ul>
@@ -795,19 +795,19 @@
 <li><p>与synchronized一样，都支持重入</p>
 </li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505091736569.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505091736569.png"></p>
 <h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>ReentrantLock主要利用CAS+AQS队列来实现。它支持公平锁和非公平锁，两者的实现类似</p>
 <p>构造方法接受一个可选的公平参数（默认非公平锁），当设置为true时，表示公平锁，否则为非公平锁。公平锁的效率往往没有非公平锁的效率高，在许多线程访问的情况下，公平锁表现出较低的吞吐量。</p>
 <p>查看ReentrantLock源码中的构造方法：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505091827720.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505091827720.png"></p>
 <p>提供了两个构造方法，不带参数的默认为非公平</p>
 <p>如果使用带参数的构造函数，并且传的值为true，则是公平锁</p>
 <p>其中NonfairSync和FairSync这两个类父类都是Sync</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505092151244.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505092151244.png"></p>
 <p>而Sync的父类是AQS，所以可以得出ReentrantLock底层主要实现就是基于AQS来实现的</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505091833629.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505091833629.png"></p>
 <p><strong>工作流程</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505092340431.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505092340431.png"></p>
 <ul>
 <li><p>线程来抢锁后使用cas的方式修改state状态，修改状态成功为1，则让exclusiveOwnerThread属性指向当前线程，获取锁成功</p>
 </li>
@@ -852,10 +852,10 @@
 <h3 id="死锁诊断"><a href="#死锁诊断" class="headerlink" title="死锁诊断"></a>死锁诊断</h3><p>当程序出现了死锁现象，我们可以使用jdk自带的工具：jps和 jstack</p>
 <p>步骤如下：</p>
 <p>第一：查看运行的线程</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20220902171426738.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20220902171426738.png"></p>
 <p>第二：使用jstack查看线程运行的情况，下图是截图的关键信息</p>
 <p>运行命令：<code>jstack -l 46032</code></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20220902172229567.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20220902172229567.png"></p>
 <p><strong>其他解决工具，可视化工具</strong></p>
 <ul>
 <li>jconsole</li>
@@ -900,9 +900,9 @@
 <h4 id="指令重排序"><a href="#指令重排序" class="headerlink" title="指令重排序"></a>指令重排序</h4><p>先执行actor1中第二行代码，然后执行actor2获取结果—&gt;1,0(发生了指令重排序，影响结果)</p>
 <p>应该添加读屏障和写屏障</p>
 <p>在变量上添加volatile，禁止指令重排序，则可以解决问题</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505082835588.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505082835588.png"></p>
 <p>屏障添加的示意图</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505082923729.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505082923729.png"></p>
 <ul>
 <li>写操作加的屏障是阻止上方其它写操作越过屏障排到volatile变量写之下</li>
 <li>读操作加的屏障是阻止下方其它读操作越过屏障排到volatile变量读之上</li>
@@ -917,7 +917,7 @@
 <li>CAS控制数组节点的添加    (在判断数组中当前位置为null的时候，使用CAS来把这个新的Node写入数组中对应的位置)</li>
 <li>synchronized只锁定当前链表或红黑二叉树的首节点，只要hash不冲突，就不会产生并发的问题 , 效率得到提升</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505093507265.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505093507265.png"></p>
 <h3 id="导致并发程序出现问题的根本原因"><a href="#导致并发程序出现问题的根本原因" class="headerlink" title="导致并发程序出现问题的根本原因"></a>导致并发程序出现问题的根本原因</h3><p>Java并发编程三大特性</p>
 <ul>
 <li><p>原子性</p>
@@ -929,15 +929,15 @@
 </ul>
 <h4 id="（1）原子性"><a href="#（1）原子性" class="headerlink" title="（1）原子性"></a>（1）原子性</h4><p>一个线程在CPU中操作不可暂停，也不可中断，要不执行完成，要不不执行</p>
 <p>比如，如下代码能保证原子性吗？</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505205200628.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505205200628.png"></p>
 <p>以上代码会出现超卖或者是一张票卖给同一个人，执行并不是原子性的</p>
 <p>解决方案：</p>
 <p>1.synchronized：同步加锁</p>
 <p>2.JUC里面的lock：加锁</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505210853493.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505210853493.png"></p>
 <h4 id="（2）内存可见性"><a href="#（2）内存可见性" class="headerlink" title="（2）内存可见性"></a>（2）内存可见性</h4><p>内存可见性：让一个线程对共享变量的修改对另一个线程可见</p>
 <p>比如，以下代码不能保证内存可见性</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505211002252.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505211002252.png"></p>
 <p>解决方案：</p>
 <ul>
 <li><p>synchronized</p>
@@ -949,13 +949,13 @@
 </ul>
 <h4 id="（3）有序性"><a href="#（3）有序性" class="headerlink" title="（3）有序性"></a>（3）有序性</h4><p>指令重排：处理器为了提高程序运行效率，可能会对输入代码进行优化，它不保证程序中各个语句的执行先后顺序同代码中的顺序一致，但是它会保证程序最终执行结果和代码顺序执行的结果是一致的</p>
 <p>还是之前的例子，如下代码：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505211209336.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505211209336.png"></p>
 <p>解决方案：</p>
 <ul>
 <li>volatile</li>
 </ul>
 <h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><h3 id="线程池的核心参数和执行流程"><a href="#线程池的核心参数和执行流程" class="headerlink" title="线程池的核心参数和执行流程"></a>线程池的核心参数和执行流程</h3><p>线程池核心参数主要参考ThreadPoolExecutor这个类的7个参数的构造函数</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505220514872.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505220514872.png"></p>
 <ul>
 <li><p>corePoolSize 核心线程数目</p>
 </li>
@@ -973,7 +973,7 @@
 </li>
 </ul>
 <p><strong>工作流程</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505220701835.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505220701835.png"></p>
 <blockquote>
 <p>1，任务在提交的时候，首先判断核心线程数是否已满，如果没有满则直接添加到工作线程执行</p>
 <p>2，如果核心线程数满了，则判断阻塞队列是否已满，如果没有满，当前任务存入阻塞队列</p>
@@ -1110,7 +1110,7 @@
 <li>LinkedBlockingQueue读和写各有一把锁，性能相对较好</li>
 <li>ArrayBlockingQueue只有一把锁，读和写公用，性能相对于LinkedBlockingQueue差一些</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505221424359.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505221424359.png"></p>
 <h3 id="如何确定核心线程数"><a href="#如何确定核心线程数" class="headerlink" title="如何确定核心线程数"></a>如何确定核心线程数</h3><p>在设置核心线程数之前，需要先熟悉一些执行线程池执行任务的类型</p>
 <ul>
 <li>IO密集型任务</li>
@@ -1123,24 +1123,24 @@
 <p>一般来说：计算型代码、Bitmap转换、Gson转换等</p>
 <p>推荐：核心线程数大小设置为N+1    （N为计算机的CPU核数）</p>
 <p>java代码查看CPU核数</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505221837189.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505221837189.png"></p>
 <h3 id="线程池的种类有哪些"><a href="#线程池的种类有哪些" class="headerlink" title="线程池的种类有哪些"></a>线程池的种类有哪些</h3><p>在java.util.concurrent.Executors类中提供了大量创建连接池的静态方法，常见就有四种</p>
 <ol>
 <li><p>创建使用固定线程数的线程池</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505221959259.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505221959259.png"></p>
 </li>
 <li><p>单线程化的线程池，它只会用唯一的工作线程来执行任 务，保证所有任务按照指定顺序(FIFO)执行</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505222050294.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505222050294.png"></p>
 </li>
 <li><p>可缓存线程池</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505222126391.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505222126391.png"></p>
 </li>
 <li><p>提供了“延迟”和“周期执行”功能的ThreadPoolExecutor。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505222203615.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505222203615.png"></p>
 </li>
 </ol>
 <p>但是我们不建议用上面的，不建议用Executors创建线程池，希望用ThreadPoolExecutor的方法，自己调整参数，规避资源耗尽的风险。</p>
-<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><h3 id="CountDownLatch、Future"><a href="#CountDownLatch、Future" class="headerlink" title="CountDownLatch、Future"></a>CountDownLatch、Future</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230831103126612.png"></p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><h3 id="CountDownLatch、Future"><a href="#CountDownLatch、Future" class="headerlink" title="CountDownLatch、Future"></a>CountDownLatch、Future</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230831103126612.png"></p>
 <p>示例代码</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CountDownLatchDemo</span> <span class="token punctuation">{</span>
 
@@ -1192,9 +1192,9 @@
 </code></pre>
 <h3 id="案例一（ES批量导入）"><a href="#案例一（ES批量导入）" class="headerlink" title="案例一（ES批量导入）"></a>案例一（ES批量导入）</h3><p>在我们项目上线之前，我们需要把数据库中的数据一次性的同步到es索引库中，但是当时的数据好像是1000万左右，一次性读取数据肯定不行（oom异常），当时我就想到可以使用线程池的方式导入，利用CountDownLatch来控制，就能避免一次性加载过多，防止内存溢出</p>
 <p>整体流程就是通过CountDownLatch+线程池配合去执行</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230831103423024.png"></p>
-<h3 id="案例二（数据汇总）"><a href="#案例二（数据汇总）" class="headerlink" title="案例二（数据汇总）"></a>案例二（数据汇总）</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230831103452404.png"></p>
-<h3 id="案例三（异步调用）"><a href="#案例三（异步调用）" class="headerlink" title="案例三（异步调用）"></a>案例三（异步调用）</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230831103512890.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230831103423024.png"></p>
+<h3 id="案例二（数据汇总）"><a href="#案例二（数据汇总）" class="headerlink" title="案例二（数据汇总）"></a>案例二（数据汇总）</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230831103452404.png"></p>
+<h3 id="案例三（异步调用）"><a href="#案例三（异步调用）" class="headerlink" title="案例三（异步调用）"></a>案例三（异步调用）</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230831103512890.png"></p>
 <h3 id="如何控制某个方法允许并发访问线程的数量"><a href="#如何控制某个方法允许并发访问线程的数量" class="headerlink" title="如何控制某个方法允许并发访问线程的数量"></a>如何控制某个方法允许并发访问线程的数量</h3><p>Semaphore [ˈsɛməˌfɔr] 信号量，是JUC包下的一个工具类，我们可以通过其限制执行的线程数量，达到限流的效果</p>
 <p>当一个线程执行时先通过其方法进行获取许可操作，获取到许可的线程继续执行业务逻辑，当线程执行完成后进行释放许可操作，未获取达到许可的线程进行等待或者直接结束。</p>
 <p>Semaphore两个重要的方法</p>
@@ -1234,7 +1234,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h3><p>ThreadLocal 主要功能有两个，第一个是可以实现资源对象的线程隔离，让每个线程各用各的资源对象，避免争用引发的线程安全问题，第二个是实现了线程内的资源共享.</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230831103933372.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230831103933372.png"></p>
 <h4 id="ThreadLocal基本使用"><a href="#ThreadLocal基本使用" class="headerlink" title="ThreadLocal基本使用"></a>ThreadLocal基本使用</h4><p>三个主要方法：</p>
 <ul>
 <li><p>set(value) 设置值</p>
@@ -1277,7 +1277,7 @@
 <p>当调用 remove 方法，就是以 ThreadLocal 自己作为 key，移除当前线程关联的资源值</p>
 <h3 id="ThreadLocal的内存泄露"><a href="#ThreadLocal的内存泄露" class="headerlink" title="ThreadLocal的内存泄露"></a>ThreadLocal的内存泄露</h3><p>其中key为使用弱引用的ThreadLocal实例，value为线程变量的副本</p>
 <p>ThreadLocalMap 中的 key 是弱引用，值为强引用； key 会被GC 释放内存，关联 value 的内存并不会释放。建议主动 remove 释放 key，value</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505224857538.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230505224857538.png"></p>
 
                 
             </div>

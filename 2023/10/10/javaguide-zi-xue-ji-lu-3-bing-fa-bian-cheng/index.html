@@ -470,7 +470,7 @@
 <p>程序计数器私有主要是为了<strong>线程切换后能恢复到正确的执行位置</strong></p>
 <p>为了<strong>保证线程中的局部变量不被别的线程访问到</strong>，虚拟机栈和本地方法栈是线程私有的</p>
 <p>堆和方法区是所有线程共享的资源，其中堆是进程中最大的一块内存，主要用于存放新创建的对象 (几乎所有对象都在这里分配内存)，方法区主要用于存放已被加载的类信息、常量、静态变量、即时编译器编译后的代码等数据</p>
-<h2 id="Java线程状态变迁图"><a href="#Java线程状态变迁图" class="headerlink" title="Java线程状态变迁图"></a>Java线程状态变迁图</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%953-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image/image-20231010135407469.png"></p>
+<h2 id="Java线程状态变迁图"><a href="#Java线程状态变迁图" class="headerlink" title="Java线程状态变迁图"></a>Java线程状态变迁图</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%953-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image/image-20231010135407469.png"></p>
 <h2 id="产生死锁的四个必要条件"><a href="#产生死锁的四个必要条件" class="headerlink" title="产生死锁的四个必要条件"></a>产生死锁的四个必要条件</h2><p>互斥条件：该资源任意一个时刻只由一个线程占用。</p>
 <p>请求与保持条件：一个线程因请求资源而阻塞时，对已获得的资源保持不放。</p>
 <p>不剥夺条件:线程已获得的资源在未使用完之前不能被其他线程强行剥夺，只有自己使用完毕后才释放资源。</p>
@@ -485,7 +485,7 @@
 <p>避免死锁就是在资源分配时，借助于算法（比如银行家算法）对资源分配进行计算评估，使其进入安全状态。</p>
 <h2 id="volatile-可见性"><a href="#volatile-可见性" class="headerlink" title="volatile-可见性"></a>volatile-可见性</h2><p>在 Java 中，<code>volatile</code> 关键字可以保证变量的可见性，如果我们将变量声明为 <strong><code>volatile</code></strong> ，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。</p>
 <p>跳过本地内存，直接去主内存读取。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%953-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image/image-20231010151721958.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%953-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image/image-20231010151721958.png"></p>
 <p><code>volatile</code> 关键字能保证数据的可见性，但不能保证数据的原子性。<code>synchronized</code> 关键字两者都能保证。</p>
 <h2 id="volatile-单例模式的面试题"><a href="#volatile-单例模式的面试题" class="headerlink" title="volatile+单例模式的面试题"></a>volatile+单例模式的面试题</h2><p>下面我以一个常见的面试题为例讲解一下 <code>volatile</code> 关键字禁止指令重排序的效果。</p>
 <p>面试中面试官经常会说：“单例模式了解吗？来给我手写一下！给我解释一下双重检验锁方式实现单例模式的原理呗！”</p>
@@ -609,7 +609,7 @@
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ReentrantLock</span> <span class="token keyword">implements</span> <span class="token class-name">Lock</span><span class="token punctuation">,</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable <span class="token punctuation">{</span><span class="token punctuation">}</span>
 </code></pre>
 <p><code>ReentrantLock</code> 里面有一个内部类 <code>Sync</code>，<code>Sync</code> 继承 AQS（<code>AbstractQueuedSynchronizer</code>），添加锁和释放锁的大部分操作实际上都是在 <code>Sync</code> 中实现的。<code>Sync</code> 有公平锁 <code>FairSync</code> 和非公平锁 <code>NonfairSync</code> 两个子类。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%953-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image/image-20231010171831007.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%953-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image/image-20231010171831007.png"></p>
 <p><code>ReentrantLock</code> 默认使用非公平锁，也可以通过构造器来显式的指定使用公平锁。</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 传入一个 boolean 值，true 时为公平锁，false 时为非公平锁</span>
 <span class="token keyword">public</span> <span class="token function">ReentrantLock</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> fair<span class="token punctuation">)</span> <span class="token punctuation">{</span>

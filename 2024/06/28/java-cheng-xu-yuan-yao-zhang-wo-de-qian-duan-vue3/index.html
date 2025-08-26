@@ -937,13 +937,13 @@ npm install
 npm run dev
 </code></pre>
 <h4 id="编码-IDE"><a href="#编码-IDE" class="headerlink" title="编码 IDE"></a>编码 IDE</h4><p>推荐采用微软的 VSCode 作为开发工具，到它的官网 <a target="_blank" rel="noopener" href="https://code.visualstudio.com/">Visual Studio Code - Code Editing. Redefined</a> 下载安装即可</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220911090418621.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220911090418621.png"></p>
 <p>要对 *.vue 做语法支持，还要安装一个 Volar 插件</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220911090756694.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220911090756694.png"></p>
 <h4 id="安装-devtools"><a href="#安装-devtools" class="headerlink" title="安装 devtools"></a>安装 devtools</h4><ul>
 <li>devtools 插件网址：<a target="_blank" rel="noopener" href="https://devtools.vuejs.org/guide/installation.html">https://devtools.vuejs.org/guide/installation.html</a></li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220815141648040.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220815141648040.png"></p>
 <h4 id="修改端口"><a href="#修改端口" class="headerlink" title="修改端口"></a>修改端口</h4><p>打开项目根目录下 vite.config.ts</p>
 <pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> defineConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vite'</span>
 <span class="token keyword">import</span> vue <span class="token keyword">from</span> <span class="token string">'@vitejs/plugin-vue'</span>
@@ -1066,7 +1066,7 @@ vite.config.ts
 <li>以后我们用这样的方式演示课堂案例</li>
 </ul>
 <p>打开浏览器控制台，进入 Vue 的开发工具，尝试做如下修改</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220906141650435.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220906141650435.png"></p>
 <p>当把 msg 的值由 “Hello, World” 改为 “你好” 时，会发现页面展示同步发生了变化</p>
 <h4 id="ref-与-reactive"><a href="#ref-与-reactive" class="headerlink" title="ref 与 reactive"></a>ref 与 reactive</h4><p>vue 提供了两个函数，都可以将数据变为【响应式】的</p>
 <pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>script setup lang<span class="token operator">=</span><span class="token string">"ts"</span><span class="token operator">></span>
@@ -2564,8 +2564,8 @@ _axios<span class="token punctuation">.</span>interceptors<span class="token pun
 <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
 </code></pre>
 <p>效果如下</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220926145812121.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220926145959690.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220926145812121.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220926145959690.png"></p>
 <h4 id="动态导入"><a href="#动态导入" class="headerlink" title="动态导入"></a>动态导入</h4><pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span>createRouter<span class="token punctuation">,</span> createWebHashHistory<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
 <span class="token keyword">import</span> A51 <span class="token keyword">from</span> <span class="token string">'../views/A51.vue'</span>
 <span class="token keyword">import</span> A52 <span class="token keyword">from</span> <span class="token string">'../views/A52.vue'</span>
@@ -2586,7 +2586,7 @@ _axios<span class="token punctuation">.</span>interceptors<span class="token pun
 </li>
 </ul>
 <h4 id="嵌套路由"><a href="#嵌套路由" class="headerlink" title="嵌套路由"></a>嵌套路由</h4><p>如果希望再嵌套更深层次的路由跳转，例如：希望在 A53 组件内再进行路由跳转</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220926150819624.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220926150819624.png"></p>
 <p>首先，修改 A53.vue</p>
 <pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span>template<span class="token operator">></span>
   <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"a53"</span><span class="token operator">></span>
@@ -2619,9 +2619,9 @@ _axios<span class="token punctuation">.</span>interceptors<span class="token pun
 <span class="token comment" spellcheck="true">// ...</span>
 </code></pre>
 <p>将来访问 &#x2F;a3&#x2F;student 时，效果为</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220926151216217.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220926151216217.png"></p>
 <p>访问 &#x2F;a3&#x2F;teacher 时，效果为</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220926151249403.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220926151249403.png"></p>
 <h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>用法1</p>
 <pre class=" language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span>createRouter<span class="token punctuation">,</span> createWebHashHistory<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
 <span class="token keyword">import</span> A51 <span class="token keyword">from</span> <span class="token string">'../views/A51.vue'</span>
@@ -3145,7 +3145,7 @@ Icons 的结构如下
 <li>后端 api 访问依据，例如每次发请求携带 token，后端需要身份校验的 api 需要用到</li>
 </ol>
 <h3 id="3-pinia"><a href="#3-pinia" class="headerlink" title="3) pinia"></a>3) pinia</h3><p>需求：在组件 p1 里更新了数据，主页组件也同步更新显示</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220930172635166.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220930172635166.png"></p>
 <ul>
 <li>storage 虽然可以实现多个组件的数据共享，但是需要【主动访问】才能获取更新后的数据</li>
 <li>本例中由于没有涉及主页组件的 mounted 操作，因此并不会【主动】获取 storage 的数据</li>

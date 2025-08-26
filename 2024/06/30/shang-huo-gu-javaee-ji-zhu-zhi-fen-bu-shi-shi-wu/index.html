@@ -469,7 +469,7 @@
                 <h1 id="尚硅谷JavaEE技术之分布式事务"><a href="#尚硅谷JavaEE技术之分布式事务" class="headerlink" title="尚硅谷JavaEE技术之分布式事务"></a>尚硅谷JavaEE技术之分布式事务</h1><h1 id="1-本地事务回顾"><a href="#1-本地事务回顾" class="headerlink" title="1. 本地事务回顾"></a>1. 本地事务回顾</h1><h2 id="1-1-什么是事务"><a href="#1-1-什么是事务" class="headerlink" title="1.1 什么是事务"></a>1.1 什么是事务</h2><p><strong>提供一种”要么什么都不做，要么做全套（All or Nothing）”机制。</strong></p>
 <p>mysql事务：<br>    一组sql操作(不可分割) 要么都成功 要么都失败<br>redis事务：redis秒杀超卖问题(java多线程每个线程的一组redis命令会被其他线程插队执行修改数据)<br>    多个redis命令，按照先后顺序执行不会被插队</p>
 <p>**基于单个服务单一数据库资源访问的事务，被称为本地事务(Local Transaction)**。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181705559.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181705559.png"></p>
 <h2 id="1-2-事务的作用"><a href="#1-2-事务的作用" class="headerlink" title="1.2 事务的作用"></a>1.2 事务的作用</h2><p><strong>保证数据一致性</strong></p>
 <h2 id="1-3-事务ACID四大特性"><a href="#1-3-事务ACID四大特性" class="headerlink" title="1.3 事务ACID四大特性"></a>1.3 事务ACID四大特性</h2><p><strong>A：原子性(Atomicity)</strong></p>
 <p>“原子”的本意是“<strong>不可再分</strong>”，事务的原子性表现为一个事务中涉及到的多个操作在逻辑上缺一不可。事务的原子性要求事务中的所有操作要么都执行，要么都不执行。</p>
@@ -522,7 +522,7 @@
 </tbody></table>
 <p>隔离级别越高，性能越低。</p>
 <p>一般情况下：脏读是不可允许的，不可重复读和幻读是可以被适当允许的。mysql默认的事务隔离级别为repeatable-read</p>
-<p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181505827.png"></strong></p>
+<p><strong><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181505827.png"></strong></p>
 <h2 id="1-6-事务相关命令-了解"><a href="#1-6-事务相关命令-了解" class="headerlink" title="1.6 事务相关命令(了解)"></a>1.6 事务相关命令(了解)</h2><p>了解：mysql系统变量</p>
 <pre class=" language-mysql"><code class="language-mysql">#查看mysql所有的[全局|会话]系统变量
 SHOW [GLOBAL|SESSION] VARIABLES;
@@ -569,7 +569,7 @@ select @@transaction_isolation;
 </code></pre>
 <h2 id="1-7-事务传播行为（propagation-behavior）"><a href="#1-7-事务传播行为（propagation-behavior）" class="headerlink" title="1.7 事务传播行为（propagation behavior）"></a>1.7 事务传播行为（propagation behavior）</h2><p>指的就是当一个事务方法被另一个事务方法调用时，这个事务方法应该如何进行。 <br>例如：methodA事务方法调用methodB事务方法时，methodB是继续在调用者methodA的事务中运行呢，还是为自己开启一个新事务运行，这就是由methodB的事务传播行为决定的。</p>
 <p>Spring定义了七种传播行为：参考 TransactionDefinition类</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/1567660421239-1637147679042.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/1567660421239-1637147679042.png"></p>
 <table>
 <thead>
 <tr>
@@ -649,15 +649,15 @@ select @@transaction_isolation;
 <li>编译时异常：受检异常，必须处理，要么try-catch要么throws，都不回滚。例如：FileNotFoundException</li>
 </ul>
 <p>可以通过@Transactional注解的下面几个属性改变回滚策略：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/1567670630801-1637149053747.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/1567670630801-1637149053747.png"></p>
 <p>rollbackFor：指定的异常必须回滚</p>
 <p>noRollbackFor：发生指定的异常不用回滚</p>
 <h2 id="1-10-超时事务"><a href="#1-10-超时事务" class="headerlink" title="1.10   超时事务"></a>1.10   超时事务</h2><p>@Transactional注解，还有一个属性是timeout超时时间，单位是秒。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/1567692523018.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/1567692523018.png"></p>
 <p>timeout&#x3D;3：是指第一个sql开始执行到最后一个sql结束执行之间的间隔时间。</p>
 <p>即：超时时间（timeout）是指数据库超时，不是业务超时。</p>
 <h2 id="1-11-只读事务"><a href="#1-11-只读事务" class="headerlink" title="1.11   只读事务"></a>1.11   只读事务</h2><p>@Transactional注解最后一个属性是只读事务属性</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/1567693468270.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/1567693468270.png"></p>
 <p>如果一个方法标记为readOnly&#x3D;true事务，则代表该方法只能查询，不能增删改。readOnly默认为false</p>
 <h1 id="2-事务练习案例"><a href="#2-事务练习案例" class="headerlink" title="2. 事务练习案例"></a>2. 事务练习案例</h1><p>案例说明：</p>
 <pre><code> 创建账户, 订单, 库存, 业务 四个服务。访问业务服务 下单接口，远程访问订单服务保存订单,远程访问库存服务减库存,远程访问账户服务修改用户账户余额同时记录日志。
@@ -683,7 +683,7 @@ select @@transaction_isolation;
         
 </code></pre>
 <h2 id="2-1-导入数据库"><a href="#2-1-导入数据库" class="headerlink" title="2.1 导入数据库"></a>2.1 导入数据库</h2><p>将资料目录下的all_in_one.sql文件导入数据库</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220222105338271.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220222105338271.png"></p>
 <h2 id="2-2-案例服务创建"><a href="#2-2-案例服务创建" class="headerlink" title="2.2 案例服务创建"></a>2.2 案例服务创建</h2><p>先创建springboot项目：seata-demo</p>
 <h3 id="2-2-1-创建seata-demo父工程"><a href="#2-2-1-创建seata-demo父工程" class="headerlink" title="2.2.1 创建seata-demo父工程"></a>2.2.1 创建seata-demo父工程</h3><h4 id="1-pom文件"><a href="#1-pom文件" class="headerlink" title="1. pom文件"></a>1. pom文件</h4><p>​	修改springboot版本：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
@@ -1029,18 +1029,18 @@ select @@transaction_isolation;
 <p><a target="_blank" rel="noopener" href="http://localhost:8114/business/purchase">http://localhost:8114/business/purchase</a></p>
 <h2 id="2-3-本地事务测试"><a href="#2-3-本地事务测试" class="headerlink" title="2.3 本地事务测试"></a>2.3 本地事务测试</h2><p>使用account服务测试本地事务：</p>
 <h3 id="2-3-1-制造异常"><a href="#2-3-1-制造异常" class="headerlink" title="2.3.1 制造异常"></a>2.3.1 制造异常</h3><p>更新账户后保存日志之前制造异常</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220703193619331.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220703193619331.png"></p>
 <h3 id="2-3-2-测试"><a href="#2-3-2-测试" class="headerlink" title="2.3.2 测试"></a>2.3.2 测试</h3><p>重启服务，访问测试： <a target="_blank" rel="noopener" href="http://localhost:8111/account/debit?userId=1001&money=5&orderId=1">http://localhost:8111/account/debit?userId=1001&amp;money=5&amp;orderId=1</a></p>
 <p>此时用户账户余额减少，但是日志保存失败</p>
 <h3 id="2-3-3-添加本地事务管理"><a href="#2-3-3-添加本地事务管理" class="headerlink" title="2.3.3 添加本地事务管理"></a>2.3.3 添加本地事务管理</h3><p>启动类上添加注解：@EnableTransactionManagement</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220703194207378.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220703194207378.png"></p>
 <p>业务方法上添加注解：@Transactional</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220703194307557.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220703194307557.png"></p>
 <h3 id="2-3-4-测试本地事务管理"><a href="#2-3-4-测试本地事务管理" class="headerlink" title="2.3.4 测试本地事务管理"></a>2.3.4 测试本地事务管理</h3><p>重启服务，访问测试： <a target="_blank" rel="noopener" href="http://localhost:8111/account/debit?userId=1001&money=5&orderId=1">http://localhost:8111/account/debit?userId=1001&amp;money=5&amp;orderId=1</a></p>
 <p>此时回滚成功。</p>
 <h3 id="2-3-5-Spring事务管理原理"><a href="#2-3-5-Spring事务管理原理" class="headerlink" title="2.3.5 Spring事务管理原理"></a>2.3.5 Spring事务管理原理</h3><p><strong>spring的事务是声明式事务，而声明式事务的本质是Spring AOP，SpringAOP的本质是动态代理。</strong></p>
 <p><strong>事务要生效必须是代理对象在调用。</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220703195321989.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220703195321989.png"></p>
 <h2 id="2-4-分布式事务测试"><a href="#2-4-分布式事务测试" class="headerlink" title="2.4 分布式事务测试"></a>2.4 分布式事务测试</h2><p>保留account服务中的异常</p>
 <p>访问business服务的接口：<a target="_blank" rel="noopener" href="http://localhost:8114/business/purchase">http://localhost:8114/business/purchase</a></p>
 <p>由于account添加了本地事务管理，出现异常时账户余额修改和日志保存都失败了。</p>
@@ -1052,15 +1052,15 @@ select @@transaction_isolation;
 <h1 id="3-分布式事务理论"><a href="#3-分布式事务理论" class="headerlink" title="3. 分布式事务理论"></a>3. 分布式事务理论</h1><h2 id="3-1-微服务分布式事务问题"><a href="#3-1-微服务分布式事务问题" class="headerlink" title="3.1 微服务分布式事务问题"></a>3.1 微服务分布式事务问题</h2><ul>
 <li>首先，传统的<strong>单体应用（Monolithic App）</strong>，通过 3 个 Module，在同一个数据源上更新数据来完成一项业务。很自然的，整个业务过程的<strong>数据一致性</strong>由<strong>本地事务</strong>来保证。</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181722272.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181722272.png"></p>
 <ul>
 <li>随着业务需求和架构的变化，<strong>单体应用被拆分为微服务</strong>：原来的 3 个 Module 被拆分为 3 个独立的服务，分别使用独立的数据源。业务过程将由 3 个服务的调用来完成。</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181738790.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181738790.png"></p>
 <ul>
 <li>此时，每一个服务内部的数据一致性仍由本地事务来保证。而整个业务层面的全局数据一致性要如何保障呢？这就是微服务架构下面临的，典型的分布式事务需求：我们需要一个分布式事务的解决方案保障业务全局的数据一致性。</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181745960.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181745960.png"></p>
 <h2 id="3-2-分布式系统和分布式事务"><a href="#3-2-分布式系统和分布式事务" class="headerlink" title="3.2 分布式系统和分布式事务"></a>3.2 分布式系统和分布式事务</h2><p>分布式系统：部署在不同结点上的系统通过网络交互来完成协同工作的系统。</p>
 <p>分布式事务：指事务的参与者、支持事务的服务器、资源服务器以及事务管理器分别位于不同的分布式系统的不同节点之上。</p>
 <p>指一次大的操作由不同的小操作组成的，这些小的操作分布在不同的服务器上，分布式事务需要保证这些小操作要么全部成功，要么全部失败。</p>
@@ -1085,7 +1085,7 @@ select @@transaction_isolation;
 <p>图片删除不影响本地旅游商品数据删除业务</p>
 <h2 id="3-4-跨多服务多数据库的分布式事务"><a href="#3-4-跨多服务多数据库的分布式事务" class="headerlink" title="3.4 跨多服务多数据库的分布式事务"></a>3.4 跨多服务多数据库的分布式事务</h2><p>当一个服务操作访问不同的数据库资源，又希望对它们的访问具有事务特性时，就需要采用分布式事务来协调所有的事务参与者。</p>
 <p>​       对于上面介绍的分布式事务应用架构，尽管一个服务操作会访问多个数据库资源，但是毕竟整个事务还是控制在单一服务的内部。如果一个服务操作需要调用另外一个服务，这时的事务就需要跨越多个服务了。在这种情况下，起始于某个服务的事务在调用另外一个服务的时候，需要以某种机制流转到另外一个服务，从而使被调用的服务访问的资源也自动加入到该事务当中来。下图反映了这样一个跨越多个服务的分布式事务：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181814862.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181814862.png"></p>
 <p>较之基于单一数据库资源访问的本地事务，分布式事务的应用架构更为复杂。在不同的分布式应用架构下，实现一个分布式事务要考虑的问题并不完全一样，比如对多资源的协调、事务的跨服务传播等，实现机制也是复杂多变。</p>
 <h2 id="3-5-分布式事务基础"><a href="#3-5-分布式事务基础" class="headerlink" title="3.5   分布式事务基础"></a>3.5   分布式事务基础</h2><p>数据库的 ACID 四大特性，已经无法满足我们分布式事务，这个时候又有一些新的大佬提出一些新的理论。</p>
 <h3 id="3-5-1-CAP"><a href="#3-5-1-CAP" class="headerlink" title="3.5.1  CAP"></a>3.5.1  CAP</h3><p>分布式存储系统的CAP原理（分布式系统的三个指标）：</p>
@@ -1151,19 +1151,19 @@ select @@transaction_isolation;
 <p>（4）丁收到；</p>
 <h3 id="4-1-5-实际应用交互流程"><a href="#4-1-5-实际应用交互流程" class="headerlink" title="4.1.5 实际应用交互流程"></a>4.1.5 实际应用交互流程</h3><h4 id="1、2PC两阶段提交的正向流程"><a href="#1、2PC两阶段提交的正向流程" class="headerlink" title="1、2PC两阶段提交的正向流程"></a>1、2PC两阶段提交的正向流程</h4><p><strong>第一阶段：</strong></p>
 <p>2PC中包含着两个角色：事务协调者和事务参与者。让我们来看一看他们之间的交互流程：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181920146.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181920146.png"></p>
 <p>在分布式事务的第一阶段，作为事务协调者的节点会首先向所有的参与者节点发送Prepare请求。</p>
 <p>在接到Prepare请求之后，每一个参与者节点会各自执行与事务有关的数据更新，写入Undo Log和Redo Log。如果参与者执行成功，暂时不提交事务，而是向事务协调节点返回”完成”消息。</p>
 <p>当事务协调者接到了所有参与者的返回消息，整个分布式事务将会进入第二阶段。</p>
 <p><strong>第二阶段：</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181931409.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181931409.png"></p>
 <p>在2PC分布式事务的第二阶段，如果事务协调节点在之前所收到都是正向返回，那么它将会向所有事务参与者发出Commit请求。</p>
 <p>接到Commit请求之后，事务参与者节点会各自进行本地的事务提交，并释放锁资源。当本地事务完成提交后，将会向事务协调者返回”完成”消息。</p>
 <p>当事务协调者接收到所有事务参与者的”完成”反馈，整个分布式事务完成。</p>
 <h4 id="2、失败情况的处理流程"><a href="#2、失败情况的处理流程" class="headerlink" title="2、失败情况的处理流程"></a>2、失败情况的处理流程</h4><p><strong>第一阶段：</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181939698.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181939698.png"></p>
 <p><strong>第二阶段：</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181947884.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117181947884.png"></p>
 <p>在2PC的第一阶段，如果某个事务参与者反馈失败消息，说明该节点的本地事务执行不成功，必须回滚。</p>
 <p>于是在第二阶段，事务协调节点向所有的事务参与者发送Abort(中止)请求。接收到Abort请求之后，各个事务参与者节点需要在本地进行事务的回滚操作，回滚操作依照Undo Log来进行。</p>
 <p>以上就是2PC两阶段提交协议的详细过程。</p>
@@ -1202,15 +1202,15 @@ select @@transaction_isolation;
 </ul>
 <h3 id="4-2-1-场景案例"><a href="#4-2-1-场景案例" class="headerlink" title="4.2.1 场景案例"></a>4.2.1 场景案例</h3><p>以航班预定的案例，来介绍TCC要解决的事务场景。这里虚构一个场景，把自己当做航班预定的主人公，来介绍这个案例。从合肥 –&gt; 昆明 –&gt; 大理。</p>
 <p>准备从合肥出发，到云南大理去游玩，然后使用美团App(机票代理商)来订机票。发现没有从合肥直达大理的航班，需要到昆明进行中转。如下图：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182006892.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182006892.png"></p>
 <p>从图中我们可以看出来，从合肥到昆明乘坐的是四川航空，从昆明到大理乘坐的是东方航空。</p>
 <p> 由于使用的是美团App预定，当我选择了这种航班预定方案后，美团App要去四川航空和东方航空各帮我购买一张票。如下图：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182014317.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182014317.png"></p>
 <p>考虑最简单的情况：美团先去川航帮我买票，如果买不到，那么东航也没必要买了。如果川航购买成功，再去东航购买另一张票。</p>
 <p> 现在问题来了：假设美团先从川航成功买到了票，然后去东航买票的时候，因为天气问题，东航航班被取消了。那么此时，美团必须取消川航的票，因为只有一张票是没用的，不取消就是浪费我的钱。那么如果取消会怎样呢？如果读者有取消机票经历的话，非正常退票，肯定要扣手续费的。在这里，川航本来已经购买成功，现在因为东航的原因要退川航的票，川航应该是要扣代理商的钱的。</p>
 <p> 那么美团就要保证，如果任一航班购买失败，都不能扣钱，怎么做呢？</p>
 <p> 两个航空公司都为美团提供以下3个接口：<strong>机票预留接口、确认接口、取消接口</strong>。美团App分2个阶段进行调用，如下所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182022778.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182022778.png"></p>
 <p><strong>在第1阶段：</strong>主业务服务分别调用所有从业务的try操作，并在活动管理器中登记所有从业务服务。当所有从业务服务的try操作都调用成功或者某个从业务服务的try操作失败，进入第二阶段。</p>
 <p>例如：美团分别请求两个航空公司预留机票，两个航空公司分别告诉美团预留成功还是失败。航空公司需要保证，机票预留成功的话，之后一定能购买到。</p>
 <p><strong>在第2阶段：</strong>活动管理器根据第一阶段的执行结果来执行confirm或cancel操作。如果第一阶段所有try操作都成功，则活动管理器调用所有从业务活动的confirm操作。否则调用所有从业务服务的cancel操作。</p>
@@ -1221,7 +1221,7 @@ select @@transaction_isolation;
 <p>当然，实际情况肯定这里提到的肯定要复杂，通常航空公司在第一阶段，对于预留的机票，会要求在指定的时间必须确认购买(支付成功)，如果没有及时确认购买，会自动取消。假设川航要求10分钟内支付成功，东航要求30分钟内支付成功。以较短的时间算，如果用户在10分钟内支付成功的话，那么美团会向两个航空公司都发送确认购买的请求，如果超过10分钟(以较短的时间为准)，那么就不能进行支付。</p>
 <p>这个方案提供给我们一种跨服务保证事务一致性的一种解决思路，可以把这种方案当做TCC的雏形。</p>
 <p>具体流程：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182038358.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182038358.png"></p>
 <p>TCC是Try ( 尝试 ) — Confirm(确认) — Cancel ( 取消 ) 的简称:</p>
 <table>
 <thead>
@@ -1257,7 +1257,7 @@ select @@transaction_isolation;
 <ul>
 <li>订单系统新增一条消息表，将新增订单和新增消息放到一个事务里完成，然后通过轮询的方式去查询消息表，将消息推送到 MQ，库存系统去消费 MQ。</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182230357.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182230357.png"></p>
 <ul>
 <li><p>执行流程：</p>
 <ul>
@@ -1303,7 +1303,7 @@ select @@transaction_isolation;
 <li><p><strong>定时任务回查流程：</strong>MQ服务器回查本地事务，发送事务执行结果</p>
 </li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211119144250433.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211119144250433.png"></p>
 <p><strong>具体流程如下</strong></p>
 <p>1、Producer 向 MQ 服务器 发送消息 , MQ Server 将消息状态标记为 Prepared（预备状态），注意此时这条消息消费者（MQ订阅方）是无法消费到的。</p>
 <p>2、MQ 服务器收到消息并持久化成功之后，会向Producer 确认首次消息发送成功，此时消息处于 half message(半消息) 状态，并未发送给对应的 Consumer 。</p>
@@ -1324,7 +1324,7 @@ select @@transaction_isolation;
 <p>为了打造更中立、更开放、生态更加丰富的分布式事务开源社区，经过社区核心成员的投票，大家决定对 Fescar 进行品牌升级，并更名为 <strong>Seata</strong>，意为：<strong>Simple Extensible Autonomous Transaction Architecture</strong>，是一套一站式分布式事务解决方案。</p>
 <p>Seata 融合了阿里巴巴和蚂蚁金服在分布式事务技术上的积累，并沉淀了新零售、云计算和新金融等场景下丰富的实践经验，但要实现<strong>适用于所有的分布式事务场景</strong>的愿景，仍有很长的路要走。因此，我们决定建立一个完全中立的分布式事务组织，希望更多的企业、开发者能够加入我们，一起打造 Seata。</p>
 <p>现在使用seata的企业：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220703090756935.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220703090756935.png"></p>
 <p>历史：</p>
 <p><strong>Ant Financial</strong></p>
 <p>XTS：Extended Transaction Service，可扩展事务服务。蚂蚁金服中间件团队自2007年以来开发了分布式事务中间件，广泛应用于Ant Financial，解决了跨数据库和服务的数据一致性问题。</p>
@@ -1350,7 +1350,7 @@ select @@transaction_isolation;
 </ul>
 <p>其中，TM是一个分布式事务的发起者和终结者，TC负责维护分布式事务的运行状态，而RM则负责本地事务的运行。</p>
 <p>如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182322243.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182322243.png"></p>
 <p>下面是一个分布式事务在Seata中的执行流程：</p>
 <ol>
 <li><p>TM 向 TC 申请开启一个全局事务，全局事务创建成功并生成一个全局唯一的 XID</p>
@@ -1368,31 +1368,31 @@ select @@transaction_isolation;
 <p><strong>至此，seata的协议机制总体上看与 XA 是一致的。但是是有一些差别的：</strong></p>
 <p>XA 方案的 RM 实际上是在数据库层，RM 本质上就是数据库自身（通过提供支持 XA 的驱动程序来供应用使用）。</p>
 <p>而 Fescar 的 RM 是以二方包的形式作为中间件层部署在应用程序这一侧的，不依赖于数据库本身对协议的支持，当然也不需要数据库支持 XA 协议。这点对于微服务化的架构来说是非常重要的：应用层不需要为本地事务和分布式事务两类不同场景来适配两套不同的数据库驱动。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/seata-xa.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/seata-xa.png"></p>
 <p>这个设计，剥离了分布式事务方案对数据库在 <strong>协议支持</strong> 上的要求。</p>
 <h3 id="4-5-2-MT模式-TCC"><a href="#4-5-2-MT模式-TCC" class="headerlink" title="4.5.2 MT模式(TCC)"></a>4.5.2 MT模式(TCC)</h3><p>Manual (Branch) Transaction Mode</p>
 <p>Seata还支持MT模式。MT模式本质上是一种TCC方案，业务逻辑需要被拆分为 Prepare&#x2F;Commit&#x2F;Rollback 3 部分，形成一个 MT 分支，加入全局事务。</p>
 <p>不依赖于底层数据资源的事务支持，需自定义<code>prepare/commit/rollback</code>操作，对业务有侵入</p>
 <p>如图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182340810.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182340810.png"></p>
 <p>MT 模式一方面是 AT 模式的补充。另外，更重要的价值在于，通过 MT 模式可以把众多非事务性资源纳入全局事务的管理中。</p>
 <h1 id="5-Seata解决分布式事务问题"><a href="#5-Seata解决分布式事务问题" class="headerlink" title="5. Seata解决分布式事务问题"></a>5. Seata解决分布式事务问题</h1><p>springCloud整合seata案例：<a target="_blank" rel="noopener" href="https://github.com/seata/seata-samples/tree/master/springcloud-jpa-seata">https://github.com/seata/seata-samples/tree/master/springcloud-jpa-seata</a></p>
 <p>案例工程结构如下：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/seata-springcloud-sample.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/seata-springcloud-sample.png"></p>
 <p>接下来，就根据这个官方案例学习seata该怎么使用。</p>
 <p>怎么配置启动这些工程，官方也给出文档，参照demo工程中README.md：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220703091046713.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220703091046713.png"></p>
 <p>版本声明：</p>
 <p>nacos-server-1.4.2 + seata-server-1.4.2 + MySQL8 + Hoxton.SR9 + Alibaba2.2.6.RELEASE + SpringBoot2.3.6.RELEASE</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E">https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E</a></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182451177.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182504122.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182451177.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182504122.png"></p>
 <h2 id="5-1-搭建TC服务器"><a href="#5-1-搭建TC服务器" class="headerlink" title="5.1 搭建TC服务器"></a>5.1 搭建TC服务器</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/seata/seata/releases">https://github.com/seata/seata/releases</a></p>
 <p>自行下载，或者使用课前资料中提供的。一定要注意版本，seata-server需要和项目中整合的版本一致</p>
 <h3 id="5-1-1-数据库表准备"><a href="#5-1-1-数据库表准备" class="headerlink" title="5.1.1 数据库表准备"></a>5.1.1 数据库表准备</h3><p>导入课件seata库的脚本：资料\seata.sql</p>
-<p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706193711623.png"></strong></p>
+<p><strong><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706193711623.png"></strong></p>
 <h3 id="5-1-2-seata配置创建"><a href="#5-1-2-seata配置创建" class="headerlink" title="5.1.2 seata配置创建"></a>5.1.2 seata配置创建</h3><p><strong>nacos配置中心新建dataId为seataServer.properties分组为SEATA_GROUP的配置，内容如下:</strong></p>
-<p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182619003.png"></strong></p>
+<p><strong><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117182619003.png"></strong></p>
 <p><strong>重点关注</strong></p>
 <ul>
 <li>虚拟组配置，所有的微服务需要加入名称为：my_test_tx_group的事务组中</li>
@@ -1581,11 +1581,11 @@ select @@transaction_isolation;
 }
 </code></pre>
 <p>修改seata-server-1.4.2\conf\file.conf注册信息：（修改连接数据库的地址账号密码）</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706213221233.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706213221233.png"></p>
 <p>进入到seata-server-1.4.2\bin目录运行seata-server.bat</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183308371.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183308371.png"></p>
 <h2 id="5-2-项目整合seata"><a href="#5-2-项目整合seata" class="headerlink" title="5.2 项目整合seata"></a>5.2 项目整合seata</h2><h3 id="5-2-1-数据库准备"><a href="#5-2-1-数据库准备" class="headerlink" title="5.2.1 数据库准备"></a>5.2.1 数据库准备</h3><p>之前的事务案例的每个数据库中创建：undo_log表，每个业务数据库都需要这张表，用于数据的rollback。这个表必须有独立的id主键，否则，保存日志报错。(<b style='color:red'>注意：需要手动创建</b>)</p>
-<p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706195630469.png"></strong></p>
+<p><strong><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706195630469.png"></strong></p>
 <pre class=" language-mysql"><code class="language-mysql">CREATE TABLE `undo_log` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `branch_id` bigint(20) NOT NULL,
@@ -1630,7 +1630,7 @@ select @@transaction_isolation;
       <span class="token key atrule">name</span><span class="token punctuation">:</span> file.conf
 </code></pre>
 <p>在每个服务的resources下添加以下两个配置文件：</p>
-<p><strong><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706204836339.png"></strong></p>
+<p><strong><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706204836339.png"></strong></p>
 <h4 id="2、file-conf"><a href="#2、file-conf" class="headerlink" title="2、file.conf"></a><strong>2、file.conf</strong></h4><pre class=" language-properties"><code class="language-properties"><span class="token attr-name">transport</span> <span class="token attr-value">{</span>
 <span class="token comment" spellcheck="true">  # tcp udt unix-domain-socket</span>
 <span class="token attr-name">  type</span> <span class="token punctuation">=</span> <span class="token attr-value">"TCP"</span>
@@ -1741,13 +1741,13 @@ select @@transaction_isolation;
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="5-2-5-开启全局事务"><a href="#5-2-5-开启全局事务" class="headerlink" title="5.2.5 开启全局事务"></a>5.2.5 开启全局事务</h3><p>business-service入口方法上添加 @GlobalTransactional</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706214310756.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706214310756.png"></p>
 <p>其他微服务的业务方法增加@Transactionial注解；</p>
 <p>保留account-service的AccountServiceImpl中模拟的异常，验证全局事务回滚。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706214548614.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706214548614.png"></p>
 <h3 id="5-2-6-重启微服务"><a href="#5-2-6-重启微服务" class="headerlink" title="5.2.6 重启微服务"></a>5.2.6 重启微服务</h3><h3 id="5-2-7-访问测试："><a href="#5-2-7-访问测试：" class="headerlink" title="5.2.7 访问测试："></a>5.2.7 访问测试：</h3><p>必须访问全局事务入口，也就是@GlobalTransactional标注的业务接口</p>
 <p><a target="_blank" rel="noopener" href="http://localhost:8114/business/purchase">http://localhost:8114/business/purchase</a></p>
-<h1 id="6-Seata之原理简介"><a href="#6-Seata之原理简介" class="headerlink" title="6. Seata之原理简介"></a>6. Seata之原理简介</h1><h2 id="6-1-再看TC-x2F-TM-x2F-RM三大组件"><a href="#6-1-再看TC-x2F-TM-x2F-RM三大组件" class="headerlink" title="6.1 再看TC&#x2F;TM&#x2F;RM三大组件"></a>6.1 再看TC&#x2F;TM&#x2F;RM三大组件</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183552826.png"></p>
+<h1 id="6-Seata之原理简介"><a href="#6-Seata之原理简介" class="headerlink" title="6. Seata之原理简介"></a>6. Seata之原理简介</h1><h2 id="6-1-再看TC-x2F-TM-x2F-RM三大组件"><a href="#6-1-再看TC-x2F-TM-x2F-RM三大组件" class="headerlink" title="6.1 再看TC&#x2F;TM&#x2F;RM三大组件"></a>6.1 再看TC&#x2F;TM&#x2F;RM三大组件</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183552826.png"></p>
 <h2 id="6-2-分布式事务的执行流程"><a href="#6-2-分布式事务的执行流程" class="headerlink" title="6.2 分布式事务的执行流程"></a>6.2 分布式事务的执行流程</h2><ul>
 <li><p>TM开启分布式事务(TM向TC注册全局事务记录)</p>
 </li>
@@ -1761,8 +1761,8 @@ select @@transaction_isolation;
 </li>
 </ul>
 <h2 id="6-3-AT模式如何做到对业务的无侵入"><a href="#6-3-AT模式如何做到对业务的无侵入" class="headerlink" title="6.3 AT模式如何做到对业务的无侵入"></a>6.3 AT模式如何做到对业务的无侵入</h2><p>是什么</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183608667.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183626193.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183608667.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183626193.png"></p>
 <h3 id="6-3-1-一阶段加载"><a href="#6-3-1-一阶段加载" class="headerlink" title="6.3.1 一阶段加载"></a>6.3.1 一阶段加载</h3><ul>
 <li><p>在一阶段，Seata会拦截&quot;业务SQL&quot;</p>
 <ul>
@@ -1777,17 +1777,17 @@ select @@transaction_isolation;
 <li><p>以上操作全部在一个数据库事务内完成，这样保证了一阶段操作的原子性。</p>
 </li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183644045.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183644045.png"></p>
 <h3 id="6-3-2-二阶段提交"><a href="#6-3-2-二阶段提交" class="headerlink" title="6.3.2 二阶段提交"></a>6.3.2 二阶段提交</h3><ul>
 <li>二阶段如果顺利提交的话，因为”业务SQL”在一阶段已经提交至数据库，所以Seata框架只需将一阶段保存的快照数据和行锁删掉，完成数据清理即可。</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183651593.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183651593.png"></p>
 <h3 id="6-3-3-二阶段回滚"><a href="#6-3-3-二阶段回滚" class="headerlink" title="6.3.3 二阶段回滚"></a>6.3.3 二阶段回滚</h3><blockquote>
 <p>二阶段如果是回滚的话，Seata就需要回滚一阶段执行的”业务SQL”,还原业务数据。</p>
 <p>回滚方式便是用”before image”还原业务数据；但在还原前要首先校验脏写，对比”数据库当前业务数据”和”after image”,如果两份数据完全一致就说明没有脏写，可以还原业务数据，如果不一致就说明有脏写，出现脏写就需要转人工处理。</p>
 </blockquote>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183701706.png"></p>
-<h1 id="7-断点查看数据库表数据变化"><a href="#7-断点查看数据库表数据变化" class="headerlink" title="7. 断点查看数据库表数据变化"></a>7. 断点查看数据库表数据变化</h1><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706215312060.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20211117183701706.png"></p>
+<h1 id="7-断点查看数据库表数据变化"><a href="#7-断点查看数据库表数据变化" class="headerlink" title="7. 断点查看数据库表数据变化"></a>7. 断点查看数据库表数据变化</h1><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF/%E5%B0%9A%E7%A1%85%E8%B0%B7JavaEE%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/image/image-20220706215312060.png"></p>
 <p><img src="D:\blog\source_posts\尚硅谷JavaEE技术之分布式事务\image\image-20211117183720684.png" alt="image-20211117183720684"></p>
 <p><strong>seata-server:</strong> 一次分布式事务开始执行到回滚的日志</p>
 <pre><code>09:11:47.772  INFO --- [     batchLoggerPrint_1_1] i.s.c.r.p.server.BatchLogHandler         : SeataMergeMessage timeout=60000,transactionName=add(java.lang.String, int, int)

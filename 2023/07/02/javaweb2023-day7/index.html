@@ -501,7 +501,7 @@
 <span class="token attr-name">mybatis.configuration.log-impl</span><span class="token punctuation">=</span><span class="token attr-value">org.apache.ibatis.logging.stdout.StdOutImpl</span>
 </code></pre>
 <p>开启日志之后，我们再次运行单元测试，可以看到在控制台中，输出了以下的SQL语句信息：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20220901164225644.png" alt="image-20220901164225644"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20220901164225644.png" alt="image-20220901164225644"> </p>
 <blockquote>
 <p>但是我们发现输出的SQL语句：delete from emp where id &#x3D; ?，我们输入的参数16并没有在后面拼接，id的值是使用?进行占位。那这种SQL语句我们称为预编译SQL。</p>
 </blockquote>
@@ -571,7 +571,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <h4 id="数据封装"><a href="#数据封装" class="headerlink" title="数据封装"></a>数据封装</h4><p>我们看到查询返回的结果中大部分字段是有值的，但是deptId，createTime，updateTime这几个字段是没有值的，而数据库中是有对应的字段值的，这是为什么呢？</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221212103124490.png" alt="image-20221212103124490"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221212103124490.png" alt="image-20221212103124490"></p>
 <p>原因如下： </p>
 <ul>
 <li>实体类属性名和数据库表查询返回的字段名一致，mybatis会自动封装。</li>
@@ -592,7 +592,7 @@
 </code></pre>
 <blockquote>
 <p>再次执行测试类：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221212111027396.png" alt="image-20221212111027396"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221212111027396.png" alt="image-20221212111027396"></p>
 </blockquote>
 <p><strong>手动结果映射</strong>：通过 @Results及@Result 进行手动结果映射</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Results</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token annotation punctuation">@Result</span><span class="token punctuation">(</span>column <span class="token operator">=</span> <span class="token string">"dept_id"</span><span class="token punctuation">,</span> property <span class="token operator">=</span> <span class="token string">"deptId"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
@@ -666,18 +666,18 @@ Many <span class="token function">many</span><span class="token punctuation">(</
 <ul>
 <li>在springBoot的2.x版本（保证参数名一致）</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221212151156273.png" alt="image-20221212151156273"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221212151156273.png" alt="image-20221212151156273"></p>
 <blockquote>
 <p>springBoot的父工程对compiler编译插件进行了默认的参数parameters配置，使得在编译时，会在生成的字节码文件中保留原方法形参的名称，所以#{…}里面可以直接通过形参名获取对应的值</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221212151411154.png" alt="image-20221212151411154"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221212151411154.png" alt="image-20221212151411154"></p>
 </blockquote>
 <ul>
 <li>在springBoot的1.x版本&#x2F;单独使用mybatis（使用@Param注解来指定SQL语句中的参数名）</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221212151628715.png" alt="image-20221212151628715"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221212151628715.png" alt="image-20221212151628715"></p>
 <blockquote>
 <p>在编译时，生成的字节码文件当中，不会保留Mapper接口中方法的形参名称，而是使用var1、var2、…这样的形参名字，此时要获取参数值时，就要通过@Param注解来指定SQL语句中的参数名</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221212151736274.png" alt="image-20221212151736274"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221212151736274.png" alt="image-20221212151736274"></p>
 </blockquote>
 <h2 id="Mybatis的xml配置文件"><a href="#Mybatis的xml配置文件" class="headerlink" title="Mybatis的xml配置文件"></a>Mybatis的xml配置文件</h2><h3 id="配置规范"><a href="#配置规范" class="headerlink" title="配置规范"></a>配置规范</h3><p>在Mybatis中使用XML映射文件方式开发，需要符合一定的规范：</p>
 <ol>
@@ -688,7 +688,7 @@ Many <span class="token function">many</span><span class="token punctuation">(</
 <li><p>XML映射文件中sql语句的id与Mapper接口中的方法名一致，并保持返回类型一致。</p>
 </li>
 </ol>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221212153529732.png" alt="image-20221212153529732"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221212153529732.png" alt="image-20221212153529732"></p>
 <blockquote>
 <p>&lt;select&gt;标签：就是用于编写select查询语句的。</p>
 <ul>
@@ -696,9 +696,9 @@ Many <span class="token function">many</span><span class="token punctuation">(</
 </ul>
 </blockquote>
 <h3 id="配置文件实现"><a href="#配置文件实现" class="headerlink" title="配置文件实现"></a>配置文件实现</h3><p>第1步：创建XML映射文件</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221212154908306.png" alt="image-20221212154908306"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221212155304635.png" alt="image-20221212155304635"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221212155544404.png" alt="image-20221212155544404"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221212154908306.png" alt="image-20221212154908306"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221212155304635.png" alt="image-20221212155304635"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221212155544404.png" alt="image-20221212155544404"></p>
 <p>第2步：编写XML映射文件</p>
 <blockquote>
 <p>xml映射文件中的dtd约束，直接从mybatis官网复制即可</p>
@@ -712,7 +712,7 @@ Many <span class="token function">many</span><span class="token punctuation">(</
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>配置：XML映射文件的namespace属性为Mapper接口全限定名</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221212160316644.png" alt="image-20221212160316644"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221212160316644.png" alt="image-20221212160316644"></p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8" ?></span>
 <span class="token doctype">&lt;!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -722,7 +722,7 @@ Many <span class="token function">many</span><span class="token punctuation">(</
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>配置：XML映射文件中sql语句的id与Mapper接口中的方法名一致，并保持返回类型一致</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221212163528787.png" alt="image-20221212163528787"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221212163528787.png" alt="image-20221212163528787"></p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8" ?></span>
 <span class="token doctype">&lt;!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -740,7 +740,7 @@ Many <span class="token function">many</span><span class="token punctuation">(</
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">></span></span>
 </code></pre>
 <h2 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h2><h3 id="动态SQL简介"><a href="#动态SQL简介" class="headerlink" title="动态SQL简介"></a>动态SQL简介</h3><p>SQL语句会随着用户的输入或外部条件的变化而变化，我们称为：<strong>动态SQL</strong>。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day07/image/image-20221213122623278.png" alt="image-20221213122623278"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day07/image/image-20221213122623278.png" alt="image-20221213122623278"></p>
 <p>在Mybatis中提供了很多实现动态SQL的标签，我们学习Mybatis中的动态SQL就是掌握这些动态SQL标签。</p>
 <h3 id="SQL-if"><a href="#SQL-if" class="headerlink" title="SQL-if"></a>SQL-if</h3><pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>list<span class="token punctuation">"</span></span> <span class="token attr-name">resultType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.itheima.pojo.Emp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
         select * from emp

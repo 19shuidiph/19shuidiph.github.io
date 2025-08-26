@@ -472,8 +472,8 @@
 <h3 id="解决方案-："><a href="#解决方案-：" class="headerlink" title="解决方案 ："></a>解决方案 ：</h3><p>（1）业务层校验，先对参数进行校验，id小于等于0的直接返回错误请求。</p>
 <p>（2）缓存空对象：在没有的数据中存一个null，而这些空的对象会设置一个有效期）</p>
 <p>  (3)  布隆过滤器。  先访问布隆过滤器，再访问Redis,再访问数据库</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808095355913.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808095515637.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808095355913.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808095515637.png"></p>
 <h2 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h2><h3 id="定义概念："><a href="#定义概念：" class="headerlink" title="定义概念："></a>定义概念：</h3><p>缓存击穿的意思是对于设置了过期时间的key，缓存在某个时间点过期的时候，恰好这时间点对这个Key有大量的并发请求过来，这些请求发现缓存过期一般都会从后端 DB 加载数据并回设到缓存，这个时候大并发的请求可能会瞬间把 DB 压垮。</p>
 <h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><p> 1.粗暴的设置永不过期  2.定时更新过期时间 3.设置互斥锁  4.逻辑过期</p>
 <p>①、设置热点数据永不过期</p>
@@ -487,14 +487,14 @@
 <p>1)：在设置key的时候，设置一个过期时间字段一块存入缓存中，不给当前key设置过期时间</p>
 <p>2)：当查询的时候，从redis取出数据后判断时间是否过期</p>
 <p>3)：如果过期则开通另外一个线程进行数据同步，当前线程正常返回数据，这个数据不是最新</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808100334176.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808100334176.png"></p>
 <h2 id="缓存雪崩："><a href="#缓存雪崩：" class="headerlink" title="缓存雪崩："></a>缓存雪崩：</h2><h3 id="定义概念：-1"><a href="#定义概念：-1" class="headerlink" title="定义概念："></a>定义概念：</h3><p>缓存雪崩意思是设置缓存时采用了相同的过期时间，导致缓存在某一时刻同时失效，请求全部转发到DB，DB 瞬时压力过重雪崩。与缓存击穿的区别：雪崩是很多key，击穿是某一个key缓存。</p>
 <h3 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h3><p>主要是可以将缓存失效时间分散开，比如可以在原有的失效时间基础上增加一个随机值，比如1-5分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件。</p>
 <p>当然也可以利用Redis的集群提高服务的可用性。（哨兵模式、集群模式）；给缓存业务添加降级限流策略（nginx或spring cloud gateway）；给业务添加多级缓存</p>
 <h2 id="双写一致性"><a href="#双写一致性" class="headerlink" title="双写一致性"></a>双写一致性</h2><p>redis做为缓存，mysql的数据如何与redis进行同步呢？ 要根据业务场景来回答</p>
 <h3 id="强一致性"><a href="#强一致性" class="headerlink" title="强一致性"></a>强一致性</h3><p>我们采用的是redisson实现的读写锁，在读的时候添加共享锁，可以保证读读不互斥，读写互斥。当我们更新数据的时候，添加排他锁，它是读写，读读都互斥，这样就能保证在写数据的同时是不会让其他线程读数据的，避免了脏数据。这里面需要注意的是读方法和写方法上需要使用同一把锁才行。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808101742500.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808101752281.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808101742500.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808101752281.png"></p>
 <p>排他锁是如何保证读写、读读互斥的呢？</p>
 <p>排他锁底层使用也是setnx，保证了同时只能有一个线程操作锁住的方法</p>
 <h3 id="延时双删（被抛弃"><a href="#延时双删（被抛弃" class="headerlink" title="延时双删（被抛弃)"></a>延时双删（被抛弃)</h3><p><strong>面试官</strong>：你听说过延时双删吗？为什么不用它呢？</p>
@@ -507,17 +507,17 @@
 <li>服务节点从 redis 主库删除数据。</li>
 <li>当前或其它服务节点读取 redis 从库数据，发现 redis 从库没有数据，从 mysql 从库读取数据，并写入 redis 主库。</li>
 </ol>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808101941931.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808101941931.png"></p>
 <h3 id="数据同步允许延时"><a href="#数据同步允许延时" class="headerlink" title="数据同步允许延时"></a>数据同步允许延时</h3><p>我们当时采用的阿里的canal组件实现数据同步：不需要更改业务代码，部署一个canal服务。canal服务把自己伪装成mysql的一个从节点，当mysql数据更新以后，canal会读取binlog数据，然后在通过canal的客户端获取到数据，更新缓存即可。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808104853363.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808104853363.png"></p>
 <h2 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h2><p>在Redis中提供了两种数据持久化的方式：1、RDB  2、AOF</p>
 <p>RDB[全称Redis Database Backup file（Redis数据备份文件)]是一个快照文件，它是把redis内存存储的数据写到磁盘上，当redis实例宕机恢复数据的时候，方便从RDB的快照文件中恢复数据。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808105409774.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808105409774.png"></p>
 <p>AOF[全称为Append Only File（追加文件）]的含义是追加文件，当redis操作写命令的时候，都会存储这个文件中，当redis实例宕机恢复数据的时候，会从这个文件中再次执行一遍命令来恢复数据</p>
 <p>因为是记录命令，AOF文件会比RDB文件大的多。而且AOF会记录对同一个key的多次写操作，但只有最后一次写操作才有意义。通过执行bgrewriteaof命令，可以让AOF文件执行重写功能，用最少的命令达到相同效果。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808105443306.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808105443306.png"></p>
 <p>RDB因为是二进制文件，在保存的时候体积也是比较小的，它恢复的比较快，但是它有可能会丢数据，我们通常在项目中也会使用AOF来恢复数据，虽然AOF恢复的速度慢一些，但是它丢数据的风险要小很多，在AOF文件中可以设置刷盘策略，我们当时设置的就是每秒批量写入一次命令</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808105645689.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230808105645689.png"></p>
 <h2 id="数据过期策略"><a href="#数据过期策略" class="headerlink" title="数据过期策略"></a>数据过期策略</h2><p>惰性删除和定期删除结合使用</p>
 <p>惰性删除：设置该key过期时间后，我们不去管它，当需要该key时，我们在检查其是否过期，如果过期，我们就删掉它，反之返回该key [缺点：对内存不友好，如果一个key已经过期，但是一直没有使用，那么该key就会一直存在内存中，内存永远不会释放]</p>
 <p>定期删除：每隔一段时间，我们就对一些key进行检查，删除里面过期的key(从一定数量的数据库中取出一定数量的随机key进行检查，并删除其中的过期key)。[缺点：难以确定删除操作执行的时长和频率]</p>
@@ -546,7 +546,7 @@
 <h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><p>为什么要用分布式锁？   因为一份代码会被nginx反向代理，负载均衡到多台服务器。这样一般的锁（JVM监控的锁）就不可以了。</p>
 <p>Redisson实现的分布式锁。底层是setnx和Lua脚本</p>
 <p>在redisson的分布式锁中，为了控制锁的有效时长，提供了一个WatchDog(看门狗），一个线程获取锁成功以后， WatchDog会给持有锁的线程续期（默认是每隔10秒续期一次）</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809094059732.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809094059732.png"></p>
 <ol>
 <li>watch dog 在当前节点存活时每10s给分布式锁的key续期 30s；</li>
 <li>watch dog 机制启动，且代码中没有释放锁操作时，watch dog 会不断的给锁续期；</li>
@@ -587,18 +587,18 @@
 <p>redisson实现的分布式锁不能解决主从一致问题。用redisson提供的红锁（锁一半以上从节点）效率太低了。如果要保证强一致性，建议使用zookeeper实现的分布式锁。</p>
 <h2 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h2><p>单节点Redis的并发能力是有上限的，要进一步提高Redis的并发能力，就需要搭建主从集群，实现读写分离。</p>
 <p>一般都是一主多从，主节点负责写数据，从节点负责读数据</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809102517448.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809102517448.png"></p>
 <p><strong>全量同步</strong>：</p>
 <p>1.从节点请求主节点同步数据（replication id、 offset ）</p>
 <p>2.主节点判断是否是第一次请求（判断replication id是不是一样），是第一次就与从节点同步版本信息（replication id和offset）</p>
 <p>3.主节点执行bgsave，生成rdb文件后，发送给从节点去执行</p>
 <p>4.在rdb生成执行期间，主节点会以命令的方式记录到缓冲区（一个日志文件）</p>
 <p>5.把生成之后的命令日志文件发送给从节点进行同步</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809102528462.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809102528462.png"></p>
 <p><strong>增量同步</strong>：</p>
 <p>1.从节点请求主节点同步数据，主节点判断不是第一次请求，不是第一次就获取从节点的offset值</p>
 <p>2.主节点从命令日志中获取offset值之后的数据，发送给从节点进行数据同步</p>
-<h2 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809103042296.png"></p>
+<h2 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809103042296.png"></p>
 <p>Sentinel基于心跳机制监测服务状态，每隔1秒向集群的每个实例发送ping命令：</p>
 <p>•主观下线：如果某sentinel节点发现某实例未在规定时间响应，则认为该实例<strong>主观下线</strong>。</p>
 <p>•客观下线：若超过指定数量（quorum）的sentinel都认为该实例主观下线，则该实例<strong>客观下线</strong>。quorum值最好超过Sentinel实例数量的一半。</p>
@@ -610,7 +610,7 @@
 <p><strong>min-slaves-to-write</strong> 是指主库最少得有 N 个健康的从库存活才能执行写命令。</p>
 <p><strong>min-slaves-max-lag</strong> 设置主从数据复制和同步的延迟时间，达不到要求就拒绝请求，就可以避免大量的数据丢失。</p>
 <h3 id="你们项目用的是单点还是集群，哪种集群"><a href="#你们项目用的是单点还是集群，哪种集群" class="headerlink" title="你们项目用的是单点还是集群，哪种集群"></a>你们项目用的是单点还是集群，哪种集群</h3><p>主从（1主1从）+哨兵就可以了。单节点不超过10G内存，如果Redis内存不足则可以给不同服务分配独立的Redis主从节点。尽量不做分片集群，因为集群维护起来比较麻烦，并且集群之间的心跳检测和数据通信会消耗大量网络带宽，也不能使用lua脚本和事务。</p>
-<h2 id="分片集群"><a href="#分片集群" class="headerlink" title="分片集群"></a>分片集群</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809104531240.png"></p>
+<h2 id="分片集群"><a href="#分片集群" class="headerlink" title="分片集群"></a>分片集群</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809104531240.png"></p>
 <h3 id="Redis分片集群中数据是怎么存储和读取的？"><a href="#Redis分片集群中数据是怎么存储和读取的？" class="headerlink" title="Redis分片集群中数据是怎么存储和读取的？"></a>Redis分片集群中数据是怎么存储和读取的？</h3><p>lRedis 分片集群引入了哈希槽的概念，Redis 集群有 16384 个哈希槽</p>
 <p>l将16384个插槽分配到不同的实例</p>
 <p>l读写数据：根据key的有效部分计算哈希值，对16384取余（有效部分，如果key前面有大括号，大括号的内容就是有效部分，如果没有，则以key本身做为有效部分）余数做为插槽，寻找插槽所在的实例</p>
@@ -621,7 +621,7 @@
 </ol>
 <h2 id="能解释一下I-x2F-O多路复用模型？"><a href="#能解释一下I-x2F-O多路复用模型？" class="headerlink" title="能解释一下I&#x2F;O多路复用模型？"></a>能解释一下I&#x2F;O多路复用模型？</h2><p>Redis是纯内存操作，执行速度非常快，它的性能瓶颈是网络延迟而不是执行速度， I&#x2F;O多路复用模型主要就是实现了高效的网络请求</p>
 <p>IO多路复用监听的是socket集合，而普通的阻塞IO和非阻塞IO都是只监听一个socket.阻塞IO就是在第一步等待，非阻塞就是不停重试，非阻塞IO感觉好笨。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809105420644.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230809105420644.png"></p>
 <p>候选人:嗯~~，I&#x2F;O多路复用是指利用单个线程来同时监听多个Socket，并在某个Socket可读、可写时得到通知，从而避免无效的等待，充分利用CPU资源。目前的I&#x2F;O多路复用都是采用的epoll模式实现，它会在通知用户进程Socket就绪的同时，把已就绪的Socket写入用户空间，不需要挨个遍历Socket来判断是否就绪，提升了性能。</p>
 <p>其中Redis的网络模型就是使用I&#x2F;O多路复用结合事件的处理器来应对多个Socket请求，比如，提供了连接应答处理器、命令回复处理器，命令请求处理器;<br>在Redis6.0之后，为了提升更好的性能，在命令回复处理器使用了多线程来处理回复事件，在命令请求处理器中，将命令的转换使用了多线程，增加命令转换速度，在命令执行的时候，依然是单线程</p>
 <h2 id="StringRedisTemplate-与-RedisTemplate的区别"><a href="#StringRedisTemplate-与-RedisTemplate的区别" class="headerlink" title="StringRedisTemplate 与 RedisTemplate的区别"></a>StringRedisTemplate 与 RedisTemplate的区别</h2><p>前者继承后者，一般用前者。</p>

@@ -1568,9 +1568,9 @@ app<span class="token punctuation">.</span><span class="token function">listen</
 <pre><code>node main.js
 </code></pre>
 <h3 id="前端案例"><a href="#前端案例" class="headerlink" title="前端案例"></a>前端案例</h3><p>初步效果</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220812103323220.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220812103323220.png"></p>
 <p>架构</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220812103219916.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220812103219916.png"></p>
 <ul>
 <li>前端只有静态页面，使用 Express 服务器</li>
 <li>后端使用 Tomcat 服务器，通过 SpringBoot、MyBatis 等框架获取数据库数据</li>
@@ -1650,11 +1650,11 @@ thead<span class="token punctuation">.</span><span class="token function">queryS
 <pre class=" language-js"><code class="language-js">document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.title'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'侠客列表'</span>
 </code></pre>
 <p>效果</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220812161003958.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220812161003958.png"></p>
 <p>innerHTML  会解析内容中的标签，例如</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220812161137912.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220812161137912.png"></p>
 <p>textContext 不会解析内容中的标签，把html标签代码也当成了内容的一部分。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220812161341825.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220812161341825.png"></p>
 <p>给 innerHTML 或 textContent 赋值空串，可以实现清空标签内容的效果</p>
 <h4 id="3-利用模板"><a href="#3-利用模板" class="headerlink" title="3) 利用模板"></a>3) 利用模板</h4><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>title<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>学生列表<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
@@ -1798,7 +1798,7 @@ thead<span class="token punctuation">.</span><span class="token function">queryS
 <li>第二个 then 是在 json 解析完成后，才会调用它里面的箭头函数，箭头函数参数即解析结果（本例是 array 数组）</li>
 <li>上一个 then 返回的是 Promise 对象时，才能链式调用下一个 then</li>
 </ul>
-<h5 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h5><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220813083001246.png"></p>
+<h5 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h5><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220813083001246.png"></p>
 <ul>
 <li>只要协议、主机、端口之一不同，就不同源，例如<ul>
 <li><a target="_blank" rel="noopener" href="http://localhost:7070/a">http://localhost:7070/a</a> 和 <a target="_blank" rel="noopener" href="https://localhost:7070/b">https://localhost:7070/b</a> 就不同源</li>
@@ -1816,7 +1816,7 @@ thead<span class="token punctuation">.</span><span class="token function">queryS
 </ul>
 <p>前端是7070来访问后端8080的数据，后端不给数据。</p>
 <p>请求响应头解决</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220814144040703.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220814144040703.png"></p>
 <ul>
 <li>fetch 请求跨域，会携带一个 Origin 头，代表【发请求的资源源自何处】，目标通过它就能辨别是否发生跨域<ul>
 <li>我们的例子中：student.html 发送 fetch 请求，告诉 tomcat，我源自 localhost:7070</li>
@@ -1829,7 +1829,7 @@ thead<span class="token punctuation">.</span><span class="token function">queryS
 </ul>
 <p>具体就是在一个controller中的函数接口上加注解，但是要注意后端返回的数据格式。@CrossOrigin(“<a target="_blank" rel="noopener" href="http://localhost:7070/">http://localhost:7070/</a>“)</p>
 <p>代理解决</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220814161532141.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220814161532141.png"></p>
 <pre class=" language-cmd"><code class="language-cmd">npm install http-proxy-middleware --save-dev
 </code></pre>
 <p>在 express 服务器启动代码中（前端的main.js中）加入</p>

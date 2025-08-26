@@ -466,7 +466,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="项目自学记录4"><a href="#项目自学记录4" class="headerlink" title="项目自学记录4"></a>项目自学记录4</h1><h2 id="根据另外一张表中出现的次数排序"><a href="#根据另外一张表中出现的次数排序" class="headerlink" title="根据另外一张表中出现的次数排序"></a>根据另外一张表中出现的次数排序</h2><p>背景：<br><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%954/image/image-20230814083849425.png"></p>
+                <h1 id="项目自学记录4"><a href="#项目自学记录4" class="headerlink" title="项目自学记录4"></a>项目自学记录4</h1><h2 id="根据另外一张表中出现的次数排序"><a href="#根据另外一张表中出现的次数排序" class="headerlink" title="根据另外一张表中出现的次数排序"></a>根据另外一张表中出现的次数排序</h2><p>背景：<br><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%954/image/image-20230814083849425.png"></p>
 <p>主表是风险场景，要根据风险报告中的出现次数排序，可以出现0次的</p>
 <pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> s<span class="token punctuation">.</span>scene_id<span class="token punctuation">,</span> s<span class="token punctuation">.</span>scene_name <span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>scene_id<span class="token punctuation">)</span> <span class="token keyword">as</span> count
         <span class="token keyword">from</span> rc_scene s
@@ -506,7 +506,7 @@
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@DateTimeFormat</span><span class="token punctuation">(</span>pattern<span class="token operator">=</span><span class="token string">"yyyy-MM-dd"</span><span class="token punctuation">)</span>
 <span class="token keyword">private</span> LocalDate birthday<span class="token punctuation">;</span>
 </code></pre>
-<h2 id="maven运行机制"><a href="#maven运行机制" class="headerlink" title="maven运行机制"></a>maven运行机制</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%954/image/qq_pic_merged_1692758472942.jpg"></p>
+<h2 id="maven运行机制"><a href="#maven运行机制" class="headerlink" title="maven运行机制"></a>maven运行机制</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%954/image/qq_pic_merged_1692758472942.jpg"></p>
 <p>我们的项目有一个启动项目（左边）和八个子模块。</p>
 <p>在子模块里写代码，然后Intsall,然后再把主模块重新启动。</p>
 <p>主模块的Java被编译成target下的class文件，再结合本地maven仓库里的lib库，就是项目了。</p>
@@ -566,7 +566,7 @@ Path d2Path <span class="token operator">=</span> Paths<span class="token punctu
 </code></pre>
 <p>其他正则表达式，诸如数字校验，字符串校验，月份时间校验，Email校验，汉字校验，联系电话校验，密码校验。可以看<a target="_blank" rel="noopener" href="https://blog.csdn.net/lk14478/article/details/111866635">这篇文章</a></p>
 <h2 id="关于子类重写属性变量一事"><a href="#关于子类重写属性变量一事" class="headerlink" title="关于子类重写属性变量一事"></a>关于子类重写属性变量一事</h2><p>如果是同名但是不同属性值，是不行的。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%954/image/image-20230831093125200.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%954/image/image-20230831093125200.png"></p>
 <p>会生成两个getList方法，并且返回类型不一样。一个是返回List<String>,  一个是返回List<int></p>
 <p>即使当时的业务场景是good2 extends good1,也不行</p>
 <p>Error:(10, 17) java: me.Son中的getList()无法覆盖me.Father中的getList()<br>  返回类型java.util.List&lt;me.good2&gt;与java.util.List&lt;me.good1&gt;不兼容</p>
@@ -631,7 +631,7 @@ Path d2Path <span class="token operator">=</span> Paths<span class="token punctu
 <p>通过反射得到对象的类名</p>
 <p>然后根据hashmap和key值来调用对应的value值，也就是对应的函数。</p>
 <p>以下红色的是我写的核心代码</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%954/image/image-20230831162020129.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%954/image/image-20230831162020129.png"></p>
 <p>后面有什么新增的类，直接在beforeCreateOfd()里增加两行代码就行。不用修改其他的代码。</p>
 
                 

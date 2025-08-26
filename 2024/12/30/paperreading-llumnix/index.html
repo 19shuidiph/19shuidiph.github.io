@@ -467,36 +467,36 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="Llumnix：大型语言模型服务的动态调度"><a href="#Llumnix：大型语言模型服务的动态调度" class="headerlink" title="Llumnix：大型语言模型服务的动态调度"></a>Llumnix：大型语言模型服务的动态调度</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>1.LLM服务多样化，有总结任务，有生成小说任务，有VIP任务。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/output.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/1280X1280.PNG"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/output.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/1280X1280.PNG"></p>
 <ol>
 <li>KV-cache会随着推理越来越多，对GPU内存的需求也在增加。</li>
 <li>使用动态内存分配的连续批处理</li>
 </ol>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/1280X1280%20%281%29.PNG"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/1280X1280%20%281%29.PNG"></p>
 <p>GPU满载容易爆炸，所以要空出一部分内存来，将蓝色的部分赶回请求队列。</p>
 <h2 id="解决的问题-x2F-问题特点"><a href="#解决的问题-x2F-问题特点" class="headerlink" title="解决的问题&#x2F;问题特点"></a>解决的问题&#x2F;问题特点</h2><h3 id="挑战和动机1：不可预测的内存需求和抢占"><a href="#挑战和动机1：不可预测的内存需求和抢占" class="headerlink" title="挑战和动机1：不可预测的内存需求和抢占"></a>挑战和动机1：不可预测的内存需求和抢占</h3><p>优先级-》尾部延迟很差</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/1280X1280%20%282%29.PNG"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/1280X1280%20%282%29.PNG"></p>
 <p>内存拉到100%，就会有一些request被抢占，扔到请求队列里。抢占率8%。</p>
 <p>P1就是响应时间最小的请求，P10就是排名第十的请求，P100就是响应时间最长的请求。</p>
 <p>在真正使用过程中，最常用的主要有P50(中位数)、P95、P99。</p>
-<h3 id="挑战和动机2：请求之间的性能干扰。"><a href="#挑战和动机2：请求之间的性能干扰。" class="headerlink" title="挑战和动机2：请求之间的性能干扰。"></a>挑战和动机2：请求之间的性能干扰。</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/1280X1280%20%283%29.PNG"></p>
+<h3 id="挑战和动机2：请求之间的性能干扰。"><a href="#挑战和动机2：请求之间的性能干扰。" class="headerlink" title="挑战和动机2：请求之间的性能干扰。"></a>挑战和动机2：请求之间的性能干扰。</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/1280X1280%20%283%29.PNG"></p>
 <p>批处理的数量越多，处理的每条请求越长。他们之间的干扰就越明显。因为越多和越长肯定会占用更多的GPU内存资源。</p>
 <h3 id="挑战和动机3：内存碎片"><a href="#挑战和动机3：内存碎片" class="headerlink" title="挑战和动机3：内存碎片"></a>挑战和动机3：内存碎片</h3><p>考虑到挑战1和挑战2，应该将请求分散到不同的GPU，但这样容易造成碎片化。导致外部请求（尤其是长请求）的延迟很高。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/1280X1280%20%284%29.PNG"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/1280X1280%20%284%29.PNG"></p>
 <h3 id="挑战和动机4：满足VIP的更高优先级"><a href="#挑战和动机4：满足VIP的更高优先级" class="headerlink" title="挑战和动机4：满足VIP的更高优先级"></a>挑战和动机4：满足VIP的更高优先级</h3><p>现在的系统一般都是平等对待所有的请求</p>
 <p>将请求分配到模型实例</p>
 <p>由于执行不可预测，通过一次性调度进行负载平衡可能不是最佳选择。所以要重调度（迁移）</p>
 <h2 id="解决方案-x2F-创新点"><a href="#解决方案-x2F-创新点" class="headerlink" title="解决方案&#x2F;创新点"></a>解决方案&#x2F;创新点</h2><p>Llumnix能干什么。负载平衡，减少碎片化，满足高优先级，弹性伸缩(更快地耗尽要终止的实例 或 使新实例饱和)。</p>
 <p>继承了Orca: A distributed serving system for Transformer-Based generative models.的连续批处理(Continuous Batching)和Efficient memory management for large language model serving with pagedattention.的动态内存调用(PagedAttention)。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/21255fb7-8786-4a18-b70b-f487d2ccc706.png"></p>
-<h3 id="实时迁移"><a href="#实时迁移" class="headerlink" title="实时迁移"></a>实时迁移</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/c9593d83-b11e-4242-a24f-4cc28a3766a6.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/21255fb7-8786-4a18-b70b-f487d2ccc706.png"></p>
+<h3 id="实时迁移"><a href="#实时迁移" class="headerlink" title="实时迁移"></a>实时迁移</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/c9593d83-b11e-4242-a24f-4cc28a3766a6.png"></p>
 <p>多阶段迁移；比如我复制一个KV-cache是0.5ms,计算一个KV-cache是1ms；我现在已经有了100个KV-cache，然后我一直不停的算，不停的复制迁移；当我计算到第200个KV-cache的时候，目标实例上也差不多有了199个KV-cache了。然后我要真正复制迁移的kv-cache就只有第200个这一个了，等待第200个计算完毕，复制迁移即可。</p>
 <p>这里面还有很多细节：他这个迁移过程是比较长的，如果迁移过程中计算完了，比如就需要150个KV-cache就任务结束了。比如目标机器无法提供这么多的GPU内存给你用。</p>
-<h3 id="分布式调度架构"><a href="#分布式调度架构" class="headerlink" title="分布式调度架构"></a>分布式调度架构</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/4840e35b-018b-4ec1-b607-bdffac8e7884.png"></p>
+<h3 id="分布式调度架构"><a href="#分布式调度架构" class="headerlink" title="分布式调度架构"></a>分布式调度架构</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/4840e35b-018b-4ec1-b607-bdffac8e7884.png"></p>
 <p>设计了一种集群的，分布式的架构，起名字llumlets。全局调度器知道且根据每个实例的负载状态调度。本地调度器要计算该实例的内存负载（注意这里是virtual usages）</p>
 <h3 id="动态调度策略"><a href="#动态调度策略" class="headerlink" title="动态调度策略"></a>动态调度策略</h3><p>设计虚拟使用量。便于统一调度规则-全部都是负载均衡。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/4f975a3b-fba0-48f1-b73b-f049505349d6.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/4f975a3b-fba0-48f1-b73b-f049505349d6.png"></p>
 <p>虚拟使用量就是预先分配量。我在模型实例上预先分配，然后发现分配不了，超载了，我就要调度碎片化。</p>
 <p>高优先级的我就给他更多的虚拟使用量，可以保证他能平稳无干扰运行。</p>
 <p>我想空出一台机器，空出一个模型实例，我就把他的虚拟使用量拉满，这样上面的任务都要被调度走。</p>
@@ -515,24 +515,24 @@
 <p>参考ShareGPT和BurstGPT的轨迹，自己生成的各种短的，中等的，长的请求。</p>
 <p>和什么调度器比较？ RR（均匀轮转），INFaaS（2021ATC，无迁移），无优先级判断功能的Llumnix；</p>
 <h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p>迁移的效率：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/dbfd3193-efec-4d1e-9b6b-54f505791855.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/dbfd3193-efec-4d1e-9b6b-54f505791855.png"></p>
 <p>图10左：我们的迁移很快，比全部复制KV-cache和在新的机器上重新计算kv-cache要快。而且不随着序列长度变大。</p>
 <p>图10右：正常的decode和（一边迁移一边decode），效果差不多，1%，基本无影响。</p>
 <p>调度器服务性能比较：</p>
 <p>红色的最好，蓝色的还行，绿色最差。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/71b4747b-91be-457e-8721-e977eec4cf20.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/71b4747b-91be-457e-8721-e977eec4cf20.png"></p>
 <p>迁移导致碎片率低。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/8cff27df-69c8-4350-91e6-99f9a6f052ad.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/8cff27df-69c8-4350-91e6-99f9a6f052ad.png"></p>
 <p>Gamma分布的方差系数-（coefficients of variance）CV，我们改变CV参数，以显示突发负载的影响。</p>
 <p>根据经验，高优先级给1600token的内存大小。</p>
 <p>Llumnix-base 无优先级概念。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/fb488e38-35bd-41b1-b59c-b02db77e6e4d.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/fb488e38-35bd-41b1-b59c-b02db77e6e4d.png"></p>
 <p>泊松分布和gamma分布下的延迟，橙色都比蓝色要好。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/1f8e5899-3805-4ab4-a5bd-f66fb56c729e.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/1f8e5899-3805-4ab4-a5bd-f66fb56c729e.png"></p>
 <p>通过迁移，我可以在实现相同的P99延迟时，使用更少的实例。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/67a8164a-1821-455c-9bd5-c1bac11a084f.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/67a8164a-1821-455c-9bd5-c1bac11a084f.png"></p>
 <p>右边是llumnix分布式调度，左边是集中式调度。集中式调度需要通信来同步请求状态和调度决策。在高请求速率的情况下，分布式和集中式调度的区别更为明显。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/bdf21786-d018-40d2-a807-78960d986b79.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/Llumnix/%E5%9B%BE%E7%89%87/bdf21786-d018-40d2-a807-78960d986b79.png"></p>
 <h2 id="读后感"><a href="#读后感" class="headerlink" title="读后感"></a>读后感</h2><p>核心是使用虚拟使用量的方式，将所有方式（迁移-碎片化，优先级，弹性伸缩）都统一为负载均衡的方式。</p>
 <p>最后提到的分布式调度架构和集中式调度架构不是很清楚？你难道没全局调度器？</p>
 <p>在github中提到可以做PD分离，但还在试验中</p>

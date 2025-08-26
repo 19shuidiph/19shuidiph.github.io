@@ -469,7 +469,7 @@
                 <h1 id="K8S学习"><a href="#K8S学习" class="headerlink" title="K8S学习"></a>K8S学习</h1><h2 id="容器-x2F-docker的基本知识"><a href="#容器-x2F-docker的基本知识" class="headerlink" title="容器&#x2F;docker的基本知识"></a>容器&#x2F;docker的基本知识</h2><p>镜像Images，仓库Repositories，容器：Container</p>
 <p>从远端仓库拉取镜像到本地，镜像实例化为容器</p>
 <p>容器提交给镜像，在本地将镜像推送给远端仓库</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240522201344923.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/k8s-learning/image/image-20240522201344923.png"></p>
 <p>给镜像打标签</p>
 <p>docker tag c059bfaa849c docker.io&#x2F;wzh-repository&#x2F;alpine:v1107</p>
 <p>推送镜像?推送失败docker push docker.io&#x2F;wzh-repository&#x2F;alpine:v1107</p>
@@ -483,7 +483,7 @@
 <p>传递环境变量 docker run -e 环境变量key&#x3D;环境变量value</p>
 <p>容器内安装软件(工具)  yum&#x2F;apt-get&#x2F;apt等</p>
 <p>容器通过提交变为镜像;同时dockerfile通过build也可以生成Image,一行行执行dockerfile里的指令。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240523152112598.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/k8s-learning/image/image-20240523152112598.png"></p>
 <p>dockerfile的规则： 指令用大写，内容用小写</p>
 <p>USER&#x2F;WORKDIR指令    USER指定进程使用哪个用户运行，WORKDIR指定进程的工作目录，进去docker时所在目录</p>
 <p>ADD&#x2F;EXPOSE指令    ADD指令的功能是将主机构建环境（上下文）目录中的文件和目录、以及一个URL标记的文件 拷贝到镜像中。      EXPOSE指令：指的是让容器哪个端口暴露出来</p>
@@ -497,7 +497,7 @@
 <p>3.docker统一了容器部署的方式。docker容器。 java-jar, npm run dev 。 docker run…</p>
 <p>三次跨时代飞跃： 1.CS to BS,不必下载客户端，直接网页访问  2.移动互联网，有手机就行  3.微信小程序，我连APP都不用装了。</p>
 <h2 id="K8S入门"><a href="#K8S入门" class="headerlink" title="K8S入门"></a>K8S入门</h2><p>K8S的优势：自动装箱，弹性伸缩，自我修复；服务发现和负载均衡；自动部署和回滚；集中化配置和密钥管理；存储编排；任务批处理运行。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240524220143417.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/k8s-learning/image/image-20240524220143417.png"></p>
 <ol>
 <li><p>pod 是k8s中能够运行的最小逻辑单元，一个pod里面可以运行多个容器。 Pod是豌豆荚，容器是豌豆。一个pod里运行多个容器，又叫边车模式。</p>
 </li>
@@ -519,7 +519,7 @@
 <p>有状态和无状态：无状态应用不会对本地环境产生任何依赖，例如不会存储数据到本地磁盘。</p>
 <p>资源与对象：在K8S中一切皆资源，配置资源清单。对象是资源的实例。</p>
 <p>资源的分类：元空间级（每一个资源都可以使用），集群级（K8S集群），命名空间级。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240526160118919.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/k8s-learning/image/image-20240526160118919.png"></p>
 <p>Node是一台机器，属于集群级别的资源。</p>
 <ol>
 <li><p>命名空间级的资源很重要：<br>pod,里面由单个容器或者几个紧耦合在一起的容器组成。希望如果两个容器有强依赖关系时，可以共享网络。让多个容器挂载同一存储卷。pod在创建之初就有一个pause容器，来支持所有的共享。</p>
@@ -533,11 +533,11 @@
 <li><p>守护进程，DaemonSet。监控应用，日志搜集。可以配置只在type&#x3D;logs上的Node上执行。</p>
 </li>
 </ol>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240526165744571.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/k8s-learning/image/image-20240526165744571.png"></p>
 <p>CronJob在Job上添加了定时的功能。</p>
 <p>内部节点之间，pod之间的网络通信，用Service来实现。东西流量。</p>
 <p>南北流量基于Ingress实现，将K8S内部服务暴露给外部。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240526183346163.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/k8s-learning/image/image-20240526183346163.png"></p>
 <h2 id="K8S的各种插件"><a href="#K8S的各种插件" class="headerlink" title="K8S的各种插件"></a>K8S的各种插件</h2><p>Kubectl命令行工具</p>
 <p>K8S的CNI网络插件-flannel</p>
 <p>K8S的服务发现插件-coredns</p>
@@ -556,10 +556,10 @@
 </ol>
 <h2 id="服务发现"><a href="#服务发现" class="headerlink" title="服务发现"></a>服务发现</h2><p>如何将deployment与RS关联起来。给RS打标签Label。然后在deployment里定义选择器selector。</p>
 <p>服务发现：service，service去找Endpoint,Endpoint根据address和iptables去找node的kube-proxy，然后找到具体的pod。各个pod之间也可以自由通信。Service的Endpoint类似于Nacos</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240531091119148.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/k8s-learning/image/image-20240531091119148.png"></p>
 <p>外部访问，内部服务-&gt;Service-&gt;Endpoint-&gt;百度等要访问的网站。</p>
 <p>Ingress类似于Nginx。Nginx就是Ingress的实现之一。外部用户访问服务器。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240531100841295.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/k8s-learning/image/image-20240531100841295.png"></p>
 <h2 id="配置与存储"><a href="#配置与存储" class="headerlink" title="配置与存储"></a>配置与存储</h2><p>为了持久化保存容器的数据，kubernetes引入了Volume的概念。</p>
 <p>Volume是Pod中能够被多个容器访问的共享目录，它被定义在Pod上，然后被一个Pod里的多个容器挂载到具体的文件目录下，kubernetes通过Volume实现同一个Pod中不同容器之间的数据共享以及数据的持久化存储。Volume的生命容器不与Pod中单个容器的生命周期相关，当容器终止或者重启时，Volume中的数据也不会丢失。</p>
 <p>kubernetes的Volume支持多种类型，比较常见的有下面几个：</p>
@@ -572,11 +572,11 @@
 <li>临时空间，例如用于某些应用程序运行时所需的临时目录，且无须永久保留</li>
 <li>一个容器需要从另一个容器中获取数据的目录（多容器共享目录）</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240601084800901.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/k8s-learning/image/image-20240601084800901.png"></p>
 <p><strong>hostPath</strong></p>
 <p>EmptyDir中数据不会被持久化，它会随着Pod的结束而销毁，如果想简单的将数据持久化到主机中，可以选择HostPath。</p>
 <p>HostPath就是将Node主机中一个实际目录挂在到Pod中，以供容器使用，这样的设计就可以保证Pod销毁了，但是数据依据可以存在于Node主机上。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240601084823601.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/k8s-learning/image/image-20240601084823601.png"></p>
 <p><strong>NFS挂载</strong>，NFS是一个网络文件存储系统，可以搭建一台NFS服务器，然后将Pod中的存储直接连接到NFS系统上，这样的话，无论Pod在节点上怎么转移，只要Node跟NFS的对接没问题，数据就可以成功访问。NFS的位置类似于上图中的hostPath，在pod外面。</p>
 <p>为了能够屏蔽底层存储实现的细节，方便用户使用， kubernetes引入PV和PVC两种资源对象。</p>
 <ul>
@@ -585,7 +585,7 @@
 <li><p><strong>PVC（Persistent Volume Claim）</strong>是持久卷声明的意思，是用户对于存储需求的一种声明。换句话说，PVC其实就是用户向kubernetes系统发出的一种资源需求申请。</p>
 </li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/k8s-learning/image/image-20240601090222507.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/k8s-learning/image/image-20240601090222507.png"></p>
 <p>使用了PV和PVC之后，工作可以得到进一步的细分：</p>
 <ul>
 <li>存储：存储工程师维护</li>

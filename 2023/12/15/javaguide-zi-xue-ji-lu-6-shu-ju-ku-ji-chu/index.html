@@ -496,8 +496,8 @@
 <p>事务控制语言 (Transaction Control Language, TCL) 用于<strong>管理数据库中的事务</strong>.核心指令是commit,rollback</p>
 <p>数据控制语言 (Data Control Language, DCL)  以<strong>控制用户的访问权限</strong>为主</p>
 <p>插入：</p>
-<p>INSERTINTOuserVALUES(10,’root’,’root’,‘<a href="mailto:&#x78;&#120;&#120;&#120;&#64;&#49;&#x36;&#x33;&#46;&#x63;&#x6f;&#x6d;">&#x78;&#120;&#120;&#120;&#64;&#49;&#x36;&#x33;&#46;&#x63;&#x6f;&#x6d;</a>‘),(12,’user1’,’user1’,‘<a href="mailto:&#x78;&#x78;&#x78;&#x78;&#64;&#x31;&#54;&#x33;&#46;&#x63;&#111;&#109;">&#x78;&#x78;&#x78;&#x78;&#64;&#x31;&#54;&#x33;&#46;&#x63;&#111;&#109;</a>‘),(18,’user2’,’user2’,‘<a href="mailto:&#120;&#120;&#120;&#120;&#64;&#x31;&#54;&#x33;&#46;&#99;&#x6f;&#109;">&#120;&#120;&#120;&#120;&#64;&#x31;&#54;&#x33;&#46;&#99;&#x6f;&#109;</a>‘);</p>
-<p>INSERT INTO user(username, password, email)<br>VALUES (‘admin’, ‘admin’, ‘<a href="mailto:&#x78;&#x78;&#x78;&#120;&#x40;&#49;&#x36;&#x33;&#46;&#x63;&#111;&#x6d;">&#x78;&#x78;&#x78;&#120;&#x40;&#49;&#x36;&#x33;&#46;&#x63;&#111;&#x6d;</a>‘);</p>
+<p>INSERTINTOuserVALUES(10,’root’,’root’,‘<a href="mailto:&#120;&#120;&#x78;&#120;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#111;&#109;">&#120;&#120;&#x78;&#120;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#111;&#109;</a>‘),(12,’user1’,’user1’,‘<a href="mailto:&#x78;&#x78;&#120;&#x78;&#x40;&#49;&#54;&#x33;&#x2e;&#99;&#x6f;&#x6d;">&#x78;&#x78;&#120;&#x78;&#x40;&#49;&#54;&#x33;&#x2e;&#99;&#x6f;&#x6d;</a>‘),(18,’user2’,’user2’,‘<a href="mailto:&#120;&#120;&#120;&#120;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#111;&#109;">&#120;&#120;&#120;&#120;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#111;&#109;</a>‘);</p>
+<p>INSERT INTO user(username, password, email)<br>VALUES (‘admin’, ‘admin’, ‘<a href="mailto:&#x78;&#x78;&#120;&#120;&#64;&#x31;&#x36;&#51;&#x2e;&#99;&#x6f;&#109;">&#x78;&#x78;&#120;&#120;&#64;&#x31;&#x36;&#51;&#x2e;&#99;&#x6f;&#109;</a>‘);</p>
 <p>插入查询出来的数据：</p>
 <p>INSERT INTO user(username)<br>SELECT name<br>FROM account;</p>
 <p>更新：</p>
@@ -565,7 +565,7 @@ order by c<span class="token punctuation">.</span>cust_name<span class="token pu
 <td>交叉连接，从两个或者多个连接表中返回记录集的笛卡尔积。</td>
 </tr>
 </tbody></table>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%956-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/image/image-20231221111319644.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%956-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/image/image-20231221111319644.png"></p>
 <p><code>UNION</code> 基本规则：</p>
 <ul>
 <li>所有查询的列数和列顺序必须相同。</li>
@@ -769,7 +769,7 @@ order by c<span class="token punctuation">.</span>cust_name<span class="token pu
 <p>&lt;窗口函数&gt;的位置，可以放以下两种函数：</p>
 <p>1） 专用窗口函数，比如rank, dense_rank, row_number等</p>
 <p>2） 聚合函数，如sum. avg, count, max, min等</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%956-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/image/d16efa5a40b580004266ae1e0e10b226.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%956-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/image/d16efa5a40b580004266ae1e0e10b226.png"></p>
 <pre class=" language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span><span class="token punctuation">,</span>
    rank<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">over</span> <span class="token punctuation">(</span><span class="token keyword">partition</span> <span class="token keyword">by</span> 班级
                  <span class="token keyword">order</span> <span class="token keyword">by</span> 成绩 <span class="token keyword">desc</span><span class="token punctuation">)</span> <span class="token keyword">as</span> ranking

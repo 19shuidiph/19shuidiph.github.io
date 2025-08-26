@@ -474,17 +474,17 @@
 <h4 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h4><pre class=" language-cmd"><code class="language-cmd">vue ui
 </code></pre>
 <p>使用图形向导来创建 vue 项目，如下图，输入项目名，包管理器选择npm</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220815141136895.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220815141136895.png"></p>
 <p>选择手动配置项目</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220815141312244.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220815141312244.png"></p>
 <p>添加 vue router(实现组件之间的跳转) 和 vuex（实现组件之间的数据共享）</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220815141412380.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220815141412380.png"></p>
 <p>选择版本，创建项目</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220815141459878.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220815141459878.png"></p>
 <h4 id="安装-devtools"><a href="#安装-devtools" class="headerlink" title="安装 devtools"></a>安装 devtools</h4><ul>
 <li>devtools 插件网址：<a target="_blank" rel="noopener" href="https://devtools.vuejs.org/guide/installation.html">https://devtools.vuejs.org/guide/installation.html</a></li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220815141648040.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220815141648040.png"></p>
 <h4 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h4><p>进入项目目录，执行</p>
 <pre class=" language-cmd"><code class="language-cmd">npm run serve
 </code></pre>
@@ -2230,7 +2230,7 @@ service<span class="token punctuation">.</span>interceptors<span class="token pu
 <li>其中响应拦截器发现响应正确，返回 resp.data 这样，其它处代码解构时少了一层 data</li>
 </ul>
 <h4 id="5-src-permission-js"><a href="#5-src-permission-js" class="headerlink" title="5. src/permission.js"></a>5. <code>src/permission.js</code></h4><p>登录成功后，只是获得了 token，还未获取用户信息，获取用户信息是在路由跳转的 beforeEach 里做的</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20240610212611205.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20240610212611205.png"></p>
 <pre class=" language-mermaid"><code class="language-mermaid">sequenceDiagram 
 
 participant c as 登录页
@@ -2407,7 +2407,7 @@ router<span class="token punctuation">.</span><span class="token function">befor
 <li>动态路由中关联了角色信息，根据用户的角色决定那些路由可用，但这样做的缺点是把角色和路由绑定死了</li>
 </ul>
 <h4 id="8-src-layout-index-vue"><a href="#8-src-layout-index-vue" class="headerlink" title="8. src/layout/index.vue"></a>8. <code>src/layout/index.vue</code></h4><p>它对应的是我们之前介绍的 Container.vue 完成主页布局的，路由路径是 &#x2F;</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20220827194047788.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20220827194047788.png"></p>
 <p>其中又由多部分组成，其中固定不变的是</p>
 <ul>
 <li>侧边栏</li>
@@ -2420,7 +2420,7 @@ router<span class="token punctuation">.</span><span class="token function">befor
 <li>进入 &#x2F; 后，就会 redirect 重定向到 &#x2F;dashboard 子路由</li>
 <li>进入首页后，会有一个 <code>/api/transaction/list</code> 的后台请求报 404，作为练习，把它补充完整</li>
 </ul>
-<h3 id="第三方登录"><a href="#第三方登录" class="headerlink" title="第三方登录"></a>第三方登录</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/2022.js/imgs/image-20240610212639328.png"></p>
+<h3 id="第三方登录"><a href="#第三方登录" class="headerlink" title="第三方登录"></a>第三方登录</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/2022.js/imgs/image-20240610212639328.png"></p>
 <pre class=" language-mermaid"><code class="language-mermaid">sequenceDiagram
 participant a7 as 前端(9527)
 participant a8 as 后端(8080)

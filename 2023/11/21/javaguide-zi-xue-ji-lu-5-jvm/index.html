@@ -467,7 +467,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><h2 id="内存区域详解"><a href="#内存区域详解" class="headerlink" title="内存区域详解"></a>内存区域详解</h2><p>JDK1.7线程共享区域有个方法区，JDK8变为了本地内存里的元空间。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231121193536683.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231121193536683.png"></p>
 <p>字节码解释器通过改变程序计数器来依次读取指令，从而实现代码的流程控制，如：顺序执行、选择、循环、异常处理。</p>
 <p>在多线程的情况下，程序计数器用于记录当前线程执行的位置，从而当线程被切换回来的时候能够知道该线程上次运行到哪儿了。</p>
 <p>栈由一个个栈帧组成，而每个栈帧中都拥有：局部变量表、操作数栈、动态链接、方法返回地址。</p>
@@ -496,7 +496,7 @@
 <li>混合收集（Mixed GC）：对整个新生代和部分老年代进行垃圾收集。</li>
 </ul>
 <p>整堆收集 (Full GC)：收集整个 Java 堆和方法区。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231129164937009.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231129164937009.png"></p>
 <p>空间分配担保：进行Minor GC之前，先看看老年代有没有足够的空间。如果没有，则进行Full GC</p>
 <p>如果一个对象只具有软引用，那就类似于<strong>可有可无的生活用品</strong>。如果内存空间足够，垃圾回收器就不会回收它，如果内存空间不足了，就会回收这些对象的内存，使用软引用的情况较多，比如高速敏感的缓存，这是因为<strong>软引用可以加速 JVM 对垃圾内存的回收速度，可以维护系统的运行安全，防止内存溢出（OutOfMemory）等问题的产生</strong>.</p>
 <p>无用的类：</p>
@@ -536,7 +536,7 @@
 <li><strong>重新标记：</strong> 重新标记阶段就是为了修正并发标记期间因为用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始标记阶段的时间稍长，远远比并发标记阶段时间短</li>
 <li><strong>并发清除：</strong> 开启用户线程，同时 GC 线程开始对未标记的区域做清扫。</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231130165743467.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231130165743467.png"></p>
 <p>主要优点：<strong>并发收集、低停顿</strong>。但是它有下面三个明显的缺点：</p>
 <ul>
 <li><strong>对 CPU 资源敏感；</strong></li>
@@ -559,7 +559,7 @@
 <li><strong>最终标记</strong></li>
 <li><strong>筛选回收</strong></li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231130170314884.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231130170314884.png"></p>
 <p><strong>G1 收集器在后台维护了一个优先列表，每次根据允许的收集时间，优先选择回收价值最大的 Region(这也就是它的名字 Garbage-First 的由来)</strong> 。这种使用 Region 划分内存空间以及有优先级的区域回收方式，保证了 G1 收集器在有限时间内可以尽可能高的收集效率（把内存化整为零）。</p>
 <p><strong>从 JDK9 开始，G1 垃圾收集器成为了默认的垃圾收集器</strong></p>
 <p>CMS新生代的Young GC、G1和ZGC都基于<strong>标记-复制</strong>算法，但算法具体实现的不同就导致了巨大的性能差异。</p>
@@ -575,14 +575,14 @@
 </ul>
 <p>与CMS中的ParNew和G1类似，ZGC也采用标记-复制算法，不过ZGC对该算法做了重大改进：ZGC在标记、转移和重定位阶段几乎都是并发的，这是ZGC实现停顿时间小于10ms目标的最关键原因。</p>
 <p>ZGC只有三个STW阶段：<strong>初始标记</strong>，<strong>再标记</strong>，<strong>初始转移</strong>。其中，初始标记和初始转移分别都只需要扫描所有GC Roots，其处理时间和GC Roots的数量成正比，一般情况耗时非常短；再标记阶段STW时间很短，最多1ms，超过1ms则再次进入并发标记阶段。即，ZGC几乎所有暂停都只依赖于GC Roots集合大小，停顿时间不会随着堆的大小或者活跃对象的大小而增加。与ZGC对比，G1的转移阶段完全STW的，且停顿时间随存活对象的大小增加而增加。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231130171907725.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231130171907725.png"></p>
 <p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2020/08/06/new-zgc-practice-in-meituan.html">ZGC关键技术</a>：</p>
 <p>ZGC通过<strong>着色指针</strong>和<strong>读屏障技术</strong>，解决了转移过程中准确访问对象的问题，实现了并发转移。大致原理描述如下：并发转移中“并发”意味着GC线程在转移对象的过程中，应用线程也在不停地访问对象。假设对象发生转移，但对象地址未及时更新，那么应用线程可能访问到旧地址，从而造成错误。而在ZGC中，应用线程访问对象将触发“读屏障”，如果发现对象被移动了，那么“读屏障”会把读出来的指针更新到对象的新地址上，这样应用线程始终访问的都是对象的新地址。那么，JVM是如何判断对象被移动过呢？就是利用对象引用的地址，即着色指针。</p>
 <h2 id="类加载器详解"><a href="#类加载器详解" class="headerlink" title="类加载器详解"></a>类加载器详解</h2><ul>
 <li>类加载过程：<strong>加载-&gt;连接-&gt;初始化</strong>。</li>
 <li>连接过程又可分为三步：<strong>验证-&gt;准备-&gt;解析</strong>。</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231214153824044.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231214153824044.png"></p>
 <p><strong>类加载器的主要作用就是加载 Java 类的字节码（ <code>.class</code> 文件）到 JVM 中（在内存中生成一个代表该类的 <code>Class</code> 对象）。</strong></p>
 <p>Java中内置了三个重要的ClassLoader</p>
 <p>**<code>BootstrapClassLoader</code>(启动类加载器)**：最顶层的加载类，由 C++实现，通常表示为 null，并且没有父级，主要用来加载 JDK 内部的核心类库（ <code>%JAVA_HOME%/lib</code>目录下的 <code>rt.jar</code>、<code>resources.jar</code>、<code>charsets.jar</code>等 jar 包和类）以及被 <code>-Xbootclasspath</code>参数指定的路径下的所有类。</p>
@@ -593,11 +593,11 @@
 <p>classLoader中有两个关键的方法。</p>
 <p>如果我们不想打破双亲委派模型，就重写 <code>ClassLoader</code> 类中的 <code>findClass()</code> 方法即可，无法被父类加载器加载的类最终会通过这个方法被加载。但是，如果想打破双亲委派模型则需要重写 <code>loadClass()</code> 方法。</p>
 <p>双亲委派模型：当一个类需要被加载的时候，一步步往上问看是否已经被加载；都没有加载的话再从上到下一步步尝试去加载。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231214160921266.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231214160921266.png"></p>
 <p>JVM 不仅要看类的全名是否相同，还要看加载此类的类加载器是否一样。只有两者都相同的情况，才认为两个类是相同的。</p>
 <p>双亲委派模型保证了 Java 程序的稳定运行，可以避免类的重复加载（JVM 区分不同类的方式不仅仅根据类名，相同的类文件被不同的类加载器加载产生的是两个不同的类），也保证了 Java 的核心 API 不被篡改。</p>
 <h2 id="最重要的JVM参数总结"><a href="#最重要的JVM参数总结" class="headerlink" title="最重要的JVM参数总结"></a>最重要的JVM参数总结</h2><h3 id="堆内存"><a href="#堆内存" class="headerlink" title="堆内存"></a>堆内存</h3><p><strong>堆内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231214172052217.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955-JVM/image/image-20231214172052217.png"></p>
 <p>显式指定堆内存最小值和最大值<code>–Xms</code>和<code>-Xmx</code></p>
 <p>在堆总可用内存配置完成之后，第二大影响因素是为 <code>Young Generation</code> 在堆内存所占的比例。</p>
 <p>新生代分配 最小和最大 -XX:NewSize&#x3D;256m      -XX:MaxNewSize&#x3D;1024m</p>

@@ -468,28 +468,28 @@
             <div id="articleContent">
                 <h1 id="Mooncake：以-KVCache-为中心的服务分解架构LLM"><a href="#Mooncake：以-KVCache-为中心的服务分解架构LLM" class="headerlink" title="Mooncake：以 KVCache 为中心的服务分解架构LLM"></a>Mooncake：以 KVCache 为中心的服务分解架构LLM</h1><p>Fast’25 CCFA</p>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Kimi，要在满足TTFT和TPOT的SLO的基础上，增大吞吐量</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/1280X1280%20%285%29.PNG"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/1280X1280%20%285%29.PNG"></p>
 <p>高峰期，机器其实是有限的，prefill后，decode实例不够用。要学会拒绝一些请求。</p>
 <p>以过载为导向的调度，短期内的整体负载预测，以实现更好的拒绝策略。</p>
 <p>我们的主要目标是最大限度地提高整体吞吐量，同时坚持SLO，这个概念在其他研究中被称为goodput。我们的方法不同的是，只有完全完成执行的请求才算在goodput的衡量标准中。换句话说，如果请求无法在SLO下完成全面执行，则应尽早拒绝。实现这一目标不仅需要优化预填充和解码阶段的架构，还需要开发预测短期未来负载的能力。</p>
 <p>分析了一下数据集，有些前缀kvc，命中频率很高，建议复制好几份到不同的服务器上，避免通信阻塞。（背景：提高KVC的利用率，但是如果是存储在别的服务器上，再调用过来，通信时延影响TTFT，所以就在其他服务器上也缓存一份KVC。prefill的机器是计算密集型的，存储资源应该不紧张）</p>
 <p>Conductor还负责预测KVCache块的未来使用情况，并相应地执行交换和复制等调度操作。最热的块应复制到多个节点以避免获取拥塞，而最冷的块应被换出以降低保留成本。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/1280X1280.PNG"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/1280X1280.PNG"></p>
 <p>随着请求长度的增加，prefill处理时延肯定会增加，因为要处理的序列更长了，自然需要处理更长时间。</p>
 <p>随着Batch大小增加，decode阶段的吞吐量显著增大，不过batch如果更大，直接爆内存了。</p>
 <p>在decode阶段普遍使用的优化方法是连续批处理（continuous batching)</p>
 <p>TTFT_TP 90 &#x3D; 4×:  90%的推理请求的TTFT不大于在相同条件下无干扰运行的单个请求的四倍。</p>
 <p>如果监控检测到未满足的SLO，我们要么添加推理资源，要么拒绝一些传入的请求。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/1280X1280%20%281%29.PNG"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/1280X1280%20%281%29.PNG"></p>
 <p>前缀缓存：通过hash算法，将一些token对应到内存里的一部分空间。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/1280X1280%20%282%29.PNG"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/1280X1280%20%282%29.PNG"></p>
 <p>命中前缀KVC，然后自己计算后一部分的KVC；将其从GPU传输到CPU；然后传输到decode节点的CPU，再传到GPU。</p>
 <p>分析输入输出数据集：图5显示了我们跟踪中输入和输出长度的分布，平均输入长度为7590个令牌，平均输出长度为182个令牌。平均投入产出比约为720。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/ffe4ff34-8464-41cf-a47d-ad5c2128c490.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/ffe4ff34-8464-41cf-a47d-ad5c2128c490.png"></p>
 <p>数据集简单分析：哈希ID一样，说明有可以复用的KVC前缀</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/44fc7d69-ed14-415d-9ec3-b4da441b1d48.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/44fc7d69-ed14-415d-9ec3-b4da441b1d48.png"></p>
 <p>缓存命中情况：在cache存储大小为10000的情况下，使用LRU算法最好。同时也观察到缓存块流行度存在明显的不平衡，超过50%的缓存块未被使用，而某些块被访问了数万次。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/e0f62841-0412-46bd-bde8-5a4042cdacdd.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/e0f62841-0412-46bd-bde8-5a4042cdacdd.png"></p>
 <h2 id="解决方案-x2F-创新点"><a href="#解决方案-x2F-创新点" class="headerlink" title="解决方案&#x2F;创新点"></a>解决方案&#x2F;创新点</h2><ol>
 <li>prefill：我们使用块状管道并行（CPP，chunked pipeline parallelism）机制来扩展跨多个节点的单个请求的处理，这对于减少长上下文输入的TTFT是必要的。与传统的基于序列并行（SP）的解决方案相比，CPP减少了网络消耗，并简化了对频繁弹性扩展的依赖。该机制进一步补充了分层预填充，使KVCache的流传输能够重叠延迟。</li>
 <li>以KVCache为中心的请求调度算法，该算法平衡了由TTFT和TBT SLO测量的实例负载和用户体验。这包括基于启发式的自动热点迁移方案，该方案复制了热KVCache块，而无需对未来KVCache使用情况进行精确预测。如果内存满了，使用LRU算法进行驱逐</li>
@@ -503,41 +503,41 @@
 <p>总结方案1.在Pod1上慢慢排队  2. 在Pod2上重新计算一部分KVC 3. 在Pod2上操作，但是让Pod1快速传输一些可以复用的KVC。【本质上就是边缘节点的卸载，然后一些核心数据（前缀KVC）在边缘节点之间的传输】</p>
 <p>该模型根据请求的长度和前缀缓存命中长度来估计预填充持续时间，请求的排队时间是通过聚合所有排队请求的预填充时间来计算的。</p>
 <p>比较随机的，负载均衡的，本地计算缓存，全局感知可调度的，肯定是后者性能最好。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/04f42b26-9674-4a1a-9aae-24a375864512.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/04f42b26-9674-4a1a-9aae-24a375864512.png"></p>
 <h3 id="Overload-oriented-Scheduling"><a href="#Overload-oriented-Scheduling" class="headerlink" title="Overload-oriented Scheduling"></a>Overload-oriented Scheduling</h3><p>主要根据TTFT和TPOT的SLO决定是否拒绝请求的继续处理。</p>
 <p>一般情况下都是Decode资源不足，从而导致Prefill的一些资源浪费，生成了KVC但是传不到后面去。所以早期拒绝策略：Conductor会根据预填充池和解码池之间的较大负载来评估是否接受请求。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/39708cd0-ca2b-47a2-85f9-bd5d808aa92b.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/39708cd0-ca2b-47a2-85f9-bd5d808aa92b.png"></p>
 <p>使用了早期拒绝策略之后的，比较正常，没有哪一部分持续负载很高。</p>
 <p>这种负载波动问题的根源在于预测解码负载与其实际执行之间的时间滞后。</p>
 <p>预测单个请求的输出token长度有点耗时有点难，使用了更粗糙的预测精度，估计指定时间后实例的总体批数或TBT状态。假设所有request的decode均为统一时间。请求级别预测的探索留给了未来的工作。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/0cb4f970-914e-4f77-b326-2a3bddcce9ba.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/0cb4f970-914e-4f77-b326-2a3bddcce9ba.png"></p>
 <p>基于预测的，看图可知，整体就平稳了很多，不会波澜。只要有波澜，基本就是P超载D清闲，P清闲D超载，来回切换。</p>
 <h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>集群中的每个节点配置如下：8个NVIDIA-A800SXM4-80GB GPU，每个GPU有80GB HBM，通过NVLINK连接；配备RDMA网卡，支持节点之间高达800Gbps的互连带宽。每个节点根据启动参数部署预填充实例或解码实例。</p>
 <p>对于不同的数据集，Mooncake都表现的最优秀，因为他结合的东西多呀，前缀缓存，全局缓存。。。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/5a853446-3e02-4b67-970d-54d5866d6e5a.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/5a853446-3e02-4b67-970d-54d5866d6e5a.png"></p>
 <p>缓存空间越大，肯定命中率越高。本地缓存为3M大小，是中间的虚线。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/4001b9f3-5414-424c-824f-a3313012c539.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/4001b9f3-5414-424c-824f-a3313012c539.png"></p>
 <p>全局缓存比本地缓存效果要好。全局缓存到底是存了一份数据还是多份数据呢。是类似于redis这种全局，还是只是一份数据存到了四台机器里呢？后者。</p>
 <p>全局缓存是可以迁移的，同时可以路由到最佳的可复用的prefill-kv cache长度上。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/3a46ffa5-90bf-482e-93d2-501f5069d234.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/3a46ffa5-90bf-482e-93d2-501f5069d234.png"></p>
 <p>baseline是2024年的vllm,当时vllm还没有pd分离。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/41b3b430-6b79-4d4f-a51d-fe5f827abcc8.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/41b3b430-6b79-4d4f-a51d-fe5f827abcc8.png"></p>
 <p>对于TTFT来说，蓝色的3P1D是时延最好的；对于TBT来说，黄色的2P2D是时延最好的；</p>
 <p>反正Mooncake的颜色，都比vllm的基线要好。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/79353b8b-685e-46cb-b922-811cb15173f5.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/79353b8b-685e-46cb-b922-811cb15173f5.png"></p>
 <p>Mooncake在TTFT上优势很大，但是在TBT上出现劣势。</p>
 <p>但是我们的实验目标是在TTFT和TBT都满足SLO约束的情况下，吞吐量最大。我可以说TBT很容易满足约束，所以关键点在TTFT，然后TTFT里Mooncake的性能要比基线vllm好。</p>
 <p>因此，可以预设预填充和解码实例的比例。未来的研究将探索更灵活的部署和转换方法。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/26902179-cc63-44ab-9c85-8af1409c52c2.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/26902179-cc63-44ab-9c85-8af1409c52c2.png"></p>
 <p>真实世界中，TBT上，10P10D也比20个不分离的，时延更短，更能满足SLO约束</p>
 <h2 id="补充实验"><a href="#补充实验" class="headerlink" title="补充实验"></a>补充实验</h2><p>区别于一开始放出的arxiv。论文在Fast’25中做了大量补充实验，尤其是对于第四个创新点，带宽传输的。</p>
 <p>MOONCAKE的全局缓存池依赖于高效的节点间缓存传输，在GPU comp-putation时间内隐藏缓存传输时间。我们通过模拟24 Gbps到400 Gbps的带宽范围，并在§5.2.1中描述的合成工作负载下测量传输时间和TTFT来评估网络带宽对系统性能的影响。图13a显示，随着带宽的增加，请求的平均TTFT会下降。当总通信带宽超过100 Gbps时，平均TTFT数据量低于2秒，明显低于数据计算基线的TTFT。然而，当带宽低于100 Gbps时，系统性能会受到严重影响。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/950b2113-7b83-45e8-bdb5-5b04d4abef7d.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/950b2113-7b83-45e8-bdb5-5b04d4abef7d.png"></p>
 <p>如果带宽很大，大于100Gbps或者200Gbps，那么一般就推荐传输kvc，而不是重新计算kvc。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/a5530bfa-47e2-4a4a-907b-66558a6c2aa7.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/a5530bfa-47e2-4a4a-907b-66558a6c2aa7.png"></p>
 <p>mooncake在前缀缓存命中率高的情况下，能够大幅度降低prefill时间，从而大部分减少端到端时延。</p>
 <p>PD比例：mooncake认为8P8D,也就是1:1是效果最好的。同时认为大数据具有普遍特征，就固定pd比例了，没有弹性伸缩变化的考虑。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/065d7919-8669-46cd-9f98-cc4077935cb9.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/mooncake/065d7919-8669-46cd-9f98-cc4077935cb9.png"></p>
 <h2 id="读后感"><a href="#读后感" class="headerlink" title="读后感"></a>读后感</h2><ol>
 <li>前缀KVC的复用：热KV块，输入的token处理成hash，有一些高频的前缀。不过对于特定的一部分数据集应该是可以节省时间的。</li>
 <li>在第二个创新点里，还搞了一个预测时间模型（比如RNN的LSTM?)，根据以往的数据信息，处理对于该数据长度+命中前缀KVC的情况预测时间。</li>

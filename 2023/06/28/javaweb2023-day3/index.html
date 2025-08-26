@@ -473,9 +473,9 @@
 <li>ViewModel: 数据绑定到视图，负责将数据（Model）通过JavaScript的DOM技术，将数据展示到视图（View）上</li>
 </ul>
 <p>如图所示就是MVVM开发思想的含义：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1668857055058.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1668857055058.png"></p>
 <p>基于上述的MVVM思想，其中的Model我们可以通过Ajax来发起请求从后台获取;对于View部分，我们将来会学习一款ElementUI框架来替代HTML+CSS来更加方便的搭建View;而今天我们要学习的就是侧重于ViewModel部分开发的vue前端框架，用来替代JavaScript的DOM操作，让数据展示到视图的代码开发变得更加的简单。可以简单到什么程度呢？可以参考下图对比：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1668858213508.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1668858213508.png"></p>
 <p>在更加复杂的dom操作中，vue只会变得更加的简单！在上述的代码中，我们看不到之前的DOM操作，因为vue全部帮我们封装好了。</p>
 <p>Vue.js 的目标是通过尽可能简单的 API 实现<strong>响应的数据绑定</strong>和<strong>组合的视图组件</strong>。</p>
 <p>快速入门</p>
@@ -509,7 +509,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>浏览器打开效果如图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1668859214102.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1668859214102.png"></p>
 <p>全部代码如下：</p>
 <pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -601,7 +601,7 @@
 <p>打开浏览器，我们修改表单项标签，发现vue对象data中的数据也发生了变化，如下图所示：</p>
 </li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1668860425429.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1668860425429.png"></p>
 <p>代码如下：</p>
 <pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -715,7 +715,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>效果如下：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1668864558419.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1668864558419.png"></p>
 <p>可以发现，浏览器呈现的效果是一样的，但是浏览器中html源码不一样。v-if指令，不满足条件的标签代码直接没了，而v-show指令中，不满足条件的代码依然存在，只是添加了css样式来控制标签不去显示。</p>
 <h3 id="4-v-for"><a href="#4-v-for" class="headerlink" title="4.v-for"></a>4.v-for</h3><p>直接上代码：</p>
 <pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
@@ -754,8 +754,8 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>浏览器打开，呈现如下效果：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1668866805981.png"></p>
-<h3 id="5-案例"><a href="#5-案例" class="headerlink" title="5.案例"></a>5.案例</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1668868100828.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1668866805981.png"></p>
+<h3 id="5-案例"><a href="#5-案例" class="headerlink" title="5.案例"></a>5.案例</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1668868100828.png"></p>
 <ul>
 <li><p>如上图所示，我们提供好了数据模型，users是数组集合，提供了多个用户信息。然后我们需要将数据以表格的形式，展示到页面上，其中，性别需要转换成中文男女，等级需要将分数数值转换成对应的等级。</p>
 </li>
@@ -891,7 +891,7 @@
 </tr>
 </tbody></table>
 <p>下图是 Vue 官网提供的从创建 Vue 到效果 Vue 对象的整个过程及各个阶段对应的钩子函数：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1668867134683.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1668867134683.png"></p>
 <p>其中我们需要重点关注的是**mounted,**其他的我们了解即可。</p>
 <p>mounted：挂载完成，Vue初始化成功，HTML页面渲染成功。<strong>以后我们一般用于页面初始化自动的ajax请求后台数据</strong></p>
 <p>我们编写mounted声明周期的钩子函数，与methods同级.</p>
@@ -912,7 +912,7 @@
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>浏览器打开，运行结果如下：我们发现，自动打印了这句话，因为页面加载完成，vue对象创建并且完成了挂在，此时自动触发mounted所绑定的钩子函数，然后自动执行，弹框。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1668867458156.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1668867458156.png"></p>
 <h2 id="Ajax-Axios"><a href="#Ajax-Axios" class="headerlink" title="Ajax-Axios"></a>Ajax-Axios</h2><p>我们前端应该如何从后台获取数据呢？Ajax技术</p>
 <p>Ajax: 全称Asynchronous JavaScript And XML，异步的JavaScript和XML。其作用有如下2点：</p>
 <ul>
@@ -958,7 +958,7 @@
 </li>
 </ul>
 <h3 id="Axios快速入门"><a href="#Axios快速入门" class="headerlink" title="Axios快速入门"></a>Axios快速入门</h3><p>先导入需要的包</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1669108792555.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1669108792555.png"></p>
 <p>直接上代码：</p>
 <pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -1039,7 +1039,7 @@
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
 <h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>需求：基于Vue及Axios完成数据的动态加载展示，如下图所示</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1669139756551.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1669139756551.png"></p>
 <ul>
 <li><p>我们需要使用Ajax请求获取后台的数据。但是Ajax请求什么时候发送呢？页面的数据应该是页面加载完成，自动发送请求，展示数据，所以我们需要借助vue的mounted钩子函数。那么拿到数据了，我们该怎么将数据显示表格中呢？这里就得借助v-for指令来遍历数据，展示数据。</p>
 </li>
@@ -1064,7 +1064,7 @@
 </code></pre>
 </li>
 <li><p>ajax请求的数据我们应该绑定给vue的data属性，之后才能进行数据绑定到视图；并且浏览器打开后台地址，数据返回格式如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1669141982809.png" alt="1669141982809"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1669141982809.png" alt="1669141982809"> </p>
 <p>因为服务器响应的json中的data属性才是我们需要展示的信息，所以我们应该将员工列表信息赋值给vue的data属性，代码如下：</p>
 <pre class=" language-js"><code class="language-js"> <span class="token comment" spellcheck="true">//发送异步请求,加载数据</span>
 axios<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">"http://yapi.smart-xwork.cn/mock/169327/emp/list"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>result <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
@@ -1156,39 +1156,39 @@ axios<span class="token punctuation">.</span><span class="token keyword">get</sp
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
 </code></pre>
 <h2 id="前端工程化"><a href="#前端工程化" class="headerlink" title="前端工程化"></a>前端工程化</h2><h3 id="创建VUE项目"><a href="#创建VUE项目" class="headerlink" title="创建VUE项目"></a>创建VUE项目</h3><p>首先，我们再桌面创建vue文件夹，然后双击进入文件夹，来到地址目录，输入cmd，然后进入到vue文件夹的cmd窗口界面，如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669294790640.png" alt="1669294790640"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669294790640.png" alt="1669294790640"></p>
 <p>然后进入如下界面：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669294846601.png" alt="1669294846601"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669294846601.png" alt="1669294846601"></p>
 <p>然后再当前目录下，直接输入命令<code>vue ui</code>进入到vue的图形化界面，如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669294939067.png" alt="1669294939067"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669294939067.png" alt="1669294939067"> </p>
 <p>然后我门选择创建按钮，在vue文件夹下创建项目，如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669295020228.png" alt="1669295020228"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669295020228.png" alt="1669295020228"></p>
 <p>然后来到如下界面，进行vue项目的创建</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669301661722.png" alt="1669301661722"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669301661722.png" alt="1669301661722"></p>
 <p>然后预设模板选择手动，如下图所示：</p>
-<p> <img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669301737491.png" alt="1669301737491"> </p>
+<p> <img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669301737491.png" alt="1669301737491"> </p>
 <p>然后再功能页面开启路由功能，如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669301859936.png" alt="1669301859936"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669301859936.png" alt="1669301859936"> </p>
 <p>然后再配置页面选择语言版本和语法检查规范，如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669301965095.png" alt="1669301965095"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669301965095.png" alt="1669301965095"> </p>
 <p>然后创建项目，进入如下界面：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669302091090.png" alt="1669302091090"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669302091090.png" alt="1669302091090"></p>
 <p>最后我们只需要等待片刻，即可进入到创建创建成功的界面，如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669302171975.png" alt="1669302171975"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669302171975.png" alt="1669302171975"> </p>
 <p> 到此，vue项目创建结束</p>
-<h3 id="VUE项目目录结构介绍"><a href="#VUE项目目录结构介绍" class="headerlink" title="VUE项目目录结构介绍"></a>VUE项目目录结构介绍</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/1669302973198.png"></p>
+<h3 id="VUE项目目录结构介绍"><a href="#VUE项目目录结构介绍" class="headerlink" title="VUE项目目录结构介绍"></a>VUE项目目录结构介绍</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/1669302973198.png"></p>
 <h3 id="运行VUE项目"><a href="#运行VUE项目" class="headerlink" title="运行VUE项目"></a>运行VUE项目</h3><p>那么vue项目开发好了，我们应该怎么运行vue项目呢？主要提供了2种方式</p>
 <ul>
 <li><p>第一种方式：通过VS Code提供的图形化界面 ，如下图所示：（注意：NPM脚本窗口默认不显示，可以参考本节的最后调试出来）</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669303687468.png" alt="1669303687468"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669303687468.png" alt="1669303687468"></p>
 <p>点击之后，我们等待片刻，即可运行，在终端界面中，我们发现项目是运行在本地服务的8080端口，我们直接通过浏览器打开地址</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669303846100.png" alt="1669303846100"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669303846100.png" alt="1669303846100"> </p>
 <p>最终浏览器打开后，呈现如下界面，表示项目运行成功</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669304009602.png" alt="1669304009602"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669304009602.png" alt="1669304009602"></p>
 <p>其实此时访问的是 <strong>src&#x2F;App.vue</strong>这个根组件，此时我们打开这个组件，修改代码：添加内容Vue</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669304267724.png" alt="1669304267724"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669304267724.png" alt="1669304267724"></p>
 <p>只要我们保存更新的代码，我们直接打开浏览器，不需要做任何刷新，发现页面呈现内容发生了变化，如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669304385826.png" alt="1669304385826"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669304385826.png" alt="1669304385826"></p>
 <p>这就是我们vue项目的热更新功能 </p>
 <p>对于8080端口，经常被占用，所以我们可以去修改默认的8080端口。我们修改vue.config.js文件的内容，添加如下代码：</p>
 <pre class=" language-json"><code class="language-json">devServer<span class="token operator">:</span><span class="token punctuation">{</span>
@@ -1196,26 +1196,26 @@ axios<span class="token punctuation">.</span><span class="token keyword">get</sp
 <span class="token punctuation">}</span>
 </code></pre>
 <p>如下图所示，然后我们关闭服务器，并且重新启动，</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669305444633.png" alt="1669305444633"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669305444633.png" alt="1669305444633"></p>
 </li>
 </ul>
 <p>​       重新启动如下图所示：</p>
-<p>​	<img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669305570022.png" alt="1669305570022"> </p>
+<p>​	<img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669305570022.png" alt="1669305570022"> </p>
 <p>​	端口更改成功，可以通过浏览器访问7000端口来访问我们之前的项目</p>
 <ul>
 <li><p>第二种方式：命令行方式</p>
 <p>直接基于cmd命令窗口，在vue目录下，执行输入命令<code>npm run serve</code>即可，如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669304694076.png" alt="1669304694076"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669304694076.png" alt="1669304694076"></p>
 </li>
 </ul>
 <p>补充：NPM脚本窗口调试出来</p>
 <p>第一步：通过<strong>设置&#x2F;用户设置&#x2F;扩展&#x2F;MPM</strong>更改NPM默认配置，如下图所示</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669304930336.png" alt="1669304930336"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669304930336.png" alt="1669304930336"></p>
 <p>然后重启VS Code，并且<strong>双击打开package.json文件</strong>，然后点击<strong>资源管理器处的3个小点</strong>，<strong>勾选npm脚本选项</strong>，如图所示</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669305068434.png" alt="1669305068434"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669305068434.png" alt="1669305068434"> </p>
 <p>然后就能都显示NPM脚本小窗口了。</p>
 <h3 id="VUE项目开发流程"><a href="#VUE项目开发流程" class="headerlink" title="VUE项目开发流程"></a>VUE项目开发流程</h3><p>那么我们访问的首页是index.html，但是我们找到public&#x2F;index.html文件，打开之后发现，里面没有什么代码，但是能够呈现内容丰富的首页：如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669308098856.png" alt="1669308098856"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669308098856.png" alt="1669308098856"> </p>
 <p>我们自习观察发现，index.html的代码很简洁，但是浏览器所呈现的index.html内容却很丰富，代码和内容不匹配，所以vue是如何做到的呢？接下来我们学习一下vue项目的开发流程。</p>
 <p>对于vue项目，index.html文件默认是引入了入口函数main.js文件，我们找到<strong>src&#x2F;main.js</strong>文件，其代码如下：</p>
 <pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span>
@@ -1239,7 +1239,7 @@ Vue<span class="token punctuation">.</span>config<span class="token punctuation"
 </ul>
 <p>来到<strong>public&#x2F;index.html</strong>中，我们<strong>删除div的id&#x3D;app属性</strong>，打开浏览器，发现之前访问的首页一片空白，如下图所示，这样就证明了，我们main.js中通过代码挂在到index.html的id&#x3D;app的标签区域的。</p>
 <p>此时我们知道了vue创建的dom对象挂在到id&#x3D;app的标签区域，但是我们还是没有解决最开始的问题：首页内容如何呈现的？这就涉及到render中的App了，如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669313364004.png" alt="1669313364004"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669313364004.png" alt="1669313364004"> </p>
 <p>那么这个App对象怎么回事呢，我们打开App.vue,注意的是.vue结尾的都是vue组件。而vue的组件文件包含3个部分：</p>
 <ul>
 <li>template: 模板部分，主要是HTML代码，用来展示页面主体结构的</li>
@@ -1247,9 +1247,9 @@ Vue<span class="token punctuation">.</span>config<span class="token punctuation"
 <li>style: css样式部分，主要通过css样式控制模板的页面效果得</li>
 </ul>
 <p>如下图所示就是一个vue组件的小案例：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669313699186.png" alt="1669313699186"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669313699186.png" alt="1669313699186"></p>
 <p>此时我们可以打开App.vue，观察App.vue的代码，其中可以发现，App.vue组件的template部分内容，和我们浏览器访问的首页内容是一致的，如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669313894258.png" alt="1669313894258">)</p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669313894258.png" alt="1669313894258">)</p>
 <p>接下来我们可以简化模板部分内容，添加script部分的数据模型，删除css样式，完整代码如下：</p>
 <pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>app<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -1271,7 +1271,7 @@ Vue<span class="token punctuation">.</span>config<span class="token punctuation"
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>保存直接，回到浏览器，我们发现首页展示效果发生了变化，如下图所示：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day03/image/1669314115641.png" alt="1669314115641"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day03/image/1669314115641.png" alt="1669314115641"></p>
 
                 
             </div>

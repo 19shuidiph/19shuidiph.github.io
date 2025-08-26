@@ -467,7 +467,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="项目自学记录9"><a href="#项目自学记录9" class="headerlink" title="项目自学记录9"></a>项目自学记录9</h1><h2 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h2><p>协议+域名+端口，只要有一个不同，就是跨域。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240528200131764.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240528200131764.png"></p>
 <p>添加一个过滤器，选择springframework.web下面的CorsFilter。类似如下：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WebMvcConfig</span> <span class="token punctuation">{</span>
@@ -492,7 +492,7 @@
 </code></pre>
 <p><strong>Nginx的反向代理要了解一下</strong></p>
 <h2 id="sql树形结构"><a href="#sql树形结构" class="headerlink" title="sql树形结构"></a>sql树形结构</h2><p>方法一：表的自连接。方法二：递归</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240531122313074.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240531122313074.png"></p>
 <p>表的自连接需要确定树的深度。</p>
 <pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     one<span class="token punctuation">.</span>id one_id<span class="token punctuation">,</span>
@@ -514,15 +514,15 @@
 <span class="token punctuation">)</span>
 <span class="token keyword">select</span> <span class="token operator">*</span>  <span class="token keyword">from</span> <span class="token keyword">temp</span> <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token keyword">temp</span><span class="token punctuation">.</span>id<span class="token punctuation">,</span> <span class="token keyword">temp</span><span class="token punctuation">.</span>orderby
 </code></pre>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240531123209194.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240531123209194.png"></p>
 <h2 id="sql注入，为什么"><a href="#sql注入，为什么" class="headerlink" title="sql注入，为什么"></a>sql注入，为什么</h2><p>从下面可以看到最后的a后面多了一个斜杠。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240531151553752.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240531151553752.png"></p>
 <p>要看Mybatis的源码</p>
 <p>MyBatis在<code>#&#123;&#125;</code>传递参数时，是借助setString()方法来完成，<code>$&#123;&#125;</code>则不是</p>
 <p>如果是单引号，会在SQL语句中添加一个斜杠</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240531151930608.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240531151930608.png"></p>
 <p>最终传递的参数为：<code>&#39;aaa\&#39; or 1=1 --</code>，在数据库中肯定是查不到的。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240531152013592.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240531152013592.png"></p>
 <p>什么情况下用<code>$&#123;&#125;</code>？ 需要插入的东西为sql时，或者为表名时。就不能用<code>#&#123;&#125;</code>了</p>
 <h2 id="stream的tomap"><a href="#stream的tomap" class="headerlink" title="stream的tomap"></a>stream的tomap</h2><pre class=" language-java"><code class="language-java">Map<span class="token operator">&lt;</span>Integer<span class="token punctuation">,</span> String<span class="token operator">></span> collect <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
         <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toMap</span><span class="token punctuation">(</span>Student<span class="token operator">:</span><span class="token operator">:</span>getId<span class="token punctuation">,</span> Student<span class="token operator">:</span><span class="token operator">:</span>getName<span class="token punctuation">,</span> <span class="token punctuation">(</span>n1<span class="token punctuation">,</span> n2<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> n2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -543,8 +543,8 @@ String errMessage <span class="token operator">=</span> StringUtils<span class="
 <p>@NotEmpty(message&#x3D;”课程名称不能为空”,groups&#x3D;{ValidationGroups.Insert.class})</p>
 <p>组为自己定义的类，里面有三个接口Insert,Update,Delete</p>
 <p>@Validated(ValidationGroups.Insert.class)</p>
-<h2 id="resultMap映射"><a href="#resultMap映射" class="headerlink" title="resultMap映射"></a>resultMap映射</h2><p>类似如下：<br><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240602160258345.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240602160312947.png"></p>
+<h2 id="resultMap映射"><a href="#resultMap映射" class="headerlink" title="resultMap映射"></a>resultMap映射</h2><p>类似如下：<br><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240602160258345.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240602160312947.png"></p>
 <h2 id="配置文件优先级"><a href="#配置文件优先级" class="headerlink" title="配置文件优先级"></a>配置文件优先级</h2><p>项目应用名配置文件&gt; 扩展配置文件 &gt; 共享配置文件 &gt; 本地配置文件。  Nacos上配的优先级高于本地的。</p>
 <p>如果想让本地配置文件优先，也要在nacos里配</p>
 <pre class=" language-yml"><code class="language-yml">spring:
@@ -768,7 +768,7 @@ String errMessage <span class="token operator">=</span> StringUtils<span class="
 
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="定时任务xxl-job"><a href="#定时任务xxl-job" class="headerlink" title="定时任务xxl-job"></a>定时任务xxl-job</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240605094438606.png" alt="XXL-JOB任务执行流程"></p>
+<h2 id="定时任务xxl-job"><a href="#定时任务xxl-job" class="headerlink" title="定时任务xxl-job"></a>定时任务xxl-job</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240605094438606.png" alt="XXL-JOB任务执行流程"></p>
 <p>比如调度中心下面有三台机器，只有分片广播的路由策略才能同时将任务分配给三个机器，让三个机器都运行。</p>
 <p>把任务队列分为3部分，分别分块给0,1,2三台机器。</p>
 <h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><p>synchronized只在一个虚拟机里，不能分布式。</p>
@@ -778,15 +778,15 @@ String errMessage <span class="token operator">=</span> StringUtils<span class="
 <p>使用<strong>CountDownLatch</strong>来计数。一种典型的用法就是把一个大任务拆分N个部分，让多个线程（Worker）执行，每个线程（Worker）执行完自己的部分计数器就减1，当所有子部分都完成后，Driver 才继续向下执行才继续执行。</p>
 <p>countDownLatch.await(30,TimeUnit.MINUTES);  最多30分钟，等30min就自动解除了。</p>
 <p>本地事务只考虑自身的数据库。分布式事务还可以考虑其他组件。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240607125758541.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240607125758541.png"></p>
 <p>在微服务架构下， 无论是单服务多数据库，还是订单服务<strong>远程调用</strong>库存服务，都会存在分布式事务。</p>
 <p>CAP中，要考虑满足CP还是AP，CP是强一致性，AP则要保证最终一致性。</p>
 <p>使用Seata框架基于AT模式和TCC模式都可以实现CP。</p>
 <p>AP的话可以用消息队列的方式，失败后自动重试；也可以使用任务调度的方案。</p>
 <p>如果使用ssl-job任务调度的方案，可以专门建立一个表ma_message，来记录需要调度哪些信息。本地消息表+任务调度机制。在同一个数据库中，向子模块course_publish写数据的同时，也要向mq_message写。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240607160822870.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240607160822870.png"></p>
 <p>使用一个sdk工具包，进行mq_message的crud</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240607162553245.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%959/image/image-20240607162553245.png"></p>
 <h2 id="远程调用"><a href="#远程调用" class="headerlink" title="远程调用"></a>远程调用</h2><p>内容管理 调用 媒资管理</p>
 <p>在启动类加注解@EnableFeignClients(basePackages&#x3D;{“com.xuecheng.content.feignclient”})</p>
 <p>同时需要新定义一个接口，接口里是对应的函数，接口上加个@FeignClient注解</p>

@@ -493,19 +493,19 @@
 <h2 id="15-kafka为什么那么快"><a href="#15-kafka为什么那么快" class="headerlink" title="15.kafka为什么那么快"></a>15.kafka为什么那么快</h2><p>1.存储：文件存储。文件顺序读写。（接近于内存） </p>
 <p>2.写入数据： 传统的4次拷贝，零拷贝技术，减少没有必要的拷贝。 sendfile。数据-&gt;网卡-&gt;DMA拷贝-&gt;网络socket缓冲区（本质就是内核的内存）-&gt;CPU拷贝-&gt;socket缓冲区（一般程序应用的内存）-&gt;CPU拷贝-&gt;磁盘缓冲区-&gt;DMA拷贝-&gt;磁盘。</p>
 <p>4次拷贝：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240101193916944.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240101193916944.png"></p>
 <p>sendfile：文件描述符，在socket缓冲区中属于哪一段</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240101194334842.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240101194334842.png"></p>
 <p>节约了两次CPU拷贝，将socket缓冲区和磁盘缓冲区放一起。</p>
 <p>3.批量处理，压缩，json的话7倍。</p>
 <h2 id="16-如何解决重复消费"><a href="#16-如何解决重复消费" class="headerlink" title="16.如何解决重复消费"></a>16.如何解决重复消费</h2><p>去保证一个幂等性</p>
 <p>1.MVCC多版本并发控制（生产的时候带上数据的版本号）</p>
 <p>2.去重表的方案：A表里只有一个唯一字段id, try{  insert A –&gt;执行业务 } catch{异常不用抛出 ,吃掉异常}</p>
-<h2 id="17-RocketMQ如何保证高可用"><a href="#17-RocketMQ如何保证高可用" class="headerlink" title="17.RocketMQ如何保证高可用"></a>17.RocketMQ如何保证高可用</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104095317236.png"></p>
+<h2 id="17-RocketMQ如何保证高可用"><a href="#17-RocketMQ如何保证高可用" class="headerlink" title="17.RocketMQ如何保证高可用"></a>17.RocketMQ如何保证高可用</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104095317236.png"></p>
 <p>同步复制和异步刷盘。同步可以保证数据一定到从节点的内存。同步刷盘导致生产效率很低。</p>
-<h2 id="18-RocketMQ中的存储机制了解吗"><a href="#18-RocketMQ中的存储机制了解吗" class="headerlink" title="18.RocketMQ中的存储机制了解吗"></a>18.RocketMQ中的存储机制了解吗</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104101000153.png"></p>
+<h2 id="18-RocketMQ中的存储机制了解吗"><a href="#18-RocketMQ中的存储机制了解吗" class="headerlink" title="18.RocketMQ中的存储机制了解吗"></a>18.RocketMQ中的存储机制了解吗</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104101000153.png"></p>
 <p>即使是一万个主题，也只有一个commitLog,如果有很多commitLog会造成海量的IO切换。Kafka好像就是多个commitLog,RcoketMQ更适合电商场景。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104101135561.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104101135561.png"></p>
 <h2 id="19-RocketMQ中性能比较高的原因"><a href="#19-RocketMQ中性能比较高的原因" class="headerlink" title="19.RocketMQ中性能比较高的原因"></a>19.RocketMQ中性能比较高的原因</h2><p>1.内部使用Netty这个高效的NIO通信框架</p>
 <p>2.大量使用多线程和异步</p>
 <p>3.采用零拷贝技术优化（MMAP） 性能提升50%</p>
@@ -523,18 +523,18 @@
 <h2 id="22-RocketMQ中Broker的部署方式"><a href="#22-RocketMQ中Broker的部署方式" class="headerlink" title="22.RocketMQ中Broker的部署方式"></a>22.RocketMQ中Broker的部署方式</h2><p>单机broker。</p>
 <p>多Master。</p>
 <p>多Master,多Slave.</p>
-<h2 id="24-什么是路由注册，路由发现，路由剔除"><a href="#24-什么是路由注册，路由发现，路由剔除" class="headerlink" title="24.什么是路由注册，路由发现，路由剔除"></a>24.什么是路由注册，路由发现，路由剔除</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104104548063.png"></p>
+<h2 id="24-什么是路由注册，路由发现，路由剔除"><a href="#24-什么是路由注册，路由发现，路由剔除" class="headerlink" title="24.什么是路由注册，路由发现，路由剔除"></a>24.什么是路由注册，路由发现，路由剔除</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104104548063.png"></p>
 <p>NameSever不会主动,每隔30秒Producer主动去拉。</p>
 <p>路由就是broker.</p>
 <h2 id="27-使用RocketMQ过程中遇到的问题"><a href="#27-使用RocketMQ过程中遇到的问题" class="headerlink" title="27.使用RocketMQ过程中遇到的问题"></a>27.使用RocketMQ过程中遇到的问题</h2><p>为了高可用，要搭建主从</p>
 <p>消费者大于queue的数量，最后的消费者拿不到queue.一个queue不能给多个消费者消费。</p>
 <h2 id="28-RocketMQ的总体架构，以及其中各个组件的功能"><a href="#28-RocketMQ的总体架构，以及其中各个组件的功能" class="headerlink" title="28.RocketMQ的总体架构，以及其中各个组件的功能"></a>28.RocketMQ的总体架构，以及其中各个组件的功能</h2><p>Netty负责网络通讯，store负责零拷贝存储。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104105756405.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104105756405.png"></p>
 <h2 id="29-讲一讲RocketMQ中的分布式事务及其实现"><a href="#29-讲一讲RocketMQ中的分布式事务及其实现" class="headerlink" title="29.讲一讲RocketMQ中的分布式事务及其实现"></a>29.讲一讲RocketMQ中的分布式事务及其实现</h2><p>银行转账，A-&gt;B。</p>
 <p>A账户 -100 SQL事务，B账户 +100 SQL事务</p>
 <p>两阶段提交，半消息。MQ的消费者本身就会不断重试。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104110420703.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104110435196.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104110420703.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20240104110435196.png"></p>
 
                 
             </div>

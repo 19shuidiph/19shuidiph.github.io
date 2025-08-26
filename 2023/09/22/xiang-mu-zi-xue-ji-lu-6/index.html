@@ -468,12 +468,12 @@
             <div id="articleContent">
                 <h1 id="项目自学目录6"><a href="#项目自学目录6" class="headerlink" title="项目自学目录6"></a>项目自学目录6</h1><h2 id="关于Future的深度解析"><a href="#关于Future的深度解析" class="headerlink" title="关于Future的深度解析"></a>关于Future的深度解析</h2><p><strong>Future表示一个任务的周期，并提供了相应的方法来判断是否已经完成或者取消，以及获取任务的结果和取消任务</strong></p>
 <p><strong>Future是一个接口，是无法生成一个实例的，所以又有了FutureTask</strong>。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%956/image/image-11.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%956/image/image-11.png"></p>
 <p>Future中有5个方法</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%956/image/image-20230922163237806.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%956/image/image-20230922163237806.png"></p>
 <p>1、cancel()：取消一个任务，并返回取消结果。参数表示是否中断线程<br>2、isCancelled()：任务是否取消成功<br>3、isDone()：判断当前任务是否执行完毕，包括正常执行完毕、执行异常或者任务取消<br>4、get()：获取任务执行结果，任务结束之前会阻塞<br>5、get(long count,TimeUnit)：在指定时间内尝试获取执行结果。若超时则抛出超时异常</p>
 <p>ThreadPoolExecutor提供了三个方法，来获取返回值</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%956/image/image-20230922163400742.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%956/image/image-20230922163400742.png"></p>
 <p>FutureTask是一个具体的实现类，ThreadPoolExecutor的submit方法返回的就是一个Future的实现，这个实现就是FutureTask的一个具体实例，FutureTask帮助实现了具体的任务执行，以及和Future接口中的get方法的关联。</p>
 <p>futureTask.get()执行时如果该任务已经执行完了则直接返回执行结果，如果没有执行完则线程会阻塞在这里，直至任务执行完毕。还可以用get(long timeout, TimeUnit unit)来获取执行结果，如果在指定时间内，还没获取到结果，就直接返回null。</p>
 <p>总结</p>
@@ -491,9 +491,9 @@
 <h2 id="把JSON转为hashmap"><a href="#把JSON转为hashmap" class="headerlink" title="把JSON转为hashmap"></a>把JSON转为hashmap</h2><p>注意要用alibaba.fastjson而不是hutool的json</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>alibaba<span class="token punctuation">.</span>fastjson<span class="token punctuation">.</span>JSON<span class="token punctuation">;</span>
 </code></pre>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%956/image/image-20230926093754426.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%956/image/image-20230926093754426.png"></p>
 <p>不过要注意，他的key好像是转为string了，而value则智能的转为数字了。</p>
-<h2 id="编译优化？—-将成员变量转为局部变量"><a href="#编译优化？—-将成员变量转为局部变量" class="headerlink" title="编译优化？— 将成员变量转为局部变量"></a>编译优化？— 将成员变量转为局部变量</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%956/image/image-20230926100913080.png"></p>
+<h2 id="编译优化？—-将成员变量转为局部变量"><a href="#编译优化？—-将成员变量转为局部变量" class="headerlink" title="编译优化？— 将成员变量转为局部变量"></a>编译优化？— 将成员变量转为局部变量</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%956/image/image-20230926100913080.png"></p>
 <p>原来我是用成员变量map直接去put,但是他install到别的文件后，新增了var10000这个局部变量。</p>
 <p>当然这个map不能直接声明在beforeCreateOfd()里，因为下面还有个函数也用到了map</p>
 <h2 id="BigDecimal再探"><a href="#BigDecimal再探" class="headerlink" title="BigDecimal再探"></a>BigDecimal再探</h2><h3 id="BigDecimal要用BigDecimal-String-构造器创建对象才有意义"><a href="#BigDecimal要用BigDecimal-String-构造器创建对象才有意义" class="headerlink" title="BigDecimal要用BigDecimal(String)构造器创建对象才有意义"></a>BigDecimal要用BigDecimal(String)构造器创建对象才有意义</h3><p>其他的如BigDecimal b &#x3D; new BigDecimal(1)这种，还是会发生精度丢失的问题。</p>

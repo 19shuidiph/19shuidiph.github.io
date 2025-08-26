@@ -482,7 +482,7 @@
 <p>单线程的话维护成本低，线程安全。而且多线程的线程切换，锁的开销也很大。</p>
 <h2 id="4-Redis6-0之后为什么要引入多线程"><a href="#4-Redis6-0之后为什么要引入多线程" class="headerlink" title="4.Redis6.0之后为什么要引入多线程"></a>4.Redis6.0之后为什么要引入多线程</h2><p>8W-10W的QPS就是单线程的极限值了。大的公司需要更大的QPS，IO的多线程（内部执行命令还是多线程）</p>
 <p>多线程，主线程去做CPU的任务，一些从线程去做IO的任务。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107095203078.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107095203078.png"></p>
 <h2 id="5-Redis有哪些高级功能"><a href="#5-Redis有哪些高级功能" class="headerlink" title="5.Redis有哪些高级功能"></a>5.Redis有哪些高级功能</h2><p>慢查询、Pipeline（发送，批处理一堆命令，返回结果）、</p>
 <p>事务的功能比较低级，弱事务。</p>
 <p>持久化，分布式锁。主从，集群。集群的扩容，缩容，迁移</p>
@@ -504,14 +504,14 @@
 <p>解决放案是让redis直接返回Null，或者用布隆过滤器。</p>
 <p>布隆过滤器优化方案：增大数组(预估合适值)，或者增加hash函数。</p>
 <p>增加了hash函数以后，只有hash1和hash2全是1才继续往下走，有一个是0则说明数据一定不存在。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107112602327.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107112602327.png"></p>
 <h2 id="11-什么是缓存雪崩"><a href="#11-什么是缓存雪崩" class="headerlink" title="11.什么是缓存雪崩"></a>11.什么是缓存雪崩</h2><p>Redis宕机或大量key同时失效。</p>
 <p>解决方案：集群&#x2F;主从。   TTL 岔开。</p>
 <h2 id="12-使用Redis如何设计分布式锁"><a href="#12-使用Redis如何设计分布式锁" class="headerlink" title="12.使用Redis如何设计分布式锁"></a>12.使用Redis如何设计分布式锁</h2><p>使用setnx命令。为了避免死锁，给这个锁一个过期时间。又因为过期时间不好评估，加入watchDog</p>
-<h2 id="13-怎么使用Redis实现消息队列"><a href="#13-怎么使用Redis实现消息队列" class="headerlink" title="13.怎么使用Redis实现消息队列"></a>13.怎么使用Redis实现消息队列</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107122908606.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/9T_%5DAI%5B8VN%7B5F%5BFUNW7%7DD7.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107123430778.png"></p>
-<h2 id="14-什么是Bigkey-会有什么影响"><a href="#14-什么是Bigkey-会有什么影响" class="headerlink" title="14.什么是Bigkey,会有什么影响"></a>14.什么是Bigkey,会有什么影响</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107123744616.png"></p>
+<h2 id="13-怎么使用Redis实现消息队列"><a href="#13-怎么使用Redis实现消息队列" class="headerlink" title="13.怎么使用Redis实现消息队列"></a>13.怎么使用Redis实现消息队列</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107122908606.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/9T_%5DAI%5B8VN%7B5F%5BFUNW7%7DD7.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107123430778.png"></p>
+<h2 id="14-什么是Bigkey-会有什么影响"><a href="#14-什么是Bigkey-会有什么影响" class="headerlink" title="14.什么是Bigkey,会有什么影响"></a>14.什么是Bigkey,会有什么影响</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231107123744616.png"></p>
 <h2 id="15-Redis如何解决key冲突"><a href="#15-Redis如何解决key冲突" class="headerlink" title="15.Redis如何解决key冲突"></a>15.Redis如何解决key冲突</h2><p>key的设计，业务模块+系统名称+关键词</p>
 <p>biz-pay-orderId-userId</p>
 <p>分布式锁，多个客户端对同一个key的竞争。拿到锁才能进行操作</p>
@@ -519,7 +519,7 @@
 <h2 id="17-Redis持久化方式有哪些，有什么区别"><a href="#17-Redis持久化方式有哪些，有什么区别" class="headerlink" title="17. Redis持久化方式有哪些，有什么区别"></a>17. Redis持久化方式有哪些，有什么区别</h2><p>RDB,快照，大，阻塞</p>
 <p>AOF，追加，</p>
 <p>混合的方式</p>
-<h2 id="18-为什么Redis需要把所有数据放到内存中"><a href="#18-为什么Redis需要把所有数据放到内存中" class="headerlink" title="18.为什么Redis需要把所有数据放到内存中"></a>18.为什么Redis需要把所有数据放到内存中</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231108102756433.png"></p>
+<h2 id="18-为什么Redis需要把所有数据放到内存中"><a href="#18-为什么Redis需要把所有数据放到内存中" class="headerlink" title="18.为什么Redis需要把所有数据放到内存中"></a>18.为什么Redis需要把所有数据放到内存中</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231108102756433.png"></p>
 <p>磁盘读取时间太慢了，太耗时了。</p>
 <h2 id="19-如何保证缓存与数据库双写时的数据一致性"><a href="#19-如何保证缓存与数据库双写时的数据一致性" class="headerlink" title="19.如何保证缓存与数据库双写时的数据一致性"></a>19.如何保证缓存与数据库双写时的数据一致性</h2><p>1.先删除缓存，后更新数据库，休眠1秒然后再删缓存。（延时双删）</p>
 <p>2.先更新数据库，后删除缓存</p>
@@ -528,7 +528,7 @@
 <p>将参数cluster-require-full-coverage配置为no，则主节点只负责它负责的槽，不影响其他槽的可用性。</p>
 <p>集群半数以上宕机</p>
 <p>选举机制异常的时候</p>
-<h2 id="22-Redis的哈希槽的概念"><a href="#22-Redis的哈希槽的概念" class="headerlink" title="22.Redis的哈希槽的概念"></a>22.Redis的哈希槽的概念</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231108104102358.png"></p>
+<h2 id="22-Redis的哈希槽的概念"><a href="#22-Redis的哈希槽的概念" class="headerlink" title="22.Redis的哈希槽的概念"></a>22.Redis的哈希槽的概念</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-Redis%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231108104102358.png"></p>
 <p>0-16383，三个节点，则每个节点负责大约5460个槽</p>
 <h2 id="23-Redis集群会有写操作丢失吗，为什么"><a href="#23-Redis集群会有写操作丢失吗，为什么" class="headerlink" title="23.Redis集群会有写操作丢失吗，为什么"></a>23.Redis集群会有写操作丢失吗，为什么</h2><p>一主多从，异步同步，主节点宕机来不及同步。</p>
 <h2 id="24-Redis常见性能问题和解决方案"><a href="#24-Redis常见性能问题和解决方案" class="headerlink" title="24.Redis常见性能问题和解决方案"></a>24.Redis常见性能问题和解决方案</h2><p>持久化。主从，主不要做持久化，从做持久化</p>

@@ -473,7 +473,7 @@
 <li>分布式事务</li>
 <li>削峰填谷</li>
 </ul>
-<h2 id="RabbitMQ-如何保证消息不丢失"><a href="#RabbitMQ-如何保证消息不丢失" class="headerlink" title="RabbitMQ-如何保证消息不丢失"></a>RabbitMQ-如何保证消息不丢失</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823110003222.png"></p>
+<h2 id="RabbitMQ-如何保证消息不丢失"><a href="#RabbitMQ-如何保证消息不丢失" class="headerlink" title="RabbitMQ-如何保证消息不丢失"></a>RabbitMQ-如何保证消息不丢失</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823110003222.png"></p>
 <p><strong>第一个是开启生产者确认机制</strong>，确保生产者的消息能到达队列，如果报错可以先记录到日志中，再去修复数据</p>
 <p>RabbitMQ提供了publisher confirm机制来避免消息发送到MQ过程中丢失。消息发送到MQ以后，会返回一个结果给发送者，表示消息是否处理成功</p>
 <p>消息失败之后如何处理呢？</p>
@@ -483,14 +483,14 @@
 <li>保存到数据库然后定时重发，成功发送后即刻删除表中的数据</li>
 </ul>
 <p><strong>第二个是开启持久化功能</strong>，确保消息未消费前在队列中不会丢失，其中的交换机、队列、和消息都要做持久化</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823110450167.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823110450167.png"></p>
 <p><strong>第三个是开启消费者确认机制为auto</strong>，由spring确认消息处理成功后完成ack，当然也需要设置一定的重试次数，我们当时设置了3次，如果重试3次还没有收到消息，就将失败后的消息投递到异常交换机，交由人工处理</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823110532866.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823110532866.png"></p>
 <h2 id="RabbitMQ-消费重复问题"><a href="#RabbitMQ-消费重复问题" class="headerlink" title="RabbitMQ-消费重复问题"></a>RabbitMQ-消费重复问题</h2><p>我们当时消费者是设置了自动确认机制，当服务还没来得及给MQ确认的时候，服务宕机了，导致服务重启之后，又消费了一次消息。这样就重复消费了（或者也可能是因为网络波动）</p>
 <p>因为我们当时处理的支付（订单|业务唯一标识），它有一个业务的唯一标识，我们再处理消息时，先到数据库查询一下，这个数据是否存在，如果不存在，说明没有处理过，这个时候就可以正常处理这个消息了。如果已经存在这个数据了，就说明消息重复消费了，我们就不需要再消费了</p>
 <p>解决方案：<br>每条消息设置一个唯一的标识id<br>幂等方案：【 分布式锁、数据库锁（悲观锁、乐观锁） 】</p>
-<h2 id="RabbitMQ-死信交换机-x2F-延迟队列"><a href="#RabbitMQ-死信交换机-x2F-延迟队列" class="headerlink" title="RabbitMQ-死信交换机&#x2F;延迟队列"></a>RabbitMQ-死信交换机&#x2F;延迟队列</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823140038306.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823140047829.png"></p>
+<h2 id="RabbitMQ-死信交换机-x2F-延迟队列"><a href="#RabbitMQ-死信交换机-x2F-延迟队列" class="headerlink" title="RabbitMQ-死信交换机&#x2F;延迟队列"></a>RabbitMQ-死信交换机&#x2F;延迟队列</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823140038306.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823140047829.png"></p>
 <p>延迟队列：进入队列的消息会被延迟消费的队列   延迟队列&#x3D;死信交换机+TTL（生存时间）</p>
 <p>场景：超时订单、限时优惠、定时发布</p>
 <p>当一个队列中的消息满足下列情况之一时，可以成为死信（dead letter）：</p>
@@ -500,7 +500,7 @@
 <li>要投递的队列消息堆积满了，最早的消息可能成为死信</li>
 </ul>
 <p>DelayExchange插件，需要安装在RabbitMQ中<br>RabbitMQ有一个官方的插件社区，地址为：<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/community-plugins.html">https://www.rabbitmq.com/community-plugins.html</a> </p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823145753634.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823145753634.png"></p>
 <h2 id="RabbitMQ-消息堆积"><a href="#RabbitMQ-消息堆积" class="headerlink" title="RabbitMQ-消息堆积"></a>RabbitMQ-消息堆积</h2><p>解决消息堆积有三种种思路：</p>
 <ul>
 <li>增加更多消费者，提高消费速度</li>
@@ -518,32 +518,32 @@
 <p>②消费者要消费消息时才会从磁盘中读取并加载到内存</p>
 <p>③支持数百万条的消息存储</p>
 <h2 id="RabbitMQ的高可用机制（未看）"><a href="#RabbitMQ的高可用机制（未看）" class="headerlink" title="RabbitMQ的高可用机制（未看）"></a>RabbitMQ的高可用机制（未看）</h2><p>镜像集群、仲裁队列</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823150242791.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823150256205.png"></p>
-<h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><h2 id="Kafka-如何保证消息不丢失"><a href="#Kafka-如何保证消息不丢失" class="headerlink" title="Kafka-如何保证消息不丢失"></a>Kafka-如何保证消息不丢失</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824093113385.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823150242791.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230823150256205.png"></p>
+<h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><h2 id="Kafka-如何保证消息不丢失"><a href="#Kafka-如何保证消息不丢失" class="headerlink" title="Kafka-如何保证消息不丢失"></a>Kafka-如何保证消息不丢失</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824093113385.png"></p>
 <h3 id="生产者发送-丢失"><a href="#生产者发送-丢失" class="headerlink" title="生产者发送-丢失"></a>生产者发送-丢失</h3><p>1.异步发送  2.消息重试</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824093227344.png"></p>
-<h3 id="broker存储-丢失"><a href="#broker存储-丢失" class="headerlink" title="broker存储-丢失"></a>broker存储-丢失</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824093340814.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824093227344.png"></p>
+<h3 id="broker存储-丢失"><a href="#broker存储-丢失" class="headerlink" title="broker存储-丢失"></a>broker存储-丢失</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824093340814.png"></p>
 <p>可以将acks&#x3D;all.</p>
-<h3 id="消费者接受-丢失"><a href="#消费者接受-丢失" class="headerlink" title="消费者接受-丢失"></a>消费者接受-丢失</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824093908785.png"></p>
+<h3 id="消费者接受-丢失"><a href="#消费者接受-丢失" class="headerlink" title="消费者接受-丢失"></a>消费者接受-丢失</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824093908785.png"></p>
 <h2 id="Kafka-重复消费问题"><a href="#Kafka-重复消费问题" class="headerlink" title="Kafka-重复消费问题"></a>Kafka-重复消费问题</h2><p>kafka消费消息都是按照offset进行标记消费的，消费者默认是自动按期提交已经消费的偏移量，默认是每隔5s提交一次，如果出现重平衡的情况，可能会重复消费或丢失数据。我们一般都会禁用掉自动提价偏移量，改为手动提交，当消费成功以后再报告给broker消费的位置，这样就可以避免消息丢失和重复消费了</p>
 <p>为了消息的幂等，我们也可以设置唯一主键来进行区分，或者是加锁，数据库的锁，或者是redis分布式锁，都能解决幂等的问题</p>
 <h2 id="Kafka-保证消费的顺序性"><a href="#Kafka-保证消费的顺序性" class="headerlink" title="Kafka-保证消费的顺序性"></a>Kafka-保证消费的顺序性</h2><p>一个topic的数据可能存储在不同的分区中，每个分区都有一个按照顺序的存储的偏移量，如果消费者关联了多个分区不能保证顺序性</p>
 <p><strong>把消息都存储同一个分区下就行了</strong>，可以通过指定分区号或指定key。（因为默认情况下分区也是通过key的hashcode值来选择分区的）</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094249276.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094249276.png"></p>
 <h2 id="Kafka-高可用机制"><a href="#Kafka-高可用机制" class="headerlink" title="Kafka-高可用机制"></a>Kafka-高可用机制</h2><p><strong>集群+分区备份</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094355835.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094420940.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094355835.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094420940.png"></p>
 <p>选举新Leader：</p>
 <p>如果leader失效后，需要选出新的leader，选举的原则如下：</p>
 <p>第一：选举时优先从ISR中选定，因为这个列表中follower的数据是与leader同步的</p>
 <p>第二：如果ISR列表中的follower都不行了，就只能从其他follower中选取</p>
 <p><strong>ISR（in-sync replica）需要同步复制保存的follower</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094540780.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094548031.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094540780.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094548031.png"></p>
 <h2 id="Kafka-文件存储机制"><a href="#Kafka-文件存储机制" class="headerlink" title="Kafka-文件存储机制"></a>Kafka-文件存储机制</h2><p>橙色的itheima是主题topic(逻辑概念），蓝色的itheima-0是分区（物理概念），分区如果文件过大会分段存储segment</p>
 <p>每个分段都在磁盘上以索引(xxxx.index)和日志文件(xxxx.log)的形式存储，这样分段的好处是，第一能够减少单个文件内容的大小，查找数据方便，第二方便kafka进行日志清理。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824095010614.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824095010614.png"></p>
 <h2 id="Kafka-数据清理机制"><a href="#Kafka-数据清理机制" class="headerlink" title="Kafka-数据清理机制"></a>Kafka-数据清理机制</h2><p>在kafka中提供了两个日志的清理策略：</p>
 <p>第一，根据消息的保留时间，当消息保存的时间超过了指定的时间，就会触发清理，默认是168小时（ 7天）</p>
 <p>第二，是根据topic存储的数据大小，当topic所占的日志文件大小大于一定的阈值，则开始删除最久的消息。这个默认是关闭的</p>
@@ -566,9 +566,9 @@
 <p>其中的页拷贝</p>
 <p>将数据原本需要复制四次，改为了复制两次</p>
 <p>原来四次：从磁盘文件-&gt;页缓存,再到kafka，再到socket缓冲区，再到网卡</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094756675.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094756675.png"></p>
 <p>改了之后直接从页缓存到网卡</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094913804.png">**</p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230824094913804.png">**</p>
 
                 
             </div>

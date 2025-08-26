@@ -477,7 +477,7 @@
 <p>如果bloomFilter为null,则肯定没数据，直接返回null;大幅度降低对于数据库的访问压力。</p>
 <p>如果bloomFilter显示有数据，再去进入redis和mysql访问。当然有误判情况，所以也有可能返回Null</p>
 <p>不过这个最核心的思想还是如果BloomFilter为Null，则直接返回Null；</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/434094567476b174db6ae0b589c60f9a.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/434094567476b174db6ae0b589c60f9a.png"></p>
 <h2 id="抽离业务逻辑"><a href="#抽离业务逻辑" class="headerlink" title="抽离业务逻辑"></a>抽离业务逻辑</h2><p>公司里的逻辑是，没有Mysql;</p>
 <p>如果布隆过滤器为Null，直接访问Google-API接口，往redis里塞数据；</p>
 <p>如果不为null,但是误判，还是走上面的逻辑，访问Google-API接口，然后往redis里赛数据；</p>

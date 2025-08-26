@@ -475,14 +475,14 @@
 <p>slow_query_log&#x3D;1</p>
 <p>long_query_time&#x3D;2</p>
 <h2 id="如何分析慢查询"><a href="#如何分析慢查询" class="headerlink" title="如何分析慢查询"></a>如何分析慢查询</h2><p>直接在select语句之前加上关键字 explain </p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101034647.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101034647.png"></p>
 <ul>
 <li>possible_key 当前sql可能会使用到的索引</li>
 <li>key 当前sql实际命中的索引</li>
 <li>key_len 索引占用的大小</li>
 <li>Extra 额外的优化建议</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101118835.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101118835.png"></p>
 <ul>
 <li>type 这条sql的连接的类型，性能由好到差为NULL、system、const、eq_ref、ref、range、 index、all</li>
 </ul>
@@ -496,21 +496,21 @@
 <li>all：全盘扫描</li>
 </ol>
 <p>6和7这种全盘扫描或全索引扫描，效率就比较低了</p>
-<h2 id="存储引擎-InnoDB"><a href="#存储引擎-InnoDB" class="headerlink" title="存储引擎-InnoDB"></a>存储引擎-InnoDB</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101628042.png"></p>
+<h2 id="存储引擎-InnoDB"><a href="#存储引擎-InnoDB" class="headerlink" title="存储引擎-InnoDB"></a>存储引擎-InnoDB</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101628042.png"></p>
 <h2 id="B树与B-树"><a href="#B树与B-树" class="headerlink" title="B树与B+树"></a>B树与B+树</h2><p>B树</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101818936.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101818936.png"></p>
 <p>B+树</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101839477.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810101839477.png"></p>
 <p>而且B+树的非叶子节点不存数据，则可以比B树存更多的数据。这使得B+树更加矮胖</p>
 <h2 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h2><p>聚簇索引不需要回表，一般就是我们所说的主键索引。</p>
 <p>比如我们有 id   name  age三列。  查name,先用二级索引搜到id,再回表。   因为只有聚簇索引下面才有完整的数据信息。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810102029480.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810102029480.png"></p>
 <h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h2><p><strong>覆盖索引</strong>是指查询使用了索引，并且需要返回的列，在该索引中已经全部能够找到 。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810102427769.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810102427769.png"></p>
 <h2 id="MySQL超大分页处理"><a href="#MySQL超大分页处理" class="headerlink" title="MySQL超大分页处理"></a>MySQL超大分页处理</h2><p>优化思路: 一般分页查询时，通过创建 覆盖索引 能够比较好地提高性能，可以通过覆盖索引加子查询形式进行优化</p>
 <p>原SQL：  select * from tb_sku limit 9000000,10</p>
 <p>升级后SQL:</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810102551015.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230810102551015.png"></p>
 <p>先分页查询数据的id字段（这一步走的是覆盖索引），确定了id之后，再用子查询来过滤，只查询这个id列表里的数据（聚簇索引）</p>
 <h2 id="索引创建原则"><a href="#索引创建原则" class="headerlink" title="索引创建原则"></a>索引创建原则</h2><p><strong>1). 数据量较大，且查询比较频繁的表</strong></p>
 <p><strong>2). 常作为查询条件、排序、分组的字段</strong></p>
@@ -542,8 +542,8 @@
 </ol>
 <h2 id="并发事务问题，隔离级别"><a href="#并发事务问题，隔离级别" class="headerlink" title="并发事务问题，隔离级别"></a>并发事务问题，隔离级别</h2><p>并发事务问题：脏读、不可重复读、幻读</p>
 <p>隔离级别：读未提交、读已提交、可重复读、串行化</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811100114180.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811100132214.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811100114180.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811100132214.png"></p>
 <h2 id="redolog-和-undolog"><a href="#redolog-和-undolog" class="headerlink" title="redolog 和 undolog"></a>redolog 和 undolog</h2><ul>
 <li>redo log: 记录的是数据页的物理变化，服务宕机可用来同步数据</li>
 <li>undo log ：记录的是逻辑日志，当事务回滚时，通过逆操作恢复原来的数据</li>
@@ -551,7 +551,7 @@
 </ul>
 <h3 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h3><p>重做日志，记录的是事务提交时数据页的物理修改，是<strong>用来实现事务的持久性</strong>。</p>
 <p>该日志文件由两部分组成：重做日志缓冲（redo log buffer）以及重做日志文件（redo log file）,前者是在内存中，后者在磁盘中。当事务提交之后会把所有修改信息都存到该日志文件中, 用于在刷新脏页到磁盘,发生错误时, 进行数据恢复使用。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101020854.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101020854.png"></p>
 <h3 id="undo-log"><a href="#undo-log" class="headerlink" title="undo log"></a>undo log</h3><p>回滚日志，用于记录数据被修改前的信息 , 作用包含两个 : 提供回滚 和 MVCC(多版本并发控制) 。undo log和redo log记录物理日志不一样，它是逻辑日志。</p>
 <p>l可以认为当delete一条记录时，undo log中会记录一条对应的insert记录，反之亦然，</p>
 <p>l当update一条记录时，它记录一条对应相反的update记录。当执行rollback时，就可以从undo log中的逻辑记录读取到相应的内容并进行回滚。</p>
@@ -559,28 +559,28 @@
 <p>mvcc : 多版本并发控制</p>
 <h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><p>全称 Multi-Version Concurrency Control，多版本并发控制。指维护一个数据的多个版本，使得读写操作没有冲突</p>
 <p>MVCC的具体实现，主要依赖于数据库记录中的<strong>隐式字段、undo log日志、readView</strong>。</p>
-<h3 id="隐藏字段"><a href="#隐藏字段" class="headerlink" title="隐藏字段"></a>隐藏字段</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101200980.png"></p>
-<h3 id="undolog版本链"><a href="#undolog版本链" class="headerlink" title="undolog版本链"></a>undolog版本链</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101239830.png"></p>
+<h3 id="隐藏字段"><a href="#隐藏字段" class="headerlink" title="隐藏字段"></a>隐藏字段</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101200980.png"></p>
+<h3 id="undolog版本链"><a href="#undolog版本链" class="headerlink" title="undolog版本链"></a>undolog版本链</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101239830.png"></p>
 <h3 id="readview"><a href="#readview" class="headerlink" title="readview"></a>readview</h3><p>ReadView（读视图）是 快照读 SQL执行时MVCC提取数据的依据，记录并维护系统当前活跃的事务（未提交的）id。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101349735.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101402447.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101349735.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101402447.png"></p>
 <p>对于RC，读已提交。每次都可以生成新的readview,则不满足可重复读。有新的事务提交了就能读取到新的数据</p>
 <p><strong>公式里面的trx_id是undolog版本链里的trx_id，从上到下一个个去对比</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101922556.png">)</p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811101922556.png">)</p>
 <p>对于RR，可重复读，只生成一个readview,可能后面会读到一些过期数据</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811102002314.png"></p>
-<h2 id="主从同步"><a href="#主从同步" class="headerlink" title="主从同步"></a>主从同步</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811102229129.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811102002314.png"></p>
+<h2 id="主从同步"><a href="#主从同步" class="headerlink" title="主从同步"></a>主从同步</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811102229129.png"></p>
 <h2 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h2><p>主从解决的是读写的压力，分库分表解决的是存储的压力</p>
-<h3 id="垂直分库"><a href="#垂直分库" class="headerlink" title="垂直分库"></a>垂直分库</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811102452807.png"></p>
-<h3 id="垂直分表"><a href="#垂直分表" class="headerlink" title="垂直分表"></a>垂直分表</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811102503529.png"></p>
+<h3 id="垂直分库"><a href="#垂直分库" class="headerlink" title="垂直分库"></a>垂直分库</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811102452807.png"></p>
+<h3 id="垂直分表"><a href="#垂直分表" class="headerlink" title="垂直分表"></a>垂直分表</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811102503529.png"></p>
 <p>光辉税月项目中，把文件内容存到MongoDB里，就有点垂直分表的意思</p>
-<h3 id="水平分库"><a href="#水平分库" class="headerlink" title="水平分库"></a>水平分库</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811102628082.png"></p>
-<h3 id="水平分表"><a href="#水平分表" class="headerlink" title="水平分表"></a>水平分表</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811102646993.png"></p>
+<h3 id="水平分库"><a href="#水平分库" class="headerlink" title="水平分库"></a>水平分库</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811102628082.png"></p>
+<h3 id="水平分表"><a href="#水平分表" class="headerlink" title="水平分表"></a>水平分表</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230811102646993.png"></p>
 <p>水平分库分表可能需要一些中间件来支持</p>
 <p>sharding-sphere   、    mycat</p>
 <h2 id="什么是BufferPool"><a href="#什么是BufferPool" class="headerlink" title="什么是BufferPool"></a>什么是BufferPool</h2><p>第一次从磁盘中取出来放到BufferPool,第二次查询就会快一些。一个缓存页对应一个控制块。 </p>
 <p>BufferPool默认大小是128M，以Page页为单位，Page页默认大小是16k</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20240105123304136.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20240105123304136.png"></p>
 <p>mysql中有个hashTable,key是表空间号＋数据页号，value是对应的控制块。然后再从控制块找缓存页。</p>
 <h2 id="InnoDB如何管理Page页"><a href="#InnoDB如何管理Page页" class="headerlink" title="InnoDB如何管理Page页"></a>InnoDB如何管理Page页</h2><p>Page有三种状态， free page,clean page, dirty page.</p>
 <p>free list: 空闲缓冲区。存的是控制块</p>
@@ -589,7 +589,7 @@
 <h2 id="mysql改进lru算法"><a href="#mysql改进lru算法" class="headerlink" title="mysql改进lru算法"></a>mysql改进lru算法</h2><p>普通lru算法的优点：最近使用的数据都在表头，可以快速找到热点数据</p>
 <p>缺点：如果发生全表扫描，有很大概率将真正的热数据淘汰掉。</p>
 <p>mysql存在预读机制，很多预读的页会放到LRU的链表头，尾部的缓冲页很容易被淘汰。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20240105212724493.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-MySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20240105212724493.png"></p>
 <p>第一次进冷数据区，在LRU链表中存在的时间超过1秒才会到热数据区。</p>
 <h2 id="自适应哈希索引"><a href="#自适应哈希索引" class="headerlink" title="自适应哈希索引"></a>自适应哈希索引</h2><p>自适应哈希索引是InnoDB的三大特性之一，还有两个是Buffer Pool和双写缓冲区</p>
 <p>1、自适应即我们不需要自己处理，当InnoDB引擎根据查询统计发现某一查询满足hash索引的数据结构特点，就会给其建立一个hash索引;</p>

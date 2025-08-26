@@ -467,7 +467,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="SpringBoot基础-MyBatis基础"><a href="#SpringBoot基础-MyBatis基础" class="headerlink" title="SpringBoot基础+MyBatis基础"></a>SpringBoot基础+MyBatis基础</h1><h2 id="SpringBoot快速入门"><a href="#SpringBoot快速入门" class="headerlink" title="SpringBoot快速入门"></a>SpringBoot快速入门</h2><p>基于Spring官方骨架，创建SpringBoot工程。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221201184702136.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221201184702136.png"></p>
 <p>基本信息描述完毕之后，勾选web开发相关依赖。</p>
 <p>新建一个类，输入以下代码：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
@@ -498,13 +498,13 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="实体对象参数"><a href="#实体对象参数" class="headerlink" title="实体对象参数"></a>实体对象参数</h3><p>对于简单的实体参数而言，<strong>请求参数名与实体类的属性名相同</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221203131954932.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221203131954932.png"></p>
 <p>参数名和实体类属性名不一致时，就不能被接收到。</p>
 <p>复杂实体对象指的是，在实体类中有一个或多个属性，也是实体对象类型的。如下：</p>
 <ul>
 <li>User类中有一个Address类型的属性（Address是一个实体类）</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221203160447953.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221203160447953.png"></p>
 <p>复杂实体对象的封装，需要遵守如下规则：</p>
 <ul>
 <li><strong>请求参数名与形参对象属性名相同，按照对象层次结构关系即可接收嵌套实体类属性参数。</strong></li>
@@ -556,13 +556,13 @@
 <h3 id="JSON参数"><a href="#JSON参数" class="headerlink" title="JSON参数"></a>JSON参数</h3><ul>
 <li>封装规则：<strong>JSON数据键名与形参对象属性名相同，定义POJO类型形参即可接收参数。需要使用 @RequestBody标识。</strong></li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221203230457901.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221203230457901.png"></p>
 <h3 id="路径参数"><a href="#路径参数" class="headerlink" title="路径参数"></a>路径参数</h3><p>在现在的开发中，经常还会直接在请求的URL中传递参数。例如：</p>
 <pre><code>http://localhost:8080/user/1		
 http://localhost:880/user/1/0
 </code></pre>
 <p>上述的这种传递请求参数的形式呢，我们称之为：路径参数。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204001520756.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204001520756.png"></p>
 <p>Controller方法：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RequestController</span> <span class="token punctuation">{</span>
@@ -698,7 +698,7 @@ http://localhost:880/user/1/0
 <p>这样就可以让类、接口、方法的复杂度更低，可读性更强，扩展性更好，也更利用后期的维护。</p>
 </blockquote>
 <p>我们之前开发的程序呢，并不满足单一职责原则。下面我们来分析下之前的程序：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204191650390.png"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204191650390.png"> </p>
 <p>那其实我们上述案例的处理逻辑呢，从组成上看可以分为三个部分：</p>
 <ul>
 <li>数据访问：负责业务数据的维护操作，包括增、删、改、查等操作。</li>
@@ -706,14 +706,14 @@ http://localhost:880/user/1/0
 <li>请求处理、响应数据：负责，接收页面的请求，给页面响应数据。</li>
 </ul>
 <p>按照上述的三个组成部分，在我们项目开发中呢，可以将代码分为三层：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204193837678.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204193837678.png"></p>
 <ul>
 <li>Controller：控制层。接收前端发送的请求，对请求进行处理，并响应数据。</li>
 <li>Service：业务逻辑层。处理具体的业务逻辑。</li>
 <li>Dao：数据访问层(Data Access Object)，也称为持久层。负责数据访问操作，包括数据的增、删、改、查。</li>
 </ul>
 <p>基于三层架构的程序执行流程：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204194207812.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204194207812.png"></p>
 <ul>
 <li>前端发起的请求，由Controller层接收（Controller响应数据给前端）</li>
 <li>Controller层调用Service层来进行逻辑处理（Service层处理完后，把处理结果返回给Controller层）</li>
@@ -724,7 +724,7 @@ http://localhost:880/user/1/0
 <p>思考：按照三层架构的思想，如何要对业务逻辑(Service层)进行变更，会影响到Controller层和Dao层吗？ </p>
 <p>答案：不会影响。 （程序的扩展性、维护性变得更好了）</p>
 </blockquote>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204201342490.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204201342490.png"></p>
 <h3 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h3><p>解耦，不能在EmpController中使用new对象，此时，就存在另一个问题了，不能new，就意味着没有业务层对象（程序运行就报错）。</p>
 <ul>
 <li><ul>
@@ -765,17 +765,17 @@ http://localhost:880/user/1/0
 </li>
 </ul>
 <p>第1步：删除Controller层、Service层中new对象的代码</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204212807207.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204212807207.png"></p>
 <p>第2步：Service层及Dao层的实现类，交给IOC容器管理</p>
 <ul>
 <li>使用Spring提供的注解：@Component ，就可以实现类交给IOC容器管理</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204213328034.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204213328034.png"></p>
 <p>第3步：为Controller及Service注入运行时依赖的对象</p>
 <ul>
 <li>使用Spring提供的注解：@Autowired ，就可以实现程序运行时IOC容器自动注入需要的依赖对象</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204213859112.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204213859112.png"></p>
 <h3 id="IOC详解"><a href="#IOC详解" class="headerlink" title="IOC详解"></a>IOC详解</h3><p>IOC控制反转，就是将对象的控制权交给Spring的IOC容器，由IOC容器创建及管理对象。IOC容器创建的对象称为bean对象。</p>
 <p>在之前的入门案例中，要把某个对象交给IOC容器管理，需要在类上添加一个注解：@Component </p>
 <p>而Spring框架为了更好的标识web应用程序开发当中，bean对象到底归属于哪一层，又提供了@Component的衍生注解：</p>
@@ -816,13 +816,13 @@ http://localhost:880/user/1/0
 </tr>
 </tbody></table>
 <blockquote>
-<p>查看源码：<img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204221320230.png"></p>
+<p>查看源码：<img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204221320230.png"></p>
 </blockquote>
 <p>在IOC容器中，每一个Bean都有一个属于自己的名字，可以通过注解的value属性指定bean的名字。如果没有指定，默认为类名首字母小写。</p>
 <p>下面我们通过修改项目工程的目录结构，来测试bean对象是否生效：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204223602694.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204223602694.png"></p>
 <p>运行程序后，报错：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204223815554.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204223815554.png"></p>
 <p>为什么没有找到bean对象呢？</p>
 <p>为什么没有找到bean对象呢？</p>
 <ul>
@@ -830,26 +830,26 @@ http://localhost:880/user/1/0
 </ul>
 <blockquote>
 <p>@ComponentScan注解虽然没有显式配置，但是实际上已经包含在了引导类声明注解 @SpringBootApplication 中，&#x3D;&#x3D;<strong>默认扫描的范围是SpringBoot启动类所在包及其子包</strong>&#x3D;&#x3D;。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204224643683.png"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204224643683.png"> </p>
 </blockquote>
 <ul>
 <li>解决方案：手动添加@ComponentScan注解，指定要扫描的包   （&#x3D;&#x3D;仅做了解，不推荐&#x3D;&#x3D;）</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204225437297.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204225437297.png"></p>
 <p>推荐做法（如下图）：</p>
 <ul>
 <li>将我们定义的controller，service，dao这些包呢，都放在引导类所在包com.itheima的子包下，这样我们定义的bean就会被自动的扫描到</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204225815624.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204225815624.png"></p>
 <h3 id="DI详解"><a href="#DI详解" class="headerlink" title="DI详解"></a>DI详解</h3><p>依赖注入，是指IOC容器要为应用程序去提供运行时所依赖的资源，而资源指的就是对象。</p>
 <p>在入门程序案例中，我们使用了@Autowired这个注解，完成了依赖注入的操作，而这个Autowired翻译过来叫：自动装配。</p>
 <p>@Autowired注解，默认是按照<strong>类型</strong>进行自动装配的（去IOC容器中找某个类型的对象，然后完成注入操作）</p>
 <p>那如果在IOC容器中，存在多个相同类型的bean对象，会出现什么情况呢？</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204232154445.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204232154445.png"></p>
 <ul>
 <li>程序运行会报错</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204231616724.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204231616724.png"></p>
 <p>如何解决上述问题呢？Spring提供了以下几种解决方案：</p>
 <ul>
 <li><p>@Primary</p>
@@ -860,14 +860,14 @@ http://localhost:880/user/1/0
 </li>
 </ul>
 <p>使用@Primary注解：当存在多个相同类型的Bean注入时，加上@Primary注解，来确定默认的实现。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204232501679.png"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204232501679.png"> </p>
 <p>使用@Qualifier注解：指定当前要注入的bean对象。 在@Qualifier的value属性中，指定注入的bean的名称。</p>
 <ul>
 <li>@Qualifier注解不能单独使用，必须配合@Autowired使用</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204233333606.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204233333606.png"></p>
 <p>使用@Resource注解：是按照bean的名称进行注入。通过name属性指定要注入的bean的名称。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image-20221204233637735.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image-20221204233637735.png"></p>
 <blockquote>
 <p>面试题 ： @Autowird 与 @Resource的区别</p>
 <ul>
@@ -890,14 +890,14 @@ http://localhost:880/user/1/0
 </blockquote>
 <p>默认我们在UserMapper接口上加的@Select注解中编写SQL语句是没有提示的。 如果想让idea给我们提示对应的SQL语句，我们需要在IDEA中配置与MySQL数据库的链接。 </p>
 <p>默认我们在UserMapper接口上的@Select注解中编写SQL语句是没有提示的。如果想让idea给出提示，可以做如下配置：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image/image-20221210143348119.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image/image-20221210143348119.png"></p>
 <p>配置完成之后，发现SQL语句中的关键字有提示了，但还存在不识别表名(列名)的情况：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image/image-20221210143934318.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image/image-20221210143934318.png"></p>
 <blockquote>
 <p>产生原因：Idea和数据库没有建立连接，不识别表信息</p>
 <p>解决方案：在Idea中配置MySQL数据库连接</p>
 </blockquote>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image/image-20221210144139792.png">) </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image/image-20221210144139792.png">) </p>
 <blockquote>
 <p>在配置的时候指定连接那个数据库，如上图所示连接的就是mybatis数据库。</p>
 </blockquote>
@@ -944,7 +944,7 @@ http://localhost:880/user/1/0
 </code></pre>
 <blockquote>
 <p>在实体类上添加了@Data注解，那么这个类在编译时期，就会生成getter&#x2F;setter、equals、hashcode、toString等方法。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day06/image/image/image-20221210170733921.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day06/image/image/image-20221210170733921.png"></p>
 </blockquote>
 <p>说明：@Data注解中不包含全参构造方法，通常在实体类上，还会添加上：全参构造、无参构造</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> lombok<span class="token punctuation">.</span>Data<span class="token punctuation">;</span>

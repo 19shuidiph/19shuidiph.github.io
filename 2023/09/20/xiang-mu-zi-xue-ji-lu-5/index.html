@@ -558,7 +558,7 @@ InvStocSyncJobService invStocSyncJobService
 <h2 id="Future的get-方法"><a href="#Future的get-方法" class="headerlink" title="Future的get()方法"></a>Future的get()方法</h2><h3 id="JDK里的Future"><a href="#JDK里的Future" class="headerlink" title="JDK里的Future"></a>JDK里的Future</h3><p>比如启动一个main方法，main中又包含了若干个其它任务，在不使用Java Future的情况下，main方法中的任务会同步阻塞执行，一个执行完成后，才能去执行另一个；如果使用java Future，则main方法中的任务会异步执行，main方法不用等待一个任务的执行完成，只需往下执行就行。<strong>一个任务的执行结果又该怎么获取呢?这里就需要用到Future接口中的isDone()方法来判断任务是否执行完</strong>，如果执行完成则可获取结果，如果没有完成则需要等待。 <strong>可见虽然主线程中的多个任务是异步执行，但是无法确定任务什么时候执行完成，只能通过不断去监听以获取结果，所以这里是阻塞的。</strong>这样，可能某一个任务执行时间很长会拖累整个主任务的执行。</p>
 <p>如果用java.util.concurrent.Future这种原生的，<strong>要使用while循环不停的监听</strong>。而且结果是先输出第一行，然后光速输出第二第三行。  </p>
 <p>Thread1  ——&gt; Task1  10s<br>Thread2  ——&gt; Task2  2s<br>Thread3  ——&gt; Task3  3s</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955/image/111.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955/image/111.png"></p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>aplus<span class="token punctuation">.</span>controller<span class="token punctuation">;</span>
  
 <span class="token keyword">import</span> lombok<span class="token punctuation">.</span>extern<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>Slf4j<span class="token punctuation">;</span>
@@ -738,7 +738,7 @@ InvStocSyncJobService invStocSyncJobService
 </code></pre>
 <p>Thread1  ——&gt; Task1  10s<br>Thread2  ——&gt; Task2  2s<br>Thread3  ——&gt; Task3  3s</p>
 <p>执行结果是可以先输出Task2和Task3</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955/image/222.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955/image/222.png"></p>
 <p>说明它获取结果时，只要结果有反馈，就能获取到，因为它是非阻塞的。</p>
 <h2 id="threadPool的shutdown方法"><a href="#threadPool的shutdown方法" class="headerlink" title="threadPool的shutdown方法"></a>threadPool的shutdown方法</h2><p>将线程池状态置为<code>SHUTDOWN</code>,并不会立即停止：</p>
 <ul>
@@ -769,9 +769,9 @@ singleThreadPool<span class="token punctuation">.</span><span class="token funct
  
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="前端刷新按钮的书写"><a href="#前端刷新按钮的书写" class="headerlink" title="前端刷新按钮的书写"></a>前端刷新按钮的书写</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955/image/image-20230915154006504.png"></p>
+<h2 id="前端刷新按钮的书写"><a href="#前端刷新按钮的书写" class="headerlink" title="前端刷新按钮的书写"></a>前端刷新按钮的书写</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955/image/image-20230915154006504.png"></p>
 <p>首先找到应该在前端哪个页面，哪个位置写。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955/image/image-20230915154106484.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955/image/image-20230915154106484.png"></p>
 <p>因为是发送post请求，所以简单的导入一个post</p>
 <pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> post <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@/utils/ajax'</span>
 </code></pre>
@@ -829,7 +829,7 @@ public class TaxPeriodAndStatStateSync4LqJobServiceImpl implements TaxPeriodAndS
 <p>两个注解的意思是，如果没有在Spring容器里找到这个，就在这进行初始化为Bean</p>
 <h2 id="XxlJob-value-x3D-“TaxpayerInfoJobHandler”-label-x3D-“纳税人基础信息同步任务”-params-x3D"><a href="#XxlJob-value-x3D-“TaxpayerInfoJobHandler”-label-x3D-“纳税人基础信息同步任务”-params-x3D" class="headerlink" title="@XxlJob(value &#x3D; “TaxpayerInfoJobHandler”, label &#x3D; “纳税人基础信息同步任务”, params &#x3D; {})"></a>@XxlJob(value &#x3D; “TaxpayerInfoJobHandler”, label &#x3D; “纳税人基础信息同步任务”, params &#x3D; {})</h2><p>其实这个注解没有很理解，因为暂时还没碰到xxlJob。</p>
 <p>这个的结果是</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955/image/image-20230915160833898.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955/image/image-20230915160833898.png"></p>
 <h2 id="String-format可以实现一定的正则效果"><a href="#String-format可以实现一定的正则效果" class="headerlink" title="String.format可以实现一定的正则效果"></a>String.format可以实现一定的正则效果</h2><pre class=" language-java"><code class="language-java">String title <span class="token operator">=</span> <span class="token string">"税控发票库存同步任务 "</span><span class="token punctuation">;</span>
 String tmpMsg <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">">>>>>%s开始"</span><span class="token punctuation">,</span> title<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
@@ -869,7 +869,7 @@ e<span class="token punctuation">.</span><span class="token function">printStack
 </code></pre>
 <p>可以把实现了资源接口的放到try的括号里。编译器会自动在finally里关闭资源。（重写代码）</p>
 <p>他会写两个try，非常严谨。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955/image/image-20230920154125896.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%955/image/image-20230920154125896.png"></p>
 <h2 id="对金额的处理-joda-money"><a href="#对金额的处理-joda-money" class="headerlink" title="对金额的处理 joda-money"></a>对金额的处理 joda-money</h2><p>存储金额的数据类型Decmial。</p>
 <p>在Java中，可以使用<code>java.math.BigDecimal</code>类来表示<code>Decimal</code>类型的数据。<code>BigDecimal</code>对象可以存储任意精度的小数，具有高度的可靠性和精度。使用<code>BigDecimal</code>来存储金额等金融数据时，需要注意设置其精度和舍入模式，以确保数据的准确性。</p>
 <p>除了<code>BigDecimal</code>之外，还有一些其他的数据类型可以用来存储金额等金融数据。例如，可以使用<code>long</code>类型来存储以分为单位的金额，这样可以避免使用浮点数产生的精度问题。在需要进行计算时，可以将<code>long</code>类型的金额转换为<code>BigDecimal</code>类型进行运算。</p>

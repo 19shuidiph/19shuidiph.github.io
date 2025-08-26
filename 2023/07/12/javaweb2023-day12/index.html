@@ -481,8 +481,8 @@
 <ul>
 <li>编辑启动程序的配置信息</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230113162746634.png" alt="image-20230113162746634"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230113162639630.png" alt="image-20230113162639630"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230113162746634.png" alt="image-20230113162746634"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230113162639630.png" alt="image-20230113162639630"></p>
 <p>思考：如果项目已经打包上线了，这个时候我们又如何来设置Java系统属性和命令行参数呢？</p>
 <pre class=" language-shell"><code class="language-shell">java -Dserver.port=9000 -jar XXXXX.jar --server.port=10010
 </code></pre>
@@ -490,7 +490,7 @@
 <ul>
 <li>同时设置Java系统属性和命令行参数</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230113172659269.png" alt="image-20230113172659269"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230113172659269.png" alt="image-20230113172659269"></p>
 <p>仅设置Java系统属性也可以。</p>
 <p>在SpringBoot项目当中，常见的属性配置方式有5种， 3种配置文件，加上2种外部属性的配置(Java系统属性、命令行参数)。通过以上的测试，我们也得出了优先级(从低到高)：</p>
 <ul>
@@ -626,7 +626,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>程序运行后控制台日志：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230113211619818.png" alt="image-20230113211619818"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230113211619818.png" alt="image-20230113211619818"></p>
 <blockquote>
 <p>问题：输出的bean对象地址值是一样的，说明IOC容器当中的bean对象有几个？</p>
 <p>答案：只有一个。        （默认情况下，IOC中的bean对象是单例）</p>
@@ -671,7 +671,7 @@
 <ul>
 <li>可以借助Spring中的@Scope注解来进行配置作用域</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230113214244144.png" alt="image-20230113214244144"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230113214244144.png" alt="image-20230113214244144"></p>
 <p><strong>1). 测试一</strong></p>
 <ul>
 <li>控制器</li>
@@ -712,7 +712,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>重启SpringBoot服务，运行测试方法，查看控制台打印的日志：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114001348839.png" alt="image-20230114001348839"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114001348839.png" alt="image-20230114001348839"></p>
 <blockquote>
 <p>注意事项：</p>
 <ul>
@@ -741,7 +741,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>重启SpringBoot服务，再次执行测试方法，查看控制吧打印的日志：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114001736151.png" alt="image-20230114001736151"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114001736151.png" alt="image-20230114001736151"></p>
 <blockquote>
 <p>注意事项：</p>
 <ul>
@@ -766,7 +766,7 @@
 <ul>
 <li>按照我们之前的做法，需要在SAXReader类上添加一个注解@Component（将当前类交给IOC容器管理）</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114003903285.png" alt="image-20230114003903285"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114003903285.png" alt="image-20230114003903285"></p>
 <blockquote>
 <p>结论：第三方提供的类是只读的。无法在第三方类上添加@Component注解或衍生注解。</p>
 </blockquote>
@@ -859,13 +859,13 @@
 <li>如果这个类它不是我们自己定义的，而是引入的第三方依赖当中提供的类，而且我们还想将这个类交给IOC容器管理。此时我们就需要在配置类中定义一个方法，在方法上加上一个@Bean注解，通过这种方式来声明第三方的bean对象。</li>
 </ul>
 <h2 id="3-SpringBoot原理"><a href="#3-SpringBoot原理" class="headerlink" title="3. SpringBoot原理"></a>3. SpringBoot原理</h2><p>SpringBoot框架之所以使用起来更简单更快捷，是因为SpringBoot框架底层提供了两个非常重要的功能：一个是起步依赖，一个是自动配置。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114172442018.png" alt="image-20230114172442018"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114172442018.png" alt="image-20230114172442018"></p>
 <blockquote>
 <p>通过SpringBoot所提供的起步依赖，就可以大大的简化pom文件当中依赖的配置，从而解决了Spring框架当中依赖配置繁琐的问题。</p>
 <p>通过自动配置的功能就可以大大的简化框架在使用时bean的声明以及bean的配置。我们只需要引入程序开发时所需要的起步依赖，项目开发时所用到常见的配置都已经有了，我们直接使用就可以了。</p>
 </blockquote>
 <h3 id="3-1-起步依赖"><a href="#3-1-起步依赖" class="headerlink" title="3.1 起步依赖"></a>3.1 起步依赖</h3><p>假如我们没有使用SpringBoot，用的是Spring框架进行web程序的开发，此时我们就需要引入web程序开发所需要的一些依赖。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114173645101.png" alt="image-20230114173645101"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114173645101.png" alt="image-20230114173645101"></p>
 <blockquote>
 <p>spring-webmvc依赖：这是Spring框架进行web程序开发所需要的依赖</p>
 <p>servlet-api依赖：Servlet基础依赖</p>
@@ -874,7 +874,7 @@
 <p>项目中所引入的这些依赖，还需要保证版本匹配，否则就可能会出现版本冲突问题。</p>
 </blockquote>
 <p>如果我们使用了SpringBoot，就不需要像上面这么繁琐的引入依赖了。我们只需要引入一个依赖就可以了，那就是web开发的起步依赖：springboot-starter-web。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114174805852.png" alt="image-20230114174805852"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114174805852.png" alt="image-20230114174805852"></p>
 <p>为什么我们只需要引入一个web开发的起步依赖，web开发所需要的所有的依赖都有了呢？</p>
 <ul>
 <li>因为Maven的依赖传递。</li>
@@ -897,17 +897,17 @@
 <ul>
 <li>运行SpringBoot启动类</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114205745221.png" alt="image-20230114205745221"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114213945851.png" alt="image-20230114213945851"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114212750007.png" alt="image-20230114212750007"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114205745221.png" alt="image-20230114205745221"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114213945851.png" alt="image-20230114213945851"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114212750007.png" alt="image-20230114212750007"></p>
 <p>大家会看到有两个CommonConfig，在第一个CommonConfig类中定义了一个bean对象，bean对象的名字叫reader。</p>
 <p>在第二个CommonConfig中它的bean名字叫commonConfig，为什么还会有这样一个bean对象呢？原因是在CommonConfig配置类上添加了一个注解@Configuration，而@Configuration底层就是@Component</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114220159619.png" alt="image-20230114220159619"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114220159619.png" alt="image-20230114220159619"></p>
 <blockquote>
 <p>所以配置类最终也是SpringIOC容器当中的一个bean对象</p>
 </blockquote>
 <p>在IOC容器中除了我们自己定义的bean以外，还有很多配置类，这些配置类都是SpringBoot在启动的时候加载进来的配置类。这些配置类加载进来之后，它也会生成很多的bean对象。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114221341811.png" alt="image-20230114221341811"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114221341811.png" alt="image-20230114221341811"></p>
 <blockquote>
 <p>比如：配置类GsonAutoConfiguration里面有一个bean，bean的名字叫gson，它的类型是Gson。 </p>
 <p>com.google.gson.Gson是谷歌包中提供的用来处理JSON格式数据的。</p>
@@ -934,7 +934,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>添加断点，使用debug模式运行测试类程序：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114222245520.png" alt="image-20230114222245520"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114222245520.png" alt="image-20230114222245520"></p>
 <p>问题：在当前项目中我们并没有声明谷歌提供的Gson这么一个bean对象，然后我们却可以通过@Autowired从Spring容器中注入bean对象，那么这个bean对象怎么来的？</p>
 <p>答案：SpringBoot项目在启动时通过自动配置完成了bean对象的创建。</p>
 <p>体验了SpringBoot的自动配置了，下面我们就来分析自动配置的原理。其实分析自动配置原理就是来解析在SpringBoot项目中，在引入依赖之后是如何将依赖jar包当中所定义的配置类以及bean加载到SpringIOC容器中的。</p>
@@ -944,7 +944,7 @@
 <p>准备工作：在Idea中导入”资料\03. 自动配置原理”下的itheima-utils工程</p>
 </blockquote>
 <p>1、在SpringBoot项目 spring-boot-web-config2 工程中，通过坐标引入itheima-utils依赖</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114224107653.png" alt="image-20230114224107653"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114224107653.png" alt="image-20230114224107653"></p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TokenParser</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">parse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -969,7 +969,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>3、执行测试方法</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114225018255.png" alt="image-20230114225018255"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114225018255.png" alt="image-20230114225018255"></p>
 <blockquote>
 <p>异常信息描述： 没有com.example.TokenParse类型的bean</p>
 <p>说明：在Spring容器中没有找到com.example.TokenParse类型的bean对象</p>
@@ -995,7 +995,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>重新执行测试方法，控制台日志输出：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114231121016.png" alt="image-20230114231121016"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114231121016.png" alt="image-20230114231121016"></p>
 <blockquote>
 <p>大家可以想象一下，如果采用以上这种方式来完成自动配置，那我们进行项目开发时，当需要引入大量的第三方的依赖，就需要在启动类上配置N多要扫描的包，这种方式会很繁琐。而且这种大面积的扫描性能也比较低。</p>
 <p>缺点：</p>
@@ -1025,7 +1025,7 @@
 </code></pre>
 <blockquote>
 <p>重新执行测试方法，控制台日志输出：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114231709392.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114231709392.png"></p>
 </blockquote>
 <p>2). 使用@Import导入配置类：</p>
 <ul>
@@ -1078,7 +1078,7 @@
 </code></pre>
 <blockquote>
 <p>执行测试方法：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114233252259.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114233252259.png"></p>
 </blockquote>
 <p>3). 使用@Import导入ImportSelector接口实现类：</p>
 <ul>
@@ -1105,7 +1105,7 @@
 </code></pre>
 <blockquote>
 <p>执行测试方法：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114234222946.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114234222946.png"></p>
 </blockquote>
 <p>我们使用@Import注解通过这三种方式都可以导入第三方依赖中所提供的bean或者是配置类。</p>
 <p>思考：如果基于以上方式完成自动配置，当要引入一个第三方依赖时，是不是还要知道第三方依赖中有哪些配置类和哪些Bean对象？</p>
@@ -1146,7 +1146,7 @@
 </code></pre>
 <blockquote>
 <p>执行测试方法：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230114233252259.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230114233252259.png"></p>
 </blockquote>
 <p>以上四种方式都可以完成导入操作，但是第4种方式会更方便更优雅，而这种方式也是SpringBoot当中所采用的方式。</p>
 <h4 id="3-2-3-原理分析"><a href="#3-2-3-原理分析" class="headerlink" title="3.2.3 原理分析"></a>3.2.3 原理分析</h4><h5 id="3-2-3-1-源码跟踪"><a href="#3-2-3-1-源码跟踪" class="headerlink" title="3.2.3.1 源码跟踪"></a>3.2.3.1 源码跟踪</h5><p>前面我们讲解了在项目当中引入第三方依赖之后，如何加载第三方依赖中定义好的bean对象以及配置类，从而完成自动配置操作。那下面我们通过源码跟踪的形式来剖析下SpringBoot底层到底是如何完成自动配置的。</p>
@@ -1155,7 +1155,7 @@
 <p>在跟踪框架源码的时候，一定要抓住关键点，找到核心流程。一定不要从头到尾一行代码去看，一个方法的去研究，一定要找到关键流程，抓住关键点，先在宏观上对整个流程或者整个原理有一个认识，有精力再去研究其中的细节。</p>
 </blockquote>
 <p>要搞清楚SpringBoot的自动配置原理，要从SpringBoot启动类上使用的核心注解@SpringBootApplication开始分析：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115001439110.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115001439110.png"></p>
 <p>在@SpringBootApplication注解中包含了：</p>
 <ul>
 <li>元注解（不再解释）</li>
@@ -1164,34 +1164,34 @@
 <li>@ComponentScan</li>
 </ul>
 <p>我们先来看第一个注解：@SpringBootConfiguration</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115001950076.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115001950076.png"></p>
 <blockquote>
 <p>@SpringBootConfiguration注解上使用了@Configuration，表明SpringBoot启动类就是一个配置类。</p>
 <p>@Indexed注解，是用来加速应用启动的（不用关心）。</p>
 </blockquote>
 <p>接下来再先看@ComponentScan注解：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115002450993.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115002450993.png"></p>
 <blockquote>
 <p>@ComponentScan注解是用来进行组件扫描的，扫描启动类所在的包及其子包下所有被@Component及其衍生注解声明的类。</p>
 <p>SpringBoot启动类，之所以具备扫描包功能，就是因为包含了@ComponentScan注解。</p>
 </blockquote>
 <p>最后我们来看看@EnableAutoConfiguration注解（自动配置核心注解）：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115002743115.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115002743115.png"></p>
 <blockquote>
 <p>使用@Import注解，导入了实现ImportSelector接口的实现类。</p>
 <p>AutoConfigurationImportSelector类是ImportSelector接口的实现类。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115003242549.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115003242549.png"></p>
 </blockquote>
 <p>AutoConfigurationImportSelector类中重写了ImportSelector接口的selectImports()方法：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115003348288.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115003348288.png"></p>
 <blockquote>
 <p>selectImports()方法底层调用getAutoConfigurationEntry()方法，获取可自动配置的配置类信息集合</p>
 </blockquote>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115003704385.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115003704385.png"></p>
 <blockquote>
 <p>getAutoConfigurationEntry()方法通过调用getCandidateConfigurations(annotationMetadata, attributes)方法获取在配置文件中配置的所有自动配置类的集合</p>
 </blockquote>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115003903302.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115003903302.png"></p>
 <blockquote>
 <p>getCandidateConfigurations方法的功能：</p>
 <p>获取所有基于META-INF&#x2F;spring&#x2F;org.springframework.boot.autoconfigure.AutoConfiguration.imports文件、META-INF&#x2F;spring.factories文件中配置类的集合</p>
@@ -1200,16 +1200,16 @@
 <ul>
 <li>通常在引入的起步依赖中，都有包含以上两个文件</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230129090835964.png"> </p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115064329460.png" alt="image-20230115064329460"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230129090835964.png"> </p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115064329460.png" alt="image-20230115064329460"></p>
 <p>在前面在给大家演示自动配置的时候，我们直接在测试类当中注入了一个叫gson的bean对象，进行JSON格式转换。虽然我们没有配置bean对象，但是我们是可以直接注入使用的。原因就是因为在自动配置类当中做了自动配置。到底是在哪个自动配置类当中做的自动配置呢？我们通过搜索来查询一下。</p>
 <p>在META-INF&#x2F;spring&#x2F;org.springframework.boot.autoconfigure.AutoConfiguration.imports配置文件中指定了第三方依赖Gson的配置类：GsonAutoConfiguration</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115005159530.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115005159530.png"></p>
 <p>第三方依赖中提供的GsonAutoConfiguration类：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115005418900.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115005418900.png"></p>
 <blockquote>
 <p>在GsonAutoConfiguration类上，添加了注解@AutoConfiguration，通过查看源码，可以明确：GsonAutoConfiguration类是一个配置。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115065247287.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115065247287.png"></p>
 </blockquote>
 <p>看到这里，大家就应该明白为什么可以完成自动配置了，原理就是在配置类中定义一个@Bean标识的方法，而Spring会自动调用配置类中使用@Bean标识的方法，并把方法的返回值注册到IOC容器中。</p>
 <p><strong>自动配置源码小结</strong></p>
@@ -1292,7 +1292,7 @@
 </code></pre>
 <blockquote>
 <p>执行testHeaderParser()测试方法：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115203748022.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115203748022.png"></p>
 <p>因为io.jsonwebtoken.Jwts字节码文件在启动SpringBoot程序时已存在，所以创建HeaderParser对象并注册到IOC容器中。</p>
 </blockquote>
 <ul>
@@ -1312,7 +1312,7 @@
 </code></pre>
 <blockquote>
 <p>执行testHeaderParser()测试方法：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115211029855.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115211029855.png"></p>
 <p>SpringBoot在调用@Bean标识的headerParser()前，IOC容器中是没有HeaderParser类型的bean，所以HeaderParser对象正常创建，并注册到IOC容器中。</p>
 </blockquote>
 <p>再次修改@ConditionalOnMissingBean注解：</p>
@@ -1330,7 +1330,7 @@
 </code></pre>
 <blockquote>
 <p>执行testHeaderParser()测试方法：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115211351681.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115211351681.png"></p>
 <p>因为在SpringBoot环境中不存在名字叫deptController2的bean对象，所以创建HeaderParser对象并注册到IOC容器中。</p>
 </blockquote>
 <p>再次修改@ConditionalOnMissingBean注解：</p>
@@ -1361,7 +1361,7 @@
 </code></pre>
 <blockquote>
 <p>执行testHeaderParser()测试方法：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115211957191.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115211957191.png"></p>
 <p>因为HeaderConfig类中添加@Configuration注解，而@Configuration注解中包含了@Component，所以SpringBoot启动时会创建HeaderConfig类对象，并注册到IOC容器中。</p>
 <p>当IOC容器中有HeaderConfig类型的bean存在时，不会把创建HeaderParser对象注册到IOC容器中。而IOC容器中没有HeaderParser类型的对象时，通过getBean(HeaderParser.class)方法获取bean对象时，引发异常：NoSuchBeanDefinitionException</p>
 </blockquote>
@@ -1389,7 +1389,7 @@
 </code></pre>
 <blockquote>
 <p>执行testHeaderParser()测试方法：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115220235511.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115220235511.png"></p>
 </blockquote>
 <p>修改@ConditionalOnProperty注解：  havingValue的值修改为”itheima2”</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Bean</span>
@@ -1400,13 +1400,13 @@
 </code></pre>
 <blockquote>
 <p>再次执行testHeaderParser()测试方法：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115211957191.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115211957191.png"></p>
 <p>因为application.yml配置文件中，不存在： name:  itheima2，所以HeaderParser对象在IOC容器中不存在</p>
 </blockquote>
 <p>我们再回头看看之前讲解SpringBoot源码时提到的一个配置类：GsonAutoConfiguration</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115222128740.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115222128740.png"></p>
 <p>最后再给大家梳理一下自动配置原理：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115222302753.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115222302753.png"></p>
 <blockquote>
 <p>自动配置的核心就在@SpringBootApplication注解上，SpringBootApplication这个注解底层包含了3个注解，分别是：</p>
 <ul>
@@ -1436,12 +1436,12 @@
 <li>大家想在我们当前项目当中使用了阿里云OSS，我们需要进行这么多步的操作。在别的项目组当中要想使用阿里云OSS，是不是也需要进行这么多步的操作，所以这个时候我们就可以自定义一些公共组件，在这些公共组件当中，我就可以提前把需要配置的bean都提前配置好。将来在项目当中，我要想使用这个技术，我直接将组件对应的坐标直接引入进来，就已经自动配置好了，就可以直接使用了。我们也可以把公共组件提供给别的项目组进行使用，这样就可以大大的简化我们的开发。</li>
 </ul>
 <p>在SpringBoot项目中，一般都会将这些公共组件封装为SpringBoot当中的starter，也就是我们所说的起步依赖。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115224939131.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115224939131.png"></p>
 <blockquote>
 <p>SpringBoot官方starter命名： spring-boot-starter-xxxx</p>
 <p>第三组织提供的starter命名：  xxxx-spring-boot-starter</p>
 </blockquote>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115225703863.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115225703863.png"></p>
 <blockquote>
 <p>Mybatis提供了配置类，并且也提供了springboot会自动读取的配置文件。当SpringBoot项目启动时，会读取到spring.factories配置文件中的配置类并加载配置类，生成相关bean对象注册到IOC容器中。</p>
 <p>结果：我们可以直接在SpringBoot程序中使用Mybatis自动配置的bean对象。</p>
@@ -1542,10 +1542,10 @@
 <h5 id="3-2-4-2-自定义starter实现"><a href="#3-2-4-2-自定义starter实现" class="headerlink" title="3.2.4.2 自定义starter实现"></a>3.2.4.2 自定义starter实现</h5><p>自定义starter的步骤我们刚才已经分析了，接下来我们就按照分析的步骤来完成自定义starter的开发。</p>
 <p>首先我们先来创建两个Maven模块：</p>
 <p>1). aliyun-oss-spring-boot-starter模块</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115234739988.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115234823134.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115234739988.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115234823134.png"></p>
 <p>创建完starter模块后，删除多余的文件，最终保留内容如下：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115235429353.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115235429353.png"></p>
 <p>删除pom.xml文件中多余的内容后：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
@@ -1576,10 +1576,10 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>2). aliyun-oss-spring-boot-autoconfigure模块</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116000302319.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230115235921014.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116000302319.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230115235921014.png"></p>
 <p>创建完starter模块后，删除多余的文件，最终保留内容如下：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116000542905.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116000542905.png"></p>
 <p>删除pom.xml文件中多余的内容后：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
@@ -1650,7 +1650,7 @@
 <blockquote>
 <p> 我们将之前案例中所使用的阿里云OSS部分的代码直接拷贝到autoconfigure模块下，然后进行改造就行了。</p>
 </blockquote>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116001622679.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116001622679.png"></p>
 <p>拷贝过来后，还缺失一些相关的依赖，需要把相关依赖也拷贝过来：</p>
 <pre class=" language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
@@ -1716,18 +1716,18 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>project</span><span class="token punctuation">></span></span>
 </code></pre>
 <p>现在大家思考下，在类上添加的@Component注解还有用吗？</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116002417105.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116002442736.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116002417105.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116002442736.png"></p>
 <p>答案：没用了。  在SpringBoot项目中，并不会去扫描com.aliyun.oss这个包，不扫描这个包那类上的注解也就失去了作用。</p>
 <blockquote>
 <p>@Component注解不需要使用了，可以从类上删除了。</p>
 <p>删除后报红色错误，暂时不理会，后面再来处理。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116002747681.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116002747681.png"></p>
 <p>删除AliOSSUtils类中的@Component注解、@Autowired注解</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116003046768.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116003046768.png"></p>
 </blockquote>
 <p>下面我们就要定义一个自动配置类了，在自动配置类当中来声明AliOSSUtils的bean对象。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116003513900.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116003513900.png"></p>
 <p> AliOSSAutoConfiguration类：</p>
 <pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span><span class="token comment" spellcheck="true">//当前类为Spring配置类</span>
 <span class="token annotation punctuation">@EnableConfigurationProperties</span><span class="token punctuation">(</span>AliOSSProperties<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//导入AliOSSProperties类，并交给SpringIOC管理</span>
@@ -1795,12 +1795,12 @@
 </code></pre>
 </li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116004957697.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116004957697.png"></p>
 <h5 id="3-2-4-3-自定义starter测试"><a href="#3-2-4-3-自定义starter测试" class="headerlink" title="3.2.4.3 自定义starter测试"></a>3.2.4.3 自定义starter测试</h5><p>阿里云OSS的starter我们刚才已经定义好了，接下来我们就来做一个测试。</p>
 <blockquote>
 <p>今天的课程资料当中，提供了一个自定义starter的测试工程。我们直接打开文件夹，里面有一个测试工程。测试工程就是springboot-autoconfiguration-test，我们只需要将测试工程直接导入到Idea当中即可。</p>
 </blockquote>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116005530815.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116005530815.png"></p>
 <p>测试前准备：</p>
 <ol>
 <li><p>在test工程中引入阿里云starter依赖</p>
@@ -1847,11 +1847,11 @@
 <ul>
 <li>随着SpringBoot项目启动，自动配置会把AliOSSUtils的bean对象装配到IOC容器中</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116011039611.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116011039611.png"></p>
 <p>用postman工具进行文件上传：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116010731914.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116010731914.png"></p>
 <p>通过断点可以看到自动注入AliOSSUtils的bean对象：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day12/image/image-20230116011501201.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day12/image/image-20230116011501201.png"></p>
 
                 
             </div>

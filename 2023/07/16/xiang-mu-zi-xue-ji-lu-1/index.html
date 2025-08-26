@@ -521,8 +521,8 @@
 <p>为什么不能超过 65535 字节呢？因为MySQL限制了一条记录的最大长度就是 65535 字节</p>
 <h2 id="自动生成mapper文件和实体类（通过数据库的表）"><a href="#自动生成mapper文件和实体类（通过数据库的表）" class="headerlink" title="自动生成mapper文件和实体类（通过数据库的表）"></a>自动生成mapper文件和实体类（通过数据库的表）</h2><p>使用mybatisX插件<a target="_blank" rel="noopener" href="https://www.cnblogs.com/6543x1/p/15484098.html">https://www.cnblogs.com/6543x1/p/15484098.html</a></p>
 <p>不过一些参数要修改</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/week1-2/image/image-20230630104937075.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/week1-2/image/image-20230630104946358.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/week1-2/image/image-20230630104937075.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/week1-2/image/image-20230630104946358.png"></p>
 <p>不选options里的Actual Column才能进行驼峰体的大小写转换。</p>
 <p>然后上面第一张图生成的是实体类，第二张图生成的是下面俩文件，一个mapper一个xml</p>
 <h2 id="mybatis插入操作的一些配置"><a href="#mybatis插入操作的一些配置" class="headerlink" title="mybatis插入操作的一些配置"></a>mybatis插入操作的一些配置</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zongf0504/article/details/100103946">https://blog.csdn.net/zongf0504/article/details/100103946</a></p>
@@ -889,14 +889,14 @@ df<span class="token punctuation">.</span>to_excel<span class="token punctuation
 <h2 id="Java中用easyExcel来读取excel"><a href="#Java中用easyExcel来读取excel" class="headerlink" title="Java中用easyExcel来读取excel"></a>Java中用easyExcel来读取excel</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010925982/article/details/117412753">https://blog.csdn.net/u010925982/article/details/117412753</a></p>
 <p>用到了@ExcelProperty(value &#x3D; “文件名称”)  与excel文件的表头对应</p>
 <h2 id="Mybatis-将Java实体对象与数据库一行的对象深度绑定"><a href="#Mybatis-将Java实体对象与数据库一行的对象深度绑定" class="headerlink" title="Mybatis 将Java实体对象与数据库一行的对象深度绑定"></a>Mybatis 将Java实体对象与数据库一行的对象深度绑定</h2><p>在项目中发现如下现象：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/week1-2/image/image-20230713145915009.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/week1-2/image/image-20230713145915009.png"></p>
 <p>在第一个断点，versionID是没有值的</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/week1-2/image/image-20230713145956628.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/week1-2/image/image-20230713145956628.png"></p>
 <p>在第二个断点就有值了</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/week1-2/image/image-20230713150018123.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/week1-2/image/image-20230713150018123.png"></p>
 <p>对一个数据库的插入操作，数据库里默认生成的新的递增主键，会影响到Java类的实体对象。这是mybatis做的，将自增主键回填到id了。</p>
 <p>要进行如下配置，比如在KbKlLawExtMapper.xml里</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/week1-2/image/image-20230713150118069.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/week1-2/image/image-20230713150118069.png"></p>
 <pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>insert</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>insert<span class="token punctuation">"</span></span> <span class="token attr-name">keyColumn</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">keyProperty</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>id<span class="token punctuation">"</span></span> <span class="token attr-name">parameterType</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.zbiti.kbss.model.KbKlLawExt<span class="token punctuation">"</span></span> <span class="token attr-name">useGeneratedKeys</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 </code></pre>
 

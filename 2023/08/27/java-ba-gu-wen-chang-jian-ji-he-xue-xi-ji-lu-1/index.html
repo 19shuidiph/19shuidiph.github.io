@@ -518,8 +518,8 @@ list<span class="token punctuation">.</span><span class="token function">add</sp
 </ul>
 <p>jdk1.7和jdk1.8的区别</p>
 <p>JDK1.8之前采用的拉链法，数组+链表<br>JDK1.8之后采用数组+链表+红黑树，链表长度大于8且数组长度大于64则会从链表转化为红黑树</p>
-<h3 id="HashMap的put方法的具体流程"><a href="#HashMap的put方法的具体流程" class="headerlink" title="HashMap的put方法的具体流程"></a>HashMap的put方法的具体流程</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B8%B8%E8%A7%81%E9%9B%86%E5%90%88%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230828190355821.png"></p>
-<h3 id="讲一讲HashMap的扩容机制"><a href="#讲一讲HashMap的扩容机制" class="headerlink" title="讲一讲HashMap的扩容机制"></a>讲一讲HashMap的扩容机制</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B8%B8%E8%A7%81%E9%9B%86%E5%90%88%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230828190607873.png"></p>
+<h3 id="HashMap的put方法的具体流程"><a href="#HashMap的put方法的具体流程" class="headerlink" title="HashMap的put方法的具体流程"></a>HashMap的put方法的具体流程</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B8%B8%E8%A7%81%E9%9B%86%E5%90%88%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230828190355821.png"></p>
+<h3 id="讲一讲HashMap的扩容机制"><a href="#讲一讲HashMap的扩容机制" class="headerlink" title="讲一讲HashMap的扩容机制"></a>讲一讲HashMap的扩容机制</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B8%B8%E8%A7%81%E9%9B%86%E5%90%88%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230828190607873.png"></p>
 <h3 id="hashMap的寻址算法"><a href="#hashMap的寻址算法" class="headerlink" title="hashMap的寻址算法"></a>hashMap的寻址算法</h3><ul>
 <li>计算对象的 hashCode()</li>
 <li>再进行调用 hash() 方法进行二次哈希， hashcode值右移16位再异或运算，让哈希分布更为均匀</li>
@@ -530,12 +530,12 @@ list<span class="token punctuation">.</span><span class="token function">add</sp
 <li>扩容时重新计算索引效率更高： hash &amp; oldCap &#x3D;&#x3D; 0 的元素留在原来位置 ，否则新位置 &#x3D; 旧位置 + oldCap</li>
 </ul>
 <h3 id="hashmap在1-7情况下的多线程死循环问题"><a href="#hashmap在1-7情况下的多线程死循环问题" class="headerlink" title="hashmap在1.7情况下的多线程死循环问题"></a>hashmap在1.7情况下的多线程死循环问题</h3><p>在jdk1.7的hashmap中在数组进行扩容的时候，因为链表是头插法，在进行数据迁移的过程中，有可能导致死循环。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B8%B8%E8%A7%81%E9%9B%86%E5%90%88%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230828193103341.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B8%B8%E8%A7%81%E9%9B%86%E5%90%88%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230828193116678.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B8%B8%E8%A7%81%E9%9B%86%E5%90%88%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230828193103341.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B8%B8%E8%A7%81%E9%9B%86%E5%90%88%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230828193116678.png"></p>
 <p>JDK 8 将扩容算法做了调整，不再将元素加入链表头（而是保持与扩容前一样的顺序），尾插法，就避免了jdk7中死循环的问题。</p>
 <h3 id="HashSet与HashMap的区别"><a href="#HashSet与HashMap的区别" class="headerlink" title="HashSet与HashMap的区别"></a>HashSet与HashMap的区别</h3><p>(1)HashSet实现了Set接口, 仅存储对象; HashMap实现了 Map接口, 存储的是键值对.</p>
 <p>(2)HashSet底层其实是用HashMap实现存储的, HashSet封装了一系列HashMap的方法. 依靠HashMap来存储元素值,(利用hashMap的key键进行存储), 而value值默认为Object对象. 所以HashSet也不允许出现重复值, 判断标准和HashMap判断标准相同, 两个元素的hashCode相等并且通过equals()方法返回true.</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B8%B8%E8%A7%81%E9%9B%86%E5%90%88%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230828191601056.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B8%B8%E8%A7%81%E9%9B%86%E5%90%88%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230828191601056.png"></p>
 <h3 id="HashTable与HashMap的区别"><a href="#HashTable与HashMap的区别" class="headerlink" title="HashTable与HashMap的区别"></a>HashTable与HashMap的区别</h3><p>主要区别：</p>
 <table>
 <thead>

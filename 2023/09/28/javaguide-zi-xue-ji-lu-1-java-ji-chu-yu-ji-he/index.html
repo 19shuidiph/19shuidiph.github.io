@@ -466,9 +466,9 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="JavaGuide自学记录1-Java基础与集合"><a href="#JavaGuide自学记录1-Java基础与集合" class="headerlink" title="JavaGuide自学记录1-Java基础与集合"></a>JavaGuide自学记录1-Java基础与集合</h1><h2 id="浮点数之间的等值判断，基本数据类型不能用-x3D-x3D-来比较，包装数据类型不能用-equals-来判断。"><a href="#浮点数之间的等值判断，基本数据类型不能用-x3D-x3D-来比较，包装数据类型不能用-equals-来判断。" class="headerlink" title="浮点数之间的等值判断，基本数据类型不能用 &#x3D;&#x3D; 来比较，包装数据类型不能用 equals 来判断。"></a><strong>浮点数之间的等值判断，基本数据类型不能用 &#x3D;&#x3D; 来比较，包装数据类型不能用 equals 来判断。</strong></h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%951--Java%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%9B%86%E5%90%88/image/t2.jpg"></p>
+                <h1 id="JavaGuide自学记录1-Java基础与集合"><a href="#JavaGuide自学记录1-Java基础与集合" class="headerlink" title="JavaGuide自学记录1-Java基础与集合"></a>JavaGuide自学记录1-Java基础与集合</h1><h2 id="浮点数之间的等值判断，基本数据类型不能用-x3D-x3D-来比较，包装数据类型不能用-equals-来判断。"><a href="#浮点数之间的等值判断，基本数据类型不能用-x3D-x3D-来比较，包装数据类型不能用-equals-来判断。" class="headerlink" title="浮点数之间的等值判断，基本数据类型不能用 &#x3D;&#x3D; 来比较，包装数据类型不能用 equals 来判断。"></a><strong>浮点数之间的等值判断，基本数据类型不能用 &#x3D;&#x3D; 来比较，包装数据类型不能用 equals 来判断。</strong></h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%951--Java%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%9B%86%E5%90%88/image/t2.jpg"></p>
 <h2 id="BigDeecimal构建的时候，如果是double-推荐使用valueof"><a href="#BigDeecimal构建的时候，如果是double-推荐使用valueof" class="headerlink" title="BigDeecimal构建的时候，如果是double,推荐使用valueof"></a>BigDeecimal构建的时候，如果是double,推荐使用valueof</h2><p>推荐使用它的<code>BigDecimal(String val)</code>构造方法或者 <code>BigDecimal.valueOf(double val)</code> 静态方法来创建对象。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%951--Java%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%9B%86%E5%90%88/image/image-20230928152107693.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%951--Java%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%9B%86%E5%90%88/image/image-20230928152107693.png"></p>
 <h2 id="BigDecimalUtil工具类"><a href="#BigDecimalUtil工具类" class="headerlink" title="BigDecimalUtil工具类"></a>BigDecimalUtil工具类</h2><pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>math<span class="token punctuation">.</span>BigDecimal<span class="token punctuation">;</span>
 <span class="token keyword">import</span> java<span class="token punctuation">.</span>math<span class="token punctuation">.</span>RoundingMode<span class="token punctuation">;</span>
 
@@ -675,7 +675,7 @@
 </code></pre>
 <p>从反编译得到内容可以看出，在装箱的时候自动调用的是<code>Integer</code>的<code>valueOf(int)</code>方法。而在拆箱的时候自动调用的是<code>Integer</code>的<code>intValue</code>方法。</p>
 <p>所以，<strong>装箱过程是通过调用包装器的 valueOf 方法实现的，而拆箱过程是通过调用包装器的 xxxValue 方法实现的</strong></p>
-<h2 id="集合类继承关系"><a href="#集合类继承关系" class="headerlink" title="集合类继承关系"></a>集合类继承关系</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%951--Java%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%9B%86%E5%90%88/image/image-20230928165125506.png"></p>
+<h2 id="集合类继承关系"><a href="#集合类继承关系" class="headerlink" title="集合类继承关系"></a>集合类继承关系</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%951--Java%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%9B%86%E5%90%88/image/image-20230928165125506.png"></p>
 <h2 id="Comparable和Comparator区别"><a href="#Comparable和Comparator区别" class="headerlink" title="Comparable和Comparator区别"></a>Comparable和Comparator区别</h2><p>内部的和外部的实现一个即可。</p>
 <p>内部的：<code>Comparable</code> 接口实际上是出自<code>java.lang</code>包 它有一个 <code>compareTo(Object obj)</code>方法用来排序</p>
 <p>外部的：<code>Comparator</code>接口实际上是出自 <code>java.util</code> 包它有一个<code>compare(Object obj1, Object obj2)</code>方法用来排序</p>
@@ -717,7 +717,7 @@ Collections<span class="token punctuation">.</span><span class="token function">
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="TreeMap的排序使用"><a href="#TreeMap的排序使用" class="headerlink" title="TreeMap的排序使用"></a>TreeMap的排序使用</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%951--Java%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%9B%86%E5%90%88/image/t1.png"></p>
+<h2 id="TreeMap的排序使用"><a href="#TreeMap的排序使用" class="headerlink" title="TreeMap的排序使用"></a>TreeMap的排序使用</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%951--Java%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%9B%86%E5%90%88/image/t1.png"></p>
 <p>实现 <code>NavigableMap</code> 接口让 <code>TreeMap</code> 有了对集合内元素的搜索的能力。</p>
 <p>实现<code>SortedMap</code>接口让 <code>TreeMap</code> 有了对集合中的元素根据键排序的能力。默认是按 key 的升序排序，不过我们也可以指定排序的比较器。示例代码如下</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
@@ -806,7 +806,7 @@ map<span class="token punctuation">.</span><span class="token function">entrySet
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%951--Java%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%9B%86%E5%90%88/image/image-20231009145618629.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/JavaGuide%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%951--Java%E5%9F%BA%E7%A1%80%E4%B8%8E%E9%9B%86%E5%90%88/image/image-20231009145618629.png"></p>
 <p>从报错中可以看出，HashMap$HashIterator.nextNode这个方法有代码错误了，点进去看，大概知道HashMap.this.modCount !&#x3D; this.expectedModCount 成立</p>
 <p>再看一下hashmap的remove操作是做了什么：</p>
 <p>这里对modCount进行了自增操作，表示操作动作+1。再看modCount和expectedModCount是什么东西</p>

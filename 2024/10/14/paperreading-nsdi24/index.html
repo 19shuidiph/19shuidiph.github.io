@@ -476,7 +476,7 @@
 <p>首先，为了缓解频繁的故障问题，我们建立了一个预训练容错系统。它包含三个关键设计：(1) 通过异步检查点实现频繁的模型保存，(2) 结合启发式规则和LLM识别各种故障的根本原因，(3) 使用综合检测工具包定位故障节点，并从适当保存的检查点自动重新开始训练。该系统使检查点速度提高了3.6至58.7倍，并显著减少了人工干预。</p>
 <p>其次，我们开发了一个用于评估任务的解耦调度系统，为开发人员提供及时的模型质量反馈。它不仅通过解耦模型检索解决了远程模型加载争用问题，还通过解耦指标计算过程<strong>最小化了<strong><strong>GPU</strong></strong>空闲时间</strong>。该系统还利用数据集的先验知识和灵活性在所有GPU上平衡工作负载。实验表明，它可以将评估时间缩短最多达1.8倍。</p>
 <p>二、背景</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-NSDI24/image/1.jpg"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-NSDI24/image/1.jpg"></p>
 <p>1.数据准备</p>
 <p>2.预训练</p>
 <p>3.对齐</p>
@@ -484,12 +484,12 @@
 <p>5.部署。为了满足LLM应用的严格成本和延迟要求，已经开发了多种先进技术来实现高效的模型服务，包括量化、蒸馏、CUDA内核优化、模型并行和内存管理等。</p>
 <p>在本文中，我们专注于分析两个专门用于开发大语言模型（LLM）的集群：Seren 和 Kalos。这两个集群CPU和GPU资源一样，内存资源不一样。用的调度器也不一样。Seren 和 Kalos 上的调度器分别基于 Slurm 和 Kubernetes 构建。</p>
 <p>LLM工作负载也不同，参数从70亿到1230亿不等。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-NSDI24/image/2.jpg"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-NSDI24/image/2.jpg"></p>
 <p>微软的Phillty，商汤的Helios，阿里的PAI,上海AILAB的Acme。可以发现Transformer确实需要大量的GPU</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-NSDI24/image/3.jpg"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-NSDI24/image/3.jpg"></p>
 <p>图2(a)我们发现我们集群中的工作负载（蓝色和橙色线条）展示出较短的GPU作业持续时间。最主要的方面是硬件条件好。其次是高达40%的作业失败率。</p>
 <p>图2(b)GPU利用率太两级分化了，可能与LLM的Transformer架构有关。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-NSDI24/image/4.jpg"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-NSDI24/image/4.jpg"></p>
 <p>工作负载分布高度倾斜。大多数作业为单GPU作业。但是这些作业在LLM和PAI集群中，占据的GPU时间截然不同。</p>
 <p>根据数据集特征设计调度器。大部分资源被分配给少数预训练作业，可能导致头部阻塞问题，从而造成严重的排队延迟。现有的DL集群调度器通常依赖于抢占机制，但是考虑到恢复的巨大开销，这些机制并不适用于LLM工作负载。</p>
 <p>作业数和资源利用的不相关性：占大多数量的评估作业，资源消耗很小；预训练作业数量很少，但是占据了大量的GPU时间。</p>

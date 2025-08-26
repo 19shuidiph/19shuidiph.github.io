@@ -459,19 +459,19 @@
             <div id="articleContent">
                 <h1 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h1><p>elasticsearch中的酒店数据来自于mysql数据库，因此mysql数据发生改变时，elasticsearch也必须跟着改变，这个就是elasticsearch与mysql之间的<strong>数据同步</strong>。</p>
 <p>当然mysql和redis中也有类似的数据同步</p>
-<h2 id="同步调用"><a href="#同步调用" class="headerlink" title="同步调用"></a>同步调用</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/image-20230817120205363.png"></p>
+<h2 id="同步调用"><a href="#同步调用" class="headerlink" title="同步调用"></a>同步调用</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/image-20230817120205363.png"></p>
 <p>基本步骤如下：</p>
 <ul>
 <li>hotel-demo对外提供接口，用来修改elasticsearch中的数据</li>
 <li>酒店管理服务在完成数据库操作后，直接调用hotel-demo提供的接口，</li>
 </ul>
-<h2 id="异步调用-mq"><a href="#异步调用-mq" class="headerlink" title="异步调用-mq"></a>异步调用-mq</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/image-20230817120144316.png"></p>
+<h2 id="异步调用-mq"><a href="#异步调用-mq" class="headerlink" title="异步调用-mq"></a>异步调用-mq</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/image-20230817120144316.png"></p>
 <p>流程如下：</p>
 <ul>
 <li>hotel-admin对mysql数据库数据完成增、删、改后，发送MQ消息</li>
 <li>hotel-demo监听MQ，接收到消息后完成elasticsearch数据修改</li>
 </ul>
-<h2 id="监听binlog-canal"><a href="#监听binlog-canal" class="headerlink" title="监听binlog-canal"></a>监听binlog-canal</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/image/image-20230817120218044.png"></p>
+<h2 id="监听binlog-canal"><a href="#监听binlog-canal" class="headerlink" title="监听binlog-canal"></a>监听binlog-canal</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/image/image-20230817120218044.png"></p>
 <p>流程如下：</p>
 <ul>
 <li>给mysql开启binlog功能</li>

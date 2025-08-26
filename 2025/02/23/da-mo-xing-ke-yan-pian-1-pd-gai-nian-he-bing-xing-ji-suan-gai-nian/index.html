@@ -500,7 +500,7 @@
 </li>
 </ul>
 <p>Transformer &#x3D; Bert +GPT &#x3D; Encoder + Decoder</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/202502231.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/202502231.png"></p>
 <h2 id="2-LLM-推理性能指标"><a href="#2-LLM-推理性能指标" class="headerlink" title="2.LLM 推理性能指标"></a>2.LLM 推理性能指标</h2><p>下面是 Anyscale 公司，在 llmperf 工具中采用的一些推理性能测试指标：</p>
 <ul>
 <li><strong>每分钟完成请求数</strong>（RPS，Requests Per Second）：衡量模型在一定时间内能处理的请求数量，反映了并发处理能力。</li>
@@ -511,7 +511,7 @@
 </ul>
 <h2 id="3-KV-cache"><a href="#3-KV-cache" class="headerlink" title="3.KV-cache"></a>3.KV-cache</h2><p>重温一下self-attention什么是QKV，3个W是要学的参数矩阵，X是输入。</p>
 <p><strong>注意力机制</strong>：使用 Q、K、V 计算注意力权重，生成每个令牌的上下文感知表示（Contextual Representation）</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022302.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022302.png"></p>
 <p>X&#x3D;[1,2,3,4]  分别对应缓慢输入进来的Q1,Q2,Q3,Q4</p>
 <p><a target="_blank" rel="noopener" href="https://www.yidoo.xyz/images/3dd4913cf39f78580f17710ee638c773.gif">https://www.yidoo.xyz/images/3dd4913cf39f78580f17710ee638c773.gif</a></p>
 <p>推理过程中，W是不变了。所以之前的K和V可以缓存。只是省去了K&#x3D;XW的计算过程而已。</p>
@@ -541,9 +541,9 @@
 </ol>
 <p>模型继续基于当前的上下文和之前的KV缓存来预测下一个令牌。比如，模型可能接着生成“I’m”、“fine”等，直到完成整个句子或达到预设的最大长度。</p>
 <p>通过这种方式，令牌作为文本的基本单位，使得模型能够逐步理解和生成自然语言。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022303.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022304.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022305.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022303.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022304.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022305.png"></p>
 <p>参考：</p>
 <p>扫盲视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Zz4y127h1/?spm_id_from=333.999.0.0&vd_source=6ed7f19911310aba47123ac6cc1674a0">Transformer</a></p>
 <p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/jOOD1wlyFOX0_jgHzT474Q?poc_token=HMcPS2ejE9zSk5ZDHfxujB_19S1hXv5Tq_2vMjUe">LLM推理入门</a></p>
@@ -554,21 +554,21 @@
 <p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/PpWgIKvScYtE5Z4IUypWvw">Sigcomm’24-CacheGen用于快速大型语言模型服务的KV缓存压缩和流式传输</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/701772045">通过pd分离提高gpu利用率</a></p>
 <h2 id="并行计算概念"><a href="#并行计算概念" class="headerlink" title="并行计算概念"></a>并行计算概念</h2><p>模型越来越大，需要更多的GPU时间； 1块GPU训练十天，则1024块GPU只需要训练14分钟。</p>
-<h2 id="数据并行"><a href="#数据并行" class="headerlink" title="数据并行"></a>数据并行</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022306.png"></p>
+<h2 id="数据并行"><a href="#数据并行" class="headerlink" title="数据并行"></a>数据并行</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022306.png"></p>
 <p>蓝色绿色橙色，不同的数据集【将数据集切分为三份】。在不同的GPU上跑。跑的都是一个模型，比如都是”RestNet”</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022307.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022307.png"></p>
 <p>将权重改变全部交给中心服务器（比如zookeeper),比如四个是+1，+1，+1，-1，则ZK改变权重为+2。改变完之后再通知每个边缘服务器开始拉最新的参数。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022308.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022308.png"></p>
 <p>Replicate -&gt; Split Data -&gt; Compute Gradients -&gt; Push &amp; Sum -&gt; Update</p>
 <p>先复制5份一样的模型（一份中心，四份边缘），然后把数据随机切分四份（数量相同），然后计算梯度，然后把计算值上传给中心模型，中心模型进行累加，最后中心模型把改变结果同步给边缘模型。</p>
-<h2 id="流水线并行"><a href="#流水线并行" class="headerlink" title="流水线并行"></a>流水线并行</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022309.png"></p>
+<h2 id="流水线并行"><a href="#流水线并行" class="headerlink" title="流水线并行"></a>流水线并行</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022309.png"></p>
 <p>不同的GPU负责模型的不同的层，比如34个GPU负责RestNet的34个层。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022310.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022310.png"></p>
 <p>微批，是将一个大的数据流切分为好多批次。</p>
 <p>横坐标是随着时间的流动。4种颜色对应4块GPU。每个GPU处理模型的一层。Bubble代表空闲期。</p>
 <p>F0,0  F1,0.  F2,0. 是一个微批。</p>
 <p>F0,1. 是另一个微批。另一批数据。</p>
-<h2 id="张量并行"><a href="#张量并行" class="headerlink" title="张量并行"></a>张量并行</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022311.png"></p>
+<h2 id="张量并行"><a href="#张量并行" class="headerlink" title="张量并行"></a>张量并行</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%A7%91%E7%A0%94/png/2025022311.png"></p>
 
                 
             </div>

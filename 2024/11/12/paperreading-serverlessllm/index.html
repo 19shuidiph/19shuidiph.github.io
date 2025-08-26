@@ -466,7 +466,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="ServerlessLLM：大型语言模型的低延迟无服务器推理"><a href="#ServerlessLLM：大型语言模型的低延迟无服务器推理" class="headerlink" title="ServerlessLLM：大型语言模型的低延迟无服务器推理"></a>ServerlessLLM：大型语言模型的低延迟无服务器推理</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/1.png"></p>
+                <h1 id="ServerlessLLM：大型语言模型的低延迟无服务器推理"><a href="#ServerlessLLM：大型语言模型的低延迟无服务器推理" class="headerlink" title="ServerlessLLM：大型语言模型的低延迟无服务器推理"></a>ServerlessLLM：大型语言模型的低延迟无服务器推理</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/1.png"></p>
 <p>当使用Serverless部署LLM时，由于用户需要的LLM模型（gpt-4o,openai-1o,Longchat-lite)，各式各样，将模型全部保存在本地存在巨量GPU开销。因此，Serverless平台需要将各种LLM的checkpoint缓存在远端存储中。在request到来时，Serverless平台为该请求分配GPU资源、拉取对应的LLM checkpoint以初始化该LLM实例。这显然会带来时延开销，尤其是LLM通常达GB&#x2F;TB大小。</p>
 <h2 id="解决的问题-x2F-问题特点"><a href="#解决的问题-x2F-问题特点" class="headerlink" title="解决的问题&#x2F;问题特点"></a>解决的问题&#x2F;问题特点</h2><p><strong>高模型下载时间：</strong>从云存储中下载检查点（大小130G）需要26秒；</p>
 <p><strong>长时间模型加载：</strong>使用 PyTorch 将 OPT-30B 加载到 4 个 GPU 中需要 34 秒， 而将 LLaMA-2-70b 加载到 8 个 GPU 中需要 84 秒。 远远大于在推理过程中自己生成令牌的0.1秒。</p>
@@ -477,14 +477,14 @@
 <h2 id="创新点-x2F-解决方案"><a href="#创新点-x2F-解决方案" class="headerlink" title="创新点&#x2F;解决方案"></a>创新点&#x2F;解决方案</h2><h3 id="1-检查点："><a href="#1-检查点：" class="headerlink" title="1.检查点："></a>1.检查点：</h3><p>什么是检查点？快照，模型的架构，每个张量的大小和形状，模型并行计划等。 </p>
 <p>在这边的优化：基于大块的顺序读取-分区，张量寻址-索引文件映射；</p>
 <p>支持有序的张量块读取。简而言之就是原来checkpoint里包含了元数据和数据参数本身，数据参数本身就是连续的，把他们和非结构化的元数据剥离开，然后就可以对他们使用连续的数据读取了。然后这些元数据呢（层数、每层大小等）写入到索引表里，就可以快速的从连续空间中提取和复原张量了。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/2.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/2.png"></p>
 <p>多层检查点检查：</p>
 <p>并行的PCIe链路，将模型加载到GPU更快了；</p>
 <p>对内存池进行一些缓存过期的操作，保持一些高频的模型参数；</p>
 <p>内存碎片访问太慢了，用固定大小的内存块；</p>
 <p>使用直接文件读取和锁存（pinned memory）。前者加速SSD到DRAM，后者加速从CPU内存到GPU显存。</p>
 <p>实现多级存储读取。并在同一级存储内使用多线程优化，不同级别存储间使用流水线优化。</p>
-<h3 id="2-实时迁移："><a href="#2-实时迁移：" class="headerlink" title="2.实时迁移："></a>2.实时迁移：</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/3.png"></p>
+<h3 id="2-实时迁移："><a href="#2-实时迁移：" class="headerlink" title="2.实时迁移："></a>2.实时迁移：</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/3.png"></p>
 <p>对钩是表现优异的意思。</p>
 <p>现在在Server2 中正在运行modelA</p>
 <p>(a)可用性驱动的策略；在S1中将B从SSD加载到GPU， B的延迟太高了。</p>
@@ -493,7 +493,7 @@
 <p>(d)实时迁移驱动的本地驱动策略；S2继续推理A，同时把一些中间状态转移给S1，这样S1不用重新计算。其他与（c)一致。</p>
 <p>快照太慢了，提出基于令牌的迁移。（令牌是什么？我的理解是一些可以快速传输的东西，然后传过去再计算，因为计算时间小于传输大东西的时间）</p>
 <p>通过两阶段迁移的方式，避免对正在进行的应用造成影响。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/4.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/4.png"></p>
 <ol>
 <li><p>把模型A加载到目标服务器；如果目标服务器有，则不用加载了。</p>
 </li>
@@ -511,7 +511,7 @@
 </li>
 <li><h3 id="优化启动时间-模型调度"><a href="#优化启动时间-模型调度" class="headerlink" title="优化启动时间 模型调度"></a>优化启动时间 模型调度</h3></li>
 </ol>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/5.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/5.png"></p>
 <p>要不要迁移，迁移到哪一台server。</p>
 <p>我要不要将模型C迁移到另一台服务器，然后把模型B从DRAM加载上来。</p>
 <p>要先估计模型的加载时间（排队时间+模型大小&#x2F;带宽）和模型的迁移时间（令牌+模型恢复时间）。</p>
@@ -520,27 +520,27 @@
 <p>每个服务器有4个GPU，还有一些存储的512GB内存和2TB的SSD。还有两块CPU。</p>
 <p>工作负载，Gamma 分布到来时间。任务到来的请求频率。</p>
 <p>主流的深度学习大模型参数，真实的LLM输入。</p>
-<h3 id="实验结果贴图"><a href="#实验结果贴图" class="headerlink" title="实验结果贴图"></a>实验结果贴图</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/6.png"></p>
+<h3 id="实验结果贴图"><a href="#实验结果贴图" class="headerlink" title="实验结果贴图"></a>实验结果贴图</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/6.png"></p>
 <p>直接 I&#x2F;O 并实现基于块的并行加载 ；  同层并行；不同层流水线；</p>
 <p>在检查点方面做了很多优化，所以在加载速度和带宽利用率方面，深蓝色最优秀。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/7.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/7.png"></p>
 <p>通过添加各种手段，批量处理，直接IO，多线程，固定内存块，流水线；让吞吐量越来越高。</p>
 <p><strong>ServerlessLLM支持实时迁移功能，本地性感知调度，多层检查点加载。</strong></p>
 <p><strong>Shepherd* 抢占机制，也考虑本地性。</strong></p>
 <p><strong>Serverless 随机选择，无迁移和抢占。</strong></p>
 <p>RPS（每秒钟能处理的请求数量）</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/8.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/8.png"></p>
 <p>在低中高三种RPS下，因为serverlessllm会迁移，所以绿色的线表现最优秀。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/9.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/9.png"></p>
 <p>在不同的数据集和模型大小，serverlessllm绿色仍然优秀。主要是考虑本地性缓存的影响。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/10.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/10.png"></p>
 <p>横坐标是模型的大小。</p>
 <p>最先进的分布式模型服务系统 Ray Serve </p>
 <p><strong>Ray Serve的局限性：Ray Serve依赖于从远程存储下载模型，导致较高的启动延迟。</strong></p>
 <p><strong>Ray Serve with Cache的改善：加了一点cache</strong></p>
 <p><strong>serverlessllm，做了超级多优化。平均延时碾压前俩。</strong></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/11.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/12.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/11.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/paper-reading/PaperReading-Serverlessllm/image/12.png"></p>
 <p>肯定是每个节点GPU越多，延时越小。模型数量（集群中同时管理的LLM总数）越多，肯定延时越多。</p>
 <h2 id="读后感"><a href="#读后感" class="headerlink" title="读后感"></a>读后感</h2><p>检查点那边太涉及CUDA，多级缓存了。PCLE</p>
 <p>两个要解决的问题，第一个其实就是从云上下载东西太慢，所以我们从旁边的边缘节点下载；第二个就是（远程传输+本地计算）时间 &lt; 模型从本地（SSD磁盘）加载时间。</p>

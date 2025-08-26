@@ -472,7 +472,7 @@
 <p>4）基于线程池构建任务</p>
 <p>Thread本身就implement了Runnable接口，FutureTask也是如此</p>
 <h2 id="2-Java中线程的状态"><a href="#2-Java中线程的状态" class="headerlink" title="2.Java中线程的状态"></a>2.Java中线程的状态</h2><p>经典6种</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231109122939825.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231109122939825.png"></p>
 <h2 id="3-Java中如何停止线程"><a href="#3-Java中如何停止线程" class="headerlink" title="3.Java中如何停止线程"></a>3.Java中如何停止线程</h2><p>1.使用共享变量 while(flag) ，不过很少使用</p>
 <p>2.使用interrupt方式。在线程内部有一个中断标记位，默认为false;执行了以后其会变为true;</p>
 <p>Thread.currentThread().isInterrupted()</p>
@@ -503,7 +503,7 @@
 <h2 id="9-ThreadLocal的内存泄露问题"><a href="#9-ThreadLocal的内存泄露问题" class="headerlink" title="9.ThreadLocal的内存泄露问题"></a>9.ThreadLocal的内存泄露问题</h2><p>ThreadLocalMap&lt;ThreadLocal,value&gt;</p>
 <p>key为弱引用。可以解决内存泄露问题（ThreadLocal1对象，左边是强引用，右边的引用改为弱引用，等左边的消失了，右边的引用自动会消失）</p>
 <p>value，没有Key，找不到。执行remove方法，移除Entry.</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231124122039726.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231124122039726.png"></p>
 <h2 id="10-Java中锁的分类"><a href="#10-Java中锁的分类" class="headerlink" title="10.Java中锁的分类"></a>10.Java中锁的分类</h2><p>可重入锁、不可重入锁。大部分都是前者</p>
 <p>乐观锁，悲观锁。Atomic原子类基于CAS实现，是乐观锁。悲观锁会将线程挂起，涉及用户态和内核态的切换。</p>
 <p>公平锁，非公平锁。</p>
@@ -515,7 +515,7 @@
 <p>轻量级锁，会采用自旋锁的方式频繁的以CAS的形式获取锁资源。自旋了一定次数后，没拿到锁资源，则进行锁升级</p>
 <p>重量级锁：最传统的synchronized方法，没拿到锁则挂起当前线程</p>
 <h2 id="12-synchronized的实现原理"><a href="#12-synchronized的实现原理" class="headerlink" title="12. synchronized的实现原理"></a>12. synchronized的实现原理</h2><p>对象头的MarkWord结构：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231202231900012.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231202231900012.png"></p>
 <h2 id="13-什么是AQS"><a href="#13-什么是AQS" class="headerlink" title="13. 什么是AQS"></a>13. 什么是AQS</h2><p>AQS就是AbstractQueuedSynchronized抽象类。JUC下的一个基类。</p>
 <p>ReentrantLock,ThreadPoolExecutor,阻塞队列，CountDownLatch,Semaphore,CyclicBarrier等都是基于AQS实现</p>
 <p>内部用volatile修饰了一个state的int整数。用CAS对他进行修改。</p>
@@ -524,16 +524,16 @@
 <h2 id="14-AQS唤醒节点时，为何从后往前找"><a href="#14-AQS唤醒节点时，为何从后往前找" class="headerlink" title="14.AQS唤醒节点时，为何从后往前找"></a>14.AQS唤醒节点时，为何从后往前找</h2><p>unparkSuccessor()</p>
 <p>因为插入的 时候是这么插的,A为被插入的节点。先指向前面，再有一个指向A的指针。</p>
 <p>因为可能在下图这个阶段唤醒节点，这个时候还没有指向A的指针，从前往后找会遗漏A</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231203102346703.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231203102346703.png"></p>
 <h2 id="15-ReentrantLock和synchronized的区别"><a href="#15-ReentrantLock和synchronized的区别" class="headerlink" title="15.ReentrantLock和synchronized的区别"></a>15.ReentrantLock和synchronized的区别</h2><p>unlock. synchronized只能是非公平锁。tryLock,指定时间，</p>
 <p>竞争比较激烈的话用ReentrantLock，不存在锁升级。</p>
 <p>ReentrantLock是基于AQS实现的，synchronized是基于ObjectMonitor.</p>
 <h2 id="16-ReentrantReadWriteLock的实现原理"><a href="#16-ReentrantReadWriteLock的实现原理" class="headerlink" title="16.ReentrantReadWriteLock的实现原理"></a>16.ReentrantReadWriteLock的实现原理</h2><p>state的高16位是读锁，低16位是写锁。可重入锁。写锁对state加一就好，读锁要用ThreadLocal来记录一下每个线程锁重入的次数。</p>
 <h2 id="17-JDK中提供了哪些线程池"><a href="#17-JDK中提供了哪些线程池" class="headerlink" title="17. JDK中提供了哪些线程池"></a>17. JDK中提供了哪些线程池</h2><p>×</p>
-<h2 id="18-线程池的核心参数有哪些"><a href="#18-线程池的核心参数有哪些" class="headerlink" title="18.线程池的核心参数有哪些"></a>18.线程池的核心参数有哪些</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231203105618538.png"></p>
+<h2 id="18-线程池的核心参数有哪些"><a href="#18-线程池的核心参数有哪些" class="headerlink" title="18.线程池的核心参数有哪些"></a>18.线程池的核心参数有哪些</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231203105618538.png"></p>
 <h2 id="19-线程池的状态"><a href="#19-线程池的状态" class="headerlink" title="19.线程池的状态"></a>19.线程池的状态</h2><p>在ThreadPoolExecutor中，AtomicInteger ctl是最核心的属性，ctl的高三位，表示线程池状态；ctl的低29位，表示工作线程的个数。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231203153139089.png"></p>
-<h2 id="20-线程池的执行流程"><a href="#20-线程池的执行流程" class="headerlink" title="20.线程池的执行流程"></a>20.线程池的执行流程</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/JQZR%60%5BJ%7BGG69YAZHV9LQ0X.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/image-20231203153139089.png"></p>
+<h2 id="20-线程池的执行流程"><a href="#20-线程池的执行流程" class="headerlink" title="20.线程池的执行流程"></a>20.线程池的执行流程</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%B9%B6%E5%8F%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%952/image/JQZR%60%5BJ%7BGG69YAZHV9LQ0X.png"></p>
 <h2 id="21-线程池添加工作线程的流程"><a href="#21-线程池添加工作线程的流程" class="headerlink" title="21.线程池添加工作线程的流程"></a>21.线程池添加工作线程的流程</h2><p><em>后面自己写个线程池！</em></p>
 <h2 id="22-线程池为何要构建空任务的非核心线程"><a href="#22-线程池为何要构建空任务的非核心线程" class="headerlink" title="22.线程池为何要构建空任务的非核心线程"></a>22.线程池为何要构建空任务的非核心线程</h2><p>1.在核心线程数为0的时候，需要这样。不然扔进阻塞队列没人管了。</p>
 <p>2.allowCoreThreadTimeOut,如果把这个参数设置为true,则核心线程也会被超时干掉。</p>

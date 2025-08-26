@@ -530,7 +530,7 @@ http://localhost:8080/users/1  DELETE：删除id为1的用户
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="查询部门"><a href="#查询部门" class="headerlink" title="查询部门"></a>查询部门</h2><h4 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day08/image/image-20221213235157345.png"></p>
+<h2 id="查询部门"><a href="#查询部门" class="headerlink" title="查询部门"></a>查询部门</h2><h4 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h4><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day08/image/image-20221213235157345.png"></p>
 <h4 id="功能开发"><a href="#功能开发" class="headerlink" title="功能开发"></a>功能开发</h4><p>通过查看接口文档：部门列表查询</p>
 <blockquote>
 <p>请求路径：&#x2F;depts</p>
@@ -556,7 +556,7 @@ http://localhost:8080/users/1  DELETE：删除id为1的用户
 </code></pre>
 <blockquote>
 <p>@Slf4j注解源码：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day08/image/image-20221214000909044.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day08/image/image-20221214000909044.png"></p>
 </blockquote>
 <p><strong>DeptService</strong>（业务接口）</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">DeptService</span> <span class="token punctuation">{</span>
@@ -589,7 +589,7 @@ http://localhost:8080/users/1  DELETE：删除id为1的用户
     List<span class="token operator">&lt;</span>Dept<span class="token operator">></span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="删除部门"><a href="#删除部门" class="headerlink" title="删除部门"></a>删除部门</h2><h4 id="思路分析-1"><a href="#思路分析-1" class="headerlink" title="思路分析"></a>思路分析</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day08/image/image-20221214102705490.png"></p>
+<h2 id="删除部门"><a href="#删除部门" class="headerlink" title="删除部门"></a>删除部门</h2><h4 id="思路分析-1"><a href="#思路分析-1" class="headerlink" title="思路分析"></a>思路分析</h4><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day08/image/image-20221214102705490.png"></p>
 <blockquote>
 <p>接口文档规定：</p>
 <ul>
@@ -671,7 +671,7 @@ http://localhost:8080/users/1  DELETE：删除id为1的用户
     <span class="token comment" spellcheck="true">//省略...</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="新增部门"><a href="#新增部门" class="headerlink" title="新增部门"></a>新增部门</h2><h4 id="思路分析-2"><a href="#思路分析-2" class="headerlink" title="思路分析"></a>思路分析</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day08/image/image-20221214115519648.png"></p>
+<h2 id="新增部门"><a href="#新增部门" class="headerlink" title="新增部门"></a>新增部门</h2><h4 id="思路分析-2"><a href="#思路分析-2" class="headerlink" title="思路分析"></a>思路分析</h4><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day08/image/image-20221214115519648.png"></p>
 <blockquote>
 <p>接口文档规定：</p>
 <ul>
@@ -756,15 +756,15 @@ http://localhost:8080/users/1  DELETE：删除id为1的用户
 </code></pre>
 <h2 id="请求路径"><a href="#请求路径" class="headerlink" title="请求路径"></a>请求路径</h2><p>我们部门管理的<code>查询</code>、<code>删除</code>、<code>新增</code>功能全部完成了，接下来我们要对controller层的代码进行优化。</p>
 <p>首先我们先来看下目前controller层代码：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day08/image/image-20221215110553435.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day08/image/image-20221215110553435.png"></p>
 <blockquote>
 <p>以上三个方法上的请求路径，存在一个共同点：都是以<code>/depts</code>作为开头。（重复了）</p>
 </blockquote>
 <p>在Spring当中为了简化请求路径的定义，可以把公共的请求路径，直接抽取到类上，在类上加一个注解@RequestMapping，并指定请求路径”&#x2F;depts”。代码参照如下：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day08/image/image-20221215111110219.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day08/image/image-20221215111110219.png"></p>
 <blockquote>
 <p>优化前后的对比：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day08/image/image-20221215111309042.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day08/image/image-20221215111309042.png"></p>
 </blockquote>
 <blockquote>
 <p>注意事项：一个完整的请求路径，应该是类上@RequestMapping的value属性 + 方法上的 @RequestMapping的value属性</p>
@@ -781,9 +781,9 @@ http://localhost:8080/users/1  DELETE：删除id为1的用户
 <span class="token punctuation">}</span>
 </code></pre>
 </blockquote>
-<h5 id="思路分析-3"><a href="#思路分析-3" class="headerlink" title="思路分析"></a>思路分析</h5><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day08/image/image-20221215153413290.png"></p>
+<h5 id="思路分析-3"><a href="#思路分析-3" class="headerlink" title="思路分析"></a>思路分析</h5><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day08/image/image-20221215153413290.png"></p>
 <p>分页查询需要的数据，封装在PageBean对象中：</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day08/image/image-20221215154036047.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day08/image/image-20221215154036047.png"></p>
 <h5 id="功能开发-3"><a href="#功能开发-3" class="headerlink" title="功能开发"></a>功能开发</h5><p>通过查看接口文档：员工列表查询</p>
 <blockquote>
 <p>请求路径：&#x2F;emps</p>
@@ -886,7 +886,7 @@ http://localhost:8080/users/1  DELETE：删除id为1的用户
 <p>PageHelper是Mybatis的一款功能强大、方便易用的分页插件，支持任何形式的单标、多表的分页查询。</p>
 <p>官网：<a target="_blank" rel="noopener" href="https://pagehelper.github.io/">https://pagehelper.github.io/</a></p>
 </blockquote>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day08/image/image-20221215170038833.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day08/image/image-20221215170038833.png"></p>
 <blockquote>
 <p>在执行empMapper.list()方法时，就是执行：select  *  from  emp   语句，怎么能够实现分页操作呢？</p>
 <p>分页插件帮我们完成了以下操作：</p>
@@ -934,7 +934,7 @@ http://localhost:8080/users/1  DELETE：删除id为1的用户
 <li>性别：精确匹配</li>
 <li>入职日期：范围匹配</li>
 </ul>
-<h4 id="思路分析-4"><a href="#思路分析-4" class="headerlink" title="思路分析"></a>思路分析</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day08/image/image-20221215180528415.png"></p>
+<h4 id="思路分析-4"><a href="#思路分析-4" class="headerlink" title="思路分析"></a>思路分析</h4><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day08/image/image-20221215180528415.png"></p>
 <h4 id="功能开发-4"><a href="#功能开发-4" class="headerlink" title="功能开发"></a>功能开发</h4><p>通过查看接口文档：员工列表查询</p>
 <blockquote>
 <p>请求路径：&#x2F;emps</p>
@@ -1081,7 +1081,7 @@ http://localhost:8080/users/1  DELETE：删除id为1的用户
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>mapper</span><span class="token punctuation">></span></span>
 </code></pre>
-<h2 id="删除员工"><a href="#删除员工" class="headerlink" title="删除员工"></a>删除员工</h2><h4 id="思路分析-5"><a href="#思路分析-5" class="headerlink" title="思路分析"></a>思路分析</h4><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/JavaWeb2023/day08/image/image-20221215184714815.png"></p>
+<h2 id="删除员工"><a href="#删除员工" class="headerlink" title="删除员工"></a>删除员工</h2><h4 id="思路分析-5"><a href="#思路分析-5" class="headerlink" title="思路分析"></a>思路分析</h4><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/JavaWeb2023/day08/image/image-20221215184714815.png"></p>
 <blockquote>
 <p>接口文档规定：</p>
 <ul>

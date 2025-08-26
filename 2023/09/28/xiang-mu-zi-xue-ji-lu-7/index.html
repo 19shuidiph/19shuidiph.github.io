@@ -466,7 +466,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="项目自学记录7"><a href="#项目自学记录7" class="headerlink" title="项目自学记录7"></a>项目自学记录7</h1><h2 id="对于枚举类-Stream-of"><a href="#对于枚举类-Stream-of" class="headerlink" title="对于枚举类-Stream.of()"></a>对于枚举类-Stream.of()</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%957/image/image-20231007171253147.png"></p>
+                <h1 id="项目自学记录7"><a href="#项目自学记录7" class="headerlink" title="项目自学记录7"></a>项目自学记录7</h1><h2 id="对于枚举类-Stream-of"><a href="#对于枚举类-Stream-of" class="headerlink" title="对于枚举类-Stream.of()"></a>对于枚举类-Stream.of()</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%957/image/image-20231007171253147.png"></p>
 <pre class=" language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> InvoiceCatagoryEnum <span class="token function">parse</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> Stream<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span>InvoiceCatagoryEnum<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>e <span class="token operator">-</span><span class="token operator">></span> e<span class="token punctuation">.</span>value <span class="token operator">==</span> value<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">findFirst</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">orElse</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
@@ -521,8 +521,8 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p>可以发现A这个类被赋值后，反射得到的类名是B。</p>
 <h2 id="SQL使用-CDATA-来代替转义字符大于小于号"><a href="#SQL使用-CDATA-来代替转义字符大于小于号" class="headerlink" title="SQL使用[CDATA[        ]]来代替转义字符大于小于号"></a>SQL使用[CDATA[        ]]来代替转义字符大于小于号</h2><p>[]中的东西不被xml解析,尽量缩小 <![CDATA[ ]]> 的范围</p>
 <p>mybatis中的<if test=""></if>、<where></where>、<choose></choose>、<trim></trim> 等这些标签不能写到CDATA中。否则标签将不会被mybatis解析</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%957/image/image-20231019091558846.png"></p>
-<h2 id="使用工厂模式-策略模式对版式文件生成进行优化"><a href="#使用工厂模式-策略模式对版式文件生成进行优化" class="headerlink" title="使用工厂模式+策略模式对版式文件生成进行优化"></a>使用工厂模式+策略模式对版式文件生成进行优化</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%957/image/E%240A8SWF%24%5B%40NE5%5B%5BBA7%40R6.jpg"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%957/image/image-20231019091558846.png"></p>
+<h2 id="使用工厂模式-策略模式对版式文件生成进行优化"><a href="#使用工厂模式-策略模式对版式文件生成进行优化" class="headerlink" title="使用工厂模式+策略模式对版式文件生成进行优化"></a>使用工厂模式+策略模式对版式文件生成进行优化</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%957/image/E%240A8SWF%24%5B%40NE5%5B%5BBA7%40R6.jpg"></p>
 <p>接口+2个实现类，就是天然的实现了策略模式。而用哪个策略，取决于工厂生成的对象是什么。</p>
 <p>接口就是抽象策略类，接口的实现类是具体实现类。工厂生成对象写在Client类里，是上下文。</p>
 <p>首先是抽象接口：</p>
@@ -611,7 +611,7 @@ formatFileCreateClient<span class="token punctuation">.</span><span class="token
 <p>这种代码是线程不安全的，如果integerList是ArrayList就是线程不安全的。</p>
 <p>200—普通for循环数组<br>200—<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=stream&spm=1001.2101.3001.7020">stream</a>流for循环数组<br>197—parallelStream流for循环数组—会丢失数据</p>
 <h2 id="sql的if的有意思的地方"><a href="#sql的if的有意思的地方" class="headerlink" title="sql的if的有意思的地方"></a>sql的if的有意思的地方</h2><p>这样写，直接在sql里做判断。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%957/image/image-20231025134910512.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%957/image/image-20231025134910512.png"></p>
 <h2 id="freemarker"><a href="#freemarker" class="headerlink" title="freemarker"></a>freemarker</h2><p>在12306项目里用于制作代码生成器模板，在黑马头条项目里用于生成静态的文章页面，然后存在MinIo里</p>
 <h2 id="读环境信息，并用String-format"><a href="#读环境信息，并用String-format" class="headerlink" title="读环境信息，并用String.format"></a>读环境信息，并用String.format</h2><pre><code># 版式文件类型 ofd,xml,pdf
 # 3 电子普票
@@ -646,7 +646,7 @@ invoice-6:
     return environment.getProperty(String.format(&quot;zbiti.invoice-%d.formatfile.%s-type&quot;, invoiceCatagory,StringUtils.nvl(specialTdys,&quot;&quot;)));
 &#125;
 </code></pre>
-<h2 id="分布式文件系统"><a href="#分布式文件系统" class="headerlink" title="分布式文件系统"></a>分布式文件系统</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%957/image/image-20231027123035791.png"></p>
+<h2 id="分布式文件系统"><a href="#分布式文件系统" class="headerlink" title="分布式文件系统"></a>分布式文件系统</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%957/image/image-20231027123035791.png"></p>
 <h2 id="根据枚举里的一个属性值，去查另一个属性值"><a href="#根据枚举里的一个属性值，去查另一个属性值" class="headerlink" title="根据枚举里的一个属性值，去查另一个属性值"></a>根据枚举里的一个属性值，去查另一个属性值</h2><p>本来以为要写for循环，结果发现hutool提供了工具类</p>
 <p>第一个参数，你要得到哪列。第二个参数，你要通过哪列去查，第三个参数，第二个参数所对应的值。</p>
 <pre class=" language-java"><code class="language-java">BigDecimal priceRate <span class="token operator">=</span> EnumUtil<span class="token punctuation">.</span><span class="token function">getFieldBy</span><span class="token punctuation">(</span>TrainTypeEnum<span class="token operator">:</span><span class="token operator">:</span>getPriceRate<span class="token punctuation">,</span> TrainTypeEnum<span class="token operator">:</span><span class="token operator">:</span>getCode<span class="token punctuation">,</span> trainType<span class="token punctuation">)</span><span class="token punctuation">;</span>

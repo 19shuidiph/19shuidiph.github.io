@@ -467,13 +467,13 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="微服务学习记录1"><a href="#微服务学习记录1" class="headerlink" title="微服务学习记录1"></a>微服务学习记录1</h1><h2 id="SpringCloud的五大组件"><a href="#SpringCloud的五大组件" class="headerlink" title="SpringCloud的五大组件"></a>SpringCloud的五大组件</h2><p>Eureka   : 注册中心，所有的微服务都会把其地址信息给注册中心<br>Ribbon  : 负载均衡，比如文章微服务有80，81，82三个，那用户要选哪个，用户微服务里通过负载均衡挑选一个<br>Feign     : 远程调用，不同的微服务互相调用<br>Hystrix :  服务熔断,    应对降级，熔断场景<br>Zuul&#x2F;Gateway  : 网关，	对外暴露接口，网关是服务的入口</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818171149688.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230818171149688.png"></p>
 <p>随着SpringCloudAlibba在国内兴起 , 我们项目中使用了一些阿里巴巴的组件<br>注册中心&#x2F;配置中心 Nacos<br>负载均衡 Ribbon<br>服务调用 Feign<br>服务保护 sentinel<br>服务网关 Gateway</p>
-<h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822085338175.png"></p>
+<h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822085338175.png"></p>
 <p><strong>服务注册</strong>：服务提供者需要把自己的信息注册到eureka，由eureka来保存这些信息，比如服务名称、ip、端口等等</p>
 <p><strong>服务发现</strong>：消费者向eureka拉取服务列表信息，如果服务提供者有集群，则消费者会利用负载均衡算法，选择一个发起调用</p>
 <p><strong>服务监控</strong>：服务提供者会每隔30秒向eureka发送心跳，报告健康状态，如果eureka服务90秒没接收到心跳，从eureka中剔除</p>
-<h2 id="nacos"><a href="#nacos" class="headerlink" title="nacos"></a>nacos</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822085616692.png"></p>
+<h2 id="nacos"><a href="#nacos" class="headerlink" title="nacos"></a>nacos</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822085616692.png"></p>
 <ul>
 <li>共同点</li>
 </ul>
@@ -485,7 +485,7 @@
 <p>②临时实例心跳不正常会被剔除，非临时实例则不会被剔除</p>
 <p>③Nacos支持服务列表变更的消息推送模式，服务列表更新更及时</p>
 <p>④Nacos集群默认采用AP方式，当集群中存在非临时实例时，采用CP模式；Eureka采用AP方式</p>
-<h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822091245310.png"></p>
+<h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822091245310.png"></p>
 <p>记住这个负载均衡是在服务消费者做的</p>
 <h3 id="负载均衡策略"><a href="#负载均衡策略" class="headerlink" title="负载均衡策略"></a>负载均衡策略</h3><ol>
 <li><strong>RoundRobinRule：简单轮询服务列表来选择服务器</strong></li>
@@ -502,7 +502,7 @@
 <li>服务降级：服务自我保护的一种方式，或者保护下游服务的一种方式，用于确保服务不会受请求突增影响变得不可用，确保服务不会崩溃，一般在实际开发中与feign接口整合，编写降级逻辑</li>
 <li>服务熔断：默认关闭，需要手动打开(在引导类上添加注解：@EnableCircuitBreaker)，如果检测到 10 秒内请求的失败率超过 50%，就触发熔断机制。之后每隔 5 秒重新尝试请求微服务，如果微服务不能响应，继续走熔断机制。如果微服务可达，则关闭熔断机制，恢复正常请求</li>
 </ul>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822093029208.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822093029208.png"></p>
 <h2 id="skywalking"><a href="#skywalking" class="headerlink" title="skywalking"></a>skywalking</h2><p>一个分布式系统的应用程序性能监控工具（ Application Performance Managment ），提供了完善的链路追踪能力， apache的顶级项目</p>
 <ul>
 <li>服务（service）：业务资源应用系统（微服务）</li>
@@ -530,10 +530,10 @@
 <h2 id="分布式事务解决方案-有点难，先不写"><a href="#分布式事务解决方案-有点难，先不写" class="headerlink" title="分布式事务解决方案(有点难，先不写)"></a>分布式事务解决方案(有点难，先不写)</h2><p>Seata框架(XA、AT、TCC)<br>MQ</p>
 <h2 id="分布式服务的接口幂等性如何设计？"><a href="#分布式服务的接口幂等性如何设计？" class="headerlink" title="分布式服务的接口幂等性如何设计？"></a>分布式服务的接口幂等性如何设计？</h2><p>幂等: 多次调用方法或者接口不会改变业务状态，可以保证重复调用的结果和单次调用的结果一致。</p>
 <p>需要幂等场景:  用户重复点击(网络波动),  MQ消息重复,  应用使用失败或超时重试机制</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822095819414.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822095819414.png"></p>
 <h2 id="xxl-job"><a href="#xxl-job" class="headerlink" title="xxl-job"></a>xxl-job</h2><p>xxl-job解决的问题：解决集群任务的重复执行问题,cron表达式定义灵活,定时任务失败了，重试和统计,任务量大，分片执行</p>
-<h3 id="路由策略"><a href="#路由策略" class="headerlink" title="路由策略"></a>路由策略</h3><p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822095942198.png"></p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822095956511.png"></p>
+<h3 id="路由策略"><a href="#路由策略" class="headerlink" title="路由策略"></a>路由策略</h3><p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822095942198.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/Java2023%E5%85%AB%E8%82%A1%E6%96%87/Java%E5%85%AB%E8%82%A1%E6%96%87-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%951/image/image-20230822095956511.png"></p>
 <h3 id="xxl-job任务执行失败怎么解决"><a href="#xxl-job任务执行失败怎么解决" class="headerlink" title="xxl-job任务执行失败怎么解决"></a>xxl-job任务执行失败怎么解决</h3><p>故障转移+失败重试，查看日志分析—-&gt; 邮件告警</p>
 <h3 id="大数据量的任务同时都需要执行"><a href="#大数据量的任务同时都需要执行" class="headerlink" title="大数据量的任务同时都需要执行"></a>大数据量的任务同时都需要执行</h3><p>我们会让部署多个实例，共同去执行这些批量的任务，其中任务的路由策略是分片广播</p>
 <p>在任务执行的代码中可以获取分片总数和当前分片，按照取模的方式分摊到各个实例执行就可以了</p>

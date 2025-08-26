@@ -574,7 +574,7 @@
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45701550/article/details/117909096">replace into 和 insert into on duplicate key update 的区别 </a></p>
 <p>但是也要考虑其他的业务方面的一致性</p>
 <h2 id="解决跨包调用问题，使用接口"><a href="#解决跨包调用问题，使用接口" class="headerlink" title="解决跨包调用问题，使用接口"></a>解决跨包调用问题，使用接口</h2><p>上面想调用下面，调用失败。则建立一个接口，让上面的类调用上面的接口。下面的类实现上面的接口。</p>
-<p><img src="https://web-1107.oss-cn-nanjing.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%958/image/image-20231130110213194.png"></p>
+<p><img src="https://web-wzh-1107.oss-cn-hangzhou.aliyuncs.com/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E7%9B%AE%E5%BD%95/%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%AD%A6%E8%AE%B0%E5%BD%958/image/image-20231130110213194.png"></p>
 <h2 id="Pgsql的时间做减法"><a href="#Pgsql的时间做减法" class="headerlink" title="Pgsql的时间做减法"></a>Pgsql的时间做减法</h2><p>因为服务器上时间是错误的，所以要在Java本地去new Date(),然后以nowDate为参数名字传入sql中。</p>
 <p>Cause: org.postgresql.util.PSQLException: ERROR: operator does not exist: timestamp without time zone &lt; interval</p>
 <p>项目用的 PostgreSQL 数据库，使用 SpringBoot + <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Mybatis&spm=1001.2101.3001.7020">Mybatis</a> 整合</p>
