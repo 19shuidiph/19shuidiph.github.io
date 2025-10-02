@@ -466,8 +466,9 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="马士兵-Redis面试题"><a href="#马士兵-Redis面试题" class="headerlink" title="马士兵-Redis面试题"></a>马士兵-Redis面试题</h1><h2 id="1-Redis为什么这么快"><a href="#1-Redis为什么这么快" class="headerlink" title="1.Redis为什么这么快"></a>1.Redis为什么这么快</h2><p>纯内存访问，单线程避免上下文切换，渐进式ReHash,缓存时间戳</p>
+                <h1 id="马士兵-Redis面试题"><a href="#马士兵-Redis面试题" class="headerlink" title="马士兵-Redis面试题"></a>马士兵-Redis面试题</h1><h2 id="1-Redis为什么这么快"><a href="#1-Redis为什么这么快" class="headerlink" title="1.Redis为什么这么快"></a>1.Redis为什么这么快</h2><p>纯内存访问，单线程避免上下文切换，渐进式ReHash,缓存时间戳，高效的数据结构</p>
 <p>其中，渐进式Rehash用到了两张全局哈希表，缓存时间戳就是，不用System.currentTimeInMillis（因为要调用系统级别的IO，很耗时，单线程的Redis承受不起），而是对时间进行缓存，由一个定时任务，每毫秒更新一次时间缓存，获取时间都是从缓存中直接拿。</p>
+<p>IO多路复用，多路指的是多个socket连接，复用指的是共同使用一个线程。</p>
 <h2 id="2-Redis合适的应用场景"><a href="#2-Redis合适的应用场景" class="headerlink" title="2.Redis合适的应用场景"></a>2.Redis合适的应用场景</h2><p>缓存，分布式锁，消息队列，排行榜等</p>
 <p>String：缓存，计数，共享Session,</p>
 <p>Hash:存对象</p>

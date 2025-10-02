@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2025-06-30T15:33:41.707Z</updated>
+  <updated>2025-05-18T09:19:32.987Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,29 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>鹅厂实习收获</title>
-    <link href="http://19shuidiph.github.io/2025/06/29/e-han-shi-xi-shou-huo/"/>
-    <id>http://19shuidiph.github.io/2025/06/29/e-han-shi-xi-shou-huo/</id>
-    <published>2025-06-29T06:35:42.000Z</published>
-    <updated>2025-06-30T15:33:41.707Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;鹅厂实习收获&quot;&gt;&lt;a href=&quot;#鹅厂实习收获&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-  </entry>
   
   <entry>
     <title>Golang学习记录-进阶</title>
@@ -90,7 +67,7 @@
     <link href="http://19shuidiph.github.io/2025/03/29/xie-zai-bloomfilter-ye-wu-shi-jian/"/>
     <id>http://19shuidiph.github.io/2025/03/29/xie-zai-bloomfilter-ye-wu-shi-jian/</id>
     <published>2025-03-29T14:19:17.000Z</published>
-    <updated>2025-08-26T15:31:44.092Z</updated>
+    <updated>2025-09-08T09:01:54.530Z</updated>
     
     
       
@@ -466,6 +443,29 @@
         
         
     <summary type="html">&lt;h1 id=&quot;第二章-Javascript&quot;&gt;&lt;a href=&quot;#第二章-Javascript&quot; class=&quot;headerlink&quot; title=&quot;第二章. Javascript&quot;&gt;&lt;/a&gt;第二章.</summary>
+        
+      
+    
+    
+    
+    <category term="前端" scheme="http://19shuidiph.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java程序员要掌握的前端-HTML&amp;CSS</title>
+    <link href="http://19shuidiph.github.io/2024/06/09/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-html-css/"/>
+    <id>http://19shuidiph.github.io/2024/06/09/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-html-css/</id>
+    <published>2024-06-09T11:52:59.000Z</published>
+    <updated>2025-08-26T15:16:38.246Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;Java</summary>
         
       
     
