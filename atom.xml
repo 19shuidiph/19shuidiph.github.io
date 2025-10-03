@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2025-05-18T09:19:32.987Z</updated>
+  <updated>2025-10-03T06:15:43.302Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>唯一ID生成器</title>
+    <link href="http://19shuidiph.github.io/2025/10/02/wei-yi-id-sheng-cheng-qi/"/>
+    <id>http://19shuidiph.github.io/2025/10/02/wei-yi-id-sheng-cheng-qi/</id>
+    <published>2025-10-02T13:19:42.000Z</published>
+    <updated>2025-10-03T06:15:43.302Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;唯一ID生成器&quot;&gt;&lt;a href=&quot;#唯一ID生成器&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Golang学习记录-进阶</title>
@@ -44,7 +67,7 @@
     <link href="http://19shuidiph.github.io/2025/04/21/paperreading-mooncake/"/>
     <id>http://19shuidiph.github.io/2025/04/21/paperreading-mooncake/</id>
     <published>2025-04-21T11:44:47.000Z</published>
-    <updated>2025-08-26T15:18:23.516Z</updated>
+    <updated>2025-10-02T13:26:14.873Z</updated>
     
     
       
@@ -57,7 +80,7 @@
     
     
     
-    <category term="论文阅读" scheme="http://19shuidiph.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    <category term="科研" scheme="http://19shuidiph.github.io/categories/%E7%A7%91%E7%A0%94/"/>
     
     
   </entry>
@@ -136,7 +159,7 @@
     <link href="http://19shuidiph.github.io/2024/12/30/paperreading-llumnix/"/>
     <id>http://19shuidiph.github.io/2024/12/30/paperreading-llumnix/</id>
     <published>2024-12-30T07:32:50.000Z</published>
-    <updated>2025-08-26T15:18:07.602Z</updated>
+    <updated>2025-10-02T13:26:20.501Z</updated>
     
     
       
@@ -149,7 +172,7 @@
     
     
     
-    <category term="论文阅读" scheme="http://19shuidiph.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    <category term="科研" scheme="http://19shuidiph.github.io/categories/%E7%A7%91%E7%A0%94/"/>
     
     
   </entry>
@@ -159,7 +182,7 @@
     <link href="http://19shuidiph.github.io/2024/12/12/paperreading-distserve/"/>
     <id>http://19shuidiph.github.io/2024/12/12/paperreading-distserve/</id>
     <published>2024-12-12T11:11:35.000Z</published>
-    <updated>2025-08-26T15:17:54.247Z</updated>
+    <updated>2025-10-02T13:26:26.310Z</updated>
     
     
       
@@ -172,7 +195,7 @@
     
     
     
-    <category term="论文阅读" scheme="http://19shuidiph.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    <category term="科研" scheme="http://19shuidiph.github.io/categories/%E7%A7%91%E7%A0%94/"/>
     
     
   </entry>
@@ -205,7 +228,7 @@
     <link href="http://19shuidiph.github.io/2024/11/12/paperreading-serverlessllm/"/>
     <id>http://19shuidiph.github.io/2024/11/12/paperreading-serverlessllm/</id>
     <published>2024-11-12T11:12:05.000Z</published>
-    <updated>2025-08-26T15:18:50.815Z</updated>
+    <updated>2025-10-02T13:25:55.633Z</updated>
     
     
       
@@ -218,7 +241,7 @@
     
     
     
-    <category term="论文阅读" scheme="http://19shuidiph.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    <category term="科研" scheme="http://19shuidiph.github.io/categories/%E7%A7%91%E7%A0%94/"/>
     
     
   </entry>
@@ -228,7 +251,7 @@
     <link href="http://19shuidiph.github.io/2024/10/14/paperreading-nsdi24/"/>
     <id>http://19shuidiph.github.io/2024/10/14/paperreading-nsdi24/</id>
     <published>2024-10-14T11:12:37.000Z</published>
-    <updated>2025-08-26T15:18:36.939Z</updated>
+    <updated>2025-10-02T13:26:08.192Z</updated>
     
     
       
@@ -241,7 +264,7 @@
     
     
     
-    <category term="论文阅读" scheme="http://19shuidiph.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/"/>
+    <category term="科研" scheme="http://19shuidiph.github.io/categories/%E7%A7%91%E7%A0%94/"/>
     
     
   </entry>
@@ -443,29 +466,6 @@
         
         
     <summary type="html">&lt;h1 id=&quot;第二章-Javascript&quot;&gt;&lt;a href=&quot;#第二章-Javascript&quot; class=&quot;headerlink&quot; title=&quot;第二章. Javascript&quot;&gt;&lt;/a&gt;第二章.</summary>
-        
-      
-    
-    
-    
-    <category term="前端" scheme="http://19shuidiph.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java程序员要掌握的前端-HTML&amp;CSS</title>
-    <link href="http://19shuidiph.github.io/2024/06/09/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-html-css/"/>
-    <id>http://19shuidiph.github.io/2024/06/09/java-cheng-xu-yuan-yao-zhang-wo-de-qian-duan-html-css/</id>
-    <published>2024-06-09T11:52:59.000Z</published>
-    <updated>2025-08-26T15:16:38.246Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;Java</summary>
         
       
     
