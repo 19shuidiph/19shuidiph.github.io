@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2025-10-03T06:15:43.302Z</updated>
+  <updated>2025-10-04T07:35:39.579Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -17,18 +17,18 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>唯一ID生成器</title>
-    <link href="http://19shuidiph.github.io/2025/10/02/wei-yi-id-sheng-cheng-qi/"/>
-    <id>http://19shuidiph.github.io/2025/10/02/wei-yi-id-sheng-cheng-qi/</id>
+    <title>亿级流量系统架构设计与实战</title>
+    <link href="http://19shuidiph.github.io/2025/10/02/yi-ji-liu-liang-xi-tong-jia-gou-she-ji-yu-shi-zhan/"/>
+    <id>http://19shuidiph.github.io/2025/10/02/yi-ji-liu-liang-xi-tong-jia-gou-she-ji-yu-shi-zhan/</id>
     <published>2025-10-02T13:19:42.000Z</published>
-    <updated>2025-10-03T06:15:43.302Z</updated>
+    <updated>2025-10-04T07:35:39.579Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;唯一ID生成器&quot;&gt;&lt;a href=&quot;#唯一ID生成器&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;亿级流量系统架构设计与实战&quot;&gt;&lt;a href=&quot;#亿级流量系统架构设计与实战&quot; class=&quot;headerlink&quot;</summary>
         
       
     
@@ -40,18 +40,18 @@
   </entry>
   
   <entry>
-    <title>Golang学习记录-进阶</title>
-    <link href="http://19shuidiph.github.io/2025/05/18/gmp-diao-du-mo-xing/"/>
-    <id>http://19shuidiph.github.io/2025/05/18/gmp-diao-du-mo-xing/</id>
+    <title>深入理解Go并发编程</title>
+    <link href="http://19shuidiph.github.io/2025/05/18/shen-ru-li-jie-go-bing-fa-bian-cheng/"/>
+    <id>http://19shuidiph.github.io/2025/05/18/shen-ru-li-jie-go-bing-fa-bian-cheng/</id>
     <published>2025-05-18T07:26:11.000Z</published>
-    <updated>2025-05-18T09:19:32.987Z</updated>
+    <updated>2025-10-03T08:27:02.681Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Golang学习记录-进阶&quot;&gt;&lt;a href=&quot;#Golang学习记录-进阶&quot; class=&quot;headerlink&quot;</summary>
+    <summary type="html">&lt;h1 id=&quot;深入理解Go并发编程&quot;&gt;&lt;a href=&quot;#深入理解Go并发编程&quot; class=&quot;headerlink&quot;</summary>
         
       
     

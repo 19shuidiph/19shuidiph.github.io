@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Golang学习记录-进阶, 爱敲代码の鱼儿">
+    <meta name="keywords" content="亿级流量系统架构设计与实战, 爱敲代码の鱼儿">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Golang学习记录-进阶 | 爱敲代码の鱼儿</title>
+    <title>亿级流量系统架构设计与实战 | 爱敲代码の鱼儿</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -303,12 +303,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Golang学习记录-进阶</h1>
+                    <h1 class="description center-align post-title">亿级流量系统架构设计与实战</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Golang/" class="post-category">
-                                Golang
+                            <a href="/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                实习期间学习
                             </a>
                         
                     </div>
@@ -445,7 +445,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2025-05-18
+                    2025-10-02
                 </div>
                 
 
@@ -466,9 +466,107 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Golang学习记录-进阶"><a href="#Golang学习记录-进阶" class="headerlink" title="Golang学习记录-进阶"></a>Golang学习记录-进阶</h1><p>同事问我会不会GMP调度模型，我说不咋会。他说协程那块会用到GMP，那我就看一看。</p>
-<p>有很多GMP场景实战，随着G的变化，M和P会有什么变化：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/323271088">https://zhuanlan.zhihu.com/p/323271088</a></p>
+                <h1 id="亿级流量系统架构设计与实战"><a href="#亿级流量系统架构设计与实战" class="headerlink" title="亿级流量系统架构设计与实战"></a>亿级流量系统架构设计与实战</h1><p>这本书更像一篇综述，对企业常见产品的解决方案做了粗略的统计和讲解，涉及的面还是很多的。</p>
+<h2 id="唯一ID生成器"><a href="#唯一ID生成器" class="headerlink" title="唯一ID生成器"></a>唯一ID生成器</h2><p>设计一个可以生成递增的long类型的唯一ID的生成器</p>
+<p>单调递增就是绝对递增，但受限于全局时钟，延迟等分布式系统问题，趋势递增的唯一ID也很受欢迎。（一小段时间可能乱序，但是整体趋势上数据是递增的）</p>
+<h3 id="单调递增的唯一ID"><a href="#单调递增的唯一ID" class="headerlink" title="单调递增的唯一ID"></a>单调递增的唯一ID</h3><p>Redis的INCRBY命令</p>
+<p>比较担心Redis实例宕机后，seq_id键的最新值还未来得及持久化。这样就会生成重复ID了。</p>
+<p>基于数据库的自增主键</p>
+<p>数据主键，性能不高</p>
+<p>数据库的主从结构，如果主从复制采用半同步复制或者MGR（MySQL组复制）的机制，那么主从数据就是一样的。</p>
+<p>如果要求多实例，那就是很难做到完全的单调一致，两个数据库实例咋搞。</p>
+<h3 id="趋势递增的唯一ID：基于时间戳"><a href="#趋势递增的唯一ID：基于时间戳" class="headerlink" title="趋势递增的唯一ID：基于时间戳"></a>趋势递增的唯一ID：基于时间戳</h3><p>雪花算法Snowflake</p>
+<p>雪花算法的原理就是生成一个的 64 位比特位的 long 类型的唯一 id。</p>
+<p>1：最高 1 位是符号位，固定值 0，表示id 是正整数<br>41：接下来 41 位存储毫秒级时间戳，2^41&#x2F;(1000606024365)&#x3D;69，大概可以使用 69 年。<br>10：再接下 10 位存储机器码，包括 5 位 datacenterId 和 5 位 workerId。最多可以部署 2^10&#x3D;1024 台机器。<br>12：最后 12 位存储序列号。同一毫秒时间戳时，通过这个递增的序列号来区分。即对于同一台机器而言，同一毫秒时间戳下，可以生成 2^12&#x3D;4096 个不重复 id。<br>可以将雪花算法作为一个单独的服务进行部署，然后需要全局唯一 id 的系统，请求雪花算法服务获取 id 即可。<br>对于每一个雪花算法服务，需要先指定 10 位的机器码，这个根据自身业务进行设定即可。例如机房号+机器号，机器号+服务号，或者是其他可区别标识的 10 位比特位的整数值都行。</p>
+<p><img src="D:\blog\source_posts\亿级流量系统架构设计与实战\image\QQ_1759415524807.png" alt="img"></p>
+<p>hutool里面也有直接实现。</p>
+<pre class=" language-java"><code class="language-java">Snowflake snowflake <span class="token operator">=</span> IdUtil<span class="token punctuation">.</span><span class="token function">createSnowflake</span><span class="token punctuation">(</span>workerId<span class="token punctuation">,</span> datacenterId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">long</span> id <span class="token operator">=</span> snowflake<span class="token punctuation">.</span><span class="token function">nextId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="趋势递增的唯一ID：-基于数据库"><a href="#趋势递增的唯一ID：-基于数据库" class="headerlink" title="趋势递增的唯一ID： 基于数据库"></a>趋势递增的唯一ID： 基于数据库</h3><p>分库分表</p>
+<p>如果是不需要扩容的场景，则：</p>
+<pre class=" language-java"><code class="language-java"> 步长 step <span class="token operator">=</span> 分表张数
 
+ db_0<span class="token operator">--</span>
+    <span class="token operator">|</span><span class="token operator">--</span> t_order_0  ID<span class="token operator">:</span> <span class="token number">0</span>、<span class="token number">6</span>、<span class="token number">12</span>、<span class="token number">18</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token operator">|</span><span class="token operator">--</span> t_order_1  ID<span class="token operator">:</span> <span class="token number">1</span>、<span class="token number">7</span>、<span class="token number">13</span>、<span class="token number">19</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token operator">|</span><span class="token operator">--</span> t_order_2  ID<span class="token operator">:</span> <span class="token number">2</span>、<span class="token number">8</span>、<span class="token number">14</span>、<span class="token number">20</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+ db_1<span class="token operator">--</span>
+    <span class="token operator">|</span><span class="token operator">--</span> t_order_0  ID<span class="token operator">:</span> <span class="token number">3</span>、<span class="token number">9</span>、<span class="token number">15</span>、<span class="token number">21</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token operator">|</span><span class="token operator">--</span> t_order_1  ID<span class="token operator">:</span> <span class="token number">4</span>、<span class="token number">10</span>、<span class="token number">16</span>、<span class="token number">22</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token operator">|</span><span class="token operator">--</span> t_order_2  ID<span class="token operator">:</span> <span class="token number">5</span>、<span class="token number">11</span>、<span class="token number">17</span>、<span class="token number">23</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<h3 id="美团Leaf"><a href="#美团Leaf" class="headerlink" title="美团Leaf"></a>美团Leaf</h3><p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2017/04/21/mt-leaf.html">https://tech.meituan.com/2017/04/21/mt-leaf.html</a></p>
+<p>Leaf-segment采用了批量缓存ID的思想，Leaf-snowflake是对Snowflake算法的应用</p>
+<h2 id="用户登录服务"><a href="#用户登录服务" class="headerlink" title="用户登录服务"></a>用户登录服务</h2><p>用户登录服务要满足如下技术要求</p>
+<ol>
+<li>密码安全：任何时候不可以暴露服务密码</li>
+<li>以多种方式登录： 支持手机号，邮箱，QQ微信第三方登录，扫码登录</li>
+<li>支持登录态登录：多个微服务直接调用</li>
+</ol>
+<h3 id="密码保护"><a href="#密码保护" class="headerlink" title="密码保护"></a>密码保护</h3><p>HTTPS保护了数据在传输过程中的安全性，密文传输。</p>
+<p>非对称加密需要两个密钥：公钥 (public-key) 和私钥(private-key)。公钥和私钥是一对，如果用公钥对数据加密，那么只能用对应的私钥解密。如果用私钥对数据加密，只能用对应的公钥进行解密。因为加密和解密用的是不同的密钥，所以称为非对称加密。</p>
+<p>公钥由服务端下发给客户端，用于数据加密；私钥由服务端自己持有，任何经过公钥加密的数据，只能被对应的私钥所破解。</p>
+<p>密码加密存储，数据库中存储用MD5这种单向加密后的。这样即使数据库数据泄露，真实密码也不会泄露。</p>
+<h3 id="手机号和邮箱登录"><a href="#手机号和邮箱登录" class="headerlink" title="手机号和邮箱登录"></a>手机号和邮箱登录</h3><p>有传统的等验证码。还可以接入运营商的SDK，实现本机手机号的一键登录。</p>
+<h3 id="第三方登录"><a href="#第三方登录" class="headerlink" title="第三方登录"></a>第三方登录</h3><p>主流的第三方登录协议是OAuth2，去调用微信的SDK获取授权码。</p>
+<p>单点登录（Single Sign On 简称 SSO）是一种统一认证和授权机制，指在多个应用系统中，用户只需要登录一次就可以访问所有相互信任的应用系统，不再需要重新登录验证。</p>
+<p>实现单点登录的方式有很多种，常见的有基于Cookie、Session共享、Token机制、JWT机制等方式。</p>
+<h3 id="登录态管理"><a href="#登录态管理" class="headerlink" title="登录态管理"></a>登录态管理</h3><p>Session技术是HTTP状态保持的解决方案，典型应用场景就是登录态。</p>
+<p>客户端Cookie:SessionID&#x3D;xxx; SessionID存储在Redis中。</p>
+<p>高频的访问Redis成为IO密集型，使用令牌方案变为计算密集型。</p>
+<p>也可以结合两种，为“长短令牌方案”，短令牌就是拿来计算的，长令牌就是存储在Redis里的SessionId。</p>
+<h3 id="扫码登录"><a href="#扫码登录" class="headerlink" title="扫码登录"></a>扫码登录</h3><p><img src="D:\blog\source_posts\亿级流量系统架构设计与实战\image\182002e4ec2e287cb0a504d1b77fa0c2_720.jpg" alt="img"></p>
+<h2 id="海量推送系统"><a href="#海量推送系统" class="headerlink" title="海量推送系统"></a>海量推送系统</h2><h3 id="长连接服务"><a href="#长连接服务" class="headerlink" title="长连接服务"></a>长连接服务</h3><p>消息推送场景是服务端给客户端发请求，那么服务端和客户端就要建立长连接。</p>
+<p>HTTP是无状态、无连接、单向的应用层协议。HTML5定义了一种全新的通信协议：WebSocket，是一种基于TCP的全双工通信协议，这样客户端和服务端都可以主动将数据推送到另一端。</p>
+<p><img src="D:\blog\source_posts\亿级流量系统架构设计与实战\image\6538f9b795b8c96df08750a3b568e9b1_720.jpg" alt="img"></p>
+<h2 id="内容发布系统"><a href="#内容发布系统" class="headerlink" title="内容发布系统"></a>内容发布系统</h2><h3 id="内容存储"><a href="#内容存储" class="headerlink" title="内容存储"></a>内容存储</h3><p>关系型数据库只支持存储文本，不支持图片，视频等文件内容。</p>
+<p>其他的非关系型数据库：<br>内存型KV数据库：Redis</p>
+<p>分布式KV存储系统：基于RocksDB存储引擎的上层应用存储系统Cassandra，TiDB等</p>
+<p>分布式文件存储系统：Google的GFS，开源的HDFS</p>
+<p>分布式文档数据库：MongoDB</p>
+<p>分布式对象存储系统：Amazon公司的S3，开源项目Swift等</p>
+<p>短文本推荐MongoDB，长文本、视频，图片推荐S3</p>
+<h3 id="内容审核"><a href="#内容审核" class="headerlink" title="内容审核"></a>内容审核</h3><p>如果不是所有人都有精力审核，那么只审核网络大V，重点人群（浏览量，被举报），还有阿里云的一些文本审核API。</p>
+<p>审核应该注意的是打回重新审核，那么就要注意幂等性相关的设置。不能说一个用户审核被拒绝了就不能再发起申请。</p>
+<h3 id="内容的全生命周期管理设计"><a href="#内容的全生命周期管理设计" class="headerlink" title="内容的全生命周期管理设计"></a>内容的全生命周期管理设计</h3><p>创建，修改，审核（版本控制），删除。</p>
+<p>被下架和被删除都应该是软删除，且这两个的概念是不一样的。</p>
+<h3 id="内容分发设计"><a href="#内容分发设计" class="headerlink" title="内容分发设计"></a>内容分发设计</h3><p>无论是内容的发布，删除，下架还是可变性变更，应该发送内容元信息给MQ。然后各种内容分发渠道都会实时拿到新内容，执行各自的分发逻辑。</p>
+<p><img src="D:\blog\source_posts\亿级流量系统架构设计与实战\image\94a5c5adbbe99448c9c3e017f6c88d15_720.jpg" alt="img"></p>
+<h3 id="内容展示设计"><a href="#内容展示设计" class="headerlink" title="内容展示设计"></a>内容展示设计</h3><p>内容一般是读多写少的，且发布内容的响应时间是可以容忍的，毕竟还要审核。</p>
+<p>对于静态数据，比如长文本、图片，视频，非常适合采用CDN（Content Delivery Network，内容分发网络）来应对高并发的读请求。</p>
+<p>CDN就是把静态资源缓存到多个地理位置的边缘服务器上。</p>
+<p>将Local Cache和Redis作为多级缓存策略，将Redis主从架构作为多副本策略，两者相互配合可以兜住大多数情况下的高并发读请求。</p>
+<p><img src="D:\blog\source_posts\亿级流量系统架构设计与实战\image\bb29a0dd4fe73d02a497a77ad2f3d96b_720.jpg" alt="img"></p>
+<h2 id="通用计数系统"><a href="#通用计数系统" class="headerlink" title="通用计数系统"></a>通用计数系统</h2><p>以作品维度的计数（评论数，点赞数，分享数，转发数，收藏数）为例， 可以使用五个string对象来保存一个作品的计数，如果String对象存储整数，那么Redis底层会用整数编码去存储。当然用Hash也很省空间，使用压缩列表的编码格式，如果我们知道了Hash里面Field的顺序，则可以只存数字，不存Field。</p>
+<p>冷热分离，如何在磁盘上存储计数数据？RocksDB存储引擎，是一个基于LSM树的磁盘KV存储引擎。</p>
+<p>对于热点数据访问Redis，使用异步写和写聚合。异步写就是不进行实际的计数更新，先把请求放进消息队列后就返回成功了。我们消费者可以从消息队列中批量读取一定数量的请求，然后将这些请求中指向同一个Redis-Key的请求聚合为一个Redis计数更新命令。</p>
+<p><img src="D:\blog\source_posts\亿级流量系统架构设计与实战\image\ba11e3d635ec5cf1b288c24f22332f2f_720.jpg" alt="img"></p>
+<p>计数服务是需要大数据统计得到具体数字，比较粗糙，不适合用户钱包这种强一致性精确性的。</p>
+<p>同时如果要求特别粗糙，可以考虑redis 的HyperLog做基数统计。</p>
+<h2 id="排行榜服务"><a href="#排行榜服务" class="headerlink" title="排行榜服务"></a>排行榜服务</h2><p>使用Redis的Zset实现排行榜</p>
+<h3 id="更新的幂等性"><a href="#更新的幂等性" class="headerlink" title="更新的幂等性"></a>更新的幂等性</h3><p>一般是上游服务调用更新排行榜时，遇到网络超时而选择重试。</p>
+<p>在Redis里面存一个分布式唯一ID，过期时间为10Min。如果有该ID则说明是幂等请求，没有的话就可以写redis。</p>
+<p>要保证存分布式唯一ID和写Redis是原子性的，用Lua脚本把两个命令合起来。</p>
+<p>由于引入了请求ID的过期时间，幂等性被局限为在过期时间内幂等，但是也覆盖了大部分场景了。</p>
+<p>然后笔者自己做排行榜的时候，用的是set指令，担心永久丢失一次，用set就能弥补上一次丢失了。</p>
+<h3 id="同积分用户排名"><a href="#同积分用户排名" class="headerlink" title="同积分用户排名"></a>同积分用户排名</h3><p>用户积分*一个很大的数 + (一个大的时间-当前时间)</p>
+<p>然后用ZADD命令重写积分，用户积分也是要计算的，mysql计算也行，redis再加也行，反正要算。</p>
+<h3 id="大Key"><a href="#大Key" class="headerlink" title="大Key"></a>大Key</h3><p>String类型，长度超过10KB则被认为大KEY</p>
+<p>ZSET，Hash，List，Set等类型，成员数量超过10000个也认为是大Key</p>
+<p>在读取大Key时，会占用更多的CPU资源和更大的网络带宽；删除大Key时耗时严重；大Key有时也是热点key。</p>
+<p>如果用户极多，然后产品也要求实时性，可以搞10个Redis，然后读取前100名，就先读取10个子ZSet排行榜的前100名，然后再聚合筛选出真正的前100名。</p>
+<p>前N名用户采用ZSet精确排名，后面用户粗估排名。</p>
+<p>后面用户怎么粗估，是直接1000+，还是可以再具体一些，再具体可以用线段树。</p>
+<p>线段树不存储每个用户的积分数据，只存储每个积分段的用户数量，并支持使用积分高效查询粗估排名。</p>
+<p>比如树的底层是[201-300]分，有31人，你的分数是220分，那么你的排名就是，(300-220)*31&#x2F;100 &#x3D; 25名。然后看树的[300,400]有49人，[400,800]有177人，故而最终排名为25+49+177&#x3D;251人。</p>
+<p>Redis的排行榜ZSET使用的是跳表和hash双结构，那么我们也可以搞一个线段树+hash双结构。</p>
+<p>不过线段树方案的排名不够精确，且不支持获取排名列表，因为存的东西确实少。</p>
+<p>因为线段树无法存储用户积分，所以需要额外的系统去做1000名之后的粗糙排名，粗糙的用计数服务+线段树。</p>
+<p><img src="D:\blog\source_posts\亿级流量系统架构设计与实战\image\91bfb67882cf5e1a0bd7ec16e57cb502_720.jpg" alt="img"></p>
+<p><img src="D:\blog\source_posts\亿级流量系统架构设计与实战\image\0c2097461c9539fc312753b744e0c3be_720.jpg" alt="img"></p>
+<p>不过因为在ZSET和计数服务里都存了积分，所以要开个定时任务进行对账。向计数服务看齐。</p>
+<h2 id="用户关系服务"><a href="#用户关系服务" class="headerlink" title="用户关系服务"></a>用户关系服务</h2>
                 
             </div>
             <hr/>
@@ -494,7 +592,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://19shuidiph.github.io/2025/05/18/gmp-diao-du-mo-xing/">http://19shuidiph.github.io/2025/05/18/gmp-diao-du-mo-xing/</a>
+                    <a href="http://19shuidiph.github.io/2025/10/02/yi-ji-liu-liang-xi-tong-jia-gou-she-ji-yu-shi-zhan/">http://19shuidiph.github.io/2025/10/02/yi-ji-liu-liang-xi-tong-jia-gou-she-ji-yu-shi-zhan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -699,17 +797,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2025/10/02/wei-yi-id-sheng-cheng-qi/">
+                <a href="/2025/10/02/yi-ji-liu-liang-xi-tong-jia-gou-she-ji-yu-shi-zhan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="唯一ID生成器">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="亿级流量系统架构设计与实战">
                         
-                        <span class="card-title">唯一ID生成器</span>
+                        <span class="card-title">亿级流量系统架构设计与实战</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -719,9 +818,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-10-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-10-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -734,6 +833,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -744,13 +844,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2025/04/21/paperreading-mooncake/">
+                <a href="/2025/05/18/shen-ru-li-jie-go-bing-fa-bian-cheng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/31.jpg" class="responsive-img" alt="Mooncake：以 KVCache 为中心的服务分解架构LLM">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="深入理解Go并发编程">
                         
-                        <span class="card-title">Mooncake：以 KVCache 为中心的服务分解架构LLM</span>
+                        <span class="card-title">深入理解Go并发编程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -761,14 +861,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-05-18
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%A7%91%E7%A0%94/" class="post-category">
-                                    科研
+                            <a href="/categories/Golang/" class="post-category">
+                                    Golang
                                 </a>
                             
                             

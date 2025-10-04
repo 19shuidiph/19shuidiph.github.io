@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="唯一ID生成器, 爱敲代码の鱼儿">
+    <meta name="keywords" content="深入理解Go并发编程, 爱敲代码の鱼儿">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>唯一ID生成器 | 爱敲代码の鱼儿</title>
+    <title>深入理解Go并发编程 | 爱敲代码の鱼儿</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -303,12 +303,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">唯一ID生成器</h1>
+                    <h1 class="description center-align post-title">深入理解Go并发编程</h1>
                 </div>
             </div>
         </div>
@@ -432,8 +432,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                实习期间学习
+                            <a href="/categories/Golang/" class="post-category">
+                                Golang
                             </a>
                         
                     </div>
@@ -445,7 +445,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2025-10-02
+                    2025-05-18
                 </div>
                 
 
@@ -466,37 +466,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="唯一ID生成器"><a href="#唯一ID生成器" class="headerlink" title="唯一ID生成器"></a>唯一ID生成器</h1><p>设计一个可以生成递增的long类型的唯一ID的生成器</p>
-<p>单调递增就是绝对递增，但受限于全局时钟，延迟等分布式系统问题，趋势递增的唯一ID也很受欢迎。（一小段时间可能乱序，但是整体趋势上数据是递增的）</p>
-<h2 id="单调递增的唯一ID"><a href="#单调递增的唯一ID" class="headerlink" title="单调递增的唯一ID"></a>单调递增的唯一ID</h2><p>Redis的INCRBY命令</p>
-<p>比较担心Redis实例宕机后，seq_id键的最新值还未来得及持久化。这样就会生成重复ID了。</p>
-<p>基于数据库的自增主键</p>
-<p>数据主键，性能不高</p>
-<p>数据库的主从结构，如果主从复制采用半同步复制或者MGR（MySQL组复制）的机制，那么主从数据就是一样的。</p>
-<p>如果要求多实例，那就是很难做到完全的单调一致，两个数据库实例咋搞。</p>
-<h2 id="趋势递增的唯一ID：基于时间戳"><a href="#趋势递增的唯一ID：基于时间戳" class="headerlink" title="趋势递增的唯一ID：基于时间戳"></a>趋势递增的唯一ID：基于时间戳</h2><p>雪花算法Snowflake</p>
-<p>雪花算法的原理就是生成一个的 64 位比特位的 long 类型的唯一 id。</p>
-<p>1：最高 1 位是符号位，固定值 0，表示id 是正整数<br>41：接下来 41 位存储毫秒级时间戳，2^41&#x2F;(1000606024365)&#x3D;69，大概可以使用 69 年。<br>10：再接下 10 位存储机器码，包括 5 位 datacenterId 和 5 位 workerId。最多可以部署 2^10&#x3D;1024 台机器。<br>12：最后 12 位存储序列号。同一毫秒时间戳时，通过这个递增的序列号来区分。即对于同一台机器而言，同一毫秒时间戳下，可以生成 2^12&#x3D;4096 个不重复 id。<br>可以将雪花算法作为一个单独的服务进行部署，然后需要全局唯一 id 的系统，请求雪花算法服务获取 id 即可。<br>对于每一个雪花算法服务，需要先指定 10 位的机器码，这个根据自身业务进行设定即可。例如机房号+机器号，机器号+服务号，或者是其他可区别标识的 10 位比特位的整数值都行。</p>
-<p><img src="D:\blog\source_posts\唯一ID生成器\image\QQ_1759415524807.png" alt="img"></p>
-<p>hutool里面也有直接实现。</p>
-<pre class=" language-java"><code class="language-java">Snowflake snowflake <span class="token operator">=</span> IdUtil<span class="token punctuation">.</span><span class="token function">createSnowflake</span><span class="token punctuation">(</span>workerId<span class="token punctuation">,</span> datacenterId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">long</span> id <span class="token operator">=</span> snowflake<span class="token punctuation">.</span><span class="token function">nextId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<h2 id="趋势递增的唯一ID：-基于数据库"><a href="#趋势递增的唯一ID：-基于数据库" class="headerlink" title="趋势递增的唯一ID： 基于数据库"></a>趋势递增的唯一ID： 基于数据库</h2><p>分库分表</p>
-<p>如果是不需要扩容的场景，则：</p>
-<pre class=" language-java"><code class="language-java"> 步长 step <span class="token operator">=</span> 分表张数
-
- db_0<span class="token operator">--</span>
-    <span class="token operator">|</span><span class="token operator">--</span> t_order_0  ID<span class="token operator">:</span> <span class="token number">0</span>、<span class="token number">6</span>、<span class="token number">12</span>、<span class="token number">18</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-    <span class="token operator">|</span><span class="token operator">--</span> t_order_1  ID<span class="token operator">:</span> <span class="token number">1</span>、<span class="token number">7</span>、<span class="token number">13</span>、<span class="token number">19</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-    <span class="token operator">|</span><span class="token operator">--</span> t_order_2  ID<span class="token operator">:</span> <span class="token number">2</span>、<span class="token number">8</span>、<span class="token number">14</span>、<span class="token number">20</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
- db_1<span class="token operator">--</span>
-    <span class="token operator">|</span><span class="token operator">--</span> t_order_0  ID<span class="token operator">:</span> <span class="token number">3</span>、<span class="token number">9</span>、<span class="token number">15</span>、<span class="token number">21</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-    <span class="token operator">|</span><span class="token operator">--</span> t_order_1  ID<span class="token operator">:</span> <span class="token number">4</span>、<span class="token number">10</span>、<span class="token number">16</span>、<span class="token number">22</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-    <span class="token operator">|</span><span class="token operator">--</span> t_order_2  ID<span class="token operator">:</span> <span class="token number">5</span>、<span class="token number">11</span>、<span class="token number">17</span>、<span class="token number">23</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
-</code></pre>
-<h2 id="美团Leaf"><a href="#美团Leaf" class="headerlink" title="美团Leaf"></a>美团Leaf</h2><p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2017/04/21/mt-leaf.html">https://tech.meituan.com/2017/04/21/mt-leaf.html</a></p>
-<p>Leaf-segment采用了批量缓存ID的思想，Leaf-snowflake是对Snowflake算法的应用</p>
+                <h1 id="深入理解Go并发编程"><a href="#深入理解Go并发编程" class="headerlink" title="深入理解Go并发编程"></a>深入理解Go并发编程</h1><p>同事问我会不会GMP调度模型，我说不咋会。他说协程那块会用到GMP，那我就看一看。</p>
+<p>有很多GMP场景实战，随着G的变化，M和P会有什么变化：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/323271088">https://zhuanlan.zhihu.com/p/323271088</a></p>
 
                 
             </div>
@@ -523,7 +494,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://19shuidiph.github.io/2025/10/02/wei-yi-id-sheng-cheng-qi/">http://19shuidiph.github.io/2025/10/02/wei-yi-id-sheng-cheng-qi/</a>
+                    <a href="http://19shuidiph.github.io/2025/05/18/shen-ru-li-jie-go-bing-fa-bian-cheng/">http://19shuidiph.github.io/2025/05/18/shen-ru-li-jie-go-bing-fa-bian-cheng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -728,18 +699,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2025/10/02/wei-yi-id-sheng-cheng-qi/">
+                <a href="/2025/10/02/yi-ji-liu-liang-xi-tong-jia-gou-she-ji-yu-shi-zhan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="唯一ID生成器">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="亿级流量系统架构设计与实战">
                         
-                        <span class="card-title">唯一ID生成器</span>
+                        <span class="card-title">亿级流量系统架构设计与实战</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -749,9 +719,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-10-02
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-10-02
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -764,7 +734,6 @@
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -775,13 +744,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2025/05/18/gmp-diao-du-mo-xing/">
+                <a href="/2025/04/21/paperreading-mooncake/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Golang学习记录-进阶">
+                        <img src="/medias/featureimages/31.jpg" class="responsive-img" alt="Mooncake：以 KVCache 为中心的服务分解架构LLM">
                         
-                        <span class="card-title">Golang学习记录-进阶</span>
+                        <span class="card-title">Mooncake：以 KVCache 为中心的服务分解架构LLM</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -792,14 +761,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-05-18
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-21
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Golang/" class="post-category">
-                                    Golang
+                            <a href="/categories/%E7%A7%91%E7%A0%94/" class="post-category">
+                                    科研
                                 </a>
                             
                             
