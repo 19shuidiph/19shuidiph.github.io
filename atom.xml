@@ -6,7 +6,7 @@
   <link href="http://19shuidiph.github.io/atom.xml" rel="self"/>
   
   <link href="http://19shuidiph.github.io/"/>
-  <updated>2025-10-05T09:05:10.325Z</updated>
+  <updated>2025-10-14T14:51:26.278Z</updated>
   <id>http://19shuidiph.github.io/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>深入理解Go并发编程</title>
+    <link href="http://19shuidiph.github.io/2025/10/30/shen-ru-li-jie-go-bing-fa-bian-cheng/"/>
+    <id>http://19shuidiph.github.io/2025/10/30/shen-ru-li-jie-go-bing-fa-bian-cheng/</id>
+    <published>2025-10-30T07:26:11.000Z</published>
+    <updated>2025-10-14T14:51:26.278Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;深入理解Go并发编程&quot;&gt;&lt;a href=&quot;#深入理解Go并发编程&quot; class=&quot;headerlink&quot; title=&quot;深入理解Go并发编程&quot;&gt;&lt;/a&gt;深入理解Go并发编程&lt;/h1&gt;&lt;h2 id=&quot;GMP调度模型&quot;&gt;&lt;a href=&quot;#GMP调度模型&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Golang" scheme="http://19shuidiph.github.io/categories/Golang/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>亿级流量系统架构设计与实战</title>
     <link href="http://19shuidiph.github.io/2025/10/02/yi-ji-liu-liang-xi-tong-jia-gou-she-ji-yu-shi-zhan/"/>
     <id>http://19shuidiph.github.io/2025/10/02/yi-ji-liu-liang-xi-tong-jia-gou-she-ji-yu-shi-zhan/</id>
     <published>2025-10-02T13:19:42.000Z</published>
-    <updated>2025-10-05T09:05:10.325Z</updated>
+    <updated>2025-10-14T15:06:49.333Z</updated>
     
     
       
@@ -35,29 +58,6 @@
     
     
     <category term="实习期间学习" scheme="http://19shuidiph.github.io/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>深入理解Go并发编程</title>
-    <link href="http://19shuidiph.github.io/2025/05/18/shen-ru-li-jie-go-bing-fa-bian-cheng/"/>
-    <id>http://19shuidiph.github.io/2025/05/18/shen-ru-li-jie-go-bing-fa-bian-cheng/</id>
-    <published>2025-05-18T07:26:11.000Z</published>
-    <updated>2025-10-03T08:27:02.681Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;深入理解Go并发编程&quot;&gt;&lt;a href=&quot;#深入理解Go并发编程&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="http://19shuidiph.github.io/categories/Golang/"/>
     
     
   </entry>

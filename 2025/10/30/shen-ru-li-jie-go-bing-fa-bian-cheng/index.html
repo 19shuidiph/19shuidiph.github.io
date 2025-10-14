@@ -445,7 +445,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2025-05-18
+                    2025-10-30
                 </div>
                 
 
@@ -466,9 +466,139 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="深入理解Go并发编程"><a href="#深入理解Go并发编程" class="headerlink" title="深入理解Go并发编程"></a>深入理解Go并发编程</h1><p>同事问我会不会GMP调度模型，我说不咋会。他说协程那块会用到GMP，那我就看一看。</p>
+                <h1 id="深入理解Go并发编程"><a href="#深入理解Go并发编程" class="headerlink" title="深入理解Go并发编程"></a>深入理解Go并发编程</h1><h2 id="GMP调度模型"><a href="#GMP调度模型" class="headerlink" title="GMP调度模型"></a>GMP调度模型</h2><p>同事问我会不会GMP调度模型，我说不咋会。他说协程那块会用到GMP，那我就看一看。</p>
 <p>有很多GMP场景实战，随着G的变化，M和P会有什么变化：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/323271088">https://zhuanlan.zhihu.com/p/323271088</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7213654163317260349">https://juejin.cn/post/7213654163317260349</a></p>
+<h2 id="互斥锁Mutex"><a href="#互斥锁Mutex" class="headerlink" title="互斥锁Mutex"></a>互斥锁Mutex</h2><p>Mutex限定临界区同一时间内只能有一个goroutine进入。这些被锁包围的转账的代码就是临界区。</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">transfer3</span><span class="token punctuation">(</span>amount <span class="token builtin">int64</span><span class="token punctuation">,</span> accountFrom<span class="token punctuation">,</span> accountTo <span class="token operator">*</span>Account<span class="token punctuation">)</span> <span class="token builtin">bool</span> <span class="token punctuation">{</span>
+    txMutex<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> txMutex<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
+    bal <span class="token operator">:=</span> atomic<span class="token punctuation">.</span><span class="token function">LoadInt64</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>accountFrom<span class="token punctuation">.</span>Balance<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> bal <span class="token operator">&lt;</span> amount <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span>
+
+    atomic<span class="token punctuation">.</span><span class="token function">AddInt64</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>accountTo<span class="token punctuation">.</span>Balance<span class="token punctuation">,</span> amount<span class="token punctuation">)</span>
+    atomic<span class="token punctuation">.</span><span class="token function">AddInt64</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>accountFrom<span class="token punctuation">.</span>Balance<span class="token punctuation">,</span> <span class="token operator">-</span>amount<span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>调用Mutex.Lock()方法时，如果被其他go持有，会被阻塞。而调用TryLock(),会返回true和false;</p>
+<p>直接用零值就行。 var mu sync.Mutex </p>
+<p>mu.Lock()</p>
+<p>Go内置了数据竞争检测器，但是不要在生产环境开启。</p>
+<p>map并不是线程安全的，要使用sync.Map</p>
+<h2 id="读写锁RWMutex"><a href="#读写锁RWMutex" class="headerlink" title="读写锁RWMutex"></a>读写锁RWMutex</h2><p>多读少写</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">BenchmarkCounter_RWMutex</span><span class="token punctuation">(</span>b <span class="token operator">*</span>testing<span class="token punctuation">.</span>B<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> counter <span class="token builtin">int64</span>
+    <span class="token keyword">var</span> mu sync<span class="token punctuation">.</span>RWMutex
+
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> b<span class="token punctuation">.</span>N<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        b<span class="token punctuation">.</span><span class="token function">RunParallel</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>pb <span class="token operator">*</span>testing<span class="token punctuation">.</span>PB<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            i <span class="token operator">:=</span> <span class="token number">0</span>
+            <span class="token keyword">for</span> pb<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                i<span class="token operator">++</span>
+
+                <span class="token keyword">if</span> i<span class="token operator">%</span><span class="token number">10000</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">{</span>
+                    <span class="token comment" spellcheck="true">// Lock the mutex, increment the counter, and unlock the mutex</span>
+                    mu<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    counter<span class="token operator">++</span>
+                    mu<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    <span class="token comment" spellcheck="true">// Lock the mutex for reading, retrieve the counter value, and unlock the mutex</span>
+                    mu<span class="token punctuation">.</span><span class="token function">RLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token boolean">_</span> <span class="token operator">=</span> counter
+                    mu<span class="token punctuation">.</span><span class="token function">RUnlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">}</span>
+
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p>不要递归使用读写锁。也就是不支持重入。重入也会导致死锁。</p>
+<p>普通的是导入sync</p>
+<p>检测各种死锁，可以尝试导入 sync “github.com&#x2F;sasha-s&#x2F;go-deadlock”</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    l<span class="token punctuation">.</span><span class="token function">RLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>         <span class="token comment" spellcheck="true">// 第一次读锁</span>
+    <span class="token keyword">defer</span> l<span class="token punctuation">.</span><span class="token function">RUnlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  
+    l<span class="token punctuation">.</span><span class="token function">RLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>         <span class="token comment" spellcheck="true">// 重入读锁 → 阻塞!</span>
+    <span class="token keyword">defer</span> l<span class="token punctuation">.</span><span class="token function">RUnlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    l<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>          <span class="token comment" spellcheck="true">// 写锁等待第一次读锁释放</span>
+    <span class="token keyword">defer</span> l<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<ol>
+<li>协程A持有读锁未释放，尝试重入读锁</li>
+<li>协程B请求写锁，触发写优先机制</li>
+<li>协程A的重入读锁被写优先机制阻塞</li>
+<li>协程B等待协程A释放第一次读锁</li>
+<li><strong>循环等待</strong>形成死锁（28）</li>
+</ol>
+<h2 id="任务编排WaitGroup"><a href="#任务编排WaitGroup" class="headerlink" title="任务编排WaitGroup"></a>任务编排WaitGroup</h2><p>跟Java里的CyclicBarrier和CountDownLatch差不多。或者和CompletableFuture.allOf(task1, task2, task3)一样。</p>
+<pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>concurrent<span class="token punctuation">.</span>CompletableFuture<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CompletableFutureExample</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 创建三个 CompletableFuture，分别代表三个异步任务</span>
+        CompletableFuture<span class="token operator">&lt;</span>Void<span class="token operator">></span> task1 <span class="token operator">=</span> CompletableFuture<span class="token punctuation">.</span><span class="token function">runAsync</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"任务1 开始执行，线程: "</span> <span class="token operator">+</span> Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">simulateWork</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 模拟耗时操作</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"任务1 完成"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        CompletableFuture<span class="token operator">&lt;</span>Void<span class="token operator">></span> task2 <span class="token operator">=</span> CompletableFuture<span class="token punctuation">.</span><span class="token function">runAsync</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"任务2 开始执行，线程: "</span> <span class="token operator">+</span> Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">simulateWork</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 模拟耗时操作</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"任务2 完成"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        CompletableFuture<span class="token operator">&lt;</span>Void<span class="token operator">></span> task3 <span class="token operator">=</span> CompletableFuture<span class="token punctuation">.</span><span class="token function">runAsync</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"任务3 开始执行，线程: "</span> <span class="token operator">+</span> Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">simulateWork</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 模拟耗时操作</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"任务3 完成"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 使用 allOf 等待所有任务完成</span>
+        CompletableFuture<span class="token operator">&lt;</span>Void<span class="token operator">></span> allTasks <span class="token operator">=</span> CompletableFuture<span class="token punctuation">.</span><span class="token function">allOf</span><span class="token punctuation">(</span>task1<span class="token punctuation">,</span> task2<span class="token punctuation">,</span> task3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// 阻塞等待所有任务完成</span>
+        allTasks<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"所有任务已完成，主程序结束。"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 模拟耗时操作</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">simulateWork</span><span class="token punctuation">(</span><span class="token keyword">long</span> millis<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span>millis<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">interrupt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>然后要注意一些可能写错的场景：</p>
+<p>要把wg.Add(1)写在协程外面，不然可能第一个协程执行完add和done后，wait就直接通过了。add要写在for循环和go协程中间，或者写在更前面。</p>
+<p>多调用Done方法可能会让计数器的值为负数，这是不允许的。</p>
+<p>不能进行waitgroup的重用，即一个协程不停的Add和Done；另外一个协程去wait，这样会panic。wait之后发现是0然后不是0.傻掉了。</p>
+<p>Add就是+1，Done就是-1，wait就是检测是不是0</p>
+<p>WaitGroup的扩展：</p>
+<p>使用conc.WaitGroup；可以简化代码。</p>
+<h2 id="条件变量Cond"><a href="#条件变量Cond" class="headerlink" title="条件变量Cond"></a>条件变量Cond</h2><p>Cond同步原语，为等待&#x2F;通知场景下的并发操作提供支持。通常用于等待某个条件的一组goroutine,当条件变为true时，其中一个或所有的goroutine会被唤醒执行。</p>
+<p>类似于Java中的java.util.concruuent,locks.Condition</p>
+<p>一旦有使用Cond的场景，我们更习惯使用channel去实现。</p>
+<p>Wait方法：会把调用者放入Cond的等待队列中并阻塞，直到被Signal或者Broadcast方法从等待队列中移除并唤醒。在调用Wait方法时，调用者必须要持有c.L的锁。</p>
+<p>Signal方法：允许调用者唤醒一个等待此Cond的goroutine。在Java中又叫notify方法或者notify_one方法。</p>
+<p>Broadcast方法：允许调用者唤醒所有等待此Cond的goroutine。在java中又叫notifyAll方法。</p>
+<h2 id="单例化利器Once"><a href="#单例化利器Once" class="headerlink" title="单例化利器Once"></a>单例化利器Once</h2>
                 
             </div>
             <hr/>
@@ -494,7 +624,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://19shuidiph.github.io/2025/05/18/shen-ru-li-jie-go-bing-fa-bian-cheng/">http://19shuidiph.github.io/2025/05/18/shen-ru-li-jie-go-bing-fa-bian-cheng/</a>
+                    <a href="http://19shuidiph.github.io/2025/10/30/shen-ru-li-jie-go-bing-fa-bian-cheng/">http://19shuidiph.github.io/2025/10/30/shen-ru-li-jie-go-bing-fa-bian-cheng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -699,9 +829,52 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2025/10/30/shen-ru-li-jie-go-bing-fa-bian-cheng/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="深入理解Go并发编程">
+                        
+                        <span class="card-title">深入理解Go并发编程</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-10-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Golang/" class="post-category">
+                                    Golang
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2025/10/02/yi-ji-liu-liang-xi-tong-jia-gou-she-ji-yu-shi-zhan/">
                     <div class="card-image">
@@ -719,56 +892,15 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2025-10-02
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-10-02
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
                             <a href="/categories/%E5%AE%9E%E4%B9%A0%E6%9C%9F%E9%97%B4%E5%AD%A6%E4%B9%A0/" class="post-category">
                                     实习期间学习
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2025/04/21/paperreading-mooncake/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/31.jpg" class="responsive-img" alt="Mooncake：以 KVCache 为中心的服务分解架构LLM">
-                        
-                        <span class="card-title">Mooncake：以 KVCache 为中心的服务分解架构LLM</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-21
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%A7%91%E7%A0%94/" class="post-category">
-                                    科研
                                 </a>
                             
                             
