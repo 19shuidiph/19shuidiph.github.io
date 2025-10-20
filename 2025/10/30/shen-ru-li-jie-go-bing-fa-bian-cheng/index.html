@@ -598,7 +598,483 @@
 <p>Wait方法：会把调用者放入Cond的等待队列中并阻塞，直到被Signal或者Broadcast方法从等待队列中移除并唤醒。在调用Wait方法时，调用者必须要持有c.L的锁。</p>
 <p>Signal方法：允许调用者唤醒一个等待此Cond的goroutine。在Java中又叫notify方法或者notify_one方法。</p>
 <p>Broadcast方法：允许调用者唤醒所有等待此Cond的goroutine。在java中又叫notifyAll方法。</p>
-<h2 id="单例化利器Once"><a href="#单例化利器Once" class="headerlink" title="单例化利器Once"></a>单例化利器Once</h2>
+<h2 id="单例化利器Once"><a href="#单例化利器Once" class="headerlink" title="单例化利器Once"></a>单例化利器Once</h2><p>Once常用于单个对象的初始化场景</p>
+<p>不要递归调用，会死锁。不可重入</p>
+<p>然后如果Once里面的执行失败了，没有准备好相对应的资源（比如网络问题导致连接失败），也不能再执行Once里面的。</p>
+<p>解决方案：可以自己实现一个类似Once的同步原语。使用双重检查锁。必须要用atomic，起到的作用和Java里的volatile一样,可以看到最新值。</p>
+<pre class=" language-go"><code class="language-go"><span class="token comment" spellcheck="true">// RetryableOnce 是一个并发安全的实现，允许在初始化失败后重试</span>
+<span class="token comment" spellcheck="true">// 与标准sync.Once不同，它会在初始化函数返回错误后允许后续调用重新尝试</span>
+<span class="token keyword">type</span> RetryableOnce <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    mu          sync<span class="token punctuation">.</span>Mutex
+    done        <span class="token builtin">uint32</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Do 执行初始化函数（如果尚未成功初始化）</span>
+<span class="token comment" spellcheck="true">// 如果函数返回错误，下次调用会自动重试</span>
+<span class="token comment" spellcheck="true">// 此实现是并发安全的</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>ro <span class="token operator">*</span>RetryableOnce<span class="token punctuation">)</span> <span class="token function">Do</span><span class="token punctuation">(</span>f <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">error</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 快速路径：检查是否已初始化（尽可能避免加锁）</span>
+    
+    <span class="token keyword">if</span> atomic<span class="token punctuation">.</span><span class="token function">LoadUint32</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>ro<span class="token punctuation">.</span>done<span class="token punctuation">)</span> <span class="token operator">==</span><span class="token number">1</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">nil</span>
+    <span class="token punctuation">}</span>
+
+    ro<span class="token punctuation">.</span>mu<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> ro<span class="token punctuation">.</span>mu<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 双重检查锁</span>
+    <span class="token keyword">if</span> atomic<span class="token punctuation">.</span><span class="token function">LoadUint32</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>ro<span class="token punctuation">.</span>done<span class="token punctuation">)</span> <span class="token operator">==</span><span class="token number">1</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">nil</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// 执行初始化函数</span>
+    err <span class="token operator">:=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> err <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        atomic<span class="token punctuation">.</span><span class="token function">StoreUint32</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>ro<span class="token punctuation">.</span>done<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> err
+<span class="token punctuation">}</span>
+</code></pre>
+<p>当然也可以直接对sync.Once进行扩展。</p>
+<p>比如</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> AnimalStore <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    once sync<span class="token punctuation">.</span>Once
+    inited <span class="token builtin">uint32</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>或者直接</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">type</span> Once <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    once   sync<span class="token punctuation">.</span>Once
+<span class="token punctuation">}</span>
+</code></pre>
+<p>然后加一个Done()函数。直接去取&amp;o.Once是不是1.</p>
+<p>也可以给Once扩展返回值，或者直接使用”github.com&#x2F;carlmjohnson&#x2F;syncx”</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> getMoL <span class="token operator">=</span> syncx<span class="token punctuation">.</span><span class="token function">Once</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+       fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"calculating meaning of life..."</span><span class="token punctuation">)</span>
+       <span class="token keyword">return</span> <span class="token number">42</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">var</span> wg sync<span class="token punctuation">.</span>WaitGroup
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+       wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+       <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">getMoL</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+          wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+       <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="并发map"><a href="#并发map" class="headerlink" title="并发map"></a>并发map</h2><p>map[k]v;其中k要是可比较的。</p>
+<p>map对象必须在使用前被初始化。尤其是其作为一个struct字段的时候。</p>
+<p>map是不能并发的读写的。比如一个协程去读，另外一个协程去写。不然会报错。</p>
+<p>然后对于并发场景，可以自己写一套RWMap，去对每一个读写操作加锁。也可以用sync.Map.</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"sync"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> RWMap<span class="token punctuation">[</span>K comparable<span class="token punctuation">,</span> V any<span class="token punctuation">]</span> <span class="token keyword">struct</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 一个读写锁保护的线程安全的map</span>
+    sync<span class="token punctuation">.</span>RWMutex <span class="token comment" spellcheck="true">// 读写锁保护下面的map字段</span>
+    m            <span class="token keyword">map</span><span class="token punctuation">[</span>K<span class="token punctuation">]</span>V
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// 新建一个RWMap</span>
+<span class="token keyword">func</span> NewRWMap<span class="token punctuation">[</span>K comparable<span class="token punctuation">,</span> V any<span class="token punctuation">]</span><span class="token punctuation">(</span>n <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">*</span>RWMap<span class="token punctuation">[</span>K<span class="token punctuation">,</span> V<span class="token punctuation">]</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">&amp;</span>RWMap<span class="token punctuation">[</span>K<span class="token punctuation">,</span> V<span class="token punctuation">]</span><span class="token punctuation">{</span>
+        m<span class="token punctuation">:</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span>K<span class="token punctuation">]</span>V<span class="token punctuation">,</span> n<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>RWMap<span class="token punctuation">[</span>K<span class="token punctuation">,</span> V<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token function">Get</span><span class="token punctuation">(</span>k K<span class="token punctuation">)</span> <span class="token punctuation">(</span>V<span class="token punctuation">,</span> <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//从map中读取一个值</span>
+    m<span class="token punctuation">.</span><span class="token function">RLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">defer</span> m<span class="token punctuation">.</span><span class="token function">RUnlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    v<span class="token punctuation">,</span> existed <span class="token operator">:=</span> m<span class="token punctuation">.</span>m<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token comment" spellcheck="true">// 在锁的保护下从map中读取</span>
+    <span class="token keyword">return</span> v<span class="token punctuation">,</span> existed
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>RWMap<span class="token punctuation">[</span>K<span class="token punctuation">,</span> V<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token function">Set</span><span class="token punctuation">(</span>k K<span class="token punctuation">,</span> v V<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 设置一个键值对</span>
+    m<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 锁保护</span>
+    <span class="token keyword">defer</span> m<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    m<span class="token punctuation">.</span>m<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> v
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>RWMap<span class="token punctuation">[</span>K<span class="token punctuation">,</span> V<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token function">Delete</span><span class="token punctuation">(</span>k K<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//删除一个键</span>
+    m<span class="token punctuation">.</span><span class="token function">Lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 锁保护</span>
+    <span class="token keyword">defer</span> m<span class="token punctuation">.</span><span class="token function">Unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">delete</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span>m<span class="token punctuation">,</span> k<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>RWMap<span class="token punctuation">[</span>K<span class="token punctuation">,</span> V<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token function">Len</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// map的长度</span>
+    m<span class="token punctuation">.</span><span class="token function">RLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 锁保护</span>
+    <span class="token keyword">defer</span> m<span class="token punctuation">.</span><span class="token function">RUnlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token function">len</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span>m<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>m <span class="token operator">*</span>RWMap<span class="token punctuation">[</span>K<span class="token punctuation">,</span> V<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token function">Each</span><span class="token punctuation">(</span>f <span class="token keyword">func</span><span class="token punctuation">(</span>k K<span class="token punctuation">,</span> v V<span class="token punctuation">)</span> <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 遍历map</span>
+    m<span class="token punctuation">.</span><span class="token function">RLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//遍历期间一直持有读锁</span>
+    <span class="token keyword">defer</span> m<span class="token punctuation">.</span><span class="token function">RUnlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> m<span class="token punctuation">.</span>m <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token operator">!</span><span class="token function">f</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>在以下两个场景中，使用sync.Map会比使用map+RWMutex的方式性能好得多：</p>
+<ol>
+<li>在只会增长的缓存系统中，一个key只被写入一次而被读很多次</li>
+<li>多个goroutine为不相交的键集读、写和重写键值对</li>
+</ol>
+<p>经过测试，sync.Map的读比较快，写不如map+读写锁快。因为不是很常用，所以临时再去查API也可以。</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV15NBsYcEoK/?spm_id_from=333.337.search-card.all.click&vd_source=6ed7f19911310aba47123ac6cc1674a0">https://www.bilibili.com/video/BV15NBsYcEoK/?spm_id_from=333.337.search-card.all.click&amp;vd_source=6ed7f19911310aba47123ac6cc1674a0</a></p>
+<p>sync.Map原理。里面有两个map。read map是读map，充当缓存加速。dirty map是修改的map，新值追加是在这层实现的。不过对于旧值，直接更新read map,因为两者共享一个指针。</p>
+<p>这样可以让read map的速度近乎无锁。如果发生了击穿，即访问到dirty map,则会把dirty map升级为read map.如果要写新值，则从read map里面构建dirty map,在拷贝过程中会忽略那些已经被标记删除的k-v数据。删除数据是先标记后删除，延迟删除。</p>
+<p>然后分片加锁，还可以用orcaman&#x2F;concurrent-map。不过这个key只能是字符串。</p>
+<p>减少锁的粒度，去分片，将一个锁分成多个锁，每个锁都控制一个分片。类似于Java的ConcurrentMap.将 map 分为 32 个 shard，每个分片使用RWMutex。</p>
+<p>github.com&#x2F;alphadose&#x2F;haxmap也提供了，lock-free线程安全的</p>
+<h2 id="池Pool"><a href="#池Pool" class="headerlink" title="池Pool"></a>池Pool</h2><p>如果在堆上大量地创建对象，会影响STW（stop-the-world)的时间，可以把不用的对象回收起来，避免被垃圾回收，这样就不必在堆上重新创建对象了。包括数据库的连接，TCP的长连接。</p>
+<p>Pool有两个重要的字段，local和victim。每次垃圾回收的时候，Pool会把victim中的对象移除，然后把Local中的数据给victim.</p>
+<p>使用sync.Pool的时候，如果set特别大量的byte数据，可能会造成其无法回收，从而造成内存浪费。</p>
+<p>sync.Pool会无通知的在某个时候把连接移除，被垃圾回收了。所以标准库里的HTTP,数据库,TCP,memcache,都自己实现了相关的连接池(http.Client,sql.DB,faith&#x2F;pool,gomemcache)</p>
+<h2 id="上下文Context"><a href="#上下文Context" class="headerlink" title="上下文Context"></a>上下文Context</h2><p>在使用WithCancel、WIthCancelCause、WithTimeout和WithDeadline函数时，一定要调用cancel函数。</p>
+<p>子goroutine一定要设置正确的检查点，及时检查Context是否已被撤销或者超时。</p>
+<h2 id="原子操作atomic"><a href="#原子操作atomic" class="headerlink" title="原子操作atomic"></a>原子操作atomic</h2><p>CAS和其他函数</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">TestCAS</span><span class="token punctuation">(</span>t <span class="token operator">*</span>testing<span class="token punctuation">.</span>T<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> x <span class="token builtin">uint64</span> <span class="token operator">=</span> <span class="token number">0</span>
+    ok <span class="token operator">:=</span> atomic<span class="token punctuation">.</span><span class="token function">CompareAndSwapUint64</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// ok == true</span>
+    assert<span class="token punctuation">.</span><span class="token function">Equal</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> ok<span class="token punctuation">)</span>
+
+    ok <span class="token operator">=</span> atomic<span class="token punctuation">.</span><span class="token function">CompareAndSwapUint64</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// ok == false, x的原有的值不是0</span>
+    assert<span class="token punctuation">.</span><span class="token function">Equal</span><span class="token punctuation">(</span>t<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> ok<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+newXValue <span class="token operator">:=</span> atomic<span class="token punctuation">.</span><span class="token function">AddUint64</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// newXValue == 100</span>
+old <span class="token operator">:=</span> atomic<span class="token punctuation">.</span><span class="token function">SwapUint64</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span>
+v <span class="token operator">:=</span> atomic<span class="token punctuation">.</span><span class="token function">LoadUint64</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// v == 0</span>
+atomic<span class="token punctuation">.</span><span class="token function">StoreUint64</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// x == 100</span>
+</code></pre>
+<p>还提供了Value，可以对对象进行操作。而非单纯的int</p>
+<pre><code>func loadNewConfig() config&#123;
+  return Config&#123;
+      NodeName: &quot;北京&quot;,
+      Addr :&quot;10.77.95.27&quot;
+  &#125;
+&#125;
+
+var config atomic.Value
+config.Store(loadNewConfig())
+</code></pre>
+<p>atomic包的方法提供了内存屏障的功能，保证数据的可见性，读到最新值。</p>
+<p>lock-free队列的实现，其中入队和出队都用了CAS。</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"sync/atomic"</span>
+    <span class="token string">"unsafe"</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">// 创建lockfree包别名</span>
+<span class="token keyword">var</span> lockfree <span class="token operator">=</span> <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    NewQueue <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span>Queue
+<span class="token punctuation">}</span><span class="token punctuation">{</span>
+    NewQueue<span class="token punctuation">:</span> NewQueue<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Node 队列节点</span>
+<span class="token keyword">type</span> Node <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    Value <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+    Next  unsafe<span class="token punctuation">.</span>Pointer
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Queue lock-free队列结构</span>
+<span class="token keyword">type</span> Queue <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    head unsafe<span class="token punctuation">.</span>Pointer
+    tail unsafe<span class="token punctuation">.</span>Pointer
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// NewQueue 创建新的lock-free队列</span>
+<span class="token keyword">func</span> <span class="token function">NewQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span>Queue <span class="token punctuation">{</span>
+    dummy <span class="token operator">:=</span> <span class="token operator">&amp;</span>Node<span class="token punctuation">{</span><span class="token punctuation">}</span>
+    q <span class="token operator">:=</span> <span class="token operator">&amp;</span>Queue<span class="token punctuation">{</span>
+        head<span class="token punctuation">:</span> unsafe<span class="token punctuation">.</span><span class="token function">Pointer</span><span class="token punctuation">(</span>dummy<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        tail<span class="token punctuation">:</span> unsafe<span class="token punctuation">.</span><span class="token function">Pointer</span><span class="token punctuation">(</span>dummy<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> q
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Enqueue 入队操作</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>q <span class="token operator">*</span>Queue<span class="token punctuation">)</span> <span class="token function">Enqueue</span><span class="token punctuation">(</span>value <span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    newNode <span class="token operator">:=</span> <span class="token operator">&amp;</span>Node<span class="token punctuation">{</span>Value<span class="token punctuation">:</span> value<span class="token punctuation">}</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        tail <span class="token operator">:=</span> atomic<span class="token punctuation">.</span><span class="token function">LoadPointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>q<span class="token punctuation">.</span>tail<span class="token punctuation">)</span>
+        next <span class="token operator">:=</span> <span class="token punctuation">(</span><span class="token operator">*</span>Node<span class="token punctuation">)</span><span class="token punctuation">(</span>tail<span class="token punctuation">)</span><span class="token punctuation">.</span>Next
+
+        <span class="token comment" spellcheck="true">// 检查tail是否是最新的</span>
+        <span class="token keyword">if</span> tail <span class="token operator">!=</span> atomic<span class="token punctuation">.</span><span class="token function">LoadPointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>q<span class="token punctuation">.</span>tail<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">continue</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">// 如果tail的next不为空，说明有其他线程正在操作，帮助更新tail</span>
+        <span class="token keyword">if</span> next <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+            atomic<span class="token punctuation">.</span><span class="token function">CompareAndSwapPointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>q<span class="token punctuation">.</span>tail<span class="token punctuation">,</span> tail<span class="token punctuation">,</span> next<span class="token punctuation">)</span>
+            <span class="token keyword">continue</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">// 尝试将新节点链接到tail后面</span>
+        <span class="token keyword">if</span> atomic<span class="token punctuation">.</span><span class="token function">CompareAndSwapPointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token punctuation">(</span><span class="token operator">*</span>Node<span class="token punctuation">)</span><span class="token punctuation">(</span>tail<span class="token punctuation">)</span><span class="token punctuation">.</span>Next<span class="token punctuation">,</span> next<span class="token punctuation">,</span> unsafe<span class="token punctuation">.</span><span class="token function">Pointer</span><span class="token punctuation">(</span>newNode<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 尝试更新tail指针</span>
+            atomic<span class="token punctuation">.</span><span class="token function">CompareAndSwapPointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>q<span class="token punctuation">.</span>tail<span class="token punctuation">,</span> tail<span class="token punctuation">,</span> unsafe<span class="token punctuation">.</span><span class="token function">Pointer</span><span class="token punctuation">(</span>newNode<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">// Dequeue 出队操作</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>q <span class="token operator">*</span>Queue<span class="token punctuation">)</span> <span class="token function">Dequeue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">interface</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        head <span class="token operator">:=</span> atomic<span class="token punctuation">.</span><span class="token function">LoadPointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>q<span class="token punctuation">.</span>head<span class="token punctuation">)</span>
+        tail <span class="token operator">:=</span> atomic<span class="token punctuation">.</span><span class="token function">LoadPointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>q<span class="token punctuation">.</span>tail<span class="token punctuation">)</span>
+        next <span class="token operator">:=</span> <span class="token punctuation">(</span><span class="token operator">*</span>Node<span class="token punctuation">)</span><span class="token punctuation">(</span>head<span class="token punctuation">)</span><span class="token punctuation">.</span>Next
+
+        <span class="token comment" spellcheck="true">// 检查队列是否为空</span>
+        <span class="token keyword">if</span> head <span class="token operator">==</span> tail <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> next <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token boolean">nil</span><span class="token punctuation">,</span> <span class="token boolean">false</span> <span class="token comment" spellcheck="true">// 队列为空</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment" spellcheck="true">// 帮助更新tail指针</span>
+            atomic<span class="token punctuation">.</span><span class="token function">CompareAndSwapPointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>q<span class="token punctuation">.</span>tail<span class="token punctuation">,</span> tail<span class="token punctuation">,</span> next<span class="token punctuation">)</span>
+            <span class="token keyword">continue</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment" spellcheck="true">// 获取队首元素</span>
+        value <span class="token operator">:=</span> <span class="token punctuation">(</span><span class="token operator">*</span>Node<span class="token punctuation">)</span><span class="token punctuation">(</span>next<span class="token punctuation">)</span><span class="token punctuation">.</span>Value
+
+        <span class="token comment" spellcheck="true">// 尝试移动head指针</span>
+        <span class="token keyword">if</span> atomic<span class="token punctuation">.</span><span class="token function">CompareAndSwapPointer</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>q<span class="token punctuation">.</span>head<span class="token punctuation">,</span> head<span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> value<span class="token punctuation">,</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"sync"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    q <span class="token operator">:=</span> lockfree<span class="token punctuation">.</span><span class="token function">NewQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// 并发入队</span>
+    <span class="token keyword">var</span> wg sync<span class="token punctuation">.</span>WaitGroup
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+       wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+       <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span>val <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+          q<span class="token punctuation">.</span><span class="token function">Enqueue</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+       <span class="token punctuation">}</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// 并发出队</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+       val<span class="token punctuation">,</span> ok <span class="token operator">:=</span> q<span class="token punctuation">.</span><span class="token function">Dequeue</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+       <span class="token keyword">if</span> <span class="token operator">!</span>ok <span class="token punctuation">{</span>
+          <span class="token keyword">break</span>
+       <span class="token punctuation">}</span>
+       fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Dequeued:"</span><span class="token punctuation">,</span> val<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>CAS将”检查”和”执行”合并为一个原子操作，消除了这个时间窗口.</p>
+<h2 id="channel"><a href="#channel" class="headerlink" title="channel"></a>channel</h2><p>Go语言的哲学就是“不要通过共享内存来进行通信，而是要通过通信来共享内存。”</p>
+<p>channel的行为矩阵</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>nil</th>
+<th>非空<br />(not empty)</th>
+<th>空<br />(empty)</th>
+<th>满<br />(full)</th>
+<th>不满<br />(not full)</th>
+<th>关闭<br />(closed)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>receive</td>
+<td>阻塞</td>
+<td>读到值</td>
+<td>阻塞</td>
+<td>读到值</td>
+<td>读到值</td>
+<td>既有的值读完后，返回零值</td>
+</tr>
+<tr>
+<td>send</td>
+<td>阻塞</td>
+<td>写入值</td>
+<td>写入值</td>
+<td>阻塞</td>
+<td>写入值</td>
+<td>panic</td>
+</tr>
+<tr>
+<td>close</td>
+<td>panic</td>
+<td>正常关闭</td>
+<td>正常关闭</td>
+<td>正常关闭</td>
+<td>正常关闭</td>
+<td>panic</td>
+</tr>
+</tbody></table>
+<p>有三种情况会发生panic：关闭为nil的chan,关闭已经关闭的chan,向已经关闭的chan里写入。</p>
+<p>注意子goroutine泄露的问题，比如子goroutine里有ch &lt;- data;</p>
+<p>主线程里有 result :&#x3D; &lt;-ch; 结果主线程超时结束了，会导致unbuffered的chan没有被读取。建议改为容量为1的chan</p>
+<p>也要注意一下那些因为channel阻塞导致子goroutine无法退出的情况。</p>
+<p>可以用反射reflect去操作select和channel</p>
+<p>chan可以用做信息交流（线程安全的队列和buffer), 数据传递（4个goroutine之间，4个chan互相传数据，每个goroutine盯着自己的chan),信号通知（wait&#x2F;notify），互斥锁，任务编排（or-Done模式，扇入模式，扇出模式，Stream模式，管道模式，map-reduce模式）</p>
+<p>如果有多个任务，那么只要有任意一个任务执行完成，就可以返回任务完成的信号。这就是Or-Done模式。</p>
+<p>在软件工程中，模块的扇入是指有多少个上级模块调用它，多个源channel输入，一个目的channel输出的情况。比如递归排序。</p>
+<p>扇出只有一个源channel输入，但有多个目的channel输出。比如观察者模式，所有观察者都会收到变动信号。</p>
+<p>Stream模式，把channel当做流式管道使用的方式。提供只取几个数据的方法。</p>
+<p>把流串起来，就形成了管道。第一个流取数据，第二个流做平方。两个流组成管道。</p>
+<p>map-reduce模式。第一步是映射(map)，处理队列中的数据。第二步是规约(reduce),把列表中的每一个元素按照一定的方式处理成结果，放入结果队列。比如下面的代码map把每个整数*10，reduce把map函数处理的结果累加起来。</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> mapChan<span class="token punctuation">[</span>T<span class="token punctuation">,</span> K any<span class="token punctuation">]</span><span class="token punctuation">(</span>in <span class="token operator">&lt;-</span><span class="token keyword">chan</span> T<span class="token punctuation">,</span> fn <span class="token keyword">func</span><span class="token punctuation">(</span>T<span class="token punctuation">)</span> K<span class="token punctuation">)</span> <span class="token operator">&lt;-</span><span class="token keyword">chan</span> K <span class="token punctuation">{</span>
+    out <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> K<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> in <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token function">close</span><span class="token punctuation">(</span>out<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> out
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>out<span class="token punctuation">)</span>
+
+        <span class="token keyword">for</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> in <span class="token punctuation">{</span>
+            out <span class="token operator">&lt;-</span> <span class="token function">fn</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> out
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> reduce<span class="token punctuation">[</span>T<span class="token punctuation">,</span> K any<span class="token punctuation">]</span><span class="token punctuation">(</span>in <span class="token operator">&lt;-</span><span class="token keyword">chan</span> T<span class="token punctuation">,</span> fn <span class="token keyword">func</span><span class="token punctuation">(</span>r K<span class="token punctuation">,</span> v T<span class="token punctuation">)</span> K<span class="token punctuation">)</span> K <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> out K
+
+    <span class="token keyword">if</span> in <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> out
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">for</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> in <span class="token punctuation">{</span>
+        out <span class="token operator">=</span> <span class="token function">fn</span><span class="token punctuation">(</span>out<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> out
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">asStream</span><span class="token punctuation">(</span>done <span class="token operator">&lt;-</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">&lt;-</span><span class="token keyword">chan</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+    s <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">)</span>
+    values <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span>
+    <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+
+        <span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> values <span class="token punctuation">{</span>
+            <span class="token keyword">select</span> <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> <span class="token operator">&lt;-</span>done<span class="token punctuation">:</span>
+                <span class="token keyword">return</span>
+            <span class="token keyword">case</span> s <span class="token operator">&lt;-</span> v<span class="token punctuation">:</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> s
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    in <span class="token operator">:=</span> <span class="token function">asStream</span><span class="token punctuation">(</span><span class="token boolean">nil</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">// map op: time 10</span>
+    mapFn <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>v <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> v <span class="token operator">*</span> <span class="token number">10</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">// reduce op: sum</span>
+    reduceFn <span class="token operator">:=</span> <span class="token keyword">func</span><span class="token punctuation">(</span>r<span class="token punctuation">,</span> v <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> r <span class="token operator">+</span> v
+    <span class="token punctuation">}</span>
+
+    sum <span class="token operator">:=</span> <span class="token function">reduce</span><span class="token punctuation">(</span><span class="token function">mapChan</span><span class="token punctuation">(</span>in<span class="token punctuation">,</span> mapFn<span class="token punctuation">)</span><span class="token punctuation">,</span> reduceFn<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="Go内存模型"><a href="#Go内存模型" class="headerlink" title="Go内存模型"></a>Go内存模型</h2><p>Go的内存模型描述的是并发环境中多个goroutine读取相同变量时，对变量可见性的保证。</p>
+<p>然后介绍了goroutine，channel, Mutex，Once， WaitGroup, atomic 的一些正常的执行顺序，可以 A synchronized before B.</p>
+<h2 id="信号量Semaphore"><a href="#信号量Semaphore" class="headerlink" title="信号量Semaphore"></a>信号量Semaphore</h2><p>信号量是用来控制多个goroutine同时访问多个资源的同步原语。</p>
+<p>PV操作：P操作用来减少信号量的计数值，V操作用来增大信号量的计数值。</p>
+<p>可以通过chan来实现一个信号量，chan中的资源槽位。</p>
+<p>Lock就是 chan &lt;- struct{}{};  Unlock就是 &lt;-chan</p>
+<p>在Go官方的扩展库里也有一个golang.org&#x2F;x&#x2F;sync&#x2F;semaphore。叫Weighted，可以一次请求、释放n个资源。</p>
+<h2 id="缓解压力利器-SingleFlight"><a href="#缓解压力利器-SingleFlight" class="headerlink" title="缓解压力利器 SingleFlight"></a>缓解压力利器 SingleFlight</h2><p>缓存击穿和缓存雪崩是缓存过期；缓存穿透是访问的key不存在。</p>
+<p>SingleFlight用于解决缓存击穿问题，是Go团队提供的一个扩展同步原语。他的作用是在处理多个goroutine同时调用一个函数时，只让一个goroutine调用这个函数，当这个goroutine返回结果时，再把结果返回给这几个同时调用的goroutine，这样就可以减少并发调用的数量。</p>
+<p>SingleFlight使用Mutex和Map来实现，其中MUtex提供并发时的读、写保护，Map用来保存正在处理(in flight)的对同一个Key的请求。</p>
+<h2 id="循环屏障CyclicBarrier"><a href="#循环屏障CyclicBarrier" class="headerlink" title="循环屏障CyclicBarrier"></a>循环屏障CyclicBarrier</h2><p>CyclicBarrier更适合用在“数量固定的goroutine等待到达同一个检查点”的场景中，而且放行后，屏障可以重复使用。</p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    cnt <span class="token operator">:=</span> <span class="token number">0</span>
+    b <span class="token operator">:=</span> cyclicbarrier<span class="token punctuation">.</span><span class="token function">NewWithAction</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">error</span> <span class="token punctuation">{</span>
+        cnt<span class="token operator">++</span>
+        <span class="token keyword">return</span> <span class="token boolean">nil</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    wg <span class="token operator">:=</span> sync<span class="token punctuation">.</span>WaitGroup<span class="token punctuation">{</span><span class="token punctuation">}</span>
+    wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        i <span class="token operator">:=</span> i
+        <span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">{</span>
+                time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span><span class="token function">Duration</span><span class="token punctuation">(</span>rand<span class="token punctuation">.</span><span class="token function">Intn</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+                log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"goroutine %d 来到第%d轮屏障"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span>
+                err <span class="token operator">:=</span> b<span class="token punctuation">.</span><span class="token function">Await</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span><span class="token function">TODO</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"goroutine %d 冲破第%d轮屏障"</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> j<span class="token punctuation">)</span>
+                <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+                    <span class="token function">panic</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>cnt<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="分组操作"><a href="#分组操作" class="headerlink" title="分组操作"></a>分组操作</h2><p>ErrGroup,SizedGroup,ErrSizedGroup,gollback,Hunch,schedgroup.</p>
+<p>ErrGroup底层是基于WaitGroup.他的功能更加丰富，可与Context集成，error可以向上传播，把子任务的错误传递给Wait的调用者。</p>
+<p>SizedGroup内部做了控制，虽然任务可以有成千上万个，但是内部只使用有限的goroutine来执行。</p>
+<p>gollback可以把子任务的执行结果和error都返回，不需要再额外定义变量数组在每个goroutine里记录了。</p>
+<p>Hunch和gollback差不多。</p>
+<p>schedgroup可以指定任务在某个时间或者某个时间之后执行。</p>
+<h2 id="限流"><a href="#限流" class="headerlink" title="限流"></a>限流</h2><p>令牌桶和漏桶。golang.org&#x2F;x&#x2F;time&#x2F;rate是Go官方提供的一个基于令牌桶实现的限流库，uber-go&#x2F;ratelimit就是一个被广泛使用的基于漏桶技术实现的单机的限流库。go-redis&#x2F;redis_rate提供了一种成熟的基于Redis的分布式限流方案，采用漏洞技术，还支持突发请求。其底层使用redis&#x2F;go-redis库来访问Redis，并且使用Lua脚本的方式在Redis服务端计算是否有充足的令牌。</p>
+<p>限流属于服务上层，不属于业务考虑范围。</p>
+<h2 id="Go并发编程和调度器"><a href="#Go并发编程和调度器" class="headerlink" title="Go并发编程和调度器"></a>Go并发编程和调度器</h2><p>主从：Campaign方法，其作用是把一个节点选择为主节点；Leader方法，查询当前主节点的方法；Observe方法：来监控主节点的变化。</p>
+<p>etcd提供了选主逻辑，而我们要做的就是利用这些方法，让它们为我们的业务服务。etcd还提供了简单的Locker同步原语。</p>
+<p>Locker是基于Mutex实现的。请求锁调用Lock方法，释放锁调用Unlock方法，通过Key方法获取Mutex的值。持有锁的节点崩溃后，锁在未来也会释放，可设置超时过期时间。etcd也提供了RWMutex。</p>
+<p>基于etcd实现的分布式队列，分布式优先队列也是有的。还提供了分布式屏障Barrier。计数型屏障DoubleBarrier,集齐数量后才能一进一出。</p>
+<p>软件事务内存（software transactional memory,STM)是一种并发编程模型，用于解决多线程访问共享内存时可能产生的数据竞争和并发性问题。当利用etcd做存储时，是可以利用STM实现事务操作的，一个事务可以包含多个账号的数据更改操作，事务能保证这些更改要不全部成功，要不全部失败。</p>
+<h2 id="并发模式"><a href="#并发模式" class="headerlink" title="并发模式"></a>并发模式</h2><p>略</p>
+<h2 id="经典并发问题解析"><a href="#经典并发问题解析" class="headerlink" title="经典并发问题解析"></a>经典并发问题解析</h2><p>哲学家就餐问题：</p>
+<p>形成死锁的四个条件：</p>
+<p>1.禁止抢占(No Preemption):不能强制抢夺别人的资源，抢筷子</p>
+<p>2.持有和等待(Hold and Wait):一个线程在等待时持有并发资源。拿着筷子不放手，等别的筷子</p>
+<p>3.互斥（Mutual Exclusion):资源在同一时刻只能被分配给一个线程。一个筷子只能在一个人手里</p>
+<p>4.循环等待（Circular Waiting):一系列线程相互持有其他线程所需要的资源</p>
+<p>破坏循环等待条件-减少就餐人数。奇偶处理办法。资源分级，必须拿到低级的筷子才能拿高级的筷子。引入服务生，将拿两个筷子视为一个原子操作，打破持有且等待条件。</p>
+<p>理发师问题：</p>
+<p>用Cond或者用channel实现信号量。</p>
+
                 
             </div>
             <hr/>
