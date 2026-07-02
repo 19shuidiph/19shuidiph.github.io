@@ -2628,7 +2628,8 @@ result <span class="token operator">=</span> counter<span class="token punctuati
 <h3 id="在光辉税月项目中，JDK6，进行了调优。因为发生了OOM"><a href="#在光辉税月项目中，JDK6，进行了调优。因为发生了OOM" class="headerlink" title="在光辉税月项目中，JDK6，进行了调优。因为发生了OOM"></a>在光辉税月项目中，JDK6，进行了调优。因为发生了OOM</h3><p>比较常见的 OOM 类型有以下几种</p>
 <p><strong>java.lang.OutOfMemoryError: PermGen space</strong></p>
 <p>Java7 永久代（方法区）溢出，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。每当一个类初次加载的时候，元数据都会存放到永久代</p>
-<p>一般出现于大量 Class 对象或者 JSP 页面，或者采用 CgLib 动态代理技术导致</p>
+<p>一般出现于大量 Class 对象或者 JSP 页面，或者采用 CgLib 动态代理技术导致。</p>
+<p>JSP页面在运行时会被Web容器（如Tomcat）<strong>动态编译为Servlet类</strong>，每个JSP对应一个独立的类。如果出现大量JSP页面，或者遇到无限增长的集合，就会撑爆堆内存。</p>
 <p>我们可以通过 <code>-XX：PermSize</code> 和 <code>-XX：MaxPermSize</code> 修改方法区大小</p>
 <blockquote>
 <p>-XX:PermSize&#x3D;N &#x2F;&#x2F;方法区 (永久代) 初始大小<br>-XX:MaxPermSize&#x3D;N &#x2F;&#x2F;方法区 (永久代) 最大大小,超过这个值将会抛出 OutOfMemoryError 异常PermGen space</p>
@@ -3716,7 +3717,7 @@ result <span class="token operator">=</span> counter<span class="token punctuati
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2023-2025</span>
+                <span id="year">2023-2026</span>
             
             <span id="year">2023</span>
             <a href="/about" target="_blank">爱敲代码の鱼儿</a>
